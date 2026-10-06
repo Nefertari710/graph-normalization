@@ -1,0 +1,94 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# JetBrains IDEs and VS Code
+.idea/
+*.iml
+.vscode/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.ipynb_checkpoints/
+
+# Virtual environments and local configuration
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+
+# Coverage, packaging, and build output
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs and temporary files
+*.log
+*.pid
+*.tmp
+*.swp
+tmp/
+.cache/
+
+# Generated TPC-H benchmark data
+**/data/tbl_sf_*/*.tbl
+
+# Compressed RDF Turtle data
+*.ttl.bz2
+
+# Local DBLP RDF dataset
+/dblp/dataset/*.nt.gz
+
+# Generated DBLP CSV exports
+/dblp/export_database/output/
+
+# Local Northwind case-study data
+case_study/data/dataset/*.csv
+
+# Local Offshore Leaks dataset
+/offshore_experiment/dataset/*.csv
+/offshore_experiment/dataset/*.dump
+
+# Local Provider and Service dataset
+/providerAndService_experiment/dataset/PHY*.csv
+
+# Generated embedding figures
+/case_study/embedding/**/*.png
+/case_study/back/**/*.png
+
+# Generated embedding experiment output
+/case_study/embedding/embedding_results_exd.json
+/offshore_experiment/embedding/results/offshorecsv/embedding_offshore.json
+
+# Generated benchmark/runtime markers
+**/exceed_marks/
+
+# Local graph/database runtime files
+neo4j/data/
+neo4j/logs/
+neo4j/run/
+neo4j/plugins/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Generated scale-factor comparison output
+/tpch_database_experiment/test/redundancy/results/sf_influence/
