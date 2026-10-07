@@ -1,0 +1,1221 @@
+%%
+%% This is file `sigconf.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `all,proceedings,sigconf')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sigconf.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%%
+%% Commands for TeXCount
+%TC:macro \cite [option:text,text]
+%TC:macro \citep [option:text,text]
+%TC:macro \citet [option:text,text]
+%TC:envir table 0 1
+%TC:envir table* 0 1
+%TC:envir tabular [ignore] word
+%TC:envir displaymath 0 word
+%TC:envir math 0 word
+%TC:envir comment 0 0
+%%
+%% The first command in your LaTeX source must be the \documentclass
+%% command.
+%%
+%% For submission and review of your manuscript please change the
+%% command to \documentclass[manuscript, screen, review]{acmart}.
+%%
+%% When submitting camera ready or to TAPS, please change the command
+%% to \documentclass[sigconf]{acmart} or whichever template is required
+%% for your publication.
+%%
+%%
+\documentclass[sigconf]{acmart}
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+\setcopyright{acmlicensed}
+\copyrightyear{2027}
+\acmYear{2027}
+\acmDOI{XXXXXXX.XXXXXXX}
+%% These commands are for a PROCEEDINGS abstract or paper.
+\acmConference[SIGMOD '27]{International Conference
+on Management of Data}{June 13--19,
+  2027}{Huntington Beach, CA}
+%%
+%%  Uncomment \acmBooktitle if the title of the proceedings is different
+%%  from ``Proceedings of ...''!
+%%
+%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%%  June 03--05, 2018, Woodstock, NY}
+\acmISBN{978-1-4503-XXXX-X/2027/06}
+
+
+
+
+
+% add usepackage by yma391
+\usepackage[table]{xcolor}
+\definecolor{singleviewbg}{RGB}{255,243,224}   % light orange
+\definecolor{lightblue}{RGB}{227,242,253}    % light blue
+
+\definecolor{higherSimilarityBg}{RGB}{227,242,253}  % light blue
+\definecolor{lowerSimilarityBg}{RGB}{255,243,224}   % light orange
+\usepackage{siunitx}
+
+\usepackage{enumitem}
+% Query Schema
+\usepackage{booktabs}
+% \usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subcaption} % for subfigures
+
+
+
+
+
+
+
+
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% For managing citations, it is recommended to use bibliography
+%% files in BibTeX format.
+%%
+%% You can then either use BibTeX with the ACM-Reference-Format style,
+%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
+%% support for advanced citation of software artefact from the
+%% biblatex-software package, also separately available on CTAN.
+%%
+%% Look at the sample-*-biblatex.tex files for templates showcasing
+%% the biblatex styles.
+%%
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Redundancy Elimination in Knowledge Graphs}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+
+
+\begin{comment}
+\author{Author names suppressed due to double-blind reviewing}
+\end{comment}
+
+
+
+\author{Yuqian Ma}
+\orcid{}
+\email{yma391@aucklanduni.ac.nz}
+\affiliation{%
+  \institution{University of Auckland}
+  \city{Auckland}
+  \country{New Zealand}
+}
+
+\author{Zihui Yang}
+\orcid{}
+\email{zyan423@aucklanduni.ac.nz}
+\affiliation{%
+  \institution{University of Auckland}
+  \city{Auckland}
+  \country{New Zealand}
+}
+
+\author{Zhuoxing Zhang}
+\orcid{}
+\email{zhuoxing.zhang@auckland.ac.nz}
+\affiliation{%
+  \institution{University of Auckland}
+  \city{Auckland}
+  \country{New Zealand}
+}
+
+\author{Philipp Skavantzos}
+\orcid{}
+\email{philipp.skavantzos@auckland.ac.nz}
+\affiliation{%
+  \institution{University of Auckland}
+  \city{Auckland}
+  \country{New Zealand}
+}
+
+\author{Sebastian Link}
+\correspondingauthor
+%\authornotemark[1]
+\orcid{0000-0002-1816-2863}
+\email{s.link@auckland.ac.nz}
+\affiliation{%
+  \institution{University of Auckland}
+  \city{Auckland}
+  \country{New Zealand}
+}
+
+
+
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+Knowledge graphs have emerged as the foundation for semantic querying and many modern day artificial intelligence applications. However, redundancy in graph data can lead to inconsistencies and increased integrity maintenance costs. While normalization is a well-established principle in relational database design, existing approaches to graph normalization primarily operate at the instance level and do not exploit the structural information provided by graph schemas. We introduce a normalization framework for schema-based knowledge graphs that are build on conceptual modelling principles. An extensive experimental study on synthetic and real-world graphs shows that by eliminating structurally redundant information, our approach reduces the potential for inconsistencies and lowers the cost of maintaining graph integrity. We further demonstrate how normalization can benefit graph query processing and other knowledge graph-specific operations.
+\end{abstract}
+
+
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+
+    <concept>
+        <concept_id>10002951.10002952.10002953.10002959</concept_id>
+        <concept_desc>Information systems~Entity relationship models</concept_desc>
+        <concept_significance>500</concept_significance>
+    </concept>
+    <concept>
+        <concept_id>10002951.10002952.10002953.10010146</concept_id>
+        <concept_desc>Information systems~Graph-based database models</concept_desc>
+        <concept_significance>500</concept_significance>
+    </concept>
+    <concept>
+        <concept_id>10002951.10002952.10003212.10003214</concept_id>
+        <concept_desc>Information systems~Database performance evaluation</concept_desc>
+        <concept_significance>500</concept_significance>
+    </concept>
+
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Information systems~Entity relationship models}
+\ccsdesc[500]{Information systems~Graph-based database models}
+\ccsdesc[500]{Information systems~Database performance evaluation}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+%\keywords{Do, Not, Use, This, Code, Put, the, Correct, Terms, for,
+%  Your, Paper}
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+
+
+\received{xx October 2026}
+\received[revised]{xx xx 2026}
+\received[accepted]{xx xx 2026}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Introduction}
+
+Knowledge graphs (KGs) represent entities and the relationships between them in a structured graph-based representation, enabling information from heterogeneous sources to be integrated and queried according to its semantic relationships. While the underlying ideas of knowledge representation and semantic networks predate the term "knowledge graph", the concept gained substantial visibility following the introduction of Google's Knowledge Graph in 2012 \cite{Hogan_21_Knowledge_Graphs}. The subsequent development of large open knowledge graphs has further contributed to the growth and adoption of the technology. Now, knowledge graphs represent the backbone of many modern day applications that involve question answering and semantic search \cite{Belth_20_What_is_Missing_in_a_KG} and they are the foundation for recommendation engines \cite{Guo_22_Survey_KGs_for_Recommender_Systems}, social network analysis \cite{BhattP_19_KG_Enhanced_Community_Detection_and_Characterization} and fraud detection \cite{Diogenes_24_Graph_Modeling_for_Fraud_Detection}. KGs are implemented using graph databases which have gained significant popularity in recent years due to their flexible and intuitive representation of data and relationships. Two of the most prominent graph data models are the Resource Description Framework (RDF) \cite{W3C_RDF, Tomaszuk_20_RDF_Knowledge_Representation_For_Web} and the labelled property graph (LPG) model \cite{Angles_2018_Property_Graph_Model, Pierro_23_LPG_Based_KGs} with property graphs showing considerable potential to become a de facto standard for graph data management.
+
+
+\begin{figure}[t]
+	\begin{subfigure}[b]{.95\columnwidth}
+		\centering\includegraphics[width=\columnwidth]{figures/graph_pivoting_example_schema_denormalized.png}
+		\caption{Denormalized Graph Schema}	
+	\end{subfigure}
+	\begin{subfigure}[b]{.95\columnwidth}
+		\centering\includegraphics[width=\columnwidth]{figures/graph_pivoting_example_denormalized.png}
+		\caption{Denormalized Graph Instance}
+	\end{subfigure}
+	\caption{Denormalized Graph Schema and Instance\\ \textcolor{red}{change conceptual model image for (a), underline keys and add dots on edge(s) in (a), adjust images so they can fit next to each other}}
+    \label{fig:denormalized_example}
+\end{figure}
+
+\textcolor{red}{frame more towards KG construction and schema transformation and not just normalization.
+\begin{itemize}
+    \item Cite more literature on (knowledge) graph schema transformation that is not normalization
+    \item benefits of pivoting:
+    \begin{itemize}
+        \item decouple concepts like ability to store customers without orders, same when deleting all orders and still customer remains
+        \item naturally capture specialisations
+        \item examples from popular domains: e-commerce (customer/order, order/items), fraud (look up example), healthcare (...)
+        \item Change OrderInfo by removing ID and adding ordertime, payment info, address and key attributes include date and time
+    \end{itemize}
+\end{itemize}
+}
+
+Graph database management systems have become increasingly mature, and their adoption continues to grow \cite{Sakr_21_Future_is_Big_Graphs}. Nevertheless, they remain substantially less widespread than their relational counterparts \footnote{\url{https://db-engines.com/en/ranking_trend}}. This difference is not solely attributable to the relative maturity of relational database technology. For a long time no standardized graph query language existed and another key challenge is the lack of well-established methods for graph database design \cite{Pokorny_16_Conceptual_and_DB_Modeling_of_Graph_DBs}. One of the advantages of graph data is its flexibility as no rigid schema is enforced. However, this lack of an overarching structure brings with it a multitude of problems. This includes the potential for issues around data consistency and quality, lack of clear semantics and optimization opportunities among other aspects. In response, researchers and practitioners have proposed standards and approaches for graph query languages \cite{Angles_17_Foundations_Modern_Graph_Query_Languages, Angles_18_G-CORE, Deutsch_22_Graph_Pattern_Matching_GQL_SQL/PGQ}, schema definition \cite{Angles_23_PG_Schema}, and integrity support \cite{Angles_21_PG_Keys}. These developments indicate a growing need for systematic approaches that can support the design and management of reliable graph-based data systems. This is particularly crucial for emerging applications backed by knowledge graphs, where the quality and consistency of relationships between entities can have a substantial impact on downstream analysis and AI applications. To support high quality data in knowledge graphs it is of utmost importance to have a principled design approach that includes a robust schema formalism along with a corresponding normalization framework \cite{Skavantzos_25_Graph_3NF_BCNF, Egger_26_Structural_Normalization_of_PGs, Schrott_27_Graph_Native_Normalization}. While existing approaches primarily formulate normalization directly over property graphs, we investigate normalization as a schema-design transformation grounded in a conceptual model. Functional dependencies (FDs) that cause redundancy \cite{Kolahi_10_Analysis_of_Worst_Case_Redundancy} in knowledge graphs can introduce data quality problems when the same fact is represented multiple times. This can reduce the consistency and reliability of the knowledge graph and may also propagate errors into downstream querying, reasoning, and analytics.
+
+
+To illustrate this situation we refer to Figure \ref{fig:denormalized_example} (a) which shows the conceptual model (as introduced in \cite{Thalheim_00_ERM}) of a retail application which is defined as follows:
+
+\textcolor{red}{change key of OrderInfo with components and attributes}
+
+
+\begin{itemize}\small
+\item[] \textsc{Product}=\{P.ID,P.n,P.p\} with key \{P.ID\},
+\item[] \textsc{Customer}=\{C.ID, C.n, C.a\} with key \{C.ID\} 
+\item[] \textsc{Shipper}=\{S.ID,S.c\} with key \{S.ID\},
+\item[] \textsc{OrderInfo}=(\{\textsc{P}, \textsc{C}, \textsc{S}\}, \{OI.d, OI.t, OI.p, OI.a, OI.q, OI.d\}) with key (\{\textsc{P,C}\},\{OI.d, OI.t\})
+\end{itemize}
+
+\noindent Here, the object types \textsc{Product}, \textsc{Customer} and \textsc{Shipper} do not depend on any other objects and \textsc{OrderInfo} depends on the former. In addition, the referenced object type \textsc{Product} contributes to the key of \textsc{OrderInfo}. In Figure \ref{fig:denormalized_example} (b) we see a knowledge graph instance that adheres to the graph schema prescribed through the conceptual model (as introduced in \cite{Skavantzos_25_ER_Graphs}). The graph in Figure \ref{fig:denormalized_example} (b) contains two nodes labelled '\texttt{Order Info}' which store information of an order placed by a customer. Each node carries information on the amount of a particular product that has been ordered along with information on potential discounts. In addition, each node records which order these details refer to and when it has been placed. We notice that the FD $\texttt{OrderInfo} : \{\text{orderInfoID}\} \rightarrow \{\texttt{Customer, Shipper}, \text{orderDate}\}$ holds. That is, the value of '\emph{orderInfoID}' determines the '\emph{orderDate}'. This leads to the value of '\emph{orderDate}' being redundantly repeated which can potentially lead to inconsistent data if for example not all values are updated at the same time. Similarly, the FD stipulates that the value of '\emph{orderInfoID}' determines the referenced '\texttt{Customer}' and '\texttt{Shipper}' nodes. This means that if for example there was a  '\texttt{Order Info}' node with '\emph{orderInfoID}' of 42 that points to a different '\texttt{Customer}' node or '\texttt{Shipper}' node then the graph would violate the functional dependency.
+
+To avoid such scenarios we transform the conceptual model from Figure \ref{fig:denormalized_example} (a) into the one shown in \ref{fig:normalized_example} (a)  which is defined as follows:
+
+
+\textcolor{red}{double check denormalized and normalized schema: Product key component of OrderDetail correct, check FD correct in text}
+
+\begin{itemize}[]\small
+\item[] \textsc{Product}=\{P.ID,P.n,P.p\} with key \{P.ID\},
+\item[] \textsc{Customer}=\{C.ID, C.n, C.a\} with key \{C.ID\} 
+\item[] \textsc{Shipper}=\{S.ID,S.c\} with key \{S.ID\},
+\item[] \textsc{Order}=(\{\textsc{C}, \textsc{S}\}, \{O.d,O.t, O.p, O.a\}) with key (\{\textsc{C}\},\{OI.d, OI.t\})
+\item[] \textsc{OrderDetail}=(\{\textsc{P}, \textsc{O}\}, \{OD.q, OD.d\}) with key (\{\textsc{P}, \textsc{O}\}, $\emptyset$)
+\end{itemize}
+
+\textcolor{red}{explain how FD was transformed into key, provide formal notation of key and give intuition how it works}
+
+\textcolor{red}{highlight that key component Customer pulled out of OrderInfo and now Order key component of OrderDetails}
+
+\textcolor{red}{explain how OrderDetail depends on Order which depends on...}
+
+\noindent The graph instance that corresponds to the one shown in Figure \ref{fig:denormalized_example} (b) is the one in Figure \ref{fig:normalized_example} (b) where we see that no redundancy occurs. Establishing the foundations for this schema transformation represents the core of our work.
+
+
+
+
+\begin{figure}[t]
+	\begin{subfigure}[b]{.95\columnwidth}
+		\centering\includegraphics[width=\columnwidth]{figures/graph_pivoting_example_schema_normalized.png}
+		\caption{Normalized Graph Schema}	
+	\end{subfigure}
+	\begin{subfigure}[b]{.95\columnwidth}
+		\centering\includegraphics[width=\columnwidth]{figures/graph_pivoting_example_normalized.png}
+		\caption{Denormalized Graph Instance}
+	\end{subfigure}
+	\caption{Normalized Graph Schema and Instance\\ \textcolor{red}{change conceptual model image for (a), underline keys and add dots on edge(s) in (a), adjust images so they can fit next to each other}}
+    \label{fig:normalized_example}
+\end{figure}
+
+
+
+To motivate our work we highlight possible problems that could result from a knowledge graph design as shown in Figure \ref{fig:denormalized_example} (a). Imagine, we aim to change the format in which the date of orders is stored in the KG then we would have to update both values for '\emph{orderDate}' on the '\texttt{Order Info}' nodes in the graph in Figure \ref{fig:denormalized_example} (b). Now if we only update one value from '08-02-2026' to '02/08/2026' and the other value  remains then queries about orders placed on that date will produce incorrect results. These issues caused by redundancy are avoided when using the KG design as shown in Figure \ref{fig:denormalized_example} (a) and as only one single value needs updating which makes this operation more efficient as well. While in relational databases normalization might sometimes have adverse effects on query workload processing due to additional table joins in graph databases this effect is less pronounced as efficient node filtering and accessing neighbouring nodes can be processed efficiently. \textcolor{red}{Provide citation for first part about RDBMS and careful with second part and see if citations can be found}. Finally, normalized KGs exhibit a more graph-like structure by splitting up overloaded object types to separate distinguishable concepts which can lead to improvements in KG-specific tasks.
+
+
+The contributions of our work can be summarized as follows:
+
+(1) \textbf{A principled approach to knowledge graph design and normalization:} We propose a principled conceptual-model-driven approach to knowledge graph normalization, establishing a systematic relationship between conceptual modelling, data dependencies, and graph schema design.
+
+(2) \textbf{Schema-level normalization for reducing sources of inconsistency in knowledge graphs:} We formalize a schema-level normalization framework that transforms graph schemas to reduce redundant representations of information and thereby minimizes potential sources of inconsistency while preserving the semantics of the original conceptual model.
+
+(3) \textbf{Improvements to integrity management and query processing:} We empirically evaluate the effects of normalization on data integrity, update maintenance, and representative query workloads, assessing both its benefits in reducing redundancy and its potential performance trade-offs.
+
+(4) \textbf{Impact on knowledge graph construction and downstream tasks:} We investigate the effects of normalization on knowledge graph construction and downstream KG-specific tasks, including whether normalized source data and graph structures can improve the quality, efficiency, or effectiveness of subsequent KG operations.
+
+This article is structured as follows. In Section \ref{sec:related} we discuss related work which is followed by Section \ref{sec:er-model} which recaps crucial concepts underlying our research. In Section \ref{sec:er-model} we discuss the theoretical foundation for our work which is followed by Section \ref{sec:er-kgs} where our framework to knowledge graph schema transformation is presented. An extensive experimental study in Section \ref{sec:experiments} backs our findings which is followed by Section \ref{sec:conclusion} where we summarize our work and discuss directions for future research.
+
+
+\textcolor{red}{discuss why only look at PG KGs and not RDF. Mention popularity of LPG, transformations, etc. Or leave out altogether as ER graph model does not necessarily stipulate implementation as LPG?}
+
+
+
+
+
+
+
+
+\section{Related Work}\label{sec:related}
+
+
+In this section we like to present related literature on the concept of pivoting, knowledge graphs and research on graph databases in a more general context to emphasize in which ways our work complements the state of the art.
+
+\textbf{Pivoting} is a conceptual schema \cite{Thalheim_00_ERM} transformation technique that is used to decompose overloaded object types (to separate independent concepts that are grouped together) and high-arity relationship types \cite{Biskup_96_Decomposition_of_Relationships_Pivoting, Hartmann_01_Decomposing_Relationship_Types_Pivoting}. By replacing the original object with a linked structure, pivoting captures complex domain semantics. This structural decomposition provides lossless, equivalence-preserving schema transformations that eliminate data redundancy, prevent update anomalies, and streamline constraint enforcement across the database.Our research helps to apply the techniques from pivoting conceptual models to knowledge graphs to harness these benefits and we highlight the gains experienced by query workloads and downstream applications.
+
+\textbf{Knowledge graphs} have traditionally been modelled using RDF \cite{W3C_RDF, Tomaszuk_20_RDF_Knowledge_Representation_For_Web}, However, recently, labelled property graphs \cite{Angles_2018_Property_Graph_Model, Pierro_23_LPG_Based_KGs} have become established as the backbone of knowledge graphs and transformations from RDF to property graphs have been developed \cite{Angles_20_RDF_to_LPG, Rabbani_24_RDF_to_LPG_Transformation}. In our work we consider knowledge graphs that are property graphs which adhere to a schema that guides their structure based on a conceptual model as outlined by the authors in \cite{Skavantzos_25_ER_Graphs}. One crucial benefit of this modelling approach is the availability of a graph schema. Hence, we are able to formulate a normalization framework that does not focus on the instance level to avoid redundancy already during the design process \cite{Kolahi_10_Analysis_of_Worst_Case_Redundancy}. The fact that conceptual models express natural language well \cite{Chen_83_English_Language_and_ER_Diagram, Omar_20_Conceptual_Model_Development_From_Natural_Language} makes this approach desirable, in particular if knowledge graphs are queried using natural language via LLMs. Finally, treating relationships as first-class citizens shows great potential for the performance of knowledge graphs \cite{Panda_24_Hyper_Relational_KGs_for_Multi_Hop_Questions, Nooijen_26_Meta_Property_KGs}. Popular and emerging KG-related research areas include GraphRAG \cite{Peng_26_GraphRAG_Survey}, using KGs as agentic memory \cite{Wu_26_Hierarchical_Graph_Based_Agentic_Memory}, LLM-assisted KG construction \cite{Mihindukulasooriya_25_Prompt_Optimization_KG_Construction} and temporal KGs \cite{Hou_25_Graph_DB_With_Built_in_Temporal_Support}. Our work is more aligned with research around query processing in KGs \cite{Alotaibi_21_PG_Schema_Optimization_for_KGs} and the quality and correctness of KGs \cite{Gao_19_KG_Accuracy_Evaluation, Marchesin_24_Estimation_KG_Accuracy}. Yet, in contrast to existing work, we investigate how to establish a normalization framework for knowledge graphs to reduce redundancy which can cause inconsistency in the data. This leads to reduced integrity maintenance cost and we show how query processing and KG-specific tasks benefit as well.
+
+\textbf{Graph database} research, more generally, has gained significant traction \cite{Sakr_21_Future_is_Big_Graphs}. Increasing attention from the research community is driving innovation in areas such as graph query languages \cite{Deutsch_22_Graph_Pattern_Matching_GQL_SQL/PGQ}, indexing and storage \cite{Shi_24_Space_Saving_Structure_for_Dynamic_Graph_Storage}, and scalability \cite{Mo_25_LSM_Scalable_Graph_DB}. A major focus of academics has been establishing a schema formalism for property graphs \cite{Angles_23_PG_Schema, LDBC_20_PG_Schema_Working_Group, Bonifati_19_Schema_Validation_for_Graph_DBs} along with proposals of expressive key constraints \cite{Angles_21_PG_Keys, Fan_15_Graph_Keys} and functional dependencies \cite{Fan_16_Graph_FDs, Fan_20_Discovering_Graph_FDs}. These lines of research naturally lead to the question what normalization for graph databases should look like \cite{Skavantzos_25_Graph_3NF_BCNF, Egger_26_Structural_Normalization_of_PGs, Schrott_27_Graph_Native_Normalization}. All existing proposals introduce a normalization framework for graphs at the instance level. However, normalization is traditionally regarded as an optimization of a pre-defined schema. A recent call to action from community leaders for more research in this area \cite{Kondylakis_25_PG_Standards_SOTA_and_Challenges} and the fact that to the best of our knowledge current literature does not consider the normalization of property graphs at schema level serve as additional motivation for our work.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Conceptual Model}\label{sec:er-model}
+
+To investigate how conceptual modelling can benefit graph database design has attracted interest in from researchers \cite{Daniel_16_UML_To_Graph, Pokorny_16_Conceptual_Modeling_Graph_DB, DBLP:conf/iiwas/SousaC18,DBLP:conf/er/VirgilioMT14, Skavantzos_25_ER_Graphs}. In the following we reiterate some crucial concepts from conceptual modelling \cite{Thalheim_00_ERM}. First we introduce central syntax and semantics which is fundamental for the construction of conceptual knowledge graphs. In particular, we introduce the notions of entity types, entities and entity sets along with relationship types, relationships and relationship sets. In what follows we might use the term object when we mean either entity or relationship.
+
+\textbf{Entity Types, Entities, and Entity Sets:} Entities serve as the fundamental building blocks of the conceptual model, with entities sharing common characteristics grouped under the same entity type which are defined by a finite collection of attributes (properties). Furthermore, every entity instance must be uniquely identified by a designated subset of its attributes. Formally, an \emph{entity type} $E$ is defined by a finite, non-empty set of attributes $\textit{attr}(E)$ together with a non-empty key subset $\textit{id}(E)\subseteq\textit{attr}(E)$, where each element $A\in\textit{id}(E)$ represents a key attribute of $E$. Each attribute $A$ is associated with a domain $\textit{dom}(A)$, which denotes the non-empty set of permissible values that can be assigned to an entity for that specific attribute. An \emph{entity} $e$ of type $E$ maps each attribute in $E$ to a value $e(A)\in\textit{dom}(A)$. Formally, $e:\textit{attr}(E)\rightarrow\bigcup_{A\in\textit{attr}(E)}\textit{dom}(A)$ such that $e(A)\in\textit{dom}(A)$ for every $A\in\textit{attr}(E)$. The set of all possible entities of type $E$, denoted $\textit{ent}(E)$, corresponds to the Cartesian product of the attribute domains: $\textit{ent}(E)=\prod_{A\in\textit{attr}(E)}\textit{dom}(A)$.An \emph{entity set} of type $E$ is a finite subset $\mathcal{I}(E)\subseteq\textit{ent}(E)$ in which no two distinct entities share identical values across all key attributes. That is, for any $e,e'\in\mathcal{I}(E)$ with $e\neq e'$, there exists at least one key attribute $A\in\textit{id}(E)$ where $e(A)\neq e'(A)$. Consequently, key attribute values uniquely identify each entity in the set. In the conceptual model underlying the graph schema in Figure \ref{fig:denormalized_example} (a) we have for example the entity type \texttt{Product} with attributes \textit{productID} (which is also key), \textit{name} and \textit{price} with domains \textit{String}, \textit{String} and \textit{Integer}, respectively. In Figure \ref{fig:denormalized_example} (b) we have an entity set of type \texttt{Product} with the two \texttt{Product} entities identifiable through the key values \textit{'gad004'} and \textit{'exp001'}.
+
+\textbf{Relationship types, Relationships, and Relationship Sets:} Relationships represent structured aggregations combining entities and simpler relationship types. To avoid logical anomalies as discussed in the introduction, directed cycles among object types are strictly prohibited. For any integer $k \ge 0$, a \emph{relationship type} $R$ \emph{of order} $k$ is defined by: (i) a finite collection $\textit{comp}(R)$ of constituent relationship types, termed \emph{components} of $R$, where $\textit{comp}(R)=\emptyset$ if $k=0$, and for $k>0$, every component $R'\in\textit{comp}(R)$ has an order strictly smaller than $k$, with at least one component of order $k-1$; (ii) a finite set $\textit{attr}(R)$ of attributes, each associated with a domain $\textit{dom}(A)$; and (iii) a non-empty key set $\textit{id}(R)\subseteq\textit{comp}(R)\cup\textit{attr}(R)$, defining the \emph{key} of $R$, whose elements partition into \emph{key components} ($\textit{id}(R)\cap\textit{comp}(R)$) and \emph{key attributes} ($\textit{id}(R)\cap\textit{attr}(R)$). Under this definition, entity types correspond precisely to relationship types of order $0$, possessing attributes but no components. Conversely, relationship types of order $k>0$ require no direct attributes, but must include at least one component relationship type of order $k-1$. For order $0$ relationship types, individual relationships coincide with entities, so $\textit{rel}(R):=\textit{ent}(R)$. For order $k>0$, a relationship instance $r \in \textit{rel}(R)$ maps each component $R'\in\textit{comp}(R)$ to a corresponding relationship $r(R')\in\textit{rel}(R')$ of lower order, and maps each attribute $A\in\textit{attr}(R)$ to a value $r(A)\in\textit{dom}(A)$. Thus, the set of potential relationships is formed by the Cartesian product $\textit{rel}(R)=\prod_{R'\in\textit{comp}(R)}\textit{rel}(R')\times\prod_{A\in\textit{attr}(R)}\textit{dom}(A)$. Because component orders decrease strictly at each step down to entities at order $0$, relationship instances across all orders remain well-defined. Every relationship set must obey key uniqueness. That is, a \emph{relationship set} of type $R$ is a finite subset $\mathcal{I}(R)\subseteq\textit{rel}(R)$ such that any two distinct instances $r,r'\in\mathcal{I}(R)$ ($r\neq r'$) differ on their key projection: $r(\textit{id}(R))\neq r'(\textit{id}(R))$. Where distinct roles for identical component types must be clarified, components may be assigned explicit role labels $l:R'\in\textit{comp}(R)$, such as distinguishing a $\textit{home}:\textsc{Team}$ from an $\textit{away}:\textsc{Team}$.
+
+\textcolor{red}{Use other example here for roles (more related to running example domain? No role required in running example. Add such a scenario or just distracts from what we focus on? Might be interesting for pivoting if home:TEAM in Z, but away:Team not, etc.}
+
+Finally, specifying key attributes motivates a foreign key semantics. For higher-order relationships ($k>0$), instances and sets are defined directly over key components. A relationship set is defined as  $\textit{rel}(R):=\prod_{R'\in\textit{id}(R)\cap\textit{comp}(R)}\textit{rel}(R')\times\prod_{A\in\textit{attr}(R)}\textit{dom}(A)$. This formulation prevents unnecessary attribute redundancy across components. Generic terms like \emph{object type}, \emph{object}, and \emph{object set} are used to refer indiscriminately to entities or relationships (and their respective types or sets). In the example in Figure \ref{fig:denormalized_example} (a) we have the relationship type \texttt{OrderInfo} which depends on the components \texttt{Product}, \texttt{Shipper} and \texttt{Customer}. The order of \texttt{OrderInfo} is $k=1$ as all components are entity types (which have order $k=0$). The relationship set for \texttt{OrderInfo} consists of the two relationships of the type shown in Figure \ref{fig:denormalized_example} (b). After schema transformation \texttt{OrderInfo} (shown in Figure \ref{fig:normalized_example} (a)) is split up into two relationship types, \texttt{Order} (with order $k=1$) and \texttt{OrderDetails} (with order $k=2$) which depends on the lower-order type \texttt{Order}.
+
+
+\textbf{Functional Dependencies:} Most standard conceptual frameworks support only key and foreign key constraints, reinforcing the assumption that conceptual designs naturally yield normalized database schemas where no other constraints are needed. However, to support denormalization, we allow each object type $O$ to explicitly define a set of functional dependencies, denoted as $\textit{fd}(O)$. Each dependency takes the form $X \rightarrow Y$, where both $X$ and $Y$ are subsets of $\textit{comp}(O) \cup \textit{attr}(O)$. This constraint specifies that if two objects share identical values for all components and attributes in $X$, they must also share identical values for all components and attributes in $Y$.
+
+\textcolor{red}{refer to FD from running example as example}
+
+
+\textbf{Conceptual Model and Conceptual Instances:} Referential integrity is fundamental to conceptual models. A \emph{Conceptual Model} (or conceptual schema) is a non-empty, finite set $\mathcal{M}$ of object types such that for every relationship type $R\in\mathcal{M}$, all (labelled) components $R'(l:R')\in\textit{comp}(R)$ of $R$ belong to the schema as well, meaning $R'(l:R')\in\mathcal{M}$. In short, relationship types require all of their constituent components to be present. In our running example in Figure \ref{fig:denormalized_example} (a) this means that in our schema we cannot have \texttt{OrdInfo} object types that depend on \texttt{Product} without \texttt{Product} itself being part of the schema too. An instance $I\mathcal{(M)}$ of the model $\mathcal{M}$ assigns to each entity type $E \in \mathcal{M}$ an entity set $I(E)$ and to each relationship type $R \in \mathcal{M}$ a relationship set $I(R)$, such that for every relationship $r \in I(R)$ and every object type $O \in \textit{comp}(R)$, $r(O)$ is an object belonging to $I(O)$. Again we note that higher-order objects cannot exist independently of the lower-order objects on which they depend.
+
+
+\textcolor{red}{anything else from conceptual modelling missing for our work???}
+
+
+
+
+
+
+
+
+
+
+
+\section{Conceptual Model as Foundation of Knowledge Graphs}\label{sec:er-kgs}
+
+In our research we consider knowledge graphs that are founded on conceptual modelling. Their intuitive representations exhibit a natural graph semantics \cite{Skavantzos_25_ER_Graphs} and they reflect natural language well \cite{Chen_83_English_Language_and_ER_Diagram} which make them a great fit as foundation for knowledge graphs, especially when used in conjunction with LLMs. Making relationships first-order citizens and using edges solely for referential integrity is beneficial for downstream AI applications \textcolor{red}{find literature: good for LLMs to reason, node reification} and can be beneficial for query execution \textcolor{red}{find literature or provide examples where filtering on Transaction nodes for example quicker than filtering transferred edges}. Finally, node embeddings are central to knowledge graphs by enforcing referential integrity through edges we provide a unified semantics of graph edges which helps node embedding algorithms to interpret graph structures \textcolor{red}{find literature on this}.
+
+
+
+
+\subsection{Translating Conceptual Models into Knowledge Graphs}
+
+
+\textcolor{red}{change O for objects to Ob or similar to not confuse with objects (entities and realtionships) from ER model?}
+
+
+As underlying graph model we employ the labelled property graph model which is based on a set of objects $\mathcal{Obj}$, a set $\mathcal{L}$ for labels, $\mathcal{K}$ for properties, and $\mathcal{N}$ for values.  A \textbf{(labelled) property graph} is a quintuple $G=(V, E, \eta, \lambda,  \nu)$ where $V \subseteq\mathcal{Obj}$ is a finite set of \emph{vertices} (or \emph{nodes}), $E \subseteq\mathcal{Obj}$ is a finite set of \emph{edges}, $\eta: E\rightarrow V\times V$ is a function that maps each edge to an ordered pairs of vertices. The function $\lambda:V\cup E\rightarrow\mathcal{P}(\mathcal{L})$ assigns finite sets of labels to objects and $\nu: (V\cup E)\times\mathcal{K}\rightarrow\mathcal{N}$ represents a partial function that that takes pairs of objects and properties and assigns values to them. This function is defined for a finite amount of domain values. If $\nu(o,A)$ is defined, we use the notation $\nu(o,A)=\downarrow$ and $\uparrow$ otherwise. Provided with a conceptual model as underlying underlying structure for our knowledge graph we obtain a graph schema and create instances as outlined by the authors in \cite{Skavantzos_25_ER_Graphs}.
+
+A conceptual diagram $\mathcal{D_M}$ is a representation of the underlying model $\mathcal{M}$ as an acyclic graph without property values. We also simply use $\mathcal{D}$ if it is clear from the context which model we refer to. Given a conceptual diagram $\mathcal{D_M}=(V,E)$, the set $\mathcal{O_D}$ of object identifiers assigns a distinct identifier $i_o$ to every vertex $o\in V$ (i.e., to every object type $O\in\mathcal{S}$) and a distinct identifier $i{(o,o')}$ to every edge $(o,o')\in E$. Hence, $\mathcal{O}_D=O_V\cup O_E$, where $O_V$ and $O_E$ contain the unique IDs associated with the vertices in $V$ and the edges in $E$, respectively.
+The label set $\mathcal{L}_D$ associated with $\mathcal{D}$ contains the names $O$ of all object types occurring in $V$, the labels of edges in $\mathcal{D}$ (obtained from labels $l$ such that $l:O'\in\textit{comp}(O)$), as well as a distinguished label $\bullet$ used to represent dots on edges. This label is used to indicate that a component contributes to the key of the corresponding object. The property set $\mathcal{K}_D$ contains all attributes specified by $\textit{attr}(O)$ for the object types $O$ in $V$. Similarly, the value set $\mathcal{N}_D$ is formed from the domains $\textit{dom}(A)$ of all attributes $A$ associated with object types in $\mathcal{D}$.
+
+Because non-key attributes may have no assigned value, we distinguish between $\textit{dom}(A)$ and $\textit{dom}_{\bot}(A)$, with the latter extending the domain with the distinguished null marker $\bot$. Key attributes, on the other hand, must always have a value. This follows from the principle of entity integrity and the requirements imposed on primary keys; consequently, key attributes are specified as \texttt{NOT NULL}.
+
+For $\mathcal{O}_\mathcal{M}$, $\mathcal{L}_\mathcal{M}$, $\mathcal{K}_\mathcal{M}$, and $\mathcal{N}_\mathcal{M}$, the \emph{(conceptual) graph schema} $\mathcal{G}_\mathcal{M}=(V_\mathcal{M},E_\mathcal{M},\eta_\mathcal{M},\lambda_\mathcal{M},\nu_\mathcal{M})$ of the conceptual model $\mathcal{M}$ with diagram $\mathcal{D_M}$ is defined by:
+\begin{enumerate}
+\item $V_\mathcal{M}:=O_V$ and $E_\mathcal{M}:=O_E$, 
+\item $\eta_\mathcal{M}: E_\mathcal{M}\rightarrow V_\mathcal{M}\times V_\mathcal{M}$ is defined by $\eta_\mathcal{M}(i_{o,o'})=(i_o,i_{o'})$ where $i_o$ is the unique identifier for node $O\in V$ and $i_{o'}$ is the unique identifier for node $O'\in V$ for every $(O,O')\in E$, 
+\item $\lambda_\mathcal{M}:V_\mathcal{M}\cup E_\mathcal{M}\rightarrow\mathcal{P}(\mathcal{L})$ is defined by $\lambda_\mathcal{M}(i_o)=\{O\}$ for $O\in V$ with unique identifier $i_o\in O_V$, $l\in \lambda_\mathcal{M}(i_{(o,o')})$ for $(O,O')\in E$ with edge label $l$ and unique identifier $i_{(o,o')}\in O_E$, and $\bullet\in \lambda_\mathcal{M}(i_{(o,o')})$ for $(O,O')\in E$ with key component $O'\in\textit{comp}(O)\cap\textit{id}(O)$ and unique identifier $i_{(o,o')}\in O_E$, and 
+\item $\nu_\mathcal{M}: (V_\mathcal{M}\cup E_\mathcal{M})\times\mathcal{K}_\mathcal{M}\rightarrow\mathcal{N}_\mathcal{M}$ is defined by $\nu(i_o,A)=\textit{dom}_{\bot}(A)$ for all $A\in\textit{attr}(O)-\textit{id}(O)$ and $O\in V$, and $\nu(i_o,A)=\textit{dom}(A)$ for all key attributes $A\in\textit{attr}(O)\cap\textit{id}(O)$ and $O\in V$.
+\end{enumerate}
+
+
+
+Here, we note that the graph schema constitutes a property graph itself which is similar to the concept that an XML schema can be represented as an XML document \cite{W3C_XML_Schema}.
+
+
+
+
+\subsection{Integrity Constraints}
+
+In alignment with the presented property graph model based on conceptual models we introduce notions of keys and functional dependencies for knowledge graphs. In the following let $G=(V,E,\eta,\lambda,\nu)$ be a knowledge graph over $\mathcal{O}$, $\mathcal{L}$, $\mathcal{K}$ obtained from a conceptual model $\mathcal{M}$.
+
+
+\begin{definition}\label{def:cFD}
+  Let a conceptual model $\mathcal{M}$ (with diagram $\mathcal{D_M}$) and corresponding graph schema $\mathcal{G}_\mathcal{M}$ be given. A \emph{conceptual key} over object type $O$ is an expression $O : X$ where $X = C \cup K$  with $C\subseteq comp(O)$ and $K\subseteq attr(O)$. A graph $G$ that adheres to the schema $\mathcal{G}_\mathcal{M}$ satisfies the conceptual key $O : X$ (denoted by $\models_G O : X$) iff no two distinct objects $o_1 \neq o_2$ of type $O$ match on all components in $C$ and on all attributes in $K$. That is, for any two objects $o,o'$ of type $O$ ($\lambda(o) = \lambda(o') = O$) with $\nu(o,P) = \nu(o',P)$ for all $P \in K$ and for all $l:\bar{O} \in C$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$ ($\lambda(o_t) = l:\bar{O}$) it follows that $o = o'$.
+\end{definition}
+
+This means that a conceptual key $O : X$ stipulates that any node that represents an object of type $O$ can be identified through the components in $C$ and the values on attributes in $K$ that make up $X$.
+
+\textcolor{red}{In Figure \ref{fig:denormalized_example} (a) we have for example the the conceptual keys $\{\texttt{Product}\}:\{\textit{ProductID}\}$ which identifies nodes labelled \texttt{Product}. These keys for nodes representing entities only contain properties. Keys for nodes that represent relationship types like $\{\texttt{OrderInfo}\}:\{\texttt{Product, Customer},\textit{OrderDate}\}$ may contain only properties, only components or both.}
+
+
+
+\begin{definition}\label{def:cFD}
+	 Let a conceptual model $\mathcal{M}$ and corresponding graph schema $\mathcal{G}_\mathcal{M}$ be given. A \emph{conceptual functional dependency} (\emph{cFD}) over object type $O$ is an expression $O : X \rightarrow Y$ where $X = C \cup K$ and $Y = C' \cup K'$ with $C,C'\subseteq comp(O)$ and $K,K'\subseteq attr(O)$. The conceptual model $\mathcal{M}$ satisfies the cFD (denoted by $\models_G O : X \rightarrow Y$) iff there exist no two distinct objects $o_1 \neq o_2$ of type $O$ that match on all components in $C$ and on all attributes in $K$, but differ on some component in $C'$ or on some attribute in $K'$. That is, for any two objects $o,o'$ of type $O$ ($\lambda(o) = \lambda(o') = O$) with $\nu(o,P) = \nu(o',P)$ for all $P \in K$ and for all $l:\bar{O} \in C$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$ ($\lambda(o_t) = l:\bar{O}$) it follows that $\nu(o,P) = \nu(o',P)$ for all $P \in K'$ and for all $l:\bar{O} \in C'$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $\bar{O}$.
+\end{definition}
+
+If a conceptual functional dependency $O : X \rightarrow Y$ is satisfied then for any node associated with an object of type $O$ the components in $C$ and the values on attributes in $K$ determine the components in $C'$ and attribute values in $K'$.
+
+\textcolor{red}{Provide example of conceptual FD from running example, component and/or property on LHS and RHS?}
+
+We note that unlike in the relational model the property graph model allows duplicates and hence a conceptual key $O:X$ may imply the conceptual functional dependency $O:X \rightarrow attr(O)$, but not vice versa. In these translations of integrity constraints from the conceptual model to knowledge graphs we may simply consider $\bar{O}$ instead of $l:\bar{O}$ if there is no ambiguity with regards to components of an object type and no role assignment for components of type $\bar{O}$ is required.
+
+
+
+
+
+\subsection{Pivoting of Knowledge Graphs}
+
+Pivoting is a database schema transformation that decomposes overloaded object types by extracting a subset of components and attributes into a new object type. It addresses design flaws, functional dependencies, and redundant data that cause update anomalies or require null values. Ultimately, it creates a more semantically accurate, lossless database structure where constraints can be efficiently enforced without losing original data. In the following consider the conceptual model $\mathcal{M}$ with an overloaded object type $O$ denote such an object type where the set of attributes and components denoted by $\mathcal{Z}$ constitute a separate concept from the remainder of $O$. 
+
+\begin{definition}[Decomposition of Object Type by Pivoting]
+\label{def:decomposition}
+Given a conceptual model $\mathcal{M}$ and an object type $O$ with $\mathcal{Z} \subseteq comp(O) \cup attr(O)$ with $|\mathcal{Z}| \geq 2$. Pivoting defines two new object types $O_{\mathcal{Z}}$ with $comp(O_{\mathcal{Z}}) = comp(O) \cap \mathcal{Z}$ and $attr(O_{\mathcal{Z}}) = attr(O) \cap \mathcal{Z} \cup \{z_{id}\}$ and $O'$ with $comp(O') = (comp(O) \backslash \ \mathcal{Z}) \cup \{O_{\mathcal{Z}}\}$ and $attr(O') = attr(O) \backslash \mathcal{Z}$ and $id(O') = id(O))$ if $\mathcal{Z} \cap id(O) = \emptyset$ and $(id(O) \backslash \mathcal{Z}) \cup \{O_{\mathcal{Z}}\}$ otherwise. We refer to the procedure of replacing $O$ with $O'$ and $\mathcal{Z}$ in $\mathcal{M}$ as the decomposition of object type $O$ into $O'$ and $\mathcal{Z}$ by pivoting.
+\end{definition}
+
+The newly created object types $O_{\mathcal{Z}}$ and $O'$ represent the concept associated with $\mathcal{Z}$ and the remaining concept stored in the original type $O$. For the type $O_{\mathcal{Z}}$ we introduce a new identifier $z_{id}$. If the key for object type $O$ and the set $\mathcal{Z}$ which represents the separated concept were not disjoint then we identify objects of type $O'$ through the remaining part of the identifier of $O$ along with $\mathcal{Z}$ as key component. Otherwise, we can identify objects of type $O'$ in the same way we initially identified objects of type $O$. We refer to the components and attributes in $O_{\mathcal{Z}}$ (in $O'$) as \emph{pivoted} (\emph{remaining}). 
+
+
+
+\textcolor{red}{Size of Z at least two as otherwise just one-to-one relationship created that does not decompose overloaded type?}
+
+\textcolor{red}{Refer to running example and discuss what Z, etc is in our running example: discuss schema transformation (original and pivoted schema) and resulting instances}
+
+
+
+\begin{definition}[Equivalence of Conceptual Models]
+\label{def:equivalence} Given two conceptual models $M$ and $M_N$ along with constraint sets $\Sigma$ and $\Sigma_N$, respectively. For $(M,\Sigma)$ let $Sat(M, \Sigma)$ be the set of instances over $M$ that satisfy all constraints in $\Sigma$. We call $(M, \Sigma)$ and $(M_N,\Sigma_N)$ \emph{equivalent} if there exists a bijection between $Sat(M, \Sigma)$ and $Sat(M_N, \Sigma_N)$ obtained through the following transformation rules where $I(\mathcal{M})$ denotes an instance for the model $M$ that satisfies all constraints in $\Sigma$ and the set of all projections of objects from $I(O)$ to $\mathcal{Z}$ is denoted by $I(O[\mathcal{Z}])$.
+\begin{itemize}
+    \item[i)] For each object $z \in I(O[\mathcal{Z}])$ that corresponds to $o \in I(O)$ define a new object $z_N$ with $z_N(W) := o(W)$ fro all pivoted components $W \in \mathcal{Z} \cap comp(O)$ and $z_N(A) := o(A)$ for all pivoted attributes $A \in \mathcal{Z} \cap attr(A)$. In addition, we define $z_N(z_{id}) = i_z$ for a fresh identifier for elements in $z \in I(O[\mathcal{Z}])$.
+    \item[ii)] For each $r \in I(O)$ we define a modified object $o'$ of type $O'$ by setting with $z_N(W) := o(W)$ fro all remaining components $W \in \mathcal{Z} \backslash comp(O)$ and $z_N(A) := o(A)$ for all remaining attributes $A \in \mathcal{Z} \backslash attr(A)$. In addition, we set $o'(\mathcal{Z}_N) := z_N$ where $z_N$ is the object obtained as described in i).
+\end{itemize}
+\end{definition}
+
+The transformation in Definition \ref{def:equivalence} works by creating new objects for each equivalence class (e.g. each customer) and linking all remaining records associated with that equivalence class (e.g. orders for that customer) to it.
+
+
+
+\textcolor{red}{discuss equivalence of schema on running example}
+
+
+\textcolor{red}{how to constraints transform between original and pivoted schema, introduce equivalence of schema: discuss on running example}
+
+\textcolor{red}{how do instances transform? Discuss on running example}
+
+\textcolor{red}{discuss how transformation works the other way round (pivoted to original) on schema and instance level, refer to running example}
+
+
+\begin{definition}[Lossless Decomposition]
+\label{def:lossless}
+A decomposition of the object type $O$ is \emph{lossless} if the original object set $I(O)$ can be obtained from the corresponding object sets $I(O')$ over type $O'$ and $I(\mathcal{Z}_N)$ over type $\mathcal{Z}_N$.
+\end{definition}
+
+\textcolor{red}{proposition on lossless decomposition and more information, example}
+
+
+
+\textcolor{red}{Discuss when pivoting useful in general: maybe also refer to some examples from different domains like commerce, fraud, etc}
+
+
+
+
+
+
+
+\subsection{Pivoting and Conceptual Keys}
+
+\textcolor{red}{maybe put as subsubsection under pivoting}
+
+How are keys preserved, especially if components 'spread' across the two new objects. Does also lead to path FD equivalent for keys? Keys here not special case of FD or here still set semantics and only when going over to graphs we look at multiset semantics?
+
+\textcolor{red}{Might actually not be a problem if object relating to Z becomes key component, to be sure compare path FDs}
+
+
+
+
+\subsection{Pivoting and Conceptual FDs}
+
+In this section we are going to discuss the effect of pivoting and conceptual functional dependencies.
+
+\textcolor{red}{maybe put as subsubsection under pivoting}
+
+How are FDs preserved, especially if components 'spread' across the two new objects. See path FDs from slides
+
+
+
+\subsection{Redundancy Elimination}
+
+After having established the foundations of our knowledge graph model and having presented the problems that arise from the presence of redundancy caused by functional dependencies we now illustrate how redundancy can be eliminated through pivoting on our running example.
+
+Include examples of normalization and maybe quantify (bar chart?) redundancy eliminated for:
+\begin{itemize}
+    \item \textcolor{red}{include more theory from pivoting slides!!!}
+    \item chain of length one
+    \item chain of length two   
+    \item two entities 'pulled out' from overloaded type
+\end{itemize}
+
+
+
+
+
+
+
+
+
+\begin{comment}
+
+
+\textcolor{red}{E/R keys as in E/R graph paper allow for missing property values. do we consider missing property values for keys and FDs? If so, this will change definition and axiomatization!!! If so, do we use embedding approach or certain / possible approach or completely different?}
+
+
+\subsection{The Implication Problem}
+
+Let $\Sigma\cup{\varphi}$ be a set of constraints over $\mathcal{L}$ and $\mathcal{K}$ from a class $\mathcal{C}$. The \emph{implication problem} for $\mathcal{C}$ asks whether, given an input set $\Sigma\cup{\varphi}$ of constraints from $\mathcal{C}$, $\Sigma$ implies $\varphi$. Formally, $\Sigma$ \emph{implies} $\varphi$, denoted by $\Sigma\models\varphi$, if and only if every property graph $G$ over $\mathcal{O}$, $\mathcal{L}$, and $\mathcal{K}$ that satisfies all constraints in $\Sigma$ also satisfies $\varphi$. Deciding whether $\varphi$ follows from $\Sigma$ is fundamental to integrity management in knowledge graphs. When $\varphi$ is implied by $\Sigma$, it is already implicitly enforced by the constraints in $\Sigma$. Otherwise, failing to state $\varphi$ explicitly may allow integrity violations to remain undetected.
+
+Our goal is to establish an axiomatization for the combined class $\mathfrak{E}$ of conceptual keys and FDs. The set $\Sigma^\ast_\mathcal{C}={\varphi\in\mathfrak{E}\mid\Sigma\models\varphi}$ denotes the \textit{semantic closure} of $\Sigma$. Our goal is to compute $\Sigma^\ast_\mathfrak{E}$ by means of \emph{inference rules} where the nominator presents the \emph{premise} of the rule and the denominator the \emph{conclusion}. Given a set $\mathfrak{R}$ of inference rules, we write $\Sigma\vdash_\mathfrak{R}\varphi$ to denote that $\varphi$ can be \emph{inferred} from $\Sigma$ using $\mathfrak{R}$. More specifically, $\Sigma\vdash_\mathfrak{R}\varphi$ if there exists a sequence $\sigma_1,\ldots,\sigma_n$ such that $\sigma_n=\varphi$ and, for every $i$, either $\sigma_i\in\Sigma$ or $\sigma_i$ is the conclusion obtained by applying an inference rule from $\mathfrak{R}$ to premises in ${\sigma_1,\ldots,\sigma_{i-1}}$. The set $\Sigma^+\mathfrak{R}={\varphi\mid\Sigma\vdash{\mathfrak{R}}\varphi}$ is called the \emph{syntactic closure} of $\Sigma$ under the inference rules in $\mathfrak{R}$ and the set $\mathfrak{R}$ is \emph{sound} if, for every set $\Sigma$ of constraints from $\mathcal{C}$, $\Sigma^+\mathfrak{R}\subseteq\Sigma^\ast\mathcal{C}$. It is \emph{complete} if $\Sigma^\ast_\mathcal{C}\subseteq\Sigma^+_\mathfrak{R}$. A finite set $\mathfrak{R}$ is a (finite) \emph{axiomatization} of $\mathcal{C}$ if it is both sound and complete.
+
+\textcolor{red}{Lemma required to deal with bag semantics of property graphs and keys imply FDs, but not the other way round? Where exactly is this required later on?}
+
+\begin{theorem}
+    \label{thm:axiomatization}
+	The set $\mathfrak{E}$ forms a finite axiomatization for the implication of conceptual FDs and keys over property graphs.
+\end{theorem}
+
+
+\begin{proof}
+We split this proof into establishing the soundness and completeness of the rules in $\mathfrak{E}$.\\
+\textbf{Soundness:}
+To prove soundness of the reflexivity rule, let $(o,o')$ be two objects of type $O$ with $\nu(o,P) = \nu(o',P)$ for all $P \in KK'$ and for all $l:\bar{O} \in CC'$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$. Since $C \subseteq CC'$ and $K \subseteq KK'$ it follows directly that $\nu(o,P) = \nu(o',P)$ for all $P \in K$ and for all $l:\bar{O} \in C$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$.
+
+For the extension rule, let $(o,o')$ be two arbitrary objects of type $O$ such that if $\nu(o,P) = \nu(o',P)$ for all $P \in K$ and for all $l:\bar{O} \in C$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$ then it holds that $\nu(o,P) = \nu(o',P)$ for all $P \in K'$ and for all $l:\bar{O} \in C'$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$. Consequently, if the premise is satisfied then we get $\nu(o,P) = \nu(o',P)$ for all $P \in KK'$ and for all $l:\bar{O} \in CC'$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$.
+
+\textcolor{red}{Augmentation rule might be redundant}
+
+The soundness of the transitivity rule can be shown as follows. Let $o,o'$ be two objects of type $O$ such that if $\nu(o,P) = \nu(o',P)$ for all $P \in K$ and for all $l:\bar{O} \in C$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$ then it holds that $\nu(o,P) = \nu(o',P)$ for all $P \in K'$ and for all $l:\bar{O} \in C'$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$. Now applying the premise of the second conceptual FD gives us that $\nu(o,P) = \nu(o',P)$ for all $P \in K''$ and for all $l:\bar{O} \in C''$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$.
+
+For the weakening rule we assume that the conceptual key $O : X$ is satisfied. This means that if we have two objects $o,o'$ of type $O$ such that if $\nu(o,P) = \nu(o',P)$ for all $P \in K$ and for all $l:\bar{O} \in C$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$ then actually $o = o'$. Hence, we also have that $o$ and $o'$ agree on all their attributes and components.
+
+Regarding the pullback rule we assume that we have two objects $o,o'$ of type $O$ such that if $\nu(o,P) = \nu(o',P)$ for all $P \in K$ and for all $l:\bar{O} \in C$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$. As by the premise $O : X \rightarrow Y$ holds this means $\nu(o,P) = \nu(o',P)$ for all $P \in K'$ and for all $l:\bar{O} \in C'$ we have $(o, o_t), (o', o_t) \in E$ for some $o_t$ of type $l:\bar{O}$. Hence, $o$ and $o'$ agree on all attributes in $KK'$ and components in $CC'$. As $O : XY$ holds we get $o = o'$. Together we get that if two objects of type $O$ agree on $K$ and $C$ then they are the same, i.e. $O : X$ is satisfied.
+
+
+\textbf{Completeness:}
+
+To show completeness of the rules in $\mathfrak{E}$ we proceed via contra-position. That is, for a set of conceptual FDs and keys $\Sigma$ and some constraint $\varphi = O : X$ or $\varphi = O : X \rightarrow Y$ we assume that the constraint cannot be inferred by $\Sigma$ using rules in $\mathfrak{E}$. We then need to show that there exists a graph $G$ such that $\Sigma \not\models \varphi$. That means we proceed by constructing, for a given set of constraints $\Sigma$ a  knowledge graph that satisfies exactly the dependencies derivable from $\Sigma$, but violates $\varphi$. To this end we define a graph $G$ with two nodes for objects $o_1$ and $o_2$ of type $O$ as per $\varphi$. For all $P \in attr(O)-K^+_{\Sigma}$ we set $\nu(o_1,P) = \nu(o_2,P) = 0$ and $\nu(o_1,P) = \nu(o_2,P) = 1$ otherwise.
+
+\begin{itemize}
+    \item connect o1 and o2 to components in C
+    \item How to define components in C, can violate anything in Sigma? Should not be the case
+    \item Show that varphi is violated (case if key or fd)
+    \item show that all constraints in Sigma are satisfied
+    \item probably going to need cases whether constraint in Sigma is key or fd
+\end{itemize}
+
+\begin{table}[t]
+	\centering
+	\caption{Axiomatization $\mathfrak{E}=\{\mathcal{R}, \mathcal{E}, \mathcal{T}, \mathcal{A}, \mathcal{W}, \mathcal{P}\}$ of conceptual FDs and keys \textcolor{red}{maybe augmentation is redundandt. Can be expressed through pullback and reflexivity}}
+    \label{tbl:cFDs_cKeys}
+	\[\fbox{$\begin{array}{c@{\hspace*{.5cm}}c}
+			\cfrac{}{O : XY \rightarrow X} & \cfrac{O : X \rightarrow Y}{O : X \rightarrow XY} \\
+			\text{(reflexivity, $\mathcal{R}$)} & \text{(extension, $\mathcal{E}$)} \\ \\
+			
+			\cfrac{O : X}{O : XY} & \cfrac{O : X \rightarrow Y\quad O : Y \rightarrow Z}{O : X \rightarrow Z}\\ 
+			\text{(augmentation, $\mathcal{A}$)} &   \text{(transitivity, $\mathcal{T}$)}  \\ \\			
+			 \cfrac{O : X}{O : X \rightarrow comp(O) \cup attr(O)} & \cfrac{O : X \rightarrow Y \quad O : XY}{O : X}\\ 
+			\text{(weakening, $\mathcal{W}$)}& \text{(pullback, $\mathcal{P}$)}  
+		\end{array}$}\]
+\end{table}
+
+
+\end{proof}
+    
+\end{comment}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Experiments Evaluation} \label{sec:experiments}
+
+Our evaluation asks two questions. First, how much does normalization reduce update latency by eliminating replicated attributes (RQ1)? Second, how much query time can de-normalization save, and is this saving commensurate with the cost of constructing the corresponding de-normalized schema (RQ2)? We study both effects on the same TPC-H graph and report the schema transformation costs separately.
+
+\subsection{Experimental Setup}
+
+\paragraph{System and protocol.}
+We run all experiments on a MacBook Pro running macOS~26.6, equipped with an Apple M5 processor with 10 CPU cores and 16~GB of memory. We use Neo4j~2026.06.0 on OpenJDK~21 and the Neo4j Python driver~6.2.0. Each comparison between normalized and de-normalized designs uses the same 50 update cases or query parameter bindings. We measure wall-clock time at the client, including transaction commit for updates and complete result consumption for queries. One-time construction and normalization costs are measured separately.
+
+
+\paragraph{Schema and dataset.}
+We use TPC-H at SF = 0.1, with each of its eight relations represented by a node label: \textsf{LINEITEM} ($L$), \textsf{PARTSUPP} ($PS$), \textsf{PART} ($P$), \textsf{ORDERS} ($O$), \textsf{CUSTOMER} ($C$), \textsf{SUPPLIER} ($S$), \textsf{NATION} ($N$), and \textsf{REGION} ($R$). Each tuple is represented as a node, each column value as a property, and each foreign-key reference as a directed relationship. The normalized graph contains 866,602 nodes, 1,527,169 relationships, and 11,666,267 non-null property cells. Neo4j Node Key constraints enforce the primary keys, with \textsf{LINEITEM} and \textsf{PARTSUPP} retaining their composite keys.
+\textcolor{red}{Need a graph!}
+
+
+\subsection{Update Cost Evaluation}
+We study whether normalization improves graph updates by avoiding attribute replication induced by functional dependencies. In the normalized schema, each attribute value is stored only once per key. By contrast, denormalizing along $X\rightarrow Y$ copies the attributes of $Y$ except its key into each referencing $X$, so every copy must be updated. We consider eight TPC-H foreign key edges: $L\rightarrow PS$ ($e_1$), $L\rightarrow O$ ($e_2$), $PS\rightarrow P$ ($e_3$), $PS\rightarrow S$ ($e_4$), $O\rightarrow C$ ($e_5$), $C\rightarrow N$ ($e_6$), $S\rightarrow N$ ($e_7$), and $N\rightarrow R$ ($e_8$). Their subsets define $2^8=256$ schema variants. For each variant, attributes are copied along the selected relationships, while the remaining relationships are inherited by the resulting nodes. If a relation involved in de-normalization is still referenced by another relationship, its original node is retained. This ensures that the resulting schema is independent of processing order. We apply the same updates to the normalized and denormalized schemas to isolate the effect of data duplication on update cost from differences in the number of references to each key. The normalized baseline and each denormalized variant use identical update cases and corresponding key indexes. Only the terminal relation of each denormalisation path is updated, with all copies modified together. For update case $i$, $U_{D,i}$ and $U_{N,i}$ denote the update times in the denormalized and normalized schemas. We report the minimum, median, and maximum of $U_D$ and compute $\Delta_U=\operatorname{median}_i(U_{D,i}-U_{N,i})$. A positive $\Delta_U$ indicates an advantage for normalization. We evaluate all variants but report one representative for each distinct combination of a terminal relation and the relationships that cause its redundancy. All differences are computed as the denormalized schema minus the normalized schema. $\Delta N$, $\Delta E$, and $\Delta C$ denote changes in the numbers of graph nodes, graph edges, and property cells, respectively. We also measure the one-time normalization cost of rebuilding participating nodes, relationships, and indexes from denormalized data.
+
+
+
+
+
+
+
+
+\begin{table}[htbp]
+\centering
+\caption{Update and normalization results for de-normalization strategies at SF = 0.1}
+\label{tab:denorm_update_results}
+\resizebox{0.47\textwidth}{!}{
+\begin{tabular}{ll
+S[table-format=4.1,round-mode=places,round-precision=1]
+S[table-format=4.1,round-mode=places,round-precision=1]
+S[table-format=4.1,round-mode=places,round-precision=1]
+S[table-format=3.1,round-mode=places,round-precision=1]
+S[table-format=4.1,round-mode=places,round-precision=1]
+S[table-format=2.1,round-mode=places,round-precision=1]
+r r r}
+\toprule
+ID & Edge set &
+\multicolumn{1}{c}{$U_D^{\min}$} &
+\multicolumn{1}{c}{$U_D^{\mathrm{med}}$} &
+\multicolumn{1}{c}{$U_D^{\max}$} &
+$U_N$ & $\Delta_U$ & \multicolumn{1}{c}{Norm.} &
+$\Delta N$ & $\Delta E$ & $\Delta C$ \\
+\midrule
+
+\rowcolor{lightblue}
+\multicolumn{11}{l}{\textit{Update target: PARTSUPP (PS)}} \\
+
+
+$\mathrm{PS}_1$ & $\{e_1\}$
+& 2.320 & 4.004 & 5.881 & 5.003 & -1.005 & 27.423058
+& -80.0K & +440.6K & +1.40M \\
+
+\midrule
+\rowcolor{lightblue}
+\multicolumn{11}{l}{\textit{Update target: ORDERS (O)}} \\
+
+
+$\mathrm{O}_1$ & $\{e_2\}$
+& 3.597 & 4.508 & 6.040 & 5.026 & -0.678 & 25.904703
+& -150.0K & -150.0K & +3.45M \\
+
+\midrule
+\rowcolor{lightblue}
+\multicolumn{11}{l}{\textit{Update target: PART (P)}} \\
+
+
+$\mathrm{P}_1$ & $\{e_3\}$
+& 5.011 & 5.980 & 6.045 & 5.449 & +0.235 & 9.075786
+& -20.0K & -80.0K & +460.0K \\
+
+$\mathrm{P}_2$ & $\{e_1,e_3\}$
+& 5.126 & 7.982 & 8.859 & 5.449 & +2.084 & 31.669594
+& -100.0K & -160.0K & +6.03M \\
+
+\midrule
+\rowcolor{lightblue}
+\multicolumn{11}{l}{\textit{Update target: SUPPLIER (S)}} \\
+
+
+$\mathrm{S}_1$ & $\{e_4\}$
+& 4.001 & 6.994 & 8.050 & 5.949 & +1.080 & 7.311062
+& -1.0K & -1.0K & +473.0K \\
+
+$\mathrm{S}_2$ & $\{e_1,e_4\}$
+& 6.855 & 9.284 & 10.982 & 5.949 & +3.739 & 30.214305
+& -81.0K & +439.6K & +5.00M \\
+
+\midrule
+\rowcolor{lightblue}
+\multicolumn{11}{l}{\textit{Update target: CUSTOMER (C)}} \\
+
+
+$\mathrm{C}_1$ & $\{e_5\}$
+& 4.994 & 7.147 & 8.226 & 5.405 & +1.943 & 7.747514
+& -15.0K & -15.0K & +930.0K \\
+
+$\mathrm{C}_2$ & $\{e_2,e_5\}$
+& 5.858 & 8.864 & 11.035 & 5.405 & +3.132 & 30.312249
+& -165.0K & -165.0K & +7.54M \\
+
+\midrule
+\rowcolor{lightblue}
+\multicolumn{11}{l}{\textit{Update target: NATION (N)}} \\
+
+
+$\mathrm{N}_1$ & $\{e_7\}$
+& 4.585 & 5.962 & 8.091 & 5.991 & +0.106 & 0.809627
+& 0 & 0 & +3.0K \\
+
+$\mathrm{N}_2$ & $\{e_6\}$
+& 7.070 & 11.015 & 13.586 & 5.991 & +5.095 & 2.760496
+& 0 & 0 & +45.0K \\
+
+$\mathrm{N}_3$ & $\{e_6,e_7\}$
+& 6.127 & 9.304 & 11.798 & 5.991 & +3.626 & 3.053744
+& -25 & -25 & +47.9K \\
+
+$\mathrm{N}_4$ & $\{e_4,e_7\}$
+& 10.312 & 13.960 & 17.878 & 5.991 & +8.164 & 7.396816
+& -1.0K & -1.0K & +713.0K \\
+
+$\mathrm{N}_5$ & $\{e_4,e_6,e_7\}$
+& 13.297 & 17.005 & 22.537 & 5.991 & +11.114 & 10.233038
+& -1.0K & -1.0K & +757.9K \\
+
+$\mathrm{N}_6$ & $\{e_5,e_6\}$
+& 20.447 & 26.002 & 49.778 & 5.991 & +20.011 & 8.045862
+& -15.0K & -15.0K & +1.38M \\
+
+$\mathrm{N}_7$ & $\{e_5,e_6,e_7\}$
+& 20.710 & 27.154 & 35.218 & 5.991 & +21.266 & 10.832242
+& -15.0K & -15.0K & +1.38M \\
+
+$\mathrm{N}_8$ & $\{e_4,e_5,e_6,e_7\}$
+& 27.511 & 37.086 & 46.618 & 5.991 & +31.241 & 17.547923
+& -16.0K & -16.0K & +2.09M \\
+
+$\mathrm{N}_9$ & $\{e_1,e_4,e_7\}$
+& 60.771 & 88.601 & 122.287 & 5.991 & +82.617 & 27.949892
+& -81.0K & +439.6K & +6.80M \\
+
+$\mathrm{N}_{10}$ & $\{e_2,e_5,e_6\}$
+& 74.062 & 97.953 & 110.305 & 5.991 & +92.466 & 28.865689
+& -165.0K & -165.0K & +9.34M \\
+
+$\mathrm{N}_{11}$ & $\{e_2,e_5,e_6,e_7\}$
+& 74.352 & 98.743 & 114.504 & 5.991 & +92.829 & 33.406925
+& -165.0K & -165.0K & +9.34M \\
+
+$\mathrm{N}_{12}$ & $\{e_1,e_4,e_6,e_7\}$
+& 62.896 & 92.685 & 132.842 & 5.991 & +87.101 & 33.969847
+& -81.0K & +439.5K & +6.84M \\
+
+$\mathrm{N}_{13}$ & $\{e_2,e_4,e_5,e_6,e_7\}$
+& 80.880 & 108.799 & 123.035 & 5.991 & +102.788 & 35.612912
+& -166.0K & -166.0K & +10.05M \\
+
+$\mathrm{N}_{14}$ & $\{e_1,e_4,e_5,e_6,e_7\}$
+& 73.890 & 112.681 & 148.331 & 5.991 & +107.214 & 37.938805
+& -96.0K & +424.5K & +8.18M \\
+
+$\mathrm{N}_{15}$ & $\{e_1,e_2,e_4,e_5,e_6,e_7\}$
+& 182.081 & 242.725 & 648.917 & 5.991 & +237.067 & 56.319155
+& -246.0K & +274.5K & +16.14M \\
+
+\midrule
+\rowcolor{lightblue}
+\multicolumn{11}{l}{\textit{Update target: REGION (R)}} \\
+
+
+$\mathrm{R}_1$ & $\{e_8\}$
+& 4.495 & 4.996 & 5.576 & 5.972 & -0.964 & 0.322202
+& -5 & -25 & +35 \\
+
+$\mathrm{R}_2$ & $\{e_7,e_8\}$
+& 5.449 & 9.142 & 12.046 & 5.972 & +3.142 & 0.974088
+& -5 & -1.0K & +5.0K \\
+
+$\mathrm{R}_3$ & $\{e_6,e_8\}$
+& 10.929 & 12.977 & 15.875 & 5.972 & +7.099 & 1.665730
+& -5 & -15.0K & +75.0K \\
+
+$\mathrm{R}_4$ & $\{e_6,e_7,e_8\}$
+& 11.034 & 13.450 & 30.860 & 5.972 & +7.913 & 2.383688
+& -30 & -16.0K & +79.9K \\
+
+$\mathrm{R}_5$ & $\{e_4,e_7,e_8\}$
+& 37.697 & 41.849 & 59.384 & 5.972 & +35.861 & 8.594459
+& -1.0K & -81.0K & +873.0K \\
+
+$\mathrm{R}_6$ & $\{e_4,e_6,e_7,e_8\}$
+& 42.789 & 50.413 & 105.095 & 5.972 & +44.650 & 10.802044
+& -1.0K & -96.0K & +947.9K \\
+
+$\mathrm{R}_7$ & $\{e_5,e_6,e_8\}$
+& 76.404 & 93.532 & 129.638 & 5.972 & +88.177 & 9.933542
+& -15.0K & -165.0K & +1.68M \\
+
+$\mathrm{R}_8$ & $\{e_5,e_6,e_7,e_8\}$
+& 75.168 & 89.640 & 127.438 & 5.972 & +84.015 & 10.418280
+& -15.0K & -166.0K & +1.68M \\
+
+$\mathrm{R}_9$ & $\{e_4,e_5,e_6,e_7,e_8\}$
+& 108.573 & 135.399 & 198.270 & 5.972 & +129.687 & 19.132084
+& -16.0K & -246.0K & +2.55M \\
+
+$\mathrm{R}_{10}$ & $\{e_1,e_4,e_7,e_8\}$
+& 338.044 & 405.243 & 622.647 & 5.972 & +400.049 & 38.041750
+& -81.0K & -161.0K & +8.00M \\
+
+$\mathrm{R}_{11}$ & $\{e_2,e_5,e_6,e_8\}$
+& 344.405 & 468.253 & 618.003 & 5.972 & +462.297 & 39.453933
+& -165.0K & -765.6K & +10.54M \\
+
+$\mathrm{R}_{12}$ & $\{e_2,e_5,e_6,e_7,e_8\}$
+& 353.687 & 443.244 & 590.725 & 5.972 & +437.271 & 40.950560
+& -165.0K & -766.6K & +10.55M \\
+
+$\mathrm{R}_{13}$ & $\{e_1,e_4,e_6,e_7,e_8\}$
+& 317.009 & 400.160 & 548.114 & 5.972 & +394.163 & 39.849538
+& -81.0K & -176.0K & +8.08M \\
+
+$\mathrm{R}_{14}$ & $\{e_2,e_4,e_5,e_6,e_7,e_8\}$
+& 401.710 & 500.963 & 687.057 & 5.972 & +494.988 & 42.839032
+& -166.0K & -846.6K & +11.41M \\
+
+$\mathrm{R}_{15}$ & $\{e_1,e_4,e_5,e_6,e_7,e_8\}$
+& 412.792 & 513.665 & 725.645 & 5.972 & +508.184 & 44.646740
+& -96.0K & -326.0K & +9.68M \\
+
+$\mathrm{R}_{16}$ & $\{e_1,e_2,e_4,e_5,e_6,e_7,e_8\}$
+& 799.664 & 995.374 & 2006.596 & 5.972 & +989.385 & 65.744367
+& -246.0K & -926.6K & +18.54M \\
+
+\bottomrule
+\end{tabular}
+}
+\scriptsize
+\textit{Note:} $U_D^{\min}$, $U_D^{\mathrm{med}}$, $U_D^{\max}$, $U_N$, and $\Delta_U$
+are in ms, while \textit{Norm.} is in s. $\Delta N$, $\Delta E$, and
+$\Delta C$ are counts. $\mathrm{K}=10^3$ and $\mathrm{M}=10^6$, and abbreviated values are rounded for display.
+\end{table}
+
+
+At SF = 0.1, Table~\ref{tab:denorm_update_results} shows that normalized update latency remains stable between 5.0 and 6.0~ms across the evaluated relations, while denormalized update latency generally increases as attribute replication accumulates along longer paths. Normalization reduces update time in 36 of the 39 reported cases. The three exceptions are $e_1$ ($L\rightarrow PS$), $e_2$ ($L\rightarrow O$), and $e_8$ ($N\rightarrow R$), whose differences are approximately 1.0~ms or less. The largest benefit occurs for REGION with $\{e_1,e_2,e_4,e_5,e_6,e_7,e_8\}$. This schema contains 18.54M additional property cells, and its median update latency increases from 6.0 to 995.4~ms, resulting in a 989.4~ms saving from normalization. As data replication increases, the time required for normalization generally increases, from 0.3 to 65.7~s across the evaluated schemas.
+
+
+
+
+
+
+\subsubsection{Case Study\textcolor{red}{Maybe Combine with Scale Part}}
+To illustrate how data replication affects individual updates, we examine NATION and REGION updates at SF = 0.1. We apply each update to the normalized schema and to 15 NATION or 16 REGION representative denormalized schemas, respectively. For both relations, we select paired update group 8 from the 50 cases. The NATION strategies cover all distinct de-normalization choices along the paths $L\rightarrow O\rightarrow C\rightarrow N$ and $L\rightarrow PS\rightarrow S\rightarrow N$; the REGION strategies extend both paths with $N\rightarrow R$. We update \texttt{n\_comment} for \texttt{n\_nationkey}=7 and \texttt{r\_comment} for \texttt{r\_regionkey}=2. Each reported update time is the median of ten repetitions, while the number of stored copies and additional property cells varies across schemas.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.47\textwidth]{figures/experiments/case_study_delta_vs_copies_nation.png}
+    \includegraphics[width=0.47\textwidth]{figures/experiments/case_study_delta_vs_copies_region.png}
+    \caption{NATION (upper pair) and REGION (lower pair) case studies at
+    SF = 0.1, showing update-time saving (left), normalization cost
+    (right), and additional property cells by colour.}
+    \Description{NATION and REGION plots showing update-time saving and
+    normalization cost by the number of copies updated; colour denotes
+    additional property cells.}
+    \label{fig:trade_off_schema}
+\end{figure}
+
+
+Figure~\ref{fig:trade_off_schema} shows paired update group 8 for NATION strategies $\mathrm{N}_1$--$\mathrm{N}_{15}$ and REGION strategies $\mathrm{R}_1$--$\mathrm{R}_{16}$ in Table~\ref{tab:denorm_update_results}. For NATION, the number of copies ranges from 50 to 54.1K. Normalized latency is 5.5~ms, while denormalized latency ranges from 6.0 to 290.9~ms, giving savings of 0.5 to 285.4~ms across all 15 strategies. For REGION, the number of copies ranges from 5 to 255.1K. Normalized latency remains approximately 6~ms, while denormalized latency ranges from 5~ms to 0.91~s. Strategies $\mathrm{R}_1$ and $\mathrm{R}_2$ have differences of $-1.0$ and $-0.1$~ms; the remaining 14 strategies save 7.0 to 904.1~ms through normalization. At comparable copy counts of 137.4K and 138.7K, $\mathrm{R}_{13}$ and $\mathrm{R}_{14}$ contain 8.08M and 11.41M additional cells and save 397.9 and 428.8~ms, respectively, showing that $\Delta C$ also affects update cost. The one-time normalization cost ranges from 0.81 to 56.32~s for NATION and from 0.32 to 65.74~s for REGION.
+
+
+\subsubsection{Scale Factor Influence}
+To isolate the influence of data scale, we repeat the TPC-H experiment at SF = 0.01 and SF = 0.1. We focus on NATION and REGION because they provide 15 and 16 representative de-normalization edge sets, respectively; the other evaluated terminal relations have only one or two strategies and therefore do not show an overall trend. Increasing SF by a factor of ten enlarges the fact and scale-dependent relations while preserving the schema design. Consequently, strategies whose de-normalization paths reach these relations create more copies of each terminal-relation value. For each strategy at each SF, we execute 50 paired updates of its terminal relation on the normalized and de-normalized schemas, with each case reported as the median of ten repetitions. For each pair, we define the normalization update speedup as $S_U=U_D/U_N$ and report its median across the 50 cases. We also measure the one-time cost of normalizing each de-normalized database. The horizontal-axis indices correspond to $\mathrm{N}_1$--$\mathrm{N}_{15}$ and $\mathrm{R}_1$--$\mathrm{R}_{16}$ in Table~\ref{tab:denorm_update_results}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/experiments/update_speedup_by_strategy_nation.png}
+    \includegraphics[width=\columnwidth]{figures/experiments/update_speedup_by_strategy_region.png}
+    \caption{Effect of the TPC-H scale factor on 15 NATION strategies (upper pair) and 16 REGION strategies (lower pair). Within each pair, median update speedup is shown on the left and one-time normalization time on the right.}
+    \label{fig:sf_influence}
+\end{figure}
+
+Figure~\ref{fig:sf_influence} shows that increasing SF generally amplifies the update benefit of normalization for both relations when redundancy grows. For NATION strategies $\mathrm{N}_9$--$\mathrm{N}_{15}$, the median speedup rises from $2.22$--$4.33\times$ at SF = 0.01 to $14.79$--$41.46\times$ at SF = 0.1. For REGION strategies $\mathrm{R}_{10}$--$\mathrm{R}_{16}$, the median speedup rises from $6.76$--$15.98\times$ at SF = 0.01 to $72.07$--$173.64\times$ at SF = 0.1. REGION strategy $\mathrm{R}_{16}$ illustrates the mechanism: its additional property cells increase from 1.86M to 18.54M, while de-normalized update latency rises from 85.1 to 995.4~ms and the normalized baseline remains near 6~ms. The near-$1\times$ result for REGION strategy $\mathrm{R}_1$ (NR) reflects runtime noise. For REGION, the observed one-time normalization cost also rises from 0.27--6.00~s to 0.32--65.74~s, showing that greater scale magnifies both the recurring update advantage and the up-front normalization cost.
+
+
+
+\subsection{Limited Query Overhead of Normalization}
+
+To assess the query-performance trade-off, we compare every de-normalization strategy with the normalized schema at SF = 0.1. Strategies for the same query use identical parameter sets and share one set of baseline measurements. Let $T_D$ and $T_N$ denote the mean query times of the de-normalized and normalized schemas, respectively. We define $\Delta_D=T_N-T_D>0$ when de-normalization is faster and $\Delta_N=T_D-T_N>0$ when normalization is faster. After excluding capped results, Table~\ref{tab:query_advantage_comparison} shows the largest exact gain for each applicable query in both directions. Build is the time required to construct the selected de-normalized schema.
+
+
+
+\begin{table}[htbp]
+\centering
+\caption{Largest query-time gains at SF = 0.1: normalized baselines (left) and de-normalized strategies (right).}
+\label{tab:query_advantage_comparison}
+\begin{minipage}[t]{0.49\columnwidth}
+\vspace{0pt}
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{S[table-format=2.0] l
+S[table-format=3.1,round-mode=places,round-precision=1]
+S[table-format=3.1,round-mode=places,round-precision=1]
+S[table-format=3.1,round-mode=places,round-precision=1]
+S[table-format=2.1,round-mode=places,round-precision=1]}
+\toprule
+\multicolumn{1}{c}{Q} & Edge set &
+\multicolumn{1}{c}{$T_D$} & \multicolumn{1}{c}{$T_N$} &
+\multicolumn{1}{c}{$\Delta_N$} & \multicolumn{1}{c}{Build} \\
+\midrule
+5 & $\{e_2\}$ & 58.709 & 34.284 & 24.425 & 21.057 \\
+7 & $\{e_7\}$ & 44.318 & 34.355 & 9.963 & 0.590 \\
+8 & $\{e_2\}$ & 79.752 & 62.961 & 16.792 & 21.645 \\
+9 & $\{e_7\}$ & 93.806 & 55.807 & 37.999 & 0.652 \\
+10 & $\{e_6\}$ & 65.692 & 40.417 & 25.275 & 2.993 \\
+11 & $\{e_4,e_7\}$ & 27.998 & 4.680 & 23.317 & 19.338 \\
+12 & $\{e_2\}$ & 152.585 & 131.120 & 21.465 & 21.087 \\
+13 & $\{e_5\}$ & 120.581 & 108.419 & 12.161 & 7.682 \\
+16 & $\{e_3,e_4\}$ & 116.615 & 54.042 & 62.573 & 7.826 \\
+18 & $\{e_2\}$ & 402.401 & 223.565 & 178.836 & 20.961 \\
+20 & $\{e_1,e_3,e_4\}$ & 14.059 & 9.129 & 4.931 & 37.810 \\
+22 & $\{e_5\}$ & 36.149 & 19.013 & 17.135 & 7.488 \\
+\bottomrule
+\end{tabular}%
+}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\columnwidth}
+\vspace{0pt}
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{S[table-format=2.0] l
+S[table-format=3.1,round-mode=places,round-precision=1]
+S[table-format=3.1,round-mode=places,round-precision=1]
+S[table-format=3.1,round-mode=places,round-precision=1]
+S[table-format=2.1,round-mode=places,round-precision=1]}
+\toprule
+\multicolumn{1}{c}{Q} & Edge set &
+\multicolumn{1}{c}{$T_D$} & \multicolumn{1}{c}{$T_N$} &
+\multicolumn{1}{c}{$\Delta_D$} & \multicolumn{1}{c}{Build} \\
+\midrule
+2 & $\{e_4,e_7,e_8\}$ & 7.702 & 22.022 & 14.319 & 19.710 \\
+3 & $\{e_5\}$ & 48.179 & 75.784 & 27.604 & 8.239 \\
+5 & $\{e_5\}$ & 32.159 & 34.284 & 2.126 & 7.990 \\
+7 & $\{e_2,e_5\}$ & 26.419 & 34.355 & 7.936 & 27.312 \\
+8 & $\{e_5\}$ & 46.563 & 62.961 & 16.397 & 7.114 \\
+9 & $\{e_1,e_2\}$ & 44.589 & 55.807 & 11.218 & 27.493 \\
+20 & $\{e_3,e_4\}$ & 5.796 & 9.129 & 3.333 & 7.135 \\
+21 & $\{e_7\}$ & 42.249 & 52.071 & 9.822 & 0.610 \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{2pt}
+
+{\scriptsize\raggedright
+\textit{Note:} Each row maximises $\Delta_N=T_D-T_N$ (left) or
+$\Delta_D=T_N-T_D$ (right). Times are in ms; Build is in s.\par}
+\end{minipage}
+\end{table}
+
+
+
+Among the 74 strategies, 44 favour normalization: 28 are exact cases across 12 queries, and 16 contain runs \textcolor{red}{capped} at twice the matching baseline time whose lower-bound means still exceed the baseline. The left panel gives the largest exact gain per query (4.9--178.8~ms; median 22.4~ms), led by Q18 with $\{e_2\}$. The remaining 30 exact strategies favour de-normalization across eight queries; the right panel gives the largest gain per query (2.1--27.6~ms; median 10.5~ms), led by Q3 with $\{e_5\}$. The corresponding schemas take 0.6--37.8~s and 0.6--27.5~s to build, respectively. Thus, normalization can provide larger gains, whereas de-normalization yields only modest query-time improvements at a substantial build cost.
+
+
+
+
+\section{Graph Embedding Evaluation}
+We use the ICIJ Offshore Leaks graph to study how normalization affects graph embeddings. The experiment covers 12 within-table functional dependency (FD) cases from Address, Entity, Intermediary, and Other. Nine FDs are strict and three are approximate; incomplete or conflicting groups are excluded. For an FD $X\rightarrow Y$, the de-normalized graph stores $X$ and $Y$ on the source nodes. The normalized graph moves these properties to a shared dimension node and links nodes with the same determinant value to it. For each random seed, we sample up to 1,000 pairs with the same determinant value and an equal number with different values. Both representations use the same nodes, feature construction, seed, and algorithm settings. Embeddings have 128 dimensions, and all relationships are projected as undirected. Property Hash uses only node properties, Node2Vec uses only graph structure, and FastRP, HashGNN, and GraphSAGE use both. For each run, we record the median cosine similarity for each pair set. Table~\ref{tab:offshore_embedding_determinant_comparison} reports the average over ten seeds. High similarity is desirable for pairs with the same determinant value, whereas low similarity is desirable for pairs with different values.
+
+\textcolor{red}{Add a case study}
+
+
+\begin{table*}[htbp]
+\centering
+\caption{Mean cosine similarity for 12 Offshore Leaks functional dependency
+cases under the Undirected projection.}
+\label{tab:offshore_embedding_determinant_comparison}
+\newcommand{\highscore}[1]{%
+    \multicolumn{1}{c}{\cellcolor{higherSimilarityBg}\bfseries #1}}
+\newcommand{\lowscore}[1]{%
+    \multicolumn{1}{c}{\cellcolor{lowerSimilarityBg}\bfseries #1}}
+\newcommand{\fdattr}[1]{\mathit{#1}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}cll *{10}{S[table-format=1.3]}@{}}
+\toprule
+ID & Node type & FD
+& \multicolumn{1}{c}{$\mathrm{PH}_{N}$}
+& \multicolumn{1}{c}{$\mathrm{PH}_{D}$}
+& \multicolumn{1}{c}{$\mathrm{FRP}_{N}$}
+& \multicolumn{1}{c}{$\mathrm{FRP}_{D}$}
+& \multicolumn{1}{c}{$\mathrm{N2V}_{N}$}
+& \multicolumn{1}{c}{$\mathrm{N2V}_{D}$}
+& \multicolumn{1}{c}{$\mathrm{HGN}_{N}$}
+& \multicolumn{1}{c}{$\mathrm{HGN}_{D}$}
+& \multicolumn{1}{c}{$\mathrm{GS}_{N}$}
+& \multicolumn{1}{c}{$\mathrm{GS}_{D}$} \\
+\midrule
+\multicolumn{13}{@{}l}{\textbf{Pairs Sharing the Same Determinant Value}} \\
+\midrule
+1 & Address & $\fdattr{countries} \rightarrow \fdattr{country\_codes}$ & 0.478 & \highscore{0.559} & \highscore{0.724} & 0.294 & \highscore{0.998} & 0.511 & \highscore{0.639} & 0.593 & \highscore{0.975} & 0.959 \\
+2 & Entity & $\fdattr{service\_provider} \rightarrow \{\fdattr{sourceID},\,\fdattr{valid\_until}\}$ & 0.204 & \highscore{0.419} & \highscore{0.486} & 0.388 & \highscore{0.553} & 0.551 & \highscore{0.558} & 0.552 & 0.977 & \highscore{0.990} \\
+3 & Entity & $\fdattr{country\_codes} \rightarrow \fdattr{countries}$ & 0.684 & \highscore{0.734} & \highscore{0.729} & 0.612 & \highscore{0.707} & 0.595 & 0.688 & \highscore{0.689} & \highscore{0.998} & 0.995 \\
+4 & Entity & $\fdattr{countries} \rightarrow \fdattr{country\_codes}$ & 0.685 & \highscore{0.731} & \highscore{0.728} & 0.612 & \highscore{0.706} & 0.597 & \highscore{0.704} & 0.660 & \highscore{0.996} & 0.994 \\
+5 & Intermediary & $\fdattr{country\_codes} \rightarrow \fdattr{countries}$ & 0.503 & \highscore{0.562} & \highscore{0.543} & 0.273 & \highscore{0.998} & 0.641 & \highscore{0.628} & 0.550 & 0.946 & \highscore{0.974} \\
+6 & Intermediary & $\fdattr{countries} \rightarrow \fdattr{country\_codes}$ & 0.503 & \highscore{0.557} & \highscore{0.544} & 0.275 & \highscore{0.998} & 0.670 & \highscore{0.622} & 0.561 & \highscore{0.981} & 0.954 \\
+7 & Intermediary & $\fdattr{valid\_until} \rightarrow \fdattr{sourceID}$ & 0.034 & \highscore{0.754} & 0.427 & \highscore{0.432} & \highscore{0.997} & 0.733 & 0.588 & \highscore{0.650} & 0.988 & \highscore{0.990} \\
+8 & Intermediary & $\fdattr{sourceID} \rightarrow \fdattr{valid\_until}$ & 0.153 & \highscore{0.748} & \highscore{0.441} & 0.432 & \highscore{0.997} & 0.696 & 0.577 & \highscore{0.632} & 0.982 & \highscore{0.988} \\
+9 & Other & $\fdattr{jurisdiction} \rightarrow \fdattr{jurisdiction\_description}$ & 0.689 & \highscore{0.744} & \highscore{0.541} & 0.421 & \highscore{0.998} & 0.397 & \highscore{0.691} & 0.652 & \highscore{0.967} & 0.939 \\
+10 & Other & $\fdattr{jurisdiction\_description} \rightarrow \fdattr{jurisdiction}$ & 0.689 & \highscore{0.728} & \highscore{0.529} & 0.405 & \highscore{0.998} & 0.397 & \highscore{0.668} & 0.655 & \highscore{0.966} & 0.937 \\
+11 & Other & $\fdattr{country\_codes} \rightarrow \fdattr{countries}$ & 0.717 & \highscore{0.777} & \highscore{0.639} & 0.384 & 0.506 & \highscore{0.526} & \highscore{0.714} & 0.637 & \highscore{0.981} & 0.973 \\
+12 & Other & $\fdattr{countries} \rightarrow \fdattr{country\_codes}$ & 0.716 & \highscore{0.780} & \highscore{0.632} & 0.373 & 0.509 & \highscore{0.523} & \highscore{0.711} & 0.641 & \highscore{0.987} & 0.975 \\
+\midrule
+\multicolumn{13}{@{}l}{\textbf{Pairs with Different Determinant Values}} \\
+\midrule
+1 & Address & $\fdattr{countries} \rightarrow \fdattr{country\_codes}$ & 0.232 & \lowscore{0.202} & 0.191 & \lowscore{0.131} & \lowscore{0.407} & 0.506 & 0.486 & \lowscore{0.485} & 0.699 & \lowscore{0.687} \\
+2 & Entity & $\fdattr{service\_provider} \rightarrow \{\fdattr{sourceID},\,\fdattr{valid\_until}\}$ & \lowscore{0.058} & 0.122 & 0.124 & \lowscore{0.110} & 0.523 & \lowscore{0.522} & 0.485 & \lowscore{0.476} & 0.455 & \lowscore{0.447} \\
+3 & Entity & $\fdattr{country\_codes} \rightarrow \fdattr{countries}$ & 0.211 & \lowscore{0.187} & 0.163 & \lowscore{0.147} & \lowscore{0.488} & 0.511 & 0.513 & \lowscore{0.505} & 0.816 & \lowscore{0.680} \\
+4 & Entity & $\fdattr{countries} \rightarrow \fdattr{country\_codes}$ & 0.210 & \lowscore{0.196} & 0.165 & \lowscore{0.148} & \lowscore{0.489} & 0.513 & 0.533 & \lowscore{0.469} & 0.655 & \lowscore{0.644} \\
+5 & Intermediary & $\fdattr{country\_codes} \rightarrow \fdattr{countries}$ & 0.371 & \lowscore{0.316} & 0.215 & \lowscore{0.148} & \lowscore{0.461} & 0.617 & 0.539 & \lowscore{0.480} & \lowscore{0.750} & 0.845 \\
+6 & Intermediary & $\fdattr{countries} \rightarrow \fdattr{country\_codes}$ & 0.373 & \lowscore{0.317} & 0.216 & \lowscore{0.148} & \lowscore{0.474} & 0.653 & 0.531 & \lowscore{0.488} & 0.884 & \lowscore{0.804} \\
+7 & Intermediary & $\fdattr{valid\_until} \rightarrow \fdattr{sourceID}$ & \lowscore{0.000} & 0.263 & \lowscore{0.111} & 0.138 & \lowscore{0.389} & 0.616 & 0.502 & \lowscore{0.502} & 0.926 & \lowscore{0.842} \\
+8 & Intermediary & $\fdattr{sourceID} \rightarrow \fdattr{valid\_until}$ & \lowscore{0.000} & 0.275 & \lowscore{0.128} & 0.163 & \lowscore{0.381} & 0.562 & \lowscore{0.490} & 0.503 & 0.795 & \lowscore{0.728} \\
+9 & Other & $\fdattr{jurisdiction} \rightarrow \fdattr{jurisdiction\_description}$ & 0.131 & \lowscore{0.094} & 0.063 & \lowscore{0.057} & 0.467 & \lowscore{0.442} & 0.481 & \lowscore{0.420} & 0.875 & \lowscore{0.676} \\
+10 & Other & $\fdattr{jurisdiction\_description} \rightarrow \fdattr{jurisdiction}$ & \lowscore{0.129} & 0.160 & 0.106 & \lowscore{0.089} & 0.462 & \lowscore{0.443} & 0.465 & \lowscore{0.433} & 0.873 & \lowscore{0.844} \\
+11 & Other & $\fdattr{country\_codes} \rightarrow \fdattr{countries}$ & 0.705 & \lowscore{0.527} & 0.415 & \lowscore{0.293} & \lowscore{0.481} & 0.502 & 0.591 & \lowscore{0.549} & 0.851 & \lowscore{0.615} \\
+12 & Other & $\fdattr{countries} \rightarrow \fdattr{country\_codes}$ & 0.701 & \lowscore{0.510} & 0.407 & \lowscore{0.280} & \lowscore{0.482} & 0.507 & 0.593 & \lowscore{0.547} & 0.919 & \lowscore{0.619} \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1pt}
+\begin{center}
+    \scriptsize
+    \textit{Note:} PH = Property Hash, FRP = FastRP, N2V = Node2Vec,
+    HGN = HashGNN, GS = GraphSAGE; N/D = normalized/de-normalized.
+    Values are median similarities averaged over 10 seeds (three decimals).
+    Light blue (orange) highlights the higher (lower) similarity between
+    N and D for equal (different) determinant values, based on unrounded
+    results. The two panels use the same IDs.
+\end{center}
+\end{table*}
+
+
+
+Table~\ref{tab:offshore_embedding_determinant_comparison} shows that the mean similarity is higher for same determinant pairs than for different determinant pairs in 118 of the 120 combinations of representation, method, and FD. The embeddings therefore retain the determinant grouping in almost every case. Property Hash is considered separately because it uses only source-node properties. For same-determinant pairs, the de-normalized representation has the higher mean in all 12 cases. In the de-normalized graph, the determinant and dependent properties remain on each source node; normalization moves them to a shared dimension node that Property Hash cannot use. Its de-normalized vectors therefore retain a more complete set of FD properties. For the other four methods, which use graph structure, the normalized representation has the higher same-determinant mean in 38 of the 48 method--FD comparisons. For pairs with different determinant values, where lower similarity is preferred, the de-normalized representation has the lower mean in 35 of the 48 comparisons. Node2Vec is the clearest exception: normalization gives the desired direction for same-determinant pairs in 10 cases and for different-determinant pairs in 9 cases. This is consistent with Node2Vec using only graph structure, as normalization makes shared determinant values explicit through the dimension node connections. Overall, the two representations produce broadly comparable embedding results. Normalization offers an advantage for node-similarity tasks, particularly for structure-based methods, because shared dimension nodes make determinant-based proximity explicit in the graph.
+
+
+
+
+
+
+
+
+
+% \section{test}
+
+% \begin{figure*}[htbp]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figures/experiments/summary_fast_rp.png}
+%     \caption{FastRP Embedding (Un-direction)}
+% \end{figure*}
+
+
+% \begin{figure*}[htbp]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figures/experiments/summary_hash_gnn.png}
+%     \caption{HashGNN Embedding (Un-direction)}
+% \end{figure*}
+
+
+
+
+
+
+
+
+
+
+\section{Conclusion and Future Work}\label{sec:conclusion}
+
+Here we summarize our work and come full circle to answer the research question.
+
+Summarize
+\begin{itemize}
+    \item A principled approach to knowledge graph design and normalization
+    \item Schema-level normalization for reducing sources of inconsistency in knowledge graphs
+    \item Improvements to integrity management and query processing
+    \item Impact on knowledge graph construction and downstream tasks
+    \item \textcolor{red}{Point out that better to construct KG from normalized rel db than data warehouse for example?}
+\end{itemize}
+
+Future work
+\begin{itemize}
+    \item Establish fully fledged normalization framework with axiomatic and algorithmic characterization of implication problem, normal forms and normalization algorithms
+    \item Include cardinality constraints as well
+    \item Expand to UML-based graphs (Transformation between ERM and UML? For UML example and relevance (see LDBC SNB schema))
+    \item More GDBMS for experiments
+    \item More KG-specific tasks
+\end{itemize}
+
+
+
+
+\section*{Artifacts}
+
+The artefacts, source code, experimental scripts, documents and instructions on how to reproduce the results in this article can be found under \textcolor{red}{ENTER GITHUB URL}
+
+
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+
+%%
+%% If your work has an appendix, this is the place to put it.
+
+
+\end{document}
+\endinput
+%%
+%% End of file `sigconf.tex'.

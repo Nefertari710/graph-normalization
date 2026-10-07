@@ -1,0 +1,2366 @@
+{
+  "experiment": "hospital_record_normalization",
+  "created_at": "2026-09-20T00:27:27.458677+12:00",
+  "database": "hospitalcsv",
+  "dependency": {
+    "determinant": "facility_id",
+    "source_dependents": [
+      "facility_name",
+      "address",
+      "city_town",
+      "state",
+      "zip_code",
+      "county_parish",
+      "telephone_number"
+    ],
+    "hospital_properties": [
+      "facility_id",
+      "facility_name",
+      "address",
+      "city",
+      "state",
+      "zip_code",
+      "county",
+      "telephone"
+    ],
+    "groups": 4658,
+    "rows": 138084
+  },
+  "settings": {
+    "update_count": 50,
+    "update_repeats": 10,
+    "batch_size": 10000,
+    "random_seed": 20260919
+  },
+  "normalized_schema": {
+    "pattern": "(HospitalRecord)-[:FOR_HOSPITAL]->(Hospital)",
+    "record_removed_properties": [
+      "facility_id",
+      "facility_name",
+      "address",
+      "city_town",
+      "state",
+      "zip_code",
+      "county_parish",
+      "telephone_number"
+    ]
+  },
+  "denormalized_state": {
+    "node_count": 138084,
+    "relationship_count": 0,
+    "property_cell_count": 2209344
+  },
+  "normalized_state": {
+    "node_count": 142742,
+    "relationship_count": 138084,
+    "property_cell_count": 1141936
+  },
+  "normalized_minus_denormalized": {
+    "node_count": 4658,
+    "relationship_count": 138084,
+    "property_cell_count": -1067408
+  },
+  "normalization_elapsed_ms": 5040.099583,
+  "update_runs": [
+    {
+      "facility_id": "010001",
+      "fanout": 30,
+      "old": [
+        "SOUTHEAST HEALTH MEDICAL CENTER",
+        "1108 ROSS CLARK CIRCLE",
+        "DOTHAN",
+        "AL",
+        "36301",
+        "HOUSTON",
+        "(334) 793-8701"
+      ],
+      "new": [
+        "BROWARD HEALTH CORAL SPRINGS",
+        "3000 CORAL HILLS DR",
+        "CORAL SPRINGS",
+        "FL",
+        "33065",
+        "BROWARD",
+        "(954) 344-3121"
+      ],
+      "denormalized_elapsed_ms": [
+        43.724084,
+        5.93925,
+        8.595458,
+        4.941416,
+        4.750208,
+        3.979042,
+        3.988583,
+        4.047458,
+        3.929125,
+        3.083042
+      ],
+      "normalized_elapsed_ms": [
+        27.80475,
+        8.053792,
+        5.945625,
+        3.937667,
+        3.981709,
+        4.019125,
+        4.040084,
+        4.257375,
+        4.030833,
+        4.149875
+      ]
+    },
+    {
+      "facility_id": "010005",
+      "fanout": 30,
+      "old": [
+        "MARSHALL MEDICAL CENTERS",
+        "2505 U S HIGHWAY 431 NORTH",
+        "BOAZ",
+        "AL",
+        "35957",
+        "MARSHALL",
+        "(256) 593-8310"
+      ],
+      "new": [
+        "ASHLEY MEDICAL CENTER",
+        "612 CENTER AVENUE N",
+        "ASHLEY",
+        "ND",
+        "58413",
+        "MCINTOSH",
+        "(701) 288-3433"
+      ],
+      "denormalized_elapsed_ms": [
+        17.51625,
+        5.977875,
+        4.899292,
+        6.130459,
+        8.596792,
+        4.861125,
+        3.870667,
+        3.872792,
+        4.049958,
+        3.975667
+      ],
+      "normalized_elapsed_ms": [
+        12.814042,
+        4.474625,
+        4.085583,
+        2.983792,
+        2.9215,
+        4.200458,
+        4.086375,
+        4.507583,
+        3.959667,
+        5.245125
+      ]
+    },
+    {
+      "facility_id": "010006",
+      "fanout": 30,
+      "old": [
+        "NORTH ALABAMA MEDICAL CENTER",
+        "1701 VETERANS DRIVE",
+        "FLORENCE",
+        "AL",
+        "35630",
+        "LAUDERDALE",
+        "(256) 768-8400"
+      ],
+      "new": [
+        "ADVOCATE GOOD SHEPHERD HOSPITAL",
+        "450 WEST HIGHWAY 22",
+        "BARRINGTON",
+        "IL",
+        "60010",
+        "LAKE",
+        "(847) 381-9600"
+      ],
+      "denormalized_elapsed_ms": [
+        3.902458,
+        3.9555,
+        4.047542,
+        4.052708,
+        4.233125,
+        5.00275,
+        8.061875,
+        5.105,
+        4.948541,
+        5.68
+      ],
+      "normalized_elapsed_ms": [
+        3.87075,
+        3.987125,
+        4.037459,
+        4.021084,
+        3.994208,
+        4.026708,
+        4.019334,
+        4.153917,
+        4.051667,
+        5.183625
+      ]
+    },
+    {
+      "facility_id": "010007",
+      "fanout": 30,
+      "old": [
+        "MIZELL MEMORIAL HOSPITAL",
+        "702 N MAIN ST",
+        "OPP",
+        "AL",
+        "36467",
+        "COVINGTON",
+        "(334) 493-3541"
+      ],
+      "new": [
+        "NORTH CAROLINA SPECIALTY HOSPITAL",
+        "3916 BEN FRANKLIN BOULEVARD",
+        "DURHAM",
+        "NC",
+        "27704",
+        "DURHAM",
+        "(919) 956-9300"
+      ],
+      "denormalized_elapsed_ms": [
+        4.824958,
+        3.918041,
+        4.035959,
+        4.03975,
+        4.001083,
+        3.962834,
+        4.10575,
+        2.984833,
+        3.960334,
+        6.539208
+      ],
+      "normalized_elapsed_ms": [
+        4.031708,
+        2.850375,
+        4.026916,
+        3.037584,
+        4.021625,
+        3.019125,
+        3.949167,
+        4.259375,
+        3.907417,
+        4.031708
+      ]
+    },
+    {
+      "facility_id": "010011",
+      "fanout": 30,
+      "old": [
+        "ST. VINCENT'S EAST",
+        "50 MEDICAL PARK EAST DRIVE",
+        "BIRMINGHAM",
+        "AL",
+        "35235",
+        "JEFFERSON",
+        "(205) 838-3122"
+      ],
+      "new": [
+        "LEHIGH VALLEY HOSPITAL - HAZLETON",
+        "700 EAST BROAD STREET",
+        "HAZLETON",
+        "PA",
+        "18201",
+        "LUZERNE",
+        "(570) 501-4000"
+      ],
+      "denormalized_elapsed_ms": [
+        5.003208,
+        5.009375,
+        5.053042,
+        4.968125,
+        8.52325,
+        4.671917,
+        3.855,
+        3.959334,
+        3.958959,
+        4.116625
+      ],
+      "normalized_elapsed_ms": [
+        3.042542,
+        3.963917,
+        3.959,
+        3.983208,
+        4.195875,
+        4.12425,
+        8.067083,
+        4.0125,
+        3.960666,
+        5.986125
+      ]
+    },
+    {
+      "facility_id": "010012",
+      "fanout": 30,
+      "old": [
+        "DEKALB REGIONAL MEDICAL CENTER",
+        "200 MED CENTER DRIVE",
+        "FORT PAYNE",
+        "AL",
+        "35968",
+        "DE KALB",
+        "(256) 845-3150"
+      ],
+      "new": [
+        "EAGLEVILLE HOSPITAL",
+        "100 EAGLEVILLE RD",
+        "EAGLEVILLE",
+        "PA",
+        "19403",
+        "MONTGOMERY",
+        "(610) 539-6000"
+      ],
+      "denormalized_elapsed_ms": [
+        4.036917,
+        3.982375,
+        3.971709,
+        4.035459,
+        4.331875,
+        5.874916,
+        4.92525,
+        4.998,
+        5.008,
+        8.745125
+      ],
+      "normalized_elapsed_ms": [
+        4.142417,
+        4.038625,
+        3.940334,
+        3.905583,
+        3.468417,
+        2.088417,
+        4.012458,
+        4.003833,
+        4.086084,
+        3.941917
+      ]
+    },
+    {
+      "facility_id": "010016",
+      "fanout": 30,
+      "old": [
+        "SHELBY BAPTIST MEDICAL CENTER",
+        "1000 FIRST STREET NORTH",
+        "ALABASTER",
+        "AL",
+        "35007",
+        "SHELBY",
+        "(205) 620-8100"
+      ],
+      "new": [
+        "COX MONETT HOSPITAL",
+        "1000 E US HIGHWAY 60",
+        "MONETT",
+        "MO",
+        "65708",
+        "BARRY",
+        "(417) 354-1400"
+      ],
+      "denormalized_elapsed_ms": [
+        5.120583,
+        4.022417,
+        4.0395,
+        3.971917,
+        4.064041,
+        3.99025,
+        4.029167,
+        4.06775,
+        4.005875,
+        4.194084
+      ],
+      "normalized_elapsed_ms": [
+        5.043084,
+        4.017958,
+        4.078084,
+        3.998042,
+        4.251166,
+        3.88125,
+        7.13325,
+        2.956166,
+        4.039833,
+        2.953333
+      ]
+    },
+    {
+      "facility_id": "010019",
+      "fanout": 30,
+      "old": [
+        "HELEN KELLER HOSPITAL",
+        "1300 SOUTH MONTGOMERY AVENUE",
+        "SHEFFIELD",
+        "AL",
+        "35660",
+        "COLBERT",
+        "(256) 386-4556"
+      ],
+      "new": [
+        "ADVENTIST HEALTH DELANO",
+        "1401 GARCES HIGHWAY",
+        "DELANO",
+        "CA",
+        "93215",
+        "KERN",
+        "(661) 725-4800"
+      ],
+      "denormalized_elapsed_ms": [
+        5.696083,
+        4.889625,
+        4.892916,
+        5.154208,
+        5.00725,
+        3.897667,
+        4.09975,
+        3.741958,
+        4.002792,
+        4.070292
+      ],
+      "normalized_elapsed_ms": [
+        3.983791,
+        4.004125,
+        3.957167,
+        4.010333,
+        3.998083,
+        8.106208,
+        9.103708,
+        5.431542,
+        3.932417,
+        4.293541
+      ]
+    },
+    {
+      "facility_id": "010021",
+      "fanout": 30,
+      "old": [
+        "DALE MEDICAL CENTER",
+        "126 HOSPITAL AVE",
+        "OZARK",
+        "AL",
+        "36360",
+        "DALE",
+        "(334) 774-2601"
+      ],
+      "new": [
+        "COLUSA MEDICAL CENTER",
+        "199 E WEBSTER STREET",
+        "COLUSA",
+        "CA",
+        "95932",
+        "COLUSA",
+        "(530) 619-0800"
+      ],
+      "denormalized_elapsed_ms": [
+        3.991875,
+        4.1195,
+        4.295458,
+        4.020625,
+        4.015667,
+        6.568125,
+        4.823667,
+        4.207458,
+        4.120208,
+        4.446875
+      ],
+      "normalized_elapsed_ms": [
+        3.651875,
+        4.945083,
+        3.989416,
+        4.003417,
+        3.671084,
+        4.112375,
+        4.016417,
+        8.241083,
+        3.955375,
+        4.0145
+      ]
+    },
+    {
+      "facility_id": "010022",
+      "fanout": 30,
+      "old": [
+        "FLOYD CHEROKEE MEDICAL CENTER",
+        "400 NORTHWOOD DR",
+        "CENTRE",
+        "AL",
+        "35960",
+        "CHEROKEE",
+        "(256) 927-5531"
+      ],
+      "new": [
+        "UNITY MEDICAL CENTER",
+        "481 INTERSTATE DRIVE",
+        "MANCHESTER",
+        "TN",
+        "37355",
+        "COFFEE",
+        "(931) 728-6354"
+      ],
+      "denormalized_elapsed_ms": [
+        6.537834,
+        4.199208,
+        3.971584,
+        4.1315,
+        4.189375,
+        4.046959,
+        3.811708,
+        4.26025,
+        3.908125,
+        3.854292
+      ],
+      "normalized_elapsed_ms": [
+        4.012333,
+        3.997292,
+        3.93,
+        4.020542,
+        4.085666,
+        3.914417,
+        3.914125,
+        4.078,
+        4.364416,
+        3.81525
+      ]
+    },
+    {
+      "facility_id": "010023",
+      "fanout": 30,
+      "old": [
+        "BAPTIST MEDICAL CENTER SOUTH",
+        "2105 EAST SOUTH BOULEVARD",
+        "MONTGOMERY",
+        "AL",
+        "36116",
+        "MONTGOMERY",
+        "(334) 288-2100"
+      ],
+      "new": [
+        "HCA FLORIDA ST PETERSBURG HOSPITAL",
+        "6500 38TH AVE N",
+        "SAINT PETERSBURG",
+        "FL",
+        "33710",
+        "PINELLAS",
+        "(727) 384-1414"
+      ],
+      "denormalized_elapsed_ms": [
+        5.216333,
+        4.988333,
+        4.915083,
+        4.907042,
+        4.026541,
+        5.122375,
+        7.335375,
+        5.075792,
+        4.841125,
+        4.023583
+      ],
+      "normalized_elapsed_ms": [
+        8.331333,
+        3.755417,
+        4.071208,
+        3.996333,
+        3.971584,
+        3.974958,
+        4.156541,
+        4.005541,
+        4.000417,
+        4.069333
+      ]
+    },
+    {
+      "facility_id": "010024",
+      "fanout": 30,
+      "old": [
+        "JACKSON HOSPITAL & CLINIC INC",
+        "1725 PINE STREET",
+        "MONTGOMERY",
+        "AL",
+        "36106",
+        "MONTGOMERY",
+        "(334) 293-8000"
+      ],
+      "new": [
+        "CENTRO CARDIOVASCULAR DE PUERTO RICO Y EL CARIBE",
+        "AVENIDA AMERICO MIRANDA, ENTRADA PRINCIPAL C M",
+        "SAN JUAN",
+        "PR",
+        "00936",
+        "SAN JUAN",
+        "(787) 754-8500"
+      ],
+      "denormalized_elapsed_ms": [
+        4.239334,
+        5.235,
+        5.305417,
+        5.985834,
+        5.849625,
+        4.474291,
+        6.93275,
+        6.651084,
+        5.805208,
+        3.930167
+      ],
+      "normalized_elapsed_ms": [
+        4.116583,
+        3.997334,
+        3.193584,
+        4.033625,
+        4.089875,
+        5.006375,
+        7.041291,
+        4.000917,
+        4.002375,
+        4.018959
+      ]
+    },
+    {
+      "facility_id": "010029",
+      "fanout": 30,
+      "old": [
+        "THE EAST ALABAMA HEALTHCARE AUTHORITY",
+        "2000 PEPPERELL PARKWAY",
+        "OPELIKA",
+        "AL",
+        "36801",
+        "LEE",
+        "(334) 528-1300"
+      ],
+      "new": [
+        "BAPTIST HEALTH - VAN BUREN",
+        "211 CRAWFORD MEMORIAL DRIVE",
+        "VAN BUREN",
+        "AR",
+        "72956",
+        "CRAWFORD",
+        "(479) 474-3401"
+      ],
+      "denormalized_elapsed_ms": [
+        7.866375,
+        4.903667,
+        4.050417,
+        4.070166,
+        3.942834,
+        3.99925,
+        4.097292,
+        4.202458,
+        3.963084,
+        7.557833
+      ],
+      "normalized_elapsed_ms": [
+        4.015209,
+        3.986875,
+        4.044792,
+        4.026708,
+        3.947792,
+        4.065792,
+        4.002417,
+        3.913833,
+        3.802083,
+        3.977917
+      ]
+    },
+    {
+      "facility_id": "010033",
+      "fanout": 30,
+      "old": [
+        "UNIVERSITY OF ALABAMA HOSPITAL",
+        "619 SOUTH 19TH STREET",
+        "BIRMINGHAM",
+        "AL",
+        "35233",
+        "JEFFERSON",
+        "(205) 934-4011"
+      ],
+      "new": [
+        "ST JOSEPH'S MEDICAL CENTER",
+        "127 SOUTH BROADWAY",
+        "YONKERS",
+        "NY",
+        "10701",
+        "WESTCHESTER",
+        "(914) 378-7000"
+      ],
+      "denormalized_elapsed_ms": [
+        25.326667,
+        5.101,
+        4.959708,
+        6.264625,
+        3.809167,
+        3.847875,
+        3.877958,
+        4.048583,
+        3.997041,
+        4.050958
+      ],
+      "normalized_elapsed_ms": [
+        22.405167,
+        3.948666,
+        4.024667,
+        3.046792,
+        3.971542,
+        3.952666,
+        3.963792,
+        4.162833,
+        4.354458,
+        4.031417
+      ]
+    },
+    {
+      "facility_id": "010034",
+      "fanout": 30,
+      "old": [
+        "COMMUNITY HOSPITAL INC",
+        "805 FRIENDSHIP ROAD",
+        "TALLASSEE",
+        "AL",
+        "36078",
+        "ELMORE",
+        "(334) 283-6541"
+      ],
+      "new": [
+        "ARKANSAS METHODIST MEDICAL CENTER",
+        "900 WEST KINGSHIGHWAY",
+        "PARAGOULD",
+        "AR",
+        "72450",
+        "GREENE",
+        "(870) 239-7000"
+      ],
+      "denormalized_elapsed_ms": [
+        4.201084,
+        4.022584,
+        4.086084,
+        4.204916,
+        5.691958,
+        4.913542,
+        3.935167,
+        4.118334,
+        7.331459,
+        4.485208
+      ],
+      "normalized_elapsed_ms": [
+        3.939917,
+        3.941042,
+        3.983917,
+        3.84725,
+        4.033375,
+        3.997209,
+        7.218125,
+        3.794708,
+        3.968834,
+        3.973209
+      ]
+    },
+    {
+      "facility_id": "010035",
+      "fanout": 30,
+      "old": [
+        "CULLMAN REGIONAL MEDICAL CENTER",
+        "1912 ALABAMA HIGHWAY 157",
+        "CULLMAN",
+        "AL",
+        "35058",
+        "CULLMAN",
+        "(256) 737-2000"
+      ],
+      "new": [
+        "ARBUCKLE MEMORIAL HOSPITAL AUTHORITY",
+        "2011 WEST BROADWAY",
+        "SULPHUR",
+        "OK",
+        "73086",
+        "MURRAY",
+        "(580) 622-2161"
+      ],
+      "denormalized_elapsed_ms": [
+        4.084667,
+        3.069666,
+        3.235875,
+        3.882958,
+        4.190334,
+        2.985292,
+        4.001916,
+        3.897667,
+        5.210209,
+        4.2275
+      ],
+      "normalized_elapsed_ms": [
+        3.987,
+        4.011917,
+        3.994709,
+        3.976292,
+        4.031875,
+        4.118875,
+        5.425416,
+        3.960667,
+        3.843125,
+        3.9675
+      ]
+    },
+    {
+      "facility_id": "010036",
+      "fanout": 30,
+      "old": [
+        "ANDALUSIA HEALTH",
+        "849 SOUTH THREE NOTCH STREET",
+        "ANDALUSIA",
+        "AL",
+        "36420",
+        "COVINGTON",
+        "(334) 222-8466"
+      ],
+      "new": [
+        "CLAY COUNTY HOSPITAL",
+        "83825 HIGHWAY 9    P O BOX 1270",
+        "ASHLAND",
+        "AL",
+        "36251",
+        "CLAY",
+        "(256) 354-2131"
+      ],
+      "denormalized_elapsed_ms": [
+        4.173041,
+        3.989917,
+        3.993916,
+        4.006417,
+        16.723,
+        4.642708,
+        4.226958,
+        3.874334,
+        4.028292,
+        3.931583
+      ],
+      "normalized_elapsed_ms": [
+        3.963125,
+        4.020333,
+        3.856667,
+        3.8745,
+        4.047083,
+        5.992459,
+        4.045375,
+        2.987,
+        4.03375,
+        3.854458
+      ]
+    },
+    {
+      "facility_id": "010039",
+      "fanout": 30,
+      "old": [
+        "HUNTSVILLE HOSPITAL",
+        "101 SIVLEY RD",
+        "HUNTSVILLE",
+        "AL",
+        "35801",
+        "MADISON",
+        "(256) 265-1000"
+      ],
+      "new": [
+        "SANTA MONICA - UCLA MED CTR & ORTHOPAEDIC HOSPITAL",
+        "1250 16TH STREET",
+        "SANTA MONICA",
+        "CA",
+        "90404",
+        "LOS ANGELES",
+        "(310) 319-4000"
+      ],
+      "denormalized_elapsed_ms": [
+        16.1195,
+        4.084,
+        4.264375,
+        4.403667,
+        6.26675,
+        6.088459,
+        5.344667,
+        5.40025,
+        7.395791,
+        4.711708
+      ],
+      "normalized_elapsed_ms": [
+        14.218,
+        4.188084,
+        4.905,
+        4.299084,
+        3.925292,
+        7.8955,
+        3.9805,
+        3.874584,
+        4.010958,
+        4.569042
+      ]
+    },
+    {
+      "facility_id": "010040",
+      "fanout": 30,
+      "old": [
+        "GADSDEN REGIONAL MEDICAL CENTER",
+        "1007 GOODYEAR AVENUE",
+        "GADSDEN",
+        "AL",
+        "35903",
+        "ETOWAH",
+        "(256) 494-4000"
+      ],
+      "new": [
+        "PEACEHEALTH PEACE ISLAND MEDICAL CENTER",
+        "1117 SPRING STREET",
+        "FRIDAY HARBOR",
+        "WA",
+        "98250",
+        "SAN JUAN",
+        "(360) 378-2141"
+      ],
+      "denormalized_elapsed_ms": [
+        4.626666,
+        3.952,
+        4.018833,
+        3.934958,
+        3.986875,
+        3.94825,
+        3.996208,
+        3.986,
+        3.135833,
+        4.432792
+      ],
+      "normalized_elapsed_ms": [
+        3.959417,
+        3.989667,
+        2.975875,
+        4.045375,
+        4.044791,
+        4.506083,
+        3.98225,
+        3.879,
+        4.032708,
+        2.976083
+      ]
+    },
+    {
+      "facility_id": "010044",
+      "fanout": 30,
+      "old": [
+        "MARION REGIONAL MEDICAL CENTER",
+        "1256 MILITARY STREET SOUTH",
+        "HAMILTON",
+        "AL",
+        "35570",
+        "MARION",
+        "(205) 921-6200"
+      ],
+      "new": [
+        "SPECTRUM HEALTH UNITED HOSPITAL",
+        "615 S BOWER STREET",
+        "GREENVILLE",
+        "MI",
+        "48838",
+        "MONTCALM",
+        "(616) 754-4691"
+      ],
+      "denormalized_elapsed_ms": [
+        4.978125,
+        5.020333,
+        4.957375,
+        4.982833,
+        5.189958,
+        5.864916,
+        4.929375,
+        4.808416,
+        4.771958,
+        4.045792
+      ],
+      "normalized_elapsed_ms": [
+        3.864417,
+        3.947583,
+        4.086417,
+        2.501,
+        3.792375,
+        3.991625,
+        4.00425,
+        4.021292,
+        4.036875,
+        3.963542
+      ]
+    },
+    {
+      "facility_id": "010045",
+      "fanout": 30,
+      "old": [
+        "FAYETTE MEDICAL CENTER",
+        "1653 TEMPLE AVENUE NORTH",
+        "FAYETTE",
+        "AL",
+        "35555",
+        "FAYETTE",
+        "(205) 932-5966"
+      ],
+      "new": [
+        "LEWIS COUNTY GENERAL HOSPITAL",
+        "7785 NORTH STATE STREET",
+        "LOWVILLE",
+        "NY",
+        "13367",
+        "LEWIS",
+        "(315) 376-5200"
+      ],
+      "denormalized_elapsed_ms": [
+        4.706542,
+        4.796375,
+        3.855958,
+        3.912125,
+        4.926292,
+        8.647917,
+        5.136209,
+        5.075209,
+        3.899125,
+        5.015375
+      ],
+      "normalized_elapsed_ms": [
+        4.122375,
+        3.937292,
+        3.937542,
+        4.836,
+        4.101583,
+        3.992667,
+        3.991125,
+        3.895667,
+        3.792333,
+        6.021958
+      ]
+    },
+    {
+      "facility_id": "010046",
+      "fanout": 30,
+      "old": [
+        "RIVERVIEW REGIONAL MEDICAL CENTER",
+        "600 SOUTH THIRD STREET",
+        "GADSDEN",
+        "AL",
+        "35901",
+        "ETOWAH",
+        "(256) 543-5200"
+      ],
+      "new": [
+        "ARKANSAS METHODIST MEDICAL CENTER",
+        "900 WEST KINGSHIGHWAY",
+        "PARAGOULD",
+        "AR",
+        "72450",
+        "GREENE",
+        "(870) 239-7000"
+      ],
+      "denormalized_elapsed_ms": [
+        7.27575,
+        4.854333,
+        4.913416,
+        3.86125,
+        4.072584,
+        3.937167,
+        4.298541,
+        3.941333,
+        4.125958,
+        4.110417
+      ],
+      "normalized_elapsed_ms": [
+        3.730959,
+        4.815375,
+        3.955166,
+        3.017708,
+        3.995417,
+        3.974083,
+        4.04225,
+        2.919042,
+        3.968625,
+        2.989166
+      ]
+    },
+    {
+      "facility_id": "010049",
+      "fanout": 30,
+      "old": [
+        "MEDICAL CENTER ENTERPRISE",
+        "400 N EDWARDS STREET",
+        "ENTERPRISE",
+        "AL",
+        "36330",
+        "COFFEE",
+        "(334) 347-0584"
+      ],
+      "new": [
+        "SIMPSON GENERAL HOSPITAL CAH",
+        "1842 SIMPSON HIGHWAY 149",
+        "MENDENHALL",
+        "MS",
+        "39114",
+        "SIMPSON",
+        "(601) 847-2221"
+      ],
+      "denormalized_elapsed_ms": [
+        5.459833,
+        5.226375,
+        3.869958,
+        3.852417,
+        3.7855,
+        4.991375,
+        3.590125,
+        4.635167,
+        4.367375,
+        3.864334
+      ],
+      "normalized_elapsed_ms": [
+        2.943125,
+        3.94525,
+        6.903208,
+        4.045083,
+        7.832875,
+        3.9635,
+        3.650041,
+        4.876959,
+        4.444584,
+        6.54525
+      ]
+    },
+    {
+      "facility_id": "010051",
+      "fanout": 30,
+      "old": [
+        "GREENE COUNTY HOSPITAL",
+        "509 WILSON AVENUE",
+        "EUTAW",
+        "AL",
+        "35462",
+        "GREENE",
+        "(205) 372-3388"
+      ],
+      "new": [
+        "BLUE RIDGE MEDICAL CENTER",
+        "2855 OLD HIGHWAY 5 NORTH",
+        "BLUE RIDGE",
+        "GA",
+        "30513",
+        "FANNIN",
+        "(706) 632-3711"
+      ],
+      "denormalized_elapsed_ms": [
+        4.027917,
+        4.008041,
+        3.971959,
+        3.710959,
+        3.992,
+        5.082334,
+        4.382333,
+        3.768958,
+        3.95925,
+        7.224417
+      ],
+      "normalized_elapsed_ms": [
+        3.933584,
+        3.773667,
+        4.030875,
+        3.829292,
+        3.950584,
+        3.943084,
+        3.999792,
+        3.97475,
+        3.913625,
+        6.081334
+      ]
+    },
+    {
+      "facility_id": "010052",
+      "fanout": 30,
+      "old": [
+        "LAKE MARTIN COMMUNITY HOSPITAL",
+        "201 MARIARDEN ROAD",
+        "DADEVILLE",
+        "AL",
+        "36853",
+        "TALLAPOOSA",
+        "(256) 825-7821"
+      ],
+      "new": [
+        "HOSPITAL UNIVERSITARIO DR RUIZ ARNAU",
+        "LAUREL AVE SANTA JUANITA #100",
+        "BAYAMON",
+        "PR",
+        "00956",
+        "BAYAMON",
+        "(787) 787-5151"
+      ],
+      "denormalized_elapsed_ms": [
+        5.297791,
+        14.470042,
+        4.980875,
+        3.597708,
+        3.935333,
+        3.166334,
+        2.912,
+        4.071625,
+        4.047583,
+        4.014834
+      ],
+      "normalized_elapsed_ms": [
+        3.818125,
+        3.959833,
+        4.018958,
+        4.242791,
+        4.267125,
+        4.0625,
+        3.847625,
+        6.031042,
+        3.930334,
+        2.953417
+      ]
+    },
+    {
+      "facility_id": "010055",
+      "fanout": 30,
+      "old": [
+        "FLOWERS HOSPITAL",
+        "4370 WEST MAIN STREET",
+        "DOTHAN",
+        "AL",
+        "36302",
+        "HOUSTON",
+        "(334) 793-5000"
+      ],
+      "new": [
+        "GUTHRIE COUNTY HOSPITAL",
+        "710 NORTH 12TH STREET",
+        "GUTHRIE CENTER",
+        "IA",
+        "50115",
+        "GUTHRIE",
+        "(641) 747-2201"
+      ],
+      "denormalized_elapsed_ms": [
+        3.081666,
+        4.019625,
+        4.131584,
+        4.860459,
+        4.918083,
+        5.058917,
+        4.635542,
+        3.552084,
+        3.96425,
+        4.911042
+      ],
+      "normalized_elapsed_ms": [
+        4.025542,
+        3.891042,
+        4.034125,
+        4.069666,
+        5.006459,
+        7.091208,
+        3.916875,
+        4.892542,
+        3.9865,
+        3.920166
+      ]
+    },
+    {
+      "facility_id": "010056",
+      "fanout": 30,
+      "old": [
+        "ST VINCENT'S BIRMINGHAM",
+        "810 ST VINCENT'S DRIVE",
+        "BIRMINGHAM",
+        "AL",
+        "35205",
+        "JEFFERSON",
+        "(205) 939-7000"
+      ],
+      "new": [
+        "CLEARWATER VALLEY HOSPITAL & CLINICS",
+        "301 CEDAR STREET",
+        "OROFINO",
+        "ID",
+        "83544",
+        "CLEARWATER",
+        "(208) 476-4555"
+      ],
+      "denormalized_elapsed_ms": [
+        7.359125,
+        5.074875,
+        3.578709,
+        3.467375,
+        4.491916,
+        3.568875,
+        5.600708,
+        4.580542,
+        4.720542,
+        5.462291
+      ],
+      "normalized_elapsed_ms": [
+        4.010084,
+        3.999125,
+        3.993334,
+        3.931167,
+        3.980958,
+        3.706333,
+        4.030959,
+        3.969791,
+        4.023167,
+        5.076208
+      ]
+    },
+    {
+      "facility_id": "010058",
+      "fanout": 30,
+      "old": [
+        "BIBB MEDICAL CENTER",
+        "208 PIERSON AVE",
+        "CENTREVILLE",
+        "AL",
+        "35042",
+        "BIBB",
+        "(205) 926-4881"
+      ],
+      "new": [
+        "NORTHERN WESTCHESTER HOSPITAL",
+        "400 EAST MAIN STREET",
+        "MOUNT KISCO",
+        "NY",
+        "10549",
+        "WESTCHESTER",
+        "(914) 666-1200"
+      ],
+      "denormalized_elapsed_ms": [
+        5.081625,
+        4.929875,
+        5.055375,
+        5.002,
+        4.277208,
+        4.7725,
+        6.06025,
+        4.839542,
+        4.345083,
+        4.005083
+      ],
+      "normalized_elapsed_ms": [
+        5.651167,
+        3.473958,
+        4.097958,
+        3.902667,
+        3.873708,
+        4.0415,
+        4.047375,
+        3.899583,
+        4.037042,
+        3.983167
+      ]
+    },
+    {
+      "facility_id": "010061",
+      "fanout": 30,
+      "old": [
+        "HIGHLANDS MEDICAL CENTER",
+        "380 WOODS COVE ROAD",
+        "SCOTTSBORO",
+        "AL",
+        "35768",
+        "JACKSON",
+        "(256) 259-4444"
+      ],
+      "new": [
+        "GOODALL WITCHER HOSPITAL",
+        "101 POSEY AVENUE",
+        "CLIFTON",
+        "TX",
+        "76634",
+        "BOSQUE",
+        "(254) 675-8322"
+      ],
+      "denormalized_elapsed_ms": [
+        5.136584,
+        3.973791,
+        3.949667,
+        4.014541,
+        3.99175,
+        5.008917,
+        3.96,
+        3.952833,
+        4.026834,
+        3.976417
+      ],
+      "normalized_elapsed_ms": [
+        4.811084,
+        4.06725,
+        4.221083,
+        3.838333,
+        4.003333,
+        6.21825,
+        4.008583,
+        3.627708,
+        4.172083,
+        3.890125
+      ]
+    },
+    {
+      "facility_id": "010062",
+      "fanout": 30,
+      "old": [
+        "WIREGRASS MEDICAL CENTER",
+        "1200 W MAPLE AVENUE",
+        "GENEVA",
+        "AL",
+        "36340",
+        "GENEVA",
+        "(334) 684-3655"
+      ],
+      "new": [
+        "CLEVELAND CLINIC HOSPITAL",
+        "3100 WESTON RD",
+        "WESTON",
+        "FL",
+        "33331",
+        "BROWARD",
+        "(954) 689-5000"
+      ],
+      "denormalized_elapsed_ms": [
+        5.984958,
+        3.920417,
+        3.908333,
+        3.924292,
+        3.961542,
+        3.912666,
+        4.14925,
+        5.01725,
+        4.901958,
+        5.788083
+      ],
+      "normalized_elapsed_ms": [
+        4.067375,
+        5.013791,
+        4.111291,
+        2.991084,
+        4.038958,
+        3.882958,
+        5.027208,
+        3.979333,
+        4.128417,
+        3.866458
+      ]
+    },
+    {
+      "facility_id": "010065",
+      "fanout": 30,
+      "old": [
+        "RUSSELL MEDICAL CENTER",
+        "3316 HIGHWAY 280",
+        "ALEXANDER CITY",
+        "AL",
+        "35010",
+        "TALLAPOOSA",
+        "(256) 329-7100"
+      ],
+      "new": [
+        "HCA FLORIDA UNIVERSITY HOSPITAL",
+        "3476 S UNIVERSITY DR.",
+        "DAVIE",
+        "FL",
+        "33328",
+        "BROWARD",
+        "(954) 475-4400"
+      ],
+      "denormalized_elapsed_ms": [
+        4.807334,
+        31.858208,
+        3.036125,
+        4.06,
+        4.071541,
+        4.077875,
+        4.013375,
+        4.005375,
+        4.071333,
+        4.760167
+      ],
+      "normalized_elapsed_ms": [
+        4.022542,
+        4.886916,
+        8.207834,
+        3.834708,
+        4.054167,
+        3.944458,
+        4.006208,
+        4.012541,
+        3.97675,
+        3.904208
+      ]
+    },
+    {
+      "facility_id": "010073",
+      "fanout": 30,
+      "old": [
+        "CLAY COUNTY HOSPITAL",
+        "83825 HIGHWAY 9    P O BOX 1270",
+        "ASHLAND",
+        "AL",
+        "36251",
+        "CLAY",
+        "(256) 354-2131"
+      ],
+      "new": [
+        "HOLMES REGIONAL MEDICAL CENTER",
+        "1350 S HICKORY ST",
+        "MELBOURNE",
+        "FL",
+        "32901",
+        "BREVARD",
+        "(321) 434-7000"
+      ],
+      "denormalized_elapsed_ms": [
+        4.186334,
+        4.14725,
+        4.125208,
+        4.190875,
+        4.108,
+        3.828875,
+        3.672292,
+        3.668083,
+        3.098458,
+        3.95175
+      ],
+      "normalized_elapsed_ms": [
+        4.081417,
+        3.962834,
+        4.335708,
+        3.987834,
+        4.220708,
+        4.124583,
+        6.825542,
+        4.685917,
+        7.88775,
+        4.301875
+      ]
+    },
+    {
+      "facility_id": "010078",
+      "fanout": 30,
+      "old": [
+        "NORTHEAST ALABAMA REGIONAL MEDICAL CENTER",
+        "400 EAST 10TH STREET",
+        "ANNISTON",
+        "AL",
+        "36207",
+        "CALHOUN",
+        "(256) 235-5121"
+      ],
+      "new": [
+        "BALDWIN HEALTH",
+        "1613 NORTH MCKENZIE STREET",
+        "FOLEY",
+        "AL",
+        "36535",
+        "BALDWIN",
+        "(251) 949-3400"
+      ],
+      "denormalized_elapsed_ms": [
+        4.15225,
+        4.038125,
+        3.790583,
+        3.794583,
+        3.042792,
+        3.959417,
+        4.035709,
+        3.877959,
+        4.12325,
+        5.0605
+      ],
+      "normalized_elapsed_ms": [
+        4.025166,
+        3.94325,
+        4.02575,
+        4.928375,
+        4.16975,
+        3.933917,
+        4.058208,
+        4.129667,
+        4.139709,
+        4.418083
+      ]
+    },
+    {
+      "facility_id": "010079",
+      "fanout": 30,
+      "old": [
+        "ATHENS LIMESTONE HOSPITAL",
+        "700 WEST MARKET STREET",
+        "ATHENS",
+        "AL",
+        "35611",
+        "LIMESTONE",
+        "(256) 233-9292"
+      ],
+      "new": [
+        "FLAGSTAFF MEDICAL CENTER",
+        "1200 NORTH BEAVER STREET",
+        "FLAGSTAFF",
+        "AZ",
+        "86001",
+        "COCONINO",
+        "(928) 779-3366"
+      ],
+      "denormalized_elapsed_ms": [
+        4.323667,
+        4.93875,
+        3.956916,
+        4.786583,
+        4.03,
+        4.007708,
+        3.6735,
+        4.021708,
+        4.038959,
+        3.100917
+      ],
+      "normalized_elapsed_ms": [
+        4.165917,
+        3.892791,
+        4.431,
+        3.915166,
+        4.312917,
+        7.151167,
+        4.105208,
+        4.0095,
+        4.069541,
+        3.957625
+      ]
+    },
+    {
+      "facility_id": "010083",
+      "fanout": 30,
+      "old": [
+        "BALDWIN HEALTH",
+        "1613 NORTH MCKENZIE STREET",
+        "FOLEY",
+        "AL",
+        "36535",
+        "BALDWIN",
+        "(251) 949-3400"
+      ],
+      "new": [
+        "THE SPINE HOSPITAL OF LOUISIANA",
+        "10105 PARK ROW CIRCLE, SUITE 250",
+        "BATON ROUGE",
+        "LA",
+        "70810",
+        "E. BATON ROUGE",
+        "(225) 763-9900"
+      ],
+      "denormalized_elapsed_ms": [
+        4.455583,
+        4.789625,
+        4.199333,
+        4.629542,
+        3.781417,
+        4.690958,
+        4.610583,
+        5.639041,
+        4.257667,
+        4.604083
+      ],
+      "normalized_elapsed_ms": [
+        4.167292,
+        3.951875,
+        4.068208,
+        3.91125,
+        4.055125,
+        3.951208,
+        4.018333,
+        3.951667,
+        3.98,
+        4.050458
+      ]
+    },
+    {
+      "facility_id": "010085",
+      "fanout": 30,
+      "old": [
+        "DECATUR MORGAN HOSPITAL - DECATUR CAMPUS",
+        "1201 7TH STREET SE",
+        "DECATUR",
+        "AL",
+        "35601",
+        "MORGAN",
+        "(256) 341-2000"
+      ],
+      "new": [
+        "GLACIAL RIDGE HOSPITAL",
+        "10 4TH AVENUE SOUTHEAST",
+        "GLENWOOD",
+        "MN",
+        "56334",
+        "POPE",
+        "(320) 634-4521"
+      ],
+      "denormalized_elapsed_ms": [
+        3.984333,
+        6.028417,
+        13.946542,
+        9.62975,
+        8.103791,
+        2.956625,
+        3.994417,
+        5.068959,
+        4.296334,
+        3.995916
+      ],
+      "normalized_elapsed_ms": [
+        3.948292,
+        3.848792,
+        3.897,
+        5.931583,
+        4.17925,
+        2.823292,
+        3.953375,
+        3.872333,
+        3.972167,
+        3.906083
+      ]
+    },
+    {
+      "facility_id": "010086",
+      "fanout": 30,
+      "old": [
+        "NORTH MISSISSIPPI HEALTH SERVICES - SOUTH MARION",
+        "1530 U S HIGHWAY 43",
+        "WINFIELD",
+        "AL",
+        "35594",
+        "FAYETTE",
+        "(205) 487-7000"
+      ],
+      "new": [
+        "PINNACLE HOSPITAL",
+        "9301 CONNECTICUT DR",
+        "CROWN POINT",
+        "IN",
+        "46307",
+        "LAKE",
+        "(219) 756-2100"
+      ],
+      "denormalized_elapsed_ms": [
+        3.895958,
+        3.664,
+        3.979583,
+        3.981,
+        3.005125,
+        4.015708,
+        3.976458,
+        3.99525,
+        4.933625,
+        4.617084
+      ],
+      "normalized_elapsed_ms": [
+        4.026208,
+        4.024458,
+        3.847542,
+        4.017167,
+        9.643917,
+        4.964875,
+        4.000958,
+        6.938375,
+        4.969958,
+        3.744041
+      ]
+    },
+    {
+      "facility_id": "010087",
+      "fanout": 30,
+      "old": [
+        "USA HEALTH UNIVERSITY HOSPITAL",
+        "2451 FILLINGIM STREET",
+        "MOBILE",
+        "AL",
+        "36617",
+        "MOBILE",
+        "(251) 471-7110"
+      ],
+      "new": [
+        "ST FRANCIS HOSPITAL",
+        "7TH AND CLAYTON STS",
+        "WILMINGTON",
+        "DE",
+        "19805",
+        "NEW CASTLE",
+        "(302) 421-4100"
+      ],
+      "denormalized_elapsed_ms": [
+        4.9535,
+        3.989042,
+        4.886083,
+        4.08375,
+        3.993041,
+        5.392417,
+        3.926125,
+        4.231375,
+        2.90675,
+        3.976417
+      ],
+      "normalized_elapsed_ms": [
+        6.790417,
+        5.087375,
+        5.024875,
+        4.502458,
+        4.10075,
+        4.938375,
+        3.999375,
+        3.785083,
+        3.889667,
+        3.877292
+      ]
+    },
+    {
+      "facility_id": "010089",
+      "fanout": 30,
+      "old": [
+        "WALKER BAPTIST MEDICAL CENTER",
+        "3400 HIGHWAY 78 EAST",
+        "JASPER",
+        "AL",
+        "35502",
+        "WALKER",
+        "(205) 387-4000"
+      ],
+      "new": [
+        "PROVIDENCE HOLY FAMILY HOSPITAL",
+        "5633 NORTH LIDGERWOOD",
+        "SPOKANE",
+        "WA",
+        "99208",
+        "SPOKANE",
+        "(509) 482-0111"
+      ],
+      "denormalized_elapsed_ms": [
+        4.032333,
+        4.024417,
+        3.946125,
+        4.044416,
+        3.956791,
+        3.977417,
+        4.400334,
+        4.925208,
+        3.834709,
+        4.000125
+      ],
+      "normalized_elapsed_ms": [
+        4.655708,
+        3.767458,
+        11.187041,
+        5.043209,
+        4.958541,
+        8.099167,
+        4.161708,
+        4.000584,
+        3.870792,
+        4.192334
+      ]
+    },
+    {
+      "facility_id": "010090",
+      "fanout": 30,
+      "old": [
+        "USA HEALTH HCA PROVIDENCE HOSPITAL, LLC",
+        "6801 AIRPORT BOULEVARD",
+        "MOBILE",
+        "AL",
+        "36608",
+        "MOBILE",
+        "(251) 633-1000"
+      ],
+      "new": [
+        "DUBLIN METHODIST HOSPITAL",
+        "7500 HOSPITAL AVENUE",
+        "DUBLIN",
+        "OH",
+        "43016",
+        "FRANKLIN",
+        "(614) 544-8000"
+      ],
+      "denormalized_elapsed_ms": [
+        3.970459,
+        3.991041,
+        4.940917,
+        4.0115,
+        4.1515,
+        3.987542,
+        7.566583,
+        12.856958,
+        4.093292,
+        4.0035
+      ],
+      "normalized_elapsed_ms": [
+        4.131584,
+        4.042,
+        3.954333,
+        4.046,
+        3.902167,
+        4.076333,
+        3.961625,
+        7.201417,
+        3.964,
+        4.022917
+      ]
+    },
+    {
+      "facility_id": "010091",
+      "fanout": 30,
+      "old": [
+        "GROVE HILL MEMORIAL HOSPITAL",
+        "295 JACKSON HWY S",
+        "GROVE HILL",
+        "AL",
+        "36451",
+        "CLARKE",
+        "(251) 275-3191"
+      ],
+      "new": [
+        "MAYO CLINIC HEALTH SYSTEM - LAKE CITY",
+        "500 WEST GRANT STREET",
+        "LAKE CITY",
+        "MN",
+        "55041",
+        "WABASHA",
+        "(651) 345-5955"
+      ],
+      "denormalized_elapsed_ms": [
+        1.835917,
+        3.958667,
+        2.958709,
+        4.11375,
+        4.046625,
+        11.180333,
+        9.945667,
+        11.769041,
+        12.009,
+        15.919917
+      ],
+      "normalized_elapsed_ms": [
+        3.014,
+        6.038583,
+        4.667584,
+        4.965125,
+        3.861042,
+        4.1535,
+        3.975667,
+        4.997083,
+        3.961625,
+        4.095125
+      ]
+    },
+    {
+      "facility_id": "010092",
+      "fanout": 30,
+      "old": [
+        "DCH REGIONAL MEDICAL CENTER",
+        "809 UNIVERSITY BOULEVARD EAST",
+        "TUSCALOOSA",
+        "AL",
+        "35401",
+        "TUSCALOOSA",
+        "(205) 759-7111"
+      ],
+      "new": [
+        "MANIILAQ HEALTH CENTER",
+        "PO BOX 43",
+        "KOTZEBUE",
+        "AK",
+        "99752",
+        "NORTHWEST ARTIC BOROUGH",
+        "(907) 442-3321"
+      ],
+      "denormalized_elapsed_ms": [
+        27.870125,
+        14.966458,
+        10.086333,
+        4.051333,
+        5.837125,
+        4.199625,
+        3.983666,
+        3.894208,
+        3.014542,
+        4.09025
+      ],
+      "normalized_elapsed_ms": [
+        22.306667,
+        4.886334,
+        4.175417,
+        4.862291,
+        4.588583,
+        4.926583,
+        5.168375,
+        3.913167,
+        4.863583,
+        4.00025
+      ]
+    },
+    {
+      "facility_id": "010095",
+      "fanout": 30,
+      "old": [
+        "HALE COUNTY HOSPITAL",
+        "508 GREENE STREET",
+        "GREENSBORO",
+        "AL",
+        "36744",
+        "HALE",
+        "(334) 624-3024"
+      ],
+      "new": [
+        "PINE RIDGE IHS HOSPITAL",
+        "EAST HIGHWAY 18",
+        "PINE RIDGE",
+        "SD",
+        "57770",
+        "OGLALA LAKOTA COUNTY",
+        "(605) 867-5131"
+      ],
+      "denormalized_elapsed_ms": [
+        4.937916,
+        4.259458,
+        4.145958,
+        4.263333,
+        3.848291,
+        3.936583,
+        4.195709,
+        5.016792,
+        3.803708,
+        4.132709
+      ],
+      "normalized_elapsed_ms": [
+        4.715667,
+        4.186333,
+        3.995417,
+        4.99725,
+        3.870917,
+        4.015791,
+        4.315416,
+        4.041875,
+        4.705666,
+        3.940166
+      ]
+    },
+    {
+      "facility_id": "010097",
+      "fanout": 30,
+      "old": [
+        "ELMORE COMMUNITY HOSPITAL",
+        "500 HOSPITAL DRIVE",
+        "WETUMPKA",
+        "AL",
+        "36092",
+        "ELMORE",
+        "(334) 567-4311"
+      ],
+      "new": [
+        "BOWDLE HOSPITAL - CAH",
+        "8001 W 5TH  POST OFFICE BOX 556",
+        "BOWDLE",
+        "SD",
+        "57428",
+        "EDMUNDS",
+        "(605) 285-6146"
+      ],
+      "denormalized_elapsed_ms": [
+        3.84075,
+        4.470042,
+        4.087167,
+        4.265916,
+        3.972541,
+        4.110166,
+        2.887375,
+        4.83925,
+        4.130375,
+        3.9435
+      ],
+      "normalized_elapsed_ms": [
+        4.037875,
+        4.292291,
+        4.874625,
+        3.576709,
+        4.844583,
+        4.013875,
+        3.974875,
+        4.027292,
+        4.359791,
+        3.829875
+      ]
+    },
+    {
+      "facility_id": "010099",
+      "fanout": 30,
+      "old": [
+        "D W MCMILLAN MEMORIAL HOSPITAL",
+        "1301 BELLEVILLE AVENUE",
+        "BREWTON",
+        "AL",
+        "36426",
+        "ESCAMBIA",
+        "(251) 867-8061"
+      ],
+      "new": [
+        "ANSON GENERAL HOSPITAL",
+        "101 AVENUE J",
+        "ANSON",
+        "TX",
+        "79501",
+        "JONES",
+        "(325) 823-3231"
+      ],
+      "denormalized_elapsed_ms": [
+        4.934959,
+        3.989333,
+        4.107667,
+        4.098834,
+        5.178542,
+        5.185542,
+        7.157459,
+        4.15075,
+        4.859916,
+        5.817458
+      ],
+      "normalized_elapsed_ms": [
+        4.000084,
+        4.890084,
+        4.009542,
+        6.197667,
+        3.970125,
+        3.897958,
+        4.063,
+        4.944959,
+        3.935625,
+        8.056792
+      ]
+    },
+    {
+      "facility_id": "010100",
+      "fanout": 30,
+      "old": [
+        "THOMAS HOSPITAL",
+        "750 MORPHY AVENUE",
+        "FAIRHOPE",
+        "AL",
+        "36532",
+        "BALDWIN",
+        "(251) 928-2375"
+      ],
+      "new": [
+        "HOWARD YOUNG MEDICAL CENTER",
+        "240 MAPLE ST",
+        "WOODRUFF",
+        "WI",
+        "54568",
+        "VILAS",
+        "(715) 356-8000"
+      ],
+      "denormalized_elapsed_ms": [
+        4.909583,
+        5.122541,
+        3.940542,
+        8.567,
+        6.092459,
+        4.9655,
+        4.502959,
+        4.027166,
+        4.685875,
+        4.097125
+      ],
+      "normalized_elapsed_ms": [
+        4.678709,
+        4.105416,
+        3.974167,
+        3.992917,
+        4.149416,
+        3.95275,
+        3.0125,
+        4.003459,
+        3.974708,
+        3.857125
+      ]
+    },
+    {
+      "facility_id": "010101",
+      "fanout": 30,
+      "old": [
+        "CITIZENS BAPTIST MEDICAL CENTER",
+        "604 STONE AVENUE",
+        "TALLADEGA",
+        "AL",
+        "35160",
+        "TALLADEGA",
+        "(256) 761-4542"
+      ],
+      "new": [
+        "BERKSHIRE MEDICAL CENTER",
+        "725 NORTH STREET",
+        "PITTSFIELD",
+        "MA",
+        "01201",
+        "BERKSHIRE",
+        "(413) 447-2000"
+      ],
+      "denormalized_elapsed_ms": [
+        3.94625,
+        4.109584,
+        3.932167,
+        4.137542,
+        5.070584,
+        3.683792,
+        2.675625,
+        2.476666,
+        3.976333,
+        3.884542
+      ],
+      "normalized_elapsed_ms": [
+        3.979416,
+        4.037,
+        5.018416,
+        3.952459,
+        4.149375,
+        3.976875,
+        7.249375,
+        4.582292,
+        3.903584,
+        4.005083
+      ]
+    },
+    {
+      "facility_id": "010103",
+      "fanout": 30,
+      "old": [
+        "PRINCETON BAPTIST MEDICAL CENTER",
+        "701 PRINCETON AVENUE SOUTHWEST",
+        "BIRMINGHAM",
+        "AL",
+        "35211",
+        "JEFFERSON",
+        "(205) 783-3800"
+      ],
+      "new": [
+        "BAYCARE HOSPITAL WESLEY CHAPEL",
+        "4501 BRUCE B DOWNS BLVD",
+        "WESLEY CHAPEL",
+        "FL",
+        "33544",
+        "PASCO",
+        "(813) 914-1000"
+      ],
+      "denormalized_elapsed_ms": [
+        3.337125,
+        4.041625,
+        4.0075,
+        4.945208,
+        4.860667,
+        5.3265,
+        3.989625,
+        5.982333,
+        3.963584,
+        3.707708
+      ],
+      "normalized_elapsed_ms": [
+        4.077208,
+        3.875833,
+        3.084333,
+        4.002417,
+        4.034791,
+        3.897625,
+        2.894334,
+        4.637959,
+        4.493542,
+        3.092083
+      ]
+    },
+    {
+      "facility_id": "010104",
+      "fanout": 30,
+      "old": [
+        "GRANDVIEW MEDICAL CENTER",
+        "3690 GRANDVIEW PARKWAY",
+        "BIRMINGHAM",
+        "AL",
+        "35243",
+        "JEFFERSON",
+        "(205) 971-1000"
+      ],
+      "new": [
+        "SAN LUIS VALLEY REGIONAL  MEDICAL CENTER",
+        "106 BLANCA AVE",
+        "ALAMOSA",
+        "CO",
+        "81101",
+        "ALAMOSA",
+        "(719) 587-1202"
+      ],
+      "denormalized_elapsed_ms": [
+        5.588875,
+        7.283208,
+        9.219625,
+        4.778,
+        7.008792,
+        4.344625,
+        3.92175,
+        6.799792,
+        4.531667,
+        4.693042
+      ],
+      "normalized_elapsed_ms": [
+        4.023875,
+        6.151458,
+        3.871583,
+        8.054,
+        7.302625,
+        2.891834,
+        3.584334,
+        3.897792,
+        3.909542,
+        3.939083
+      ]
+    },
+    {
+      "facility_id": "010108",
+      "fanout": 30,
+      "old": [
+        "PRATTVILLE BAPTIST HOSPITAL",
+        "124 S MEMORIAL DR",
+        "PRATTVILLE",
+        "AL",
+        "36067",
+        "AUTAUGA",
+        "(334) 361-4267"
+      ],
+      "new": [
+        "BAPTIST HOSPITAL OF MIAMI",
+        "8900 N KENDALL DR",
+        "MIAMI",
+        "FL",
+        "33176",
+        "MIAMI-DADE",
+        "(786) 596-1960"
+      ],
+      "denormalized_elapsed_ms": [
+        3.991792,
+        3.981375,
+        2.972042,
+        3.041333,
+        2.877625,
+        3.913875,
+        2.928083,
+        3.03075,
+        3.044917,
+        3.899333
+      ],
+      "normalized_elapsed_ms": [
+        3.9405,
+        3.92375,
+        4.012542,
+        4.070083,
+        3.905917,
+        4.59175,
+        4.296709,
+        3.841,
+        3.707584,
+        3.869375
+      ]
+    }
+  ]
+}

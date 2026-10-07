@@ -1,0 +1,5206 @@
+{
+  "report_schema_version": 8,
+  "experiment": "tpch_direct_pair_fd_suite",
+  "database": "tpch-sf-01-redundancy",
+  "topology_mode": "property-fd",
+  "case_count": 8,
+  "case_order": [
+    "nation_region",
+    "supplier_nation",
+    "customer_nation",
+    "orders_customer",
+    "partsupp_part",
+    "partsupp_supplier",
+    "lineitem_orders",
+    "lineitem_partsupp"
+  ],
+  "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+  "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+  "cases": [
+    {
+      "report_schema_version": 8,
+      "experiment": "tpch_direct_pair_fd",
+      "experiment_family": "tpch_direct_pair_fd",
+      "case_id": "nation_region",
+      "run_id": "538609d61b9d453eac3c54be69c5521c",
+      "started_at_utc": "2026-08-04T02:13:42.579808+00:00",
+      "completed_at_utc": "2026-08-04T02:14:33.471970+00:00",
+      "database": "tpch-sf-01-redundancy",
+      "environment": {
+        "python_version": "3.13.14",
+        "neo4j_driver_version": "6.2.0",
+        "server_agent": "Neo4j/2026.06.0",
+        "bolt_protocol_version": "(6, 0)",
+        "server_address": "127.0.0.1:7687",
+        "cypher_runtime": "server default",
+        "dbms_components": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "2026.06.0"
+            ],
+            "edition": "enterprise"
+          },
+          {
+            "name": "Cypher",
+            "versions": [
+              "5",
+              "25"
+            ],
+            "edition": ""
+          }
+        ]
+      },
+      "pair": {
+        "case_id": "nation_region",
+        "referencing_table": {
+          "label": "NATION",
+          "columns": [
+            "n_nationkey",
+            "n_name",
+            "n_regionkey",
+            "n_comment"
+          ],
+          "key": [
+            "n_nationkey"
+          ]
+        },
+        "referenced_table": {
+          "label": "REGION",
+          "columns": [
+            "r_regionkey",
+            "r_name",
+            "r_comment"
+          ],
+          "key": [
+            "r_regionkey"
+          ],
+          "dependent_properties": [
+            "r_name",
+            "r_comment"
+          ]
+        },
+        "source_join": {
+          "relationship_type": "NATION_REGION",
+          "direction": "NATION->REGION",
+          "referencing_is_relationship_source": true,
+          "fk_mapping_referencing_to_referenced": [
+            [
+              "n_regionkey",
+              "r_regionkey"
+            ]
+          ]
+        },
+        "folded_property_namespace": {
+          "strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+          "physical_names": "native TPC-H column names",
+          "table_aliases": {
+            "referencing": "n",
+            "referenced": "r"
+          },
+          "bindings": {
+            "referencing": [
+              {
+                "logical_name": "n_nationkey",
+                "folded_name": "n_nationkey"
+              },
+              {
+                "logical_name": "n_name",
+                "folded_name": "n_name"
+              },
+              {
+                "logical_name": "n_regionkey",
+                "folded_name": "n_regionkey"
+              },
+              {
+                "logical_name": "n_comment",
+                "folded_name": "n_comment"
+              }
+            ],
+            "referenced_non_key": [
+              {
+                "logical_name": "r_name",
+                "folded_name": "r_name"
+              },
+              {
+                "logical_name": "r_comment",
+                "folded_name": "r_comment"
+              }
+            ]
+          },
+          "referenced_key_copied": false,
+          "referenced_key_representation": [
+            {
+              "referencing_fk": "n_regionkey",
+              "folded_referencing_fk": "n_regionkey",
+              "referenced_key": "r_regionkey"
+            }
+          ]
+        },
+        "topology_fk_properties_excluded_from_updates": [],
+        "eligible_update_properties_before_domain_checks": [
+          "r_name",
+          "r_comment"
+        ],
+        "default_update_property": "r_name",
+        "boundaries": [
+          {
+            "relationship": {
+              "row_label": "SUPPLIER",
+              "source_label": "SUPPLIER",
+              "target_label": "NATION",
+              "relationship_type": "SUPPLIER_NATION",
+              "source_keys": [
+                [
+                  "s_suppkey",
+                  "s_suppkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "n_nationkey",
+                  "s_nationkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": false,
+            "external_label": "SUPPLIER",
+            "copy_type": "JOIN_SUPPLIER_NATION",
+            "boundary_id": "referencing:SUPPLIER-[:SUPPLIER_NATION]->NATION"
+          },
+          {
+            "relationship": {
+              "row_label": "CUSTOMER",
+              "source_label": "CUSTOMER",
+              "target_label": "NATION",
+              "relationship_type": "CUSTOMER_NATION",
+              "source_keys": [
+                [
+                  "c_custkey",
+                  "c_custkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "n_nationkey",
+                  "c_nationkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": false,
+            "external_label": "CUSTOMER",
+            "copy_type": "JOIN_CUSTOMER_NATION",
+            "boundary_id": "referencing:CUSTOMER-[:CUSTOMER_NATION]->NATION"
+          }
+        ]
+      },
+      "execution": {
+        "mode": "run_scoped_batched_shadow_projection",
+        "topology_mode": "property-fd",
+        "source_policy": "the original graph is read-only; every experimental node and relationship is run-scoped and removed",
+        "boundary_overlay_note": "property-fd mode creates no boundary overlay",
+        "local_concurrency_policy": "exclusive advisory process lock",
+        "mutation_atomicity": "each configured-size subtransaction is atomic; a multi-batch phase is compensated by run-scoped cleanup if a later batch fails"
+      },
+      "dataset": {
+        "name": "TPC-H",
+        "source_graph_fingerprint_schema_version": 3,
+        "source_graph_fingerprint_algorithm": "tpch_schema_keyed_commutative_sha256_sum_xor_v1",
+        "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_sha256_during": null,
+        "source_graph_during_scan": "not scanned while artifacts exist; recomputed immediately after this case cleanup",
+        "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_verification_scope": "suite baseline fingerprint compared with a fresh fingerprint immediately after this case cleanup",
+        "join_fingerprint_schema_version": 3,
+        "join_fingerprint_algorithm": "commutative_join_row_sha256_sum_xor_v1",
+        "join_sha256": "5e3031fc2aba9c4a3278361b4974fe68bcb42e0522d1b10c62b88342fc6d0c50",
+        "referencing_rows": 25,
+        "full_referenced_rows": 5,
+        "join_rows": 25,
+        "participating_referenced_rows": 5,
+        "boundary_expectations": []
+      },
+      "configuration": {
+        "update_property": "r_name",
+        "batch_size": 10000,
+        "batch_size_scope": "logical update parameters and physical graph mutation subtransactions",
+        "update_key_properties": [
+          "r_regionkey"
+        ],
+        "warmup_runs": 1,
+        "measured_update_runs": 1,
+        "normalization_warmup_runs": 1,
+        "normalization_runs": 1,
+        "folded_property_naming_strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+        "update_strategy_id": "deterministic_full_referenced_relation_domain_rotation_v2",
+        "update_null_policy": "reject_attribute_if_any_domain_or_updated_value_is_null",
+        "active_domain_scope": "full_original_REGION_relation",
+        "active_domain_size": 5,
+        "active_domain_source_tuple_count": 5,
+        "logical_update_tuple_count": 5,
+        "active_domain_sha256": "d2724574db3de281b7d254f7e2f96ea7aae77be15f605077ab68ee9a600bea6b",
+        "update_mapping_sha256": "8dd27f32ba1fd0f9f7d83fd14b5ae20b8a3a627b615a130f67a0ec9fba84a16d",
+        "update_value_type": "builtins.str",
+        "update_workload_storage": "run-local temporary SQLite spool, removed when the case finishes or fails",
+        "schema_objects_created_and_dropped": {
+          "folded_key": "mvfd_nation_region_538609d61b9d453eac3c54be69c5521c_folded_key",
+          "referencing_key": "mvfd_nation_region_538609d61b9d453eac3c54be69c5521c_referencing_key",
+          "referenced_key": "mvfd_nation_region_538609d61b9d453eac3c54be69c5521c_referenced_key",
+          "folded_fk": "mvfd_nation_region_538609d61b9d453eac3c54be69c5521c_folded_fk",
+          "referencing_fk": "mvfd_nation_region_538609d61b9d453eac3c54be69c5521c_referencing_fk"
+        },
+        "update_timing_scope": "sum of sequential database-batch wall times through result consumption and commit; spool iteration, restore, and validation excluded",
+        "normalization_timing_scope": "sequential batched subtransactions for referenced-property extraction and shadow data decomposition; DDL, validation, refolding, and cleanup excluded",
+        "transformation_validation_policy": "structural cardinality checks after every normalize/refold cycle; full label/property/relationship/value fingerprint checks at stable phase checkpoints",
+        "cache_policy": "warm workload; server page/query caches are not cleared"
+      },
+      "update_payload": {
+        "metric": "UTF-8 bytes for strings and UTF-8 bytes of str(value) for other types; this is a value-payload proxy, not Neo4j store bytes",
+        "normalized_logical": {
+          "property_writes": 5,
+          "original_payload_bytes": 34,
+          "updated_payload_bytes": 34,
+          "payload_delta_bytes": 0
+        },
+        "folded_join_fanout_weighted": {
+          "property_writes": 25,
+          "original_payload_bytes": 170,
+          "updated_payload_bytes": 170,
+          "payload_delta_bytes": 0
+        }
+      },
+      "step0_artifacts": {
+        "folded_nodes": 25,
+        "boundary_relationships": {},
+        "boundary_relationship_total": 0
+      },
+      "folded_shadow_state": {
+        "folded_join_nodes": 25,
+        "normalized_referencing_nodes": 0,
+        "normalized_referenced_nodes": 0,
+        "normalized_join_relationships": 0,
+        "boundary_relationships": {
+          "referencing:SUPPLIER-[:SUPPLIER_NATION]->NATION": 0,
+          "referencing:CUSTOMER-[:CUSTOMER_NATION]->NATION": 0
+        }
+      },
+      "normalized_shadow_state": {
+        "folded_join_nodes": 0,
+        "normalized_referencing_nodes": 25,
+        "normalized_referenced_nodes": 5,
+        "normalized_join_relationships": 25,
+        "boundary_relationships": {
+          "referencing:SUPPLIER-[:SUPPLIER_NATION]->NATION": 0,
+          "referencing:CUSTOMER-[:CUSTOMER_NATION]->NATION": 0
+        }
+      },
+      "redundancy": {
+        "definition": {
+          "referencing_table": "NATION",
+          "referenced_table": "REGION",
+          "join_tuple_count_J": 25,
+          "participating_distinct_referenced_keys_D": 5,
+          "full_referenced_relation_rows": 5,
+          "redundant_referenced_tuple_copies": "J - D",
+          "redundant_referenced_property_slots": "(J - D) * (column_count(referenced) - key_length(referenced))"
+        },
+        "join_rows_J": 25,
+        "full_referenced_rows": 5,
+        "participating_referenced_rows_D": 5,
+        "unused_referenced_rows": 0,
+        "redundant_referenced_tuple_copies": 20,
+        "redundant_referenced_tuple_percentage_of_join": 80.0,
+        "referenced_column_count": 3,
+        "referenced_key_length": 1,
+        "dependent_property_count": 2,
+        "theoretical_redundant_dependent_property_slots": 40,
+        "redundant_non_null_dependent_values": 40,
+        "total_non_null_dependent_values_in_folded_join": 50,
+        "redundant_non_null_value_percentage": 80.0,
+        "redundant_value_payload_bytes": 1456,
+        "total_value_payload_bytes_in_folded_join": 1820,
+        "redundant_value_payload_percentage": 80.0,
+        "value_payload_metric": "UTF-8 bytes for strings; UTF-8 bytes of str(value) for other non-NULL values; this is not Neo4j on-disk storage",
+        "referenced_fanout_histogram": {
+          "5": 5
+        },
+        "topology": {
+          "folded_boundary_relationships": 0,
+          "normalized_boundary_relationships": 0,
+          "redundant_folded_boundary_relationship_copies": 0,
+          "by_boundary": []
+        }
+      },
+      "timings": {
+        "folded_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 3.765917,
+              "available_after_ms": 1,
+              "consumed_after_ms": 3,
+              "neo4j_reported_total_ms": 4,
+              "affected_nodes": 25,
+              "properties_set": 25,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 3.765917,
+              "median": 3.765917,
+              "stdev": 0.0,
+              "min": 3.765917,
+              "p95": 3.765917,
+              "max": 3.765917
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 4.0,
+              "median": 4.0,
+              "stdev": 0.0,
+              "min": 4.0,
+              "p95": 4.0,
+              "max": 4.0
+            },
+            "affected_nodes": [
+              25
+            ],
+            "properties_set": [
+              25
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "denormalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 3.765917,
+              "available_after_ms": 1,
+              "consumed_after_ms": 3,
+              "neo4j_reported_total_ms": 4,
+              "affected_nodes": 25,
+              "properties_set": 25,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 3.765917,
+              "median": 3.765917,
+              "stdev": 0.0,
+              "min": 3.765917,
+              "p95": 3.765917,
+              "max": 3.765917
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 4.0,
+              "median": 4.0,
+              "stdev": 0.0,
+              "min": 4.0,
+              "p95": 4.0,
+              "max": 4.0
+            },
+            "affected_nodes": [
+              25
+            ],
+            "properties_set": [
+              25
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalization": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 14.923833,
+              "available_after_ms": 15,
+              "consumed_after_ms": 0,
+              "neo4j_reported_total_ms": 15,
+              "affected_nodes": 25,
+              "properties_set": 85,
+              "nodes_created": 5,
+              "nodes_deleted": 0,
+              "relationships_created": 25,
+              "relationships_deleted": 0,
+              "labels_added": 35,
+              "labels_removed": 25
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 14.923833,
+              "median": 14.923833,
+              "stdev": 0.0,
+              "min": 14.923833,
+              "p95": 14.923833,
+              "max": 14.923833
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 15.0,
+              "median": 15.0,
+              "stdev": 0.0,
+              "min": 15.0,
+              "p95": 15.0,
+              "max": 15.0
+            },
+            "affected_nodes": [
+              25
+            ],
+            "properties_set": [
+              85
+            ],
+            "nodes_created": [
+              5
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              25
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 2.838875,
+              "available_after_ms": 1,
+              "consumed_after_ms": 2,
+              "neo4j_reported_total_ms": 3,
+              "affected_nodes": 5,
+              "properties_set": 5,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 2.838875,
+              "median": 2.838875,
+              "stdev": 0.0,
+              "min": 2.838875,
+              "p95": 2.838875,
+              "max": 2.838875
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 3.0,
+              "median": 3.0,
+              "stdev": 0.0,
+              "min": 3.0,
+              "p95": 3.0,
+              "max": 3.0
+            },
+            "affected_nodes": [
+              5
+            ],
+            "properties_set": [
+              5
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        }
+      },
+      "derived": {
+        "write_amplification_nodes": 5.0,
+        "folded_to_normalized_update_median_ratio": 1.3265525956584916,
+        "median_client_ms_saved_per_logical_update_batch": 0.9270420000000001,
+        "has_fd_tuple_redundancy": true,
+        "data_rewrite_normalization_break_even_update_batches": 16.098335350501916,
+        "denormalized_to_normalized_update_median_ratio": 1.3265525956584916,
+        "shadow_data_rewrite_normalization_break_even_update_batches": 16.098335350501916
+      },
+      "cleanup": {
+        "deleted_nodes": 30,
+        "deleted_relationships": 25,
+        "final_shadow_state": "clean",
+        "experiment_owned_schema_dropped": true,
+        "original_graph_verified_unchanged": true,
+        "original_graph_verification": "case cleanup fingerprint matches suite baseline"
+      },
+      "final_state": {
+        "original_graph": "unchanged",
+        "shadow_graph": "removed"
+      }
+    },
+    {
+      "report_schema_version": 8,
+      "experiment": "tpch_direct_pair_fd",
+      "experiment_family": "tpch_direct_pair_fd",
+      "case_id": "supplier_nation",
+      "run_id": "1f70e72bb39b429da4a567f143374b96",
+      "started_at_utc": "2026-08-04T02:14:33.474011+00:00",
+      "completed_at_utc": "2026-08-04T02:15:24.160103+00:00",
+      "database": "tpch-sf-01-redundancy",
+      "environment": {
+        "python_version": "3.13.14",
+        "neo4j_driver_version": "6.2.0",
+        "server_agent": "Neo4j/2026.06.0",
+        "bolt_protocol_version": "(6, 0)",
+        "server_address": "127.0.0.1:7687",
+        "cypher_runtime": "server default",
+        "dbms_components": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "2026.06.0"
+            ],
+            "edition": "enterprise"
+          },
+          {
+            "name": "Cypher",
+            "versions": [
+              "5",
+              "25"
+            ],
+            "edition": ""
+          }
+        ]
+      },
+      "pair": {
+        "case_id": "supplier_nation",
+        "referencing_table": {
+          "label": "SUPPLIER",
+          "columns": [
+            "s_suppkey",
+            "s_name",
+            "s_address",
+            "s_nationkey",
+            "s_phone",
+            "s_acctbal",
+            "s_comment"
+          ],
+          "key": [
+            "s_suppkey"
+          ]
+        },
+        "referenced_table": {
+          "label": "NATION",
+          "columns": [
+            "n_nationkey",
+            "n_name",
+            "n_regionkey",
+            "n_comment"
+          ],
+          "key": [
+            "n_nationkey"
+          ],
+          "dependent_properties": [
+            "n_name",
+            "n_regionkey",
+            "n_comment"
+          ]
+        },
+        "source_join": {
+          "relationship_type": "SUPPLIER_NATION",
+          "direction": "SUPPLIER->NATION",
+          "referencing_is_relationship_source": true,
+          "fk_mapping_referencing_to_referenced": [
+            [
+              "s_nationkey",
+              "n_nationkey"
+            ]
+          ]
+        },
+        "folded_property_namespace": {
+          "strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+          "physical_names": "native TPC-H column names",
+          "table_aliases": {
+            "referencing": "s",
+            "referenced": "n"
+          },
+          "bindings": {
+            "referencing": [
+              {
+                "logical_name": "s_suppkey",
+                "folded_name": "s_suppkey"
+              },
+              {
+                "logical_name": "s_name",
+                "folded_name": "s_name"
+              },
+              {
+                "logical_name": "s_address",
+                "folded_name": "s_address"
+              },
+              {
+                "logical_name": "s_nationkey",
+                "folded_name": "s_nationkey"
+              },
+              {
+                "logical_name": "s_phone",
+                "folded_name": "s_phone"
+              },
+              {
+                "logical_name": "s_acctbal",
+                "folded_name": "s_acctbal"
+              },
+              {
+                "logical_name": "s_comment",
+                "folded_name": "s_comment"
+              }
+            ],
+            "referenced_non_key": [
+              {
+                "logical_name": "n_name",
+                "folded_name": "n_name"
+              },
+              {
+                "logical_name": "n_regionkey",
+                "folded_name": "n_regionkey"
+              },
+              {
+                "logical_name": "n_comment",
+                "folded_name": "n_comment"
+              }
+            ]
+          },
+          "referenced_key_copied": false,
+          "referenced_key_representation": [
+            {
+              "referencing_fk": "s_nationkey",
+              "folded_referencing_fk": "s_nationkey",
+              "referenced_key": "n_nationkey"
+            }
+          ]
+        },
+        "topology_fk_properties_excluded_from_updates": [
+          "n_regionkey"
+        ],
+        "eligible_update_properties_before_domain_checks": [
+          "n_name",
+          "n_comment"
+        ],
+        "default_update_property": "n_name",
+        "boundaries": [
+          {
+            "relationship": {
+              "row_label": "NATION",
+              "source_label": "NATION",
+              "target_label": "REGION",
+              "relationship_type": "NATION_REGION",
+              "source_keys": [
+                [
+                  "n_nationkey",
+                  "n_nationkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "r_regionkey",
+                  "n_regionkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": true,
+            "external_label": "REGION",
+            "copy_type": "JOIN_NATION_REGION",
+            "boundary_id": "referenced:NATION-[:NATION_REGION]->REGION"
+          },
+          {
+            "relationship": {
+              "row_label": "CUSTOMER",
+              "source_label": "CUSTOMER",
+              "target_label": "NATION",
+              "relationship_type": "CUSTOMER_NATION",
+              "source_keys": [
+                [
+                  "c_custkey",
+                  "c_custkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "n_nationkey",
+                  "c_nationkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": false,
+            "external_label": "CUSTOMER",
+            "copy_type": "JOIN_CUSTOMER_NATION",
+            "boundary_id": "referenced:CUSTOMER-[:CUSTOMER_NATION]->NATION"
+          },
+          {
+            "relationship": {
+              "row_label": "PARTSUPP",
+              "source_label": "PARTSUPP",
+              "target_label": "SUPPLIER",
+              "relationship_type": "PARTSUPP_SUPPLIER",
+              "source_keys": [
+                [
+                  "ps_partkey",
+                  "ps_partkey"
+                ],
+                [
+                  "ps_suppkey",
+                  "ps_suppkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "s_suppkey",
+                  "ps_suppkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": false,
+            "external_label": "PARTSUPP",
+            "copy_type": "JOIN_PARTSUPP_SUPPLIER",
+            "boundary_id": "referencing:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER"
+          }
+        ]
+      },
+      "execution": {
+        "mode": "run_scoped_batched_shadow_projection",
+        "topology_mode": "property-fd",
+        "source_policy": "the original graph is read-only; every experimental node and relationship is run-scoped and removed",
+        "boundary_overlay_note": "property-fd mode creates no boundary overlay",
+        "local_concurrency_policy": "exclusive advisory process lock",
+        "mutation_atomicity": "each configured-size subtransaction is atomic; a multi-batch phase is compensated by run-scoped cleanup if a later batch fails"
+      },
+      "dataset": {
+        "name": "TPC-H",
+        "source_graph_fingerprint_schema_version": 3,
+        "source_graph_fingerprint_algorithm": "tpch_schema_keyed_commutative_sha256_sum_xor_v1",
+        "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_sha256_during": null,
+        "source_graph_during_scan": "not scanned while artifacts exist; recomputed immediately after this case cleanup",
+        "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_verification_scope": "suite baseline fingerprint compared with a fresh fingerprint immediately after this case cleanup",
+        "join_fingerprint_schema_version": 3,
+        "join_fingerprint_algorithm": "commutative_join_row_sha256_sum_xor_v1",
+        "join_sha256": "03f1a01b054f80314792b86ea2b2a327f8ddbe3029cb3d18df7523cebbab6dfb",
+        "referencing_rows": 1000,
+        "full_referenced_rows": 25,
+        "join_rows": 1000,
+        "participating_referenced_rows": 25,
+        "boundary_expectations": []
+      },
+      "configuration": {
+        "update_property": "n_name",
+        "batch_size": 10000,
+        "batch_size_scope": "logical update parameters and physical graph mutation subtransactions",
+        "update_key_properties": [
+          "n_nationkey"
+        ],
+        "warmup_runs": 1,
+        "measured_update_runs": 1,
+        "normalization_warmup_runs": 1,
+        "normalization_runs": 1,
+        "folded_property_naming_strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+        "update_strategy_id": "deterministic_full_referenced_relation_domain_rotation_v2",
+        "update_null_policy": "reject_attribute_if_any_domain_or_updated_value_is_null",
+        "active_domain_scope": "full_original_NATION_relation",
+        "active_domain_size": 25,
+        "active_domain_source_tuple_count": 25,
+        "logical_update_tuple_count": 25,
+        "active_domain_sha256": "caf96ccbff8f66739357b95b7ca39f5de5d72d375f20e24cf6fbe1b12a26e589",
+        "update_mapping_sha256": "9f13d6d67217505e5cf1d7f8649b46ab1e44eb4e9172f29044636db6c9d0cd59",
+        "update_value_type": "builtins.str",
+        "update_workload_storage": "run-local temporary SQLite spool, removed when the case finishes or fails",
+        "schema_objects_created_and_dropped": {
+          "folded_key": "mvfd_supplier_nation_1f70e72bb39b429da4a567f143374b96_folded_key",
+          "referencing_key": "mvfd_supplier_nation_1f70e72bb39b429da4a567f143374b96_referencing_key",
+          "referenced_key": "mvfd_supplier_nation_1f70e72bb39b429da4a567f143374b96_referenced_key",
+          "folded_fk": "mvfd_supplier_nation_1f70e72bb39b429da4a567f143374b96_folded_fk",
+          "referencing_fk": "mvfd_supplier_nation_1f70e72bb39b429da4a567f143374b96_referencing_fk"
+        },
+        "update_timing_scope": "sum of sequential database-batch wall times through result consumption and commit; spool iteration, restore, and validation excluded",
+        "normalization_timing_scope": "sequential batched subtransactions for referenced-property extraction and shadow data decomposition; DDL, validation, refolding, and cleanup excluded",
+        "transformation_validation_policy": "structural cardinality checks after every normalize/refold cycle; full label/property/relationship/value fingerprint checks at stable phase checkpoints",
+        "cache_policy": "warm workload; server page/query caches are not cleared"
+      },
+      "update_payload": {
+        "metric": "UTF-8 bytes for strings and UTF-8 bytes of str(value) for other types; this is a value-payload proxy, not Neo4j store bytes",
+        "normalized_logical": {
+          "property_writes": 25,
+          "original_payload_bytes": 177,
+          "updated_payload_bytes": 177,
+          "payload_delta_bytes": 0
+        },
+        "folded_join_fanout_weighted": {
+          "property_writes": 1000,
+          "original_payload_bytes": 7032,
+          "updated_payload_bytes": 7157,
+          "payload_delta_bytes": 125
+        }
+      },
+      "step0_artifacts": {
+        "folded_nodes": 1000,
+        "boundary_relationships": {},
+        "boundary_relationship_total": 0
+      },
+      "folded_shadow_state": {
+        "folded_join_nodes": 1000,
+        "normalized_referencing_nodes": 0,
+        "normalized_referenced_nodes": 0,
+        "normalized_join_relationships": 0,
+        "boundary_relationships": {
+          "referenced:NATION-[:NATION_REGION]->REGION": 0,
+          "referenced:CUSTOMER-[:CUSTOMER_NATION]->NATION": 0,
+          "referencing:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER": 0
+        }
+      },
+      "normalized_shadow_state": {
+        "folded_join_nodes": 0,
+        "normalized_referencing_nodes": 1000,
+        "normalized_referenced_nodes": 25,
+        "normalized_join_relationships": 1000,
+        "boundary_relationships": {
+          "referenced:NATION-[:NATION_REGION]->REGION": 0,
+          "referenced:CUSTOMER-[:CUSTOMER_NATION]->NATION": 0,
+          "referencing:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER": 0
+        }
+      },
+      "redundancy": {
+        "definition": {
+          "referencing_table": "SUPPLIER",
+          "referenced_table": "NATION",
+          "join_tuple_count_J": 1000,
+          "participating_distinct_referenced_keys_D": 25,
+          "full_referenced_relation_rows": 25,
+          "redundant_referenced_tuple_copies": "J - D",
+          "redundant_referenced_property_slots": "(J - D) * (column_count(referenced) - key_length(referenced))"
+        },
+        "join_rows_J": 1000,
+        "full_referenced_rows": 25,
+        "participating_referenced_rows_D": 25,
+        "unused_referenced_rows": 0,
+        "redundant_referenced_tuple_copies": 975,
+        "redundant_referenced_tuple_percentage_of_join": 97.5,
+        "referenced_column_count": 4,
+        "referenced_key_length": 1,
+        "dependent_property_count": 3,
+        "theoretical_redundant_dependent_property_slots": 2925,
+        "redundant_non_null_dependent_values": 2925,
+        "total_non_null_dependent_values_in_folded_join": 3000,
+        "redundant_non_null_value_percentage": 97.5,
+        "redundant_value_payload_bytes": 81003,
+        "total_value_payload_bytes_in_folded_join": 83062,
+        "redundant_value_payload_percentage": 97.52112879535768,
+        "value_payload_metric": "UTF-8 bytes for strings; UTF-8 bytes of str(value) for other non-NULL values; this is not Neo4j on-disk storage",
+        "referenced_fanout_histogram": {
+          "28": 1,
+          "33": 2,
+          "34": 1,
+          "35": 1,
+          "36": 3,
+          "37": 1,
+          "38": 1,
+          "39": 2,
+          "40": 4,
+          "41": 1,
+          "43": 2,
+          "45": 1,
+          "47": 3,
+          "50": 1,
+          "53": 1
+        },
+        "topology": {
+          "folded_boundary_relationships": 0,
+          "normalized_boundary_relationships": 0,
+          "redundant_folded_boundary_relationship_copies": 0,
+          "by_boundary": []
+        }
+      },
+      "timings": {
+        "folded_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 10.422125,
+              "available_after_ms": 1,
+              "consumed_after_ms": 9,
+              "neo4j_reported_total_ms": 10,
+              "affected_nodes": 1000,
+              "properties_set": 1000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 10.422125,
+              "median": 10.422125,
+              "stdev": 0.0,
+              "min": 10.422125,
+              "p95": 10.422125,
+              "max": 10.422125
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 10.0,
+              "median": 10.0,
+              "stdev": 0.0,
+              "min": 10.0,
+              "p95": 10.0,
+              "max": 10.0
+            },
+            "affected_nodes": [
+              1000
+            ],
+            "properties_set": [
+              1000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "denormalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 10.422125,
+              "available_after_ms": 1,
+              "consumed_after_ms": 9,
+              "neo4j_reported_total_ms": 10,
+              "affected_nodes": 1000,
+              "properties_set": 1000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 10.422125,
+              "median": 10.422125,
+              "stdev": 0.0,
+              "min": 10.422125,
+              "p95": 10.422125,
+              "max": 10.422125
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 10.0,
+              "median": 10.0,
+              "stdev": 0.0,
+              "min": 10.0,
+              "p95": 10.0,
+              "max": 10.0
+            },
+            "affected_nodes": [
+              1000
+            ],
+            "properties_set": [
+              1000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalization": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 48.292584,
+              "available_after_ms": 46,
+              "consumed_after_ms": 0,
+              "neo4j_reported_total_ms": 46,
+              "affected_nodes": 1000,
+              "properties_set": 3200,
+              "nodes_created": 25,
+              "nodes_deleted": 0,
+              "relationships_created": 1000,
+              "relationships_deleted": 0,
+              "labels_added": 1050,
+              "labels_removed": 1000
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 48.292584,
+              "median": 48.292584,
+              "stdev": 0.0,
+              "min": 48.292584,
+              "p95": 48.292584,
+              "max": 48.292584
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 46.0,
+              "median": 46.0,
+              "stdev": 0.0,
+              "min": 46.0,
+              "p95": 46.0,
+              "max": 46.0
+            },
+            "affected_nodes": [
+              1000
+            ],
+            "properties_set": [
+              3200
+            ],
+            "nodes_created": [
+              25
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              1000
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 2.831584,
+              "available_after_ms": 1,
+              "consumed_after_ms": 2,
+              "neo4j_reported_total_ms": 3,
+              "affected_nodes": 25,
+              "properties_set": 25,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 2.831584,
+              "median": 2.831584,
+              "stdev": 0.0,
+              "min": 2.831584,
+              "p95": 2.831584,
+              "max": 2.831584
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 3.0,
+              "median": 3.0,
+              "stdev": 0.0,
+              "min": 3.0,
+              "p95": 3.0,
+              "max": 3.0
+            },
+            "affected_nodes": [
+              25
+            ],
+            "properties_set": [
+              25
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        }
+      },
+      "derived": {
+        "write_amplification_nodes": 40.0,
+        "folded_to_normalized_update_median_ratio": 3.680669547504153,
+        "median_client_ms_saved_per_logical_update_batch": 7.590541,
+        "has_fd_tuple_redundancy": true,
+        "data_rewrite_normalization_break_even_update_batches": 6.36220580324907,
+        "denormalized_to_normalized_update_median_ratio": 3.680669547504153,
+        "shadow_data_rewrite_normalization_break_even_update_batches": 6.36220580324907
+      },
+      "cleanup": {
+        "deleted_nodes": 1025,
+        "deleted_relationships": 1000,
+        "final_shadow_state": "clean",
+        "experiment_owned_schema_dropped": true,
+        "original_graph_verified_unchanged": true,
+        "original_graph_verification": "case cleanup fingerprint matches suite baseline"
+      },
+      "final_state": {
+        "original_graph": "unchanged",
+        "shadow_graph": "removed"
+      }
+    },
+    {
+      "report_schema_version": 8,
+      "experiment": "tpch_direct_pair_fd",
+      "experiment_family": "tpch_direct_pair_fd",
+      "case_id": "customer_nation",
+      "run_id": "df5628331d69494f8019cf5f05a73ff6",
+      "started_at_utc": "2026-08-04T02:15:24.161539+00:00",
+      "completed_at_utc": "2026-08-04T02:16:17.981819+00:00",
+      "database": "tpch-sf-01-redundancy",
+      "environment": {
+        "python_version": "3.13.14",
+        "neo4j_driver_version": "6.2.0",
+        "server_agent": "Neo4j/2026.06.0",
+        "bolt_protocol_version": "(6, 0)",
+        "server_address": "127.0.0.1:7687",
+        "cypher_runtime": "server default",
+        "dbms_components": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "2026.06.0"
+            ],
+            "edition": "enterprise"
+          },
+          {
+            "name": "Cypher",
+            "versions": [
+              "5",
+              "25"
+            ],
+            "edition": ""
+          }
+        ]
+      },
+      "pair": {
+        "case_id": "customer_nation",
+        "referencing_table": {
+          "label": "CUSTOMER",
+          "columns": [
+            "c_custkey",
+            "c_name",
+            "c_address",
+            "c_nationkey",
+            "c_phone",
+            "c_acctbal",
+            "c_mktsegment",
+            "c_comment"
+          ],
+          "key": [
+            "c_custkey"
+          ]
+        },
+        "referenced_table": {
+          "label": "NATION",
+          "columns": [
+            "n_nationkey",
+            "n_name",
+            "n_regionkey",
+            "n_comment"
+          ],
+          "key": [
+            "n_nationkey"
+          ],
+          "dependent_properties": [
+            "n_name",
+            "n_regionkey",
+            "n_comment"
+          ]
+        },
+        "source_join": {
+          "relationship_type": "CUSTOMER_NATION",
+          "direction": "CUSTOMER->NATION",
+          "referencing_is_relationship_source": true,
+          "fk_mapping_referencing_to_referenced": [
+            [
+              "c_nationkey",
+              "n_nationkey"
+            ]
+          ]
+        },
+        "folded_property_namespace": {
+          "strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+          "physical_names": "native TPC-H column names",
+          "table_aliases": {
+            "referencing": "c",
+            "referenced": "n"
+          },
+          "bindings": {
+            "referencing": [
+              {
+                "logical_name": "c_custkey",
+                "folded_name": "c_custkey"
+              },
+              {
+                "logical_name": "c_name",
+                "folded_name": "c_name"
+              },
+              {
+                "logical_name": "c_address",
+                "folded_name": "c_address"
+              },
+              {
+                "logical_name": "c_nationkey",
+                "folded_name": "c_nationkey"
+              },
+              {
+                "logical_name": "c_phone",
+                "folded_name": "c_phone"
+              },
+              {
+                "logical_name": "c_acctbal",
+                "folded_name": "c_acctbal"
+              },
+              {
+                "logical_name": "c_mktsegment",
+                "folded_name": "c_mktsegment"
+              },
+              {
+                "logical_name": "c_comment",
+                "folded_name": "c_comment"
+              }
+            ],
+            "referenced_non_key": [
+              {
+                "logical_name": "n_name",
+                "folded_name": "n_name"
+              },
+              {
+                "logical_name": "n_regionkey",
+                "folded_name": "n_regionkey"
+              },
+              {
+                "logical_name": "n_comment",
+                "folded_name": "n_comment"
+              }
+            ]
+          },
+          "referenced_key_copied": false,
+          "referenced_key_representation": [
+            {
+              "referencing_fk": "c_nationkey",
+              "folded_referencing_fk": "c_nationkey",
+              "referenced_key": "n_nationkey"
+            }
+          ]
+        },
+        "topology_fk_properties_excluded_from_updates": [
+          "n_regionkey"
+        ],
+        "eligible_update_properties_before_domain_checks": [
+          "n_name",
+          "n_comment"
+        ],
+        "default_update_property": "n_name",
+        "boundaries": [
+          {
+            "relationship": {
+              "row_label": "NATION",
+              "source_label": "NATION",
+              "target_label": "REGION",
+              "relationship_type": "NATION_REGION",
+              "source_keys": [
+                [
+                  "n_nationkey",
+                  "n_nationkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "r_regionkey",
+                  "n_regionkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": true,
+            "external_label": "REGION",
+            "copy_type": "JOIN_NATION_REGION",
+            "boundary_id": "referenced:NATION-[:NATION_REGION]->REGION"
+          },
+          {
+            "relationship": {
+              "row_label": "SUPPLIER",
+              "source_label": "SUPPLIER",
+              "target_label": "NATION",
+              "relationship_type": "SUPPLIER_NATION",
+              "source_keys": [
+                [
+                  "s_suppkey",
+                  "s_suppkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "n_nationkey",
+                  "s_nationkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": false,
+            "external_label": "SUPPLIER",
+            "copy_type": "JOIN_SUPPLIER_NATION",
+            "boundary_id": "referenced:SUPPLIER-[:SUPPLIER_NATION]->NATION"
+          },
+          {
+            "relationship": {
+              "row_label": "ORDERS",
+              "source_label": "ORDERS",
+              "target_label": "CUSTOMER",
+              "relationship_type": "ORDERS_CUSTOMER",
+              "source_keys": [
+                [
+                  "o_orderkey",
+                  "o_orderkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "c_custkey",
+                  "o_custkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": false,
+            "external_label": "ORDERS",
+            "copy_type": "JOIN_ORDERS_CUSTOMER",
+            "boundary_id": "referencing:ORDERS-[:ORDERS_CUSTOMER]->CUSTOMER"
+          }
+        ]
+      },
+      "execution": {
+        "mode": "run_scoped_batched_shadow_projection",
+        "topology_mode": "property-fd",
+        "source_policy": "the original graph is read-only; every experimental node and relationship is run-scoped and removed",
+        "boundary_overlay_note": "property-fd mode creates no boundary overlay",
+        "local_concurrency_policy": "exclusive advisory process lock",
+        "mutation_atomicity": "each configured-size subtransaction is atomic; a multi-batch phase is compensated by run-scoped cleanup if a later batch fails"
+      },
+      "dataset": {
+        "name": "TPC-H",
+        "source_graph_fingerprint_schema_version": 3,
+        "source_graph_fingerprint_algorithm": "tpch_schema_keyed_commutative_sha256_sum_xor_v1",
+        "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_sha256_during": null,
+        "source_graph_during_scan": "not scanned while artifacts exist; recomputed immediately after this case cleanup",
+        "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_verification_scope": "suite baseline fingerprint compared with a fresh fingerprint immediately after this case cleanup",
+        "join_fingerprint_schema_version": 3,
+        "join_fingerprint_algorithm": "commutative_join_row_sha256_sum_xor_v1",
+        "join_sha256": "44c66d6fd6df5a8350f83ac510ab450efcfbd079f77d425cd0926c62ec605823",
+        "referencing_rows": 15000,
+        "full_referenced_rows": 25,
+        "join_rows": 15000,
+        "participating_referenced_rows": 25,
+        "boundary_expectations": []
+      },
+      "configuration": {
+        "update_property": "n_name",
+        "batch_size": 10000,
+        "batch_size_scope": "logical update parameters and physical graph mutation subtransactions",
+        "update_key_properties": [
+          "n_nationkey"
+        ],
+        "warmup_runs": 1,
+        "measured_update_runs": 1,
+        "normalization_warmup_runs": 1,
+        "normalization_runs": 1,
+        "folded_property_naming_strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+        "update_strategy_id": "deterministic_full_referenced_relation_domain_rotation_v2",
+        "update_null_policy": "reject_attribute_if_any_domain_or_updated_value_is_null",
+        "active_domain_scope": "full_original_NATION_relation",
+        "active_domain_size": 25,
+        "active_domain_source_tuple_count": 25,
+        "logical_update_tuple_count": 25,
+        "active_domain_sha256": "caf96ccbff8f66739357b95b7ca39f5de5d72d375f20e24cf6fbe1b12a26e589",
+        "update_mapping_sha256": "9f13d6d67217505e5cf1d7f8649b46ab1e44eb4e9172f29044636db6c9d0cd59",
+        "update_value_type": "builtins.str",
+        "update_workload_storage": "run-local temporary SQLite spool, removed when the case finishes or fails",
+        "schema_objects_created_and_dropped": {
+          "folded_key": "mvfd_customer_nation_df5628331d69494f8019cf5f05a73ff6_folded_key",
+          "referencing_key": "mvfd_customer_nation_df5628331d69494f8019cf5f05a73ff6_referencing_key",
+          "referenced_key": "mvfd_customer_nation_df5628331d69494f8019cf5f05a73ff6_referenced_key",
+          "folded_fk": "mvfd_customer_nation_df5628331d69494f8019cf5f05a73ff6_folded_fk",
+          "referencing_fk": "mvfd_customer_nation_df5628331d69494f8019cf5f05a73ff6_referencing_fk"
+        },
+        "update_timing_scope": "sum of sequential database-batch wall times through result consumption and commit; spool iteration, restore, and validation excluded",
+        "normalization_timing_scope": "sequential batched subtransactions for referenced-property extraction and shadow data decomposition; DDL, validation, refolding, and cleanup excluded",
+        "transformation_validation_policy": "structural cardinality checks after every normalize/refold cycle; full label/property/relationship/value fingerprint checks at stable phase checkpoints",
+        "cache_policy": "warm workload; server page/query caches are not cleared"
+      },
+      "update_payload": {
+        "metric": "UTF-8 bytes for strings and UTF-8 bytes of str(value) for other types; this is a value-payload proxy, not Neo4j store bytes",
+        "normalized_logical": {
+          "property_writes": 25,
+          "original_payload_bytes": 177,
+          "updated_payload_bytes": 177,
+          "payload_delta_bytes": 0
+        },
+        "folded_join_fanout_weighted": {
+          "property_writes": 15000,
+          "original_payload_bytes": 106038,
+          "updated_payload_bytes": 105585,
+          "payload_delta_bytes": -453
+        }
+      },
+      "step0_artifacts": {
+        "folded_nodes": 15000,
+        "boundary_relationships": {},
+        "boundary_relationship_total": 0
+      },
+      "folded_shadow_state": {
+        "folded_join_nodes": 15000,
+        "normalized_referencing_nodes": 0,
+        "normalized_referenced_nodes": 0,
+        "normalized_join_relationships": 0,
+        "boundary_relationships": {
+          "referenced:NATION-[:NATION_REGION]->REGION": 0,
+          "referenced:SUPPLIER-[:SUPPLIER_NATION]->NATION": 0,
+          "referencing:ORDERS-[:ORDERS_CUSTOMER]->CUSTOMER": 0
+        }
+      },
+      "normalized_shadow_state": {
+        "folded_join_nodes": 0,
+        "normalized_referencing_nodes": 15000,
+        "normalized_referenced_nodes": 25,
+        "normalized_join_relationships": 15000,
+        "boundary_relationships": {
+          "referenced:NATION-[:NATION_REGION]->REGION": 0,
+          "referenced:SUPPLIER-[:SUPPLIER_NATION]->NATION": 0,
+          "referencing:ORDERS-[:ORDERS_CUSTOMER]->CUSTOMER": 0
+        }
+      },
+      "redundancy": {
+        "definition": {
+          "referencing_table": "CUSTOMER",
+          "referenced_table": "NATION",
+          "join_tuple_count_J": 15000,
+          "participating_distinct_referenced_keys_D": 25,
+          "full_referenced_relation_rows": 25,
+          "redundant_referenced_tuple_copies": "J - D",
+          "redundant_referenced_property_slots": "(J - D) * (column_count(referenced) - key_length(referenced))"
+        },
+        "join_rows_J": 15000,
+        "full_referenced_rows": 25,
+        "participating_referenced_rows_D": 25,
+        "unused_referenced_rows": 0,
+        "redundant_referenced_tuple_copies": 14975,
+        "redundant_referenced_tuple_percentage_of_join": 99.83333333333333,
+        "referenced_column_count": 4,
+        "referenced_key_length": 1,
+        "dependent_property_count": 3,
+        "theoretical_redundant_dependent_property_slots": 44925,
+        "redundant_non_null_dependent_values": 44925,
+        "total_non_null_dependent_values_in_folded_join": 45000,
+        "redundant_non_null_value_percentage": 99.83333333333333,
+        "redundant_value_payload_bytes": 1232040,
+        "total_value_payload_bytes_in_folded_join": 1234099,
+        "redundant_value_payload_percentage": 99.83315763160006,
+        "value_payload_metric": "UTF-8 bytes for strings; UTF-8 bytes of str(value) for other non-NULL values; this is not Neo4j on-disk storage",
+        "referenced_fanout_histogram": {
+          "543": 1,
+          "573": 1,
+          "576": 1,
+          "577": 1,
+          "578": 1,
+          "581": 1,
+          "582": 1,
+          "587": 1,
+          "594": 1,
+          "596": 1,
+          "599": 1,
+          "600": 1,
+          "602": 1,
+          "603": 2,
+          "610": 1,
+          "614": 1,
+          "616": 1,
+          "617": 1,
+          "620": 1,
+          "621": 1,
+          "622": 1,
+          "623": 1,
+          "630": 1,
+          "633": 1
+        },
+        "topology": {
+          "folded_boundary_relationships": 0,
+          "normalized_boundary_relationships": 0,
+          "redundant_folded_boundary_relationship_copies": 0,
+          "by_boundary": []
+        }
+      },
+      "timings": {
+        "folded_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 43.978916,
+              "available_after_ms": 0,
+              "consumed_after_ms": 43,
+              "neo4j_reported_total_ms": 43,
+              "affected_nodes": 15000,
+              "properties_set": 15000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 43.978916,
+              "median": 43.978916,
+              "stdev": 0.0,
+              "min": 43.978916,
+              "p95": 43.978916,
+              "max": 43.978916
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 43.0,
+              "median": 43.0,
+              "stdev": 0.0,
+              "min": 43.0,
+              "p95": 43.0,
+              "max": 43.0
+            },
+            "affected_nodes": [
+              15000
+            ],
+            "properties_set": [
+              15000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "denormalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 43.978916,
+              "available_after_ms": 0,
+              "consumed_after_ms": 43,
+              "neo4j_reported_total_ms": 43,
+              "affected_nodes": 15000,
+              "properties_set": 15000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 43.978916,
+              "median": 43.978916,
+              "stdev": 0.0,
+              "min": 43.978916,
+              "p95": 43.978916,
+              "max": 43.978916
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 43.0,
+              "median": 43.0,
+              "stdev": 0.0,
+              "min": 43.0,
+              "p95": 43.0,
+              "max": 43.0
+            },
+            "affected_nodes": [
+              15000
+            ],
+            "properties_set": [
+              15000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalization": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 495.894875,
+              "available_after_ms": 495,
+              "consumed_after_ms": 0,
+              "neo4j_reported_total_ms": 495,
+              "affected_nodes": 15000,
+              "properties_set": 45200,
+              "nodes_created": 25,
+              "nodes_deleted": 0,
+              "relationships_created": 15000,
+              "relationships_deleted": 0,
+              "labels_added": 15050,
+              "labels_removed": 15000
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 495.894875,
+              "median": 495.894875,
+              "stdev": 0.0,
+              "min": 495.894875,
+              "p95": 495.894875,
+              "max": 495.894875
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 495.0,
+              "median": 495.0,
+              "stdev": 0.0,
+              "min": 495.0,
+              "p95": 495.0,
+              "max": 495.0
+            },
+            "affected_nodes": [
+              15000
+            ],
+            "properties_set": [
+              45200
+            ],
+            "nodes_created": [
+              25
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              15000
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 3.917792,
+              "available_after_ms": 0,
+              "consumed_after_ms": 4,
+              "neo4j_reported_total_ms": 4,
+              "affected_nodes": 25,
+              "properties_set": 25,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 3.917792,
+              "median": 3.917792,
+              "stdev": 0.0,
+              "min": 3.917792,
+              "p95": 3.917792,
+              "max": 3.917792
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 4.0,
+              "median": 4.0,
+              "stdev": 0.0,
+              "min": 4.0,
+              "p95": 4.0,
+              "max": 4.0
+            },
+            "affected_nodes": [
+              25
+            ],
+            "properties_set": [
+              25
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        }
+      },
+      "derived": {
+        "write_amplification_nodes": 600.0,
+        "folded_to_normalized_update_median_ratio": 11.225434122076924,
+        "median_client_ms_saved_per_logical_update_batch": 40.061124,
+        "has_fd_tuple_redundancy": true,
+        "data_rewrite_normalization_break_even_update_batches": 12.378456355842637,
+        "denormalized_to_normalized_update_median_ratio": 11.225434122076924,
+        "shadow_data_rewrite_normalization_break_even_update_batches": 12.378456355842637
+      },
+      "cleanup": {
+        "deleted_nodes": 15025,
+        "deleted_relationships": 15000,
+        "final_shadow_state": "clean",
+        "experiment_owned_schema_dropped": true,
+        "original_graph_verified_unchanged": true,
+        "original_graph_verification": "case cleanup fingerprint matches suite baseline"
+      },
+      "final_state": {
+        "original_graph": "unchanged",
+        "shadow_graph": "removed"
+      }
+    },
+    {
+      "report_schema_version": 8,
+      "experiment": "tpch_direct_pair_fd",
+      "experiment_family": "tpch_direct_pair_fd",
+      "case_id": "orders_customer",
+      "run_id": "ed8db52b17f8481ebd92f67d7a048cea",
+      "started_at_utc": "2026-08-04T02:16:17.983033+00:00",
+      "completed_at_utc": "2026-08-04T02:17:56.535490+00:00",
+      "database": "tpch-sf-01-redundancy",
+      "environment": {
+        "python_version": "3.13.14",
+        "neo4j_driver_version": "6.2.0",
+        "server_agent": "Neo4j/2026.06.0",
+        "bolt_protocol_version": "(6, 0)",
+        "server_address": "127.0.0.1:7687",
+        "cypher_runtime": "server default",
+        "dbms_components": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "2026.06.0"
+            ],
+            "edition": "enterprise"
+          },
+          {
+            "name": "Cypher",
+            "versions": [
+              "5",
+              "25"
+            ],
+            "edition": ""
+          }
+        ]
+      },
+      "pair": {
+        "case_id": "orders_customer",
+        "referencing_table": {
+          "label": "ORDERS",
+          "columns": [
+            "o_orderkey",
+            "o_custkey",
+            "o_orderstatus",
+            "o_totalprice",
+            "o_orderdate",
+            "o_orderpriority",
+            "o_clerk",
+            "o_shippriority",
+            "o_comment"
+          ],
+          "key": [
+            "o_orderkey"
+          ]
+        },
+        "referenced_table": {
+          "label": "CUSTOMER",
+          "columns": [
+            "c_custkey",
+            "c_name",
+            "c_address",
+            "c_nationkey",
+            "c_phone",
+            "c_acctbal",
+            "c_mktsegment",
+            "c_comment"
+          ],
+          "key": [
+            "c_custkey"
+          ],
+          "dependent_properties": [
+            "c_name",
+            "c_address",
+            "c_nationkey",
+            "c_phone",
+            "c_acctbal",
+            "c_mktsegment",
+            "c_comment"
+          ]
+        },
+        "source_join": {
+          "relationship_type": "ORDERS_CUSTOMER",
+          "direction": "ORDERS->CUSTOMER",
+          "referencing_is_relationship_source": true,
+          "fk_mapping_referencing_to_referenced": [
+            [
+              "o_custkey",
+              "c_custkey"
+            ]
+          ]
+        },
+        "folded_property_namespace": {
+          "strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+          "physical_names": "native TPC-H column names",
+          "table_aliases": {
+            "referencing": "o",
+            "referenced": "c"
+          },
+          "bindings": {
+            "referencing": [
+              {
+                "logical_name": "o_orderkey",
+                "folded_name": "o_orderkey"
+              },
+              {
+                "logical_name": "o_custkey",
+                "folded_name": "o_custkey"
+              },
+              {
+                "logical_name": "o_orderstatus",
+                "folded_name": "o_orderstatus"
+              },
+              {
+                "logical_name": "o_totalprice",
+                "folded_name": "o_totalprice"
+              },
+              {
+                "logical_name": "o_orderdate",
+                "folded_name": "o_orderdate"
+              },
+              {
+                "logical_name": "o_orderpriority",
+                "folded_name": "o_orderpriority"
+              },
+              {
+                "logical_name": "o_clerk",
+                "folded_name": "o_clerk"
+              },
+              {
+                "logical_name": "o_shippriority",
+                "folded_name": "o_shippriority"
+              },
+              {
+                "logical_name": "o_comment",
+                "folded_name": "o_comment"
+              }
+            ],
+            "referenced_non_key": [
+              {
+                "logical_name": "c_name",
+                "folded_name": "c_name"
+              },
+              {
+                "logical_name": "c_address",
+                "folded_name": "c_address"
+              },
+              {
+                "logical_name": "c_nationkey",
+                "folded_name": "c_nationkey"
+              },
+              {
+                "logical_name": "c_phone",
+                "folded_name": "c_phone"
+              },
+              {
+                "logical_name": "c_acctbal",
+                "folded_name": "c_acctbal"
+              },
+              {
+                "logical_name": "c_mktsegment",
+                "folded_name": "c_mktsegment"
+              },
+              {
+                "logical_name": "c_comment",
+                "folded_name": "c_comment"
+              }
+            ]
+          },
+          "referenced_key_copied": false,
+          "referenced_key_representation": [
+            {
+              "referencing_fk": "o_custkey",
+              "folded_referencing_fk": "o_custkey",
+              "referenced_key": "c_custkey"
+            }
+          ]
+        },
+        "topology_fk_properties_excluded_from_updates": [
+          "c_nationkey"
+        ],
+        "eligible_update_properties_before_domain_checks": [
+          "c_name",
+          "c_address",
+          "c_phone",
+          "c_acctbal",
+          "c_mktsegment",
+          "c_comment"
+        ],
+        "default_update_property": "c_mktsegment",
+        "boundaries": [
+          {
+            "relationship": {
+              "row_label": "CUSTOMER",
+              "source_label": "CUSTOMER",
+              "target_label": "NATION",
+              "relationship_type": "CUSTOMER_NATION",
+              "source_keys": [
+                [
+                  "c_custkey",
+                  "c_custkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "n_nationkey",
+                  "c_nationkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": true,
+            "external_label": "NATION",
+            "copy_type": "JOIN_CUSTOMER_NATION",
+            "boundary_id": "referenced:CUSTOMER-[:CUSTOMER_NATION]->NATION"
+          },
+          {
+            "relationship": {
+              "row_label": "LINEITEM",
+              "source_label": "LINEITEM",
+              "target_label": "ORDERS",
+              "relationship_type": "LINEITEM_ORDERS",
+              "source_keys": [
+                [
+                  "l_orderkey",
+                  "l_orderkey"
+                ],
+                [
+                  "l_linenumber",
+                  "l_linenumber"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "o_orderkey",
+                  "l_orderkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": false,
+            "external_label": "LINEITEM",
+            "copy_type": "JOIN_LINEITEM_ORDERS",
+            "boundary_id": "referencing:LINEITEM-[:LINEITEM_ORDERS]->ORDERS"
+          }
+        ]
+      },
+      "execution": {
+        "mode": "run_scoped_batched_shadow_projection",
+        "topology_mode": "property-fd",
+        "source_policy": "the original graph is read-only; every experimental node and relationship is run-scoped and removed",
+        "boundary_overlay_note": "property-fd mode creates no boundary overlay",
+        "local_concurrency_policy": "exclusive advisory process lock",
+        "mutation_atomicity": "each configured-size subtransaction is atomic; a multi-batch phase is compensated by run-scoped cleanup if a later batch fails"
+      },
+      "dataset": {
+        "name": "TPC-H",
+        "source_graph_fingerprint_schema_version": 3,
+        "source_graph_fingerprint_algorithm": "tpch_schema_keyed_commutative_sha256_sum_xor_v1",
+        "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_sha256_during": null,
+        "source_graph_during_scan": "not scanned while artifacts exist; recomputed immediately after this case cleanup",
+        "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_verification_scope": "suite baseline fingerprint compared with a fresh fingerprint immediately after this case cleanup",
+        "join_fingerprint_schema_version": 3,
+        "join_fingerprint_algorithm": "commutative_join_row_sha256_sum_xor_v1",
+        "join_sha256": "8cf62f4b809acb652bbd754bcc1db7dbf86514e53f23d7f6c9b93ae058624514",
+        "referencing_rows": 150000,
+        "full_referenced_rows": 15000,
+        "join_rows": 150000,
+        "participating_referenced_rows": 10000,
+        "boundary_expectations": []
+      },
+      "configuration": {
+        "update_property": "c_mktsegment",
+        "batch_size": 10000,
+        "batch_size_scope": "logical update parameters and physical graph mutation subtransactions",
+        "update_key_properties": [
+          "c_custkey"
+        ],
+        "warmup_runs": 1,
+        "measured_update_runs": 1,
+        "normalization_warmup_runs": 1,
+        "normalization_runs": 1,
+        "folded_property_naming_strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+        "update_strategy_id": "deterministic_full_referenced_relation_domain_rotation_v2",
+        "update_null_policy": "reject_attribute_if_any_domain_or_updated_value_is_null",
+        "active_domain_scope": "full_original_CUSTOMER_relation",
+        "active_domain_size": 5,
+        "active_domain_source_tuple_count": 15000,
+        "logical_update_tuple_count": 10000,
+        "active_domain_sha256": "751d4fb1bccf673f174d863b48c51c4cfe3f92d88bf95b7bcf9e40388a7af5ea",
+        "update_mapping_sha256": "f3232be8bd3faa0e7575b529b860e8bc0827eed90d5750ef1615068e682d7a66",
+        "update_value_type": "builtins.str",
+        "update_workload_storage": "run-local temporary SQLite spool, removed when the case finishes or fails",
+        "schema_objects_created_and_dropped": {
+          "folded_key": "mvfd_orders_customer_ed8db52b17f8481ebd92f67d7a048cea_folded_key",
+          "referencing_key": "mvfd_orders_customer_ed8db52b17f8481ebd92f67d7a048cea_referencing_key",
+          "referenced_key": "mvfd_orders_customer_ed8db52b17f8481ebd92f67d7a048cea_referenced_key",
+          "folded_fk": "mvfd_orders_customer_ed8db52b17f8481ebd92f67d7a048cea_folded_fk",
+          "referencing_fk": "mvfd_orders_customer_ed8db52b17f8481ebd92f67d7a048cea_referencing_fk"
+        },
+        "update_timing_scope": "sum of sequential database-batch wall times through result consumption and commit; spool iteration, restore, and validation excluded",
+        "normalization_timing_scope": "sequential batched subtransactions for referenced-property extraction and shadow data decomposition; DDL, validation, refolding, and cleanup excluded",
+        "transformation_validation_policy": "structural cardinality checks after every normalize/refold cycle; full label/property/relationship/value fingerprint checks at stable phase checkpoints",
+        "cache_policy": "warm workload; server page/query caches are not cleared"
+      },
+      "update_payload": {
+        "metric": "UTF-8 bytes for strings and UTF-8 bytes of str(value) for other types; this is a value-payload proxy, not Neo4j store bytes",
+        "normalized_logical": {
+          "property_writes": 10000,
+          "original_payload_bytes": 89923,
+          "updated_payload_bytes": 89998,
+          "payload_delta_bytes": 75
+        },
+        "folded_join_fanout_weighted": {
+          "property_writes": 150000,
+          "original_payload_bytes": 1348595,
+          "updated_payload_bytes": 1350482,
+          "payload_delta_bytes": 1887
+        }
+      },
+      "step0_artifacts": {
+        "folded_nodes": 150000,
+        "boundary_relationships": {},
+        "boundary_relationship_total": 0
+      },
+      "folded_shadow_state": {
+        "folded_join_nodes": 150000,
+        "normalized_referencing_nodes": 0,
+        "normalized_referenced_nodes": 0,
+        "normalized_join_relationships": 0,
+        "boundary_relationships": {
+          "referenced:CUSTOMER-[:CUSTOMER_NATION]->NATION": 0,
+          "referencing:LINEITEM-[:LINEITEM_ORDERS]->ORDERS": 0
+        }
+      },
+      "normalized_shadow_state": {
+        "folded_join_nodes": 0,
+        "normalized_referencing_nodes": 150000,
+        "normalized_referenced_nodes": 10000,
+        "normalized_join_relationships": 150000,
+        "boundary_relationships": {
+          "referenced:CUSTOMER-[:CUSTOMER_NATION]->NATION": 0,
+          "referencing:LINEITEM-[:LINEITEM_ORDERS]->ORDERS": 0
+        }
+      },
+      "redundancy": {
+        "definition": {
+          "referencing_table": "ORDERS",
+          "referenced_table": "CUSTOMER",
+          "join_tuple_count_J": 150000,
+          "participating_distinct_referenced_keys_D": 10000,
+          "full_referenced_relation_rows": 15000,
+          "redundant_referenced_tuple_copies": "J - D",
+          "redundant_referenced_property_slots": "(J - D) * (column_count(referenced) - key_length(referenced))"
+        },
+        "join_rows_J": 150000,
+        "full_referenced_rows": 15000,
+        "participating_referenced_rows_D": 10000,
+        "unused_referenced_rows": 5000,
+        "redundant_referenced_tuple_copies": 140000,
+        "redundant_referenced_tuple_percentage_of_join": 93.33333333333333,
+        "referenced_column_count": 8,
+        "referenced_key_length": 1,
+        "dependent_property_count": 7,
+        "theoretical_redundant_dependent_property_slots": 980000,
+        "redundant_non_null_dependent_values": 980000,
+        "total_non_null_dependent_values_in_folded_join": 1050000,
+        "redundant_non_null_value_percentage": 93.33333333333333,
+        "redundant_value_payload_bytes": 20779945,
+        "total_value_payload_bytes_in_folded_join": 22264246,
+        "redundant_value_payload_percentage": 93.33325278565464,
+        "value_payload_metric": "UTF-8 bytes for strings; UTF-8 bytes of str(value) for other non-NULL values; this is not Neo4j on-disk storage",
+        "referenced_fanout_histogram": {
+          "1": 2,
+          "2": 10,
+          "3": 44,
+          "4": 87,
+          "5": 180,
+          "6": 331,
+          "7": 481,
+          "8": 543,
+          "9": 634,
+          "10": 670,
+          "11": 625,
+          "12": 555,
+          "13": 512,
+          "14": 450,
+          "15": 437,
+          "16": 439,
+          "17": 420,
+          "18": 460,
+          "19": 453,
+          "20": 452,
+          "21": 433,
+          "22": 362,
+          "23": 335,
+          "24": 282,
+          "25": 208,
+          "26": 164,
+          "27": 144,
+          "28": 114,
+          "29": 65,
+          "30": 38,
+          "31": 28,
+          "32": 18,
+          "33": 10,
+          "34": 7,
+          "35": 5,
+          "36": 2
+        },
+        "topology": {
+          "folded_boundary_relationships": 0,
+          "normalized_boundary_relationships": 0,
+          "redundant_folded_boundary_relationship_copies": 0,
+          "by_boundary": []
+        }
+      },
+      "timings": {
+        "folded_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 684.164166,
+              "available_after_ms": 7,
+              "consumed_after_ms": 629,
+              "neo4j_reported_total_ms": 636,
+              "affected_nodes": 150000,
+              "properties_set": 150000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 684.164166,
+              "median": 684.164166,
+              "stdev": 0.0,
+              "min": 684.164166,
+              "p95": 684.164166,
+              "max": 684.164166
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 636.0,
+              "median": 636.0,
+              "stdev": 0.0,
+              "min": 636.0,
+              "p95": 636.0,
+              "max": 636.0
+            },
+            "affected_nodes": [
+              150000
+            ],
+            "properties_set": [
+              150000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "denormalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 684.164166,
+              "available_after_ms": 7,
+              "consumed_after_ms": 629,
+              "neo4j_reported_total_ms": 636,
+              "affected_nodes": 150000,
+              "properties_set": 150000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 684.164166,
+              "median": 684.164166,
+              "stdev": 0.0,
+              "min": 684.164166,
+              "p95": 684.164166,
+              "max": 684.164166
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 636.0,
+              "median": 636.0,
+              "stdev": 0.0,
+              "min": 636.0,
+              "p95": 636.0,
+              "max": 636.0
+            },
+            "affected_nodes": [
+              150000
+            ],
+            "properties_set": [
+              150000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalization": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 5856.22025,
+              "available_after_ms": 5846,
+              "consumed_after_ms": 0,
+              "neo4j_reported_total_ms": 5846,
+              "affected_nodes": 150000,
+              "properties_set": 1170000,
+              "nodes_created": 10000,
+              "nodes_deleted": 0,
+              "relationships_created": 150000,
+              "relationships_deleted": 0,
+              "labels_added": 170000,
+              "labels_removed": 150000
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 5856.22025,
+              "median": 5856.22025,
+              "stdev": 0.0,
+              "min": 5856.22025,
+              "p95": 5856.22025,
+              "max": 5856.22025
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 5846.0,
+              "median": 5846.0,
+              "stdev": 0.0,
+              "min": 5846.0,
+              "p95": 5846.0,
+              "max": 5846.0
+            },
+            "affected_nodes": [
+              150000
+            ],
+            "properties_set": [
+              1170000
+            ],
+            "nodes_created": [
+              10000
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              150000
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 188.460959,
+              "available_after_ms": 30,
+              "consumed_after_ms": 105,
+              "neo4j_reported_total_ms": 135,
+              "affected_nodes": 10000,
+              "properties_set": 10000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 188.460959,
+              "median": 188.460959,
+              "stdev": 0.0,
+              "min": 188.460959,
+              "p95": 188.460959,
+              "max": 188.460959
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 135.0,
+              "median": 135.0,
+              "stdev": 0.0,
+              "min": 135.0,
+              "p95": 135.0,
+              "max": 135.0
+            },
+            "affected_nodes": [
+              10000
+            ],
+            "properties_set": [
+              10000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        }
+      },
+      "derived": {
+        "write_amplification_nodes": 15.0,
+        "folded_to_normalized_update_median_ratio": 3.630270001968949,
+        "median_client_ms_saved_per_logical_update_batch": 495.703207,
+        "has_fd_tuple_redundancy": true,
+        "data_rewrite_normalization_break_even_update_batches": 11.81396482270489,
+        "denormalized_to_normalized_update_median_ratio": 3.630270001968949,
+        "shadow_data_rewrite_normalization_break_even_update_batches": 11.81396482270489
+      },
+      "cleanup": {
+        "deleted_nodes": 160000,
+        "deleted_relationships": 150000,
+        "final_shadow_state": "clean",
+        "experiment_owned_schema_dropped": true,
+        "original_graph_verified_unchanged": true,
+        "original_graph_verification": "case cleanup fingerprint matches suite baseline"
+      },
+      "final_state": {
+        "original_graph": "unchanged",
+        "shadow_graph": "removed"
+      }
+    },
+    {
+      "report_schema_version": 8,
+      "experiment": "tpch_direct_pair_fd",
+      "experiment_family": "tpch_direct_pair_fd",
+      "case_id": "partsupp_part",
+      "run_id": "218d8af99aa949c0859ae9f976685e14",
+      "started_at_utc": "2026-08-04T02:17:56.541050+00:00",
+      "completed_at_utc": "2026-08-04T02:19:13.353366+00:00",
+      "database": "tpch-sf-01-redundancy",
+      "environment": {
+        "python_version": "3.13.14",
+        "neo4j_driver_version": "6.2.0",
+        "server_agent": "Neo4j/2026.06.0",
+        "bolt_protocol_version": "(6, 0)",
+        "server_address": "127.0.0.1:7687",
+        "cypher_runtime": "server default",
+        "dbms_components": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "2026.06.0"
+            ],
+            "edition": "enterprise"
+          },
+          {
+            "name": "Cypher",
+            "versions": [
+              "5",
+              "25"
+            ],
+            "edition": ""
+          }
+        ]
+      },
+      "pair": {
+        "case_id": "partsupp_part",
+        "referencing_table": {
+          "label": "PARTSUPP",
+          "columns": [
+            "ps_partkey",
+            "ps_suppkey",
+            "ps_availqty",
+            "ps_supplycost",
+            "ps_comment"
+          ],
+          "key": [
+            "ps_partkey",
+            "ps_suppkey"
+          ]
+        },
+        "referenced_table": {
+          "label": "PART",
+          "columns": [
+            "p_partkey",
+            "p_name",
+            "p_mfgr",
+            "p_brand",
+            "p_type",
+            "p_size",
+            "p_container",
+            "p_retailprice",
+            "p_comment"
+          ],
+          "key": [
+            "p_partkey"
+          ],
+          "dependent_properties": [
+            "p_name",
+            "p_mfgr",
+            "p_brand",
+            "p_type",
+            "p_size",
+            "p_container",
+            "p_retailprice",
+            "p_comment"
+          ]
+        },
+        "source_join": {
+          "relationship_type": "PARTSUPP_PART",
+          "direction": "PARTSUPP->PART",
+          "referencing_is_relationship_source": true,
+          "fk_mapping_referencing_to_referenced": [
+            [
+              "ps_partkey",
+              "p_partkey"
+            ]
+          ]
+        },
+        "folded_property_namespace": {
+          "strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+          "physical_names": "native TPC-H column names",
+          "table_aliases": {
+            "referencing": "ps",
+            "referenced": "p"
+          },
+          "bindings": {
+            "referencing": [
+              {
+                "logical_name": "ps_partkey",
+                "folded_name": "ps_partkey"
+              },
+              {
+                "logical_name": "ps_suppkey",
+                "folded_name": "ps_suppkey"
+              },
+              {
+                "logical_name": "ps_availqty",
+                "folded_name": "ps_availqty"
+              },
+              {
+                "logical_name": "ps_supplycost",
+                "folded_name": "ps_supplycost"
+              },
+              {
+                "logical_name": "ps_comment",
+                "folded_name": "ps_comment"
+              }
+            ],
+            "referenced_non_key": [
+              {
+                "logical_name": "p_name",
+                "folded_name": "p_name"
+              },
+              {
+                "logical_name": "p_mfgr",
+                "folded_name": "p_mfgr"
+              },
+              {
+                "logical_name": "p_brand",
+                "folded_name": "p_brand"
+              },
+              {
+                "logical_name": "p_type",
+                "folded_name": "p_type"
+              },
+              {
+                "logical_name": "p_size",
+                "folded_name": "p_size"
+              },
+              {
+                "logical_name": "p_container",
+                "folded_name": "p_container"
+              },
+              {
+                "logical_name": "p_retailprice",
+                "folded_name": "p_retailprice"
+              },
+              {
+                "logical_name": "p_comment",
+                "folded_name": "p_comment"
+              }
+            ]
+          },
+          "referenced_key_copied": false,
+          "referenced_key_representation": [
+            {
+              "referencing_fk": "ps_partkey",
+              "folded_referencing_fk": "ps_partkey",
+              "referenced_key": "p_partkey"
+            }
+          ]
+        },
+        "topology_fk_properties_excluded_from_updates": [],
+        "eligible_update_properties_before_domain_checks": [
+          "p_name",
+          "p_mfgr",
+          "p_brand",
+          "p_type",
+          "p_size",
+          "p_container",
+          "p_retailprice",
+          "p_comment"
+        ],
+        "default_update_property": "p_name",
+        "boundaries": [
+          {
+            "relationship": {
+              "row_label": "PARTSUPP",
+              "source_label": "PARTSUPP",
+              "target_label": "SUPPLIER",
+              "relationship_type": "PARTSUPP_SUPPLIER",
+              "source_keys": [
+                [
+                  "ps_partkey",
+                  "ps_partkey"
+                ],
+                [
+                  "ps_suppkey",
+                  "ps_suppkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "s_suppkey",
+                  "ps_suppkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": true,
+            "external_label": "SUPPLIER",
+            "copy_type": "JOIN_PARTSUPP_SUPPLIER",
+            "boundary_id": "referencing:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER"
+          },
+          {
+            "relationship": {
+              "row_label": "LINEITEM",
+              "source_label": "LINEITEM",
+              "target_label": "PARTSUPP",
+              "relationship_type": "LINEITEM_PARTSUPP",
+              "source_keys": [
+                [
+                  "l_orderkey",
+                  "l_orderkey"
+                ],
+                [
+                  "l_linenumber",
+                  "l_linenumber"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "ps_partkey",
+                  "l_partkey"
+                ],
+                [
+                  "ps_suppkey",
+                  "l_suppkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": false,
+            "external_label": "LINEITEM",
+            "copy_type": "JOIN_LINEITEM_PARTSUPP",
+            "boundary_id": "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP"
+          }
+        ]
+      },
+      "execution": {
+        "mode": "run_scoped_batched_shadow_projection",
+        "topology_mode": "property-fd",
+        "source_policy": "the original graph is read-only; every experimental node and relationship is run-scoped and removed",
+        "boundary_overlay_note": "property-fd mode creates no boundary overlay",
+        "local_concurrency_policy": "exclusive advisory process lock",
+        "mutation_atomicity": "each configured-size subtransaction is atomic; a multi-batch phase is compensated by run-scoped cleanup if a later batch fails"
+      },
+      "dataset": {
+        "name": "TPC-H",
+        "source_graph_fingerprint_schema_version": 3,
+        "source_graph_fingerprint_algorithm": "tpch_schema_keyed_commutative_sha256_sum_xor_v1",
+        "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_sha256_during": null,
+        "source_graph_during_scan": "not scanned while artifacts exist; recomputed immediately after this case cleanup",
+        "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_verification_scope": "suite baseline fingerprint compared with a fresh fingerprint immediately after this case cleanup",
+        "join_fingerprint_schema_version": 3,
+        "join_fingerprint_algorithm": "commutative_join_row_sha256_sum_xor_v1",
+        "join_sha256": "2451c63e557dc8e2a42be59f26886a28c19918e87ecf6a1ee50a633a414bff20",
+        "referencing_rows": 80000,
+        "full_referenced_rows": 20000,
+        "join_rows": 80000,
+        "participating_referenced_rows": 20000,
+        "boundary_expectations": []
+      },
+      "configuration": {
+        "update_property": "p_name",
+        "batch_size": 10000,
+        "batch_size_scope": "logical update parameters and physical graph mutation subtransactions",
+        "update_key_properties": [
+          "p_partkey"
+        ],
+        "warmup_runs": 1,
+        "measured_update_runs": 1,
+        "normalization_warmup_runs": 1,
+        "normalization_runs": 1,
+        "folded_property_naming_strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+        "update_strategy_id": "deterministic_full_referenced_relation_domain_rotation_v2",
+        "update_null_policy": "reject_attribute_if_any_domain_or_updated_value_is_null",
+        "active_domain_scope": "full_original_PART_relation",
+        "active_domain_size": 20000,
+        "active_domain_source_tuple_count": 20000,
+        "logical_update_tuple_count": 20000,
+        "active_domain_sha256": "0bf72f248f3a69eea0e7721f66afb235fe39ecf4cee63dbe8f74f8acc3b9155b",
+        "update_mapping_sha256": "811f99eb79399a12817a89431d559e2673100e637d5874a2d14a321bc2d1b063",
+        "update_value_type": "builtins.str",
+        "update_workload_storage": "run-local temporary SQLite spool, removed when the case finishes or fails",
+        "schema_objects_created_and_dropped": {
+          "folded_key": "mvfd_partsupp_part_218d8af99aa949c0859ae9f976685e14_folded_key",
+          "referencing_key": "mvfd_partsupp_part_218d8af99aa949c0859ae9f976685e14_referencing_key",
+          "referenced_key": "mvfd_partsupp_part_218d8af99aa949c0859ae9f976685e14_referenced_key",
+          "folded_fk": "mvfd_partsupp_part_218d8af99aa949c0859ae9f976685e14_folded_fk",
+          "referencing_fk": "mvfd_partsupp_part_218d8af99aa949c0859ae9f976685e14_referencing_fk"
+        },
+        "update_timing_scope": "sum of sequential database-batch wall times through result consumption and commit; spool iteration, restore, and validation excluded",
+        "normalization_timing_scope": "sequential batched subtransactions for referenced-property extraction and shadow data decomposition; DDL, validation, refolding, and cleanup excluded",
+        "transformation_validation_policy": "structural cardinality checks after every normalize/refold cycle; full label/property/relationship/value fingerprint checks at stable phase checkpoints",
+        "cache_policy": "warm workload; server page/query caches are not cleared"
+      },
+      "update_payload": {
+        "metric": "UTF-8 bytes for strings and UTF-8 bytes of str(value) for other types; this is a value-payload proxy, not Neo4j store bytes",
+        "normalized_logical": {
+          "property_writes": 20000,
+          "original_payload_bytes": 654549,
+          "updated_payload_bytes": 654549,
+          "payload_delta_bytes": 0
+        },
+        "folded_join_fanout_weighted": {
+          "property_writes": 80000,
+          "original_payload_bytes": 2618196,
+          "updated_payload_bytes": 2618196,
+          "payload_delta_bytes": 0
+        }
+      },
+      "step0_artifacts": {
+        "folded_nodes": 80000,
+        "boundary_relationships": {},
+        "boundary_relationship_total": 0
+      },
+      "folded_shadow_state": {
+        "folded_join_nodes": 80000,
+        "normalized_referencing_nodes": 0,
+        "normalized_referenced_nodes": 0,
+        "normalized_join_relationships": 0,
+        "boundary_relationships": {
+          "referencing:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER": 0,
+          "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP": 0
+        }
+      },
+      "normalized_shadow_state": {
+        "folded_join_nodes": 0,
+        "normalized_referencing_nodes": 80000,
+        "normalized_referenced_nodes": 20000,
+        "normalized_join_relationships": 80000,
+        "boundary_relationships": {
+          "referencing:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER": 0,
+          "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP": 0
+        }
+      },
+      "redundancy": {
+        "definition": {
+          "referencing_table": "PARTSUPP",
+          "referenced_table": "PART",
+          "join_tuple_count_J": 80000,
+          "participating_distinct_referenced_keys_D": 20000,
+          "full_referenced_relation_rows": 20000,
+          "redundant_referenced_tuple_copies": "J - D",
+          "redundant_referenced_property_slots": "(J - D) * (column_count(referenced) - key_length(referenced))"
+        },
+        "join_rows_J": 80000,
+        "full_referenced_rows": 20000,
+        "participating_referenced_rows_D": 20000,
+        "unused_referenced_rows": 0,
+        "redundant_referenced_tuple_copies": 60000,
+        "redundant_referenced_tuple_percentage_of_join": 75.0,
+        "referenced_column_count": 9,
+        "referenced_key_length": 1,
+        "dependent_property_count": 8,
+        "theoretical_redundant_dependent_property_slots": 480000,
+        "redundant_non_null_dependent_values": 480000,
+        "total_non_null_dependent_values_in_folded_join": 640000,
+        "redundant_non_null_value_percentage": 75.0,
+        "redundant_value_payload_bytes": 6300588,
+        "total_value_payload_bytes_in_folded_join": 8400784,
+        "redundant_value_payload_percentage": 75.0,
+        "value_payload_metric": "UTF-8 bytes for strings; UTF-8 bytes of str(value) for other non-NULL values; this is not Neo4j on-disk storage",
+        "referenced_fanout_histogram": {
+          "4": 20000
+        },
+        "topology": {
+          "folded_boundary_relationships": 0,
+          "normalized_boundary_relationships": 0,
+          "redundant_folded_boundary_relationship_copies": 0,
+          "by_boundary": []
+        }
+      },
+      "timings": {
+        "folded_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 366.565083,
+              "available_after_ms": 11,
+              "consumed_after_ms": 257,
+              "neo4j_reported_total_ms": 268,
+              "affected_nodes": 80000,
+              "properties_set": 80000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 366.565083,
+              "median": 366.565083,
+              "stdev": 0.0,
+              "min": 366.565083,
+              "p95": 366.565083,
+              "max": 366.565083
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 268.0,
+              "median": 268.0,
+              "stdev": 0.0,
+              "min": 268.0,
+              "p95": 268.0,
+              "max": 268.0
+            },
+            "affected_nodes": [
+              80000
+            ],
+            "properties_set": [
+              80000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "denormalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 366.565083,
+              "available_after_ms": 11,
+              "consumed_after_ms": 257,
+              "neo4j_reported_total_ms": 268,
+              "affected_nodes": 80000,
+              "properties_set": 80000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 366.565083,
+              "median": 366.565083,
+              "stdev": 0.0,
+              "min": 366.565083,
+              "p95": 366.565083,
+              "max": 366.565083
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 268.0,
+              "median": 268.0,
+              "stdev": 0.0,
+              "min": 268.0,
+              "p95": 268.0,
+              "max": 268.0
+            },
+            "affected_nodes": [
+              80000
+            ],
+            "properties_set": [
+              80000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalization": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 3211.981417,
+              "available_after_ms": 3210,
+              "consumed_after_ms": 0,
+              "neo4j_reported_total_ms": 3210,
+              "affected_nodes": 80000,
+              "properties_set": 900000,
+              "nodes_created": 20000,
+              "nodes_deleted": 0,
+              "relationships_created": 80000,
+              "relationships_deleted": 0,
+              "labels_added": 120000,
+              "labels_removed": 80000
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 3211.981417,
+              "median": 3211.981417,
+              "stdev": 0.0,
+              "min": 3211.981417,
+              "p95": 3211.981417,
+              "max": 3211.981417
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 3210.0,
+              "median": 3210.0,
+              "stdev": 0.0,
+              "min": 3210.0,
+              "p95": 3210.0,
+              "max": 3210.0
+            },
+            "affected_nodes": [
+              80000
+            ],
+            "properties_set": [
+              900000
+            ],
+            "nodes_created": [
+              20000
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              80000
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 269.654833,
+              "available_after_ms": 15,
+              "consumed_after_ms": 147,
+              "neo4j_reported_total_ms": 162,
+              "affected_nodes": 20000,
+              "properties_set": 20000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 269.654833,
+              "median": 269.654833,
+              "stdev": 0.0,
+              "min": 269.654833,
+              "p95": 269.654833,
+              "max": 269.654833
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 162.0,
+              "median": 162.0,
+              "stdev": 0.0,
+              "min": 162.0,
+              "p95": 162.0,
+              "max": 162.0
+            },
+            "affected_nodes": [
+              20000
+            ],
+            "properties_set": [
+              20000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        }
+      },
+      "derived": {
+        "write_amplification_nodes": 4.0,
+        "folded_to_normalized_update_median_ratio": 1.3593862899538687,
+        "median_client_ms_saved_per_logical_update_batch": 96.91025000000002,
+        "has_fd_tuple_redundancy": true,
+        "data_rewrite_normalization_break_even_update_batches": 33.143877113102064,
+        "denormalized_to_normalized_update_median_ratio": 1.3593862899538687,
+        "shadow_data_rewrite_normalization_break_even_update_batches": 33.143877113102064
+      },
+      "cleanup": {
+        "deleted_nodes": 100000,
+        "deleted_relationships": 80000,
+        "final_shadow_state": "clean",
+        "experiment_owned_schema_dropped": true,
+        "original_graph_verified_unchanged": true,
+        "original_graph_verification": "case cleanup fingerprint matches suite baseline"
+      },
+      "final_state": {
+        "original_graph": "unchanged",
+        "shadow_graph": "removed"
+      }
+    },
+    {
+      "report_schema_version": 8,
+      "experiment": "tpch_direct_pair_fd",
+      "experiment_family": "tpch_direct_pair_fd",
+      "case_id": "partsupp_supplier",
+      "run_id": "c9ef9a16296c44839754e79dd403a05d",
+      "started_at_utc": "2026-08-04T02:19:13.356246+00:00",
+      "completed_at_utc": "2026-08-04T02:20:37.380577+00:00",
+      "database": "tpch-sf-01-redundancy",
+      "environment": {
+        "python_version": "3.13.14",
+        "neo4j_driver_version": "6.2.0",
+        "server_agent": "Neo4j/2026.06.0",
+        "bolt_protocol_version": "(6, 0)",
+        "server_address": "127.0.0.1:7687",
+        "cypher_runtime": "server default",
+        "dbms_components": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "2026.06.0"
+            ],
+            "edition": "enterprise"
+          },
+          {
+            "name": "Cypher",
+            "versions": [
+              "5",
+              "25"
+            ],
+            "edition": ""
+          }
+        ]
+      },
+      "pair": {
+        "case_id": "partsupp_supplier",
+        "referencing_table": {
+          "label": "PARTSUPP",
+          "columns": [
+            "ps_partkey",
+            "ps_suppkey",
+            "ps_availqty",
+            "ps_supplycost",
+            "ps_comment"
+          ],
+          "key": [
+            "ps_partkey",
+            "ps_suppkey"
+          ]
+        },
+        "referenced_table": {
+          "label": "SUPPLIER",
+          "columns": [
+            "s_suppkey",
+            "s_name",
+            "s_address",
+            "s_nationkey",
+            "s_phone",
+            "s_acctbal",
+            "s_comment"
+          ],
+          "key": [
+            "s_suppkey"
+          ],
+          "dependent_properties": [
+            "s_name",
+            "s_address",
+            "s_nationkey",
+            "s_phone",
+            "s_acctbal",
+            "s_comment"
+          ]
+        },
+        "source_join": {
+          "relationship_type": "PARTSUPP_SUPPLIER",
+          "direction": "PARTSUPP->SUPPLIER",
+          "referencing_is_relationship_source": true,
+          "fk_mapping_referencing_to_referenced": [
+            [
+              "ps_suppkey",
+              "s_suppkey"
+            ]
+          ]
+        },
+        "folded_property_namespace": {
+          "strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+          "physical_names": "native TPC-H column names",
+          "table_aliases": {
+            "referencing": "ps",
+            "referenced": "s"
+          },
+          "bindings": {
+            "referencing": [
+              {
+                "logical_name": "ps_partkey",
+                "folded_name": "ps_partkey"
+              },
+              {
+                "logical_name": "ps_suppkey",
+                "folded_name": "ps_suppkey"
+              },
+              {
+                "logical_name": "ps_availqty",
+                "folded_name": "ps_availqty"
+              },
+              {
+                "logical_name": "ps_supplycost",
+                "folded_name": "ps_supplycost"
+              },
+              {
+                "logical_name": "ps_comment",
+                "folded_name": "ps_comment"
+              }
+            ],
+            "referenced_non_key": [
+              {
+                "logical_name": "s_name",
+                "folded_name": "s_name"
+              },
+              {
+                "logical_name": "s_address",
+                "folded_name": "s_address"
+              },
+              {
+                "logical_name": "s_nationkey",
+                "folded_name": "s_nationkey"
+              },
+              {
+                "logical_name": "s_phone",
+                "folded_name": "s_phone"
+              },
+              {
+                "logical_name": "s_acctbal",
+                "folded_name": "s_acctbal"
+              },
+              {
+                "logical_name": "s_comment",
+                "folded_name": "s_comment"
+              }
+            ]
+          },
+          "referenced_key_copied": false,
+          "referenced_key_representation": [
+            {
+              "referencing_fk": "ps_suppkey",
+              "folded_referencing_fk": "ps_suppkey",
+              "referenced_key": "s_suppkey"
+            }
+          ]
+        },
+        "topology_fk_properties_excluded_from_updates": [
+          "s_nationkey"
+        ],
+        "eligible_update_properties_before_domain_checks": [
+          "s_name",
+          "s_address",
+          "s_phone",
+          "s_acctbal",
+          "s_comment"
+        ],
+        "default_update_property": "s_phone",
+        "boundaries": [
+          {
+            "relationship": {
+              "row_label": "SUPPLIER",
+              "source_label": "SUPPLIER",
+              "target_label": "NATION",
+              "relationship_type": "SUPPLIER_NATION",
+              "source_keys": [
+                [
+                  "s_suppkey",
+                  "s_suppkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "n_nationkey",
+                  "s_nationkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": true,
+            "external_label": "NATION",
+            "copy_type": "JOIN_SUPPLIER_NATION",
+            "boundary_id": "referenced:SUPPLIER-[:SUPPLIER_NATION]->NATION"
+          },
+          {
+            "relationship": {
+              "row_label": "PARTSUPP",
+              "source_label": "PARTSUPP",
+              "target_label": "PART",
+              "relationship_type": "PARTSUPP_PART",
+              "source_keys": [
+                [
+                  "ps_partkey",
+                  "ps_partkey"
+                ],
+                [
+                  "ps_suppkey",
+                  "ps_suppkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "p_partkey",
+                  "ps_partkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": true,
+            "external_label": "PART",
+            "copy_type": "JOIN_PARTSUPP_PART",
+            "boundary_id": "referencing:PARTSUPP-[:PARTSUPP_PART]->PART"
+          },
+          {
+            "relationship": {
+              "row_label": "LINEITEM",
+              "source_label": "LINEITEM",
+              "target_label": "PARTSUPP",
+              "relationship_type": "LINEITEM_PARTSUPP",
+              "source_keys": [
+                [
+                  "l_orderkey",
+                  "l_orderkey"
+                ],
+                [
+                  "l_linenumber",
+                  "l_linenumber"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "ps_partkey",
+                  "l_partkey"
+                ],
+                [
+                  "ps_suppkey",
+                  "l_suppkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": false,
+            "external_label": "LINEITEM",
+            "copy_type": "JOIN_LINEITEM_PARTSUPP",
+            "boundary_id": "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP"
+          }
+        ]
+      },
+      "execution": {
+        "mode": "run_scoped_batched_shadow_projection",
+        "topology_mode": "property-fd",
+        "source_policy": "the original graph is read-only; every experimental node and relationship is run-scoped and removed",
+        "boundary_overlay_note": "property-fd mode creates no boundary overlay",
+        "local_concurrency_policy": "exclusive advisory process lock",
+        "mutation_atomicity": "each configured-size subtransaction is atomic; a multi-batch phase is compensated by run-scoped cleanup if a later batch fails"
+      },
+      "dataset": {
+        "name": "TPC-H",
+        "source_graph_fingerprint_schema_version": 3,
+        "source_graph_fingerprint_algorithm": "tpch_schema_keyed_commutative_sha256_sum_xor_v1",
+        "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_sha256_during": null,
+        "source_graph_during_scan": "not scanned while artifacts exist; recomputed immediately after this case cleanup",
+        "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_verification_scope": "suite baseline fingerprint compared with a fresh fingerprint immediately after this case cleanup",
+        "join_fingerprint_schema_version": 3,
+        "join_fingerprint_algorithm": "commutative_join_row_sha256_sum_xor_v1",
+        "join_sha256": "a175c42c357910322201c5ec903b926ef70a01ab15b0cb6abf97bf00e4460e59",
+        "referencing_rows": 80000,
+        "full_referenced_rows": 1000,
+        "join_rows": 80000,
+        "participating_referenced_rows": 1000,
+        "boundary_expectations": []
+      },
+      "configuration": {
+        "update_property": "s_phone",
+        "batch_size": 10000,
+        "batch_size_scope": "logical update parameters and physical graph mutation subtransactions",
+        "update_key_properties": [
+          "s_suppkey"
+        ],
+        "warmup_runs": 1,
+        "measured_update_runs": 1,
+        "normalization_warmup_runs": 1,
+        "normalization_runs": 1,
+        "folded_property_naming_strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+        "update_strategy_id": "deterministic_full_referenced_relation_domain_rotation_v2",
+        "update_null_policy": "reject_attribute_if_any_domain_or_updated_value_is_null",
+        "active_domain_scope": "full_original_SUPPLIER_relation",
+        "active_domain_size": 1000,
+        "active_domain_source_tuple_count": 1000,
+        "logical_update_tuple_count": 1000,
+        "active_domain_sha256": "1e513c33c0225cdbd94e0aec822a344be2bb87ad47ef7348401e65e9043a6748",
+        "update_mapping_sha256": "ab3d75799706ed58ad61637c37757da14092857d38841c0babf8f303a240e841",
+        "update_value_type": "builtins.str",
+        "update_workload_storage": "run-local temporary SQLite spool, removed when the case finishes or fails",
+        "schema_objects_created_and_dropped": {
+          "folded_key": "mvfd_partsupp_supplier_c9ef9a16296c44839754e79dd403a05d_folded_key",
+          "referencing_key": "mvfd_partsupp_supplier_c9ef9a16296c44839754e79dd403a05d_referencing_key",
+          "referenced_key": "mvfd_partsupp_supplier_c9ef9a16296c44839754e79dd403a05d_referenced_key",
+          "folded_fk": "mvfd_partsupp_supplier_c9ef9a16296c44839754e79dd403a05d_folded_fk",
+          "referencing_fk": "mvfd_partsupp_supplier_c9ef9a16296c44839754e79dd403a05d_referencing_fk"
+        },
+        "update_timing_scope": "sum of sequential database-batch wall times through result consumption and commit; spool iteration, restore, and validation excluded",
+        "normalization_timing_scope": "sequential batched subtransactions for referenced-property extraction and shadow data decomposition; DDL, validation, refolding, and cleanup excluded",
+        "transformation_validation_policy": "structural cardinality checks after every normalize/refold cycle; full label/property/relationship/value fingerprint checks at stable phase checkpoints",
+        "cache_policy": "warm workload; server page/query caches are not cleared"
+      },
+      "update_payload": {
+        "metric": "UTF-8 bytes for strings and UTF-8 bytes of str(value) for other types; this is a value-payload proxy, not Neo4j store bytes",
+        "normalized_logical": {
+          "property_writes": 1000,
+          "original_payload_bytes": 15000,
+          "updated_payload_bytes": 15000,
+          "payload_delta_bytes": 0
+        },
+        "folded_join_fanout_weighted": {
+          "property_writes": 80000,
+          "original_payload_bytes": 1200000,
+          "updated_payload_bytes": 1200000,
+          "payload_delta_bytes": 0
+        }
+      },
+      "step0_artifacts": {
+        "folded_nodes": 80000,
+        "boundary_relationships": {},
+        "boundary_relationship_total": 0
+      },
+      "folded_shadow_state": {
+        "folded_join_nodes": 80000,
+        "normalized_referencing_nodes": 0,
+        "normalized_referenced_nodes": 0,
+        "normalized_join_relationships": 0,
+        "boundary_relationships": {
+          "referenced:SUPPLIER-[:SUPPLIER_NATION]->NATION": 0,
+          "referencing:PARTSUPP-[:PARTSUPP_PART]->PART": 0,
+          "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP": 0
+        }
+      },
+      "normalized_shadow_state": {
+        "folded_join_nodes": 0,
+        "normalized_referencing_nodes": 80000,
+        "normalized_referenced_nodes": 1000,
+        "normalized_join_relationships": 80000,
+        "boundary_relationships": {
+          "referenced:SUPPLIER-[:SUPPLIER_NATION]->NATION": 0,
+          "referencing:PARTSUPP-[:PARTSUPP_PART]->PART": 0,
+          "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP": 0
+        }
+      },
+      "redundancy": {
+        "definition": {
+          "referencing_table": "PARTSUPP",
+          "referenced_table": "SUPPLIER",
+          "join_tuple_count_J": 80000,
+          "participating_distinct_referenced_keys_D": 1000,
+          "full_referenced_relation_rows": 1000,
+          "redundant_referenced_tuple_copies": "J - D",
+          "redundant_referenced_property_slots": "(J - D) * (column_count(referenced) - key_length(referenced))"
+        },
+        "join_rows_J": 80000,
+        "full_referenced_rows": 1000,
+        "participating_referenced_rows_D": 1000,
+        "unused_referenced_rows": 0,
+        "redundant_referenced_tuple_copies": 79000,
+        "redundant_referenced_tuple_percentage_of_join": 98.75,
+        "referenced_column_count": 7,
+        "referenced_key_length": 1,
+        "dependent_property_count": 6,
+        "theoretical_redundant_dependent_property_slots": 474000,
+        "redundant_non_null_dependent_values": 474000,
+        "total_non_null_dependent_values_in_folded_join": 480000,
+        "redundant_non_null_value_percentage": 98.75,
+        "redundant_value_payload_bytes": 10161849,
+        "total_value_payload_bytes_in_folded_join": 10290480,
+        "redundant_value_payload_percentage": 98.75,
+        "value_payload_metric": "UTF-8 bytes for strings; UTF-8 bytes of str(value) for other non-NULL values; this is not Neo4j on-disk storage",
+        "referenced_fanout_histogram": {
+          "80": 1000
+        },
+        "topology": {
+          "folded_boundary_relationships": 0,
+          "normalized_boundary_relationships": 0,
+          "redundant_folded_boundary_relationship_copies": 0,
+          "by_boundary": []
+        }
+      },
+      "timings": {
+        "folded_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 247.697333,
+              "available_after_ms": 0,
+              "consumed_after_ms": 240,
+              "neo4j_reported_total_ms": 240,
+              "affected_nodes": 80000,
+              "properties_set": 80000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 247.697333,
+              "median": 247.697333,
+              "stdev": 0.0,
+              "min": 247.697333,
+              "p95": 247.697333,
+              "max": 247.697333
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 240.0,
+              "median": 240.0,
+              "stdev": 0.0,
+              "min": 240.0,
+              "p95": 240.0,
+              "max": 240.0
+            },
+            "affected_nodes": [
+              80000
+            ],
+            "properties_set": [
+              80000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "denormalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 247.697333,
+              "available_after_ms": 0,
+              "consumed_after_ms": 240,
+              "neo4j_reported_total_ms": 240,
+              "affected_nodes": 80000,
+              "properties_set": 80000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 247.697333,
+              "median": 247.697333,
+              "stdev": 0.0,
+              "min": 247.697333,
+              "p95": 247.697333,
+              "max": 247.697333
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 240.0,
+              "median": 240.0,
+              "stdev": 0.0,
+              "min": 240.0,
+              "p95": 240.0,
+              "max": 240.0
+            },
+            "affected_nodes": [
+              80000
+            ],
+            "properties_set": [
+              80000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalization": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 1867.374666,
+              "available_after_ms": 1864,
+              "consumed_after_ms": 0,
+              "neo4j_reported_total_ms": 1864,
+              "affected_nodes": 80000,
+              "properties_set": 491000,
+              "nodes_created": 1000,
+              "nodes_deleted": 0,
+              "relationships_created": 80000,
+              "relationships_deleted": 0,
+              "labels_added": 82000,
+              "labels_removed": 80000
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 1867.374666,
+              "median": 1867.374666,
+              "stdev": 0.0,
+              "min": 1867.374666,
+              "p95": 1867.374666,
+              "max": 1867.374666
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 1864.0,
+              "median": 1864.0,
+              "stdev": 0.0,
+              "min": 1864.0,
+              "p95": 1864.0,
+              "max": 1864.0
+            },
+            "affected_nodes": [
+              80000
+            ],
+            "properties_set": [
+              491000
+            ],
+            "nodes_created": [
+              1000
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              80000
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 14.169,
+              "available_after_ms": 1,
+              "consumed_after_ms": 8,
+              "neo4j_reported_total_ms": 9,
+              "affected_nodes": 1000,
+              "properties_set": 1000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 14.169,
+              "median": 14.169,
+              "stdev": 0.0,
+              "min": 14.169,
+              "p95": 14.169,
+              "max": 14.169
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 9.0,
+              "median": 9.0,
+              "stdev": 0.0,
+              "min": 9.0,
+              "p95": 9.0,
+              "max": 9.0
+            },
+            "affected_nodes": [
+              1000
+            ],
+            "properties_set": [
+              1000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        }
+      },
+      "derived": {
+        "write_amplification_nodes": 80.0,
+        "folded_to_normalized_update_median_ratio": 17.48163829486908,
+        "median_client_ms_saved_per_logical_update_batch": 233.52833299999998,
+        "has_fd_tuple_redundancy": true,
+        "data_rewrite_normalization_break_even_update_batches": 7.996351628990561,
+        "denormalized_to_normalized_update_median_ratio": 17.48163829486908,
+        "shadow_data_rewrite_normalization_break_even_update_batches": 7.996351628990561
+      },
+      "cleanup": {
+        "deleted_nodes": 81000,
+        "deleted_relationships": 80000,
+        "final_shadow_state": "clean",
+        "experiment_owned_schema_dropped": true,
+        "original_graph_verified_unchanged": true,
+        "original_graph_verification": "case cleanup fingerprint matches suite baseline"
+      },
+      "final_state": {
+        "original_graph": "unchanged",
+        "shadow_graph": "removed"
+      }
+    },
+    {
+      "report_schema_version": 8,
+      "experiment": "tpch_direct_pair_fd",
+      "experiment_family": "tpch_direct_pair_fd",
+      "case_id": "lineitem_orders",
+      "run_id": "f74880f5931c4a9bb24844d5c4488cf1",
+      "started_at_utc": "2026-08-04T02:20:37.384172+00:00",
+      "completed_at_utc": "2026-08-04T02:25:22.048266+00:00",
+      "database": "tpch-sf-01-redundancy",
+      "environment": {
+        "python_version": "3.13.14",
+        "neo4j_driver_version": "6.2.0",
+        "server_agent": "Neo4j/2026.06.0",
+        "bolt_protocol_version": "(6, 0)",
+        "server_address": "127.0.0.1:7687",
+        "cypher_runtime": "server default",
+        "dbms_components": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "2026.06.0"
+            ],
+            "edition": "enterprise"
+          },
+          {
+            "name": "Cypher",
+            "versions": [
+              "5",
+              "25"
+            ],
+            "edition": ""
+          }
+        ]
+      },
+      "pair": {
+        "case_id": "lineitem_orders",
+        "referencing_table": {
+          "label": "LINEITEM",
+          "columns": [
+            "l_orderkey",
+            "l_partkey",
+            "l_suppkey",
+            "l_linenumber",
+            "l_quantity",
+            "l_extendedprice",
+            "l_discount",
+            "l_tax",
+            "l_returnflag",
+            "l_linestatus",
+            "l_shipdate",
+            "l_commitdate",
+            "l_receiptdate",
+            "l_shipinstruct",
+            "l_shipmode",
+            "l_comment"
+          ],
+          "key": [
+            "l_orderkey",
+            "l_linenumber"
+          ]
+        },
+        "referenced_table": {
+          "label": "ORDERS",
+          "columns": [
+            "o_orderkey",
+            "o_custkey",
+            "o_orderstatus",
+            "o_totalprice",
+            "o_orderdate",
+            "o_orderpriority",
+            "o_clerk",
+            "o_shippriority",
+            "o_comment"
+          ],
+          "key": [
+            "o_orderkey"
+          ],
+          "dependent_properties": [
+            "o_custkey",
+            "o_orderstatus",
+            "o_totalprice",
+            "o_orderdate",
+            "o_orderpriority",
+            "o_clerk",
+            "o_shippriority",
+            "o_comment"
+          ]
+        },
+        "source_join": {
+          "relationship_type": "LINEITEM_ORDERS",
+          "direction": "LINEITEM->ORDERS",
+          "referencing_is_relationship_source": true,
+          "fk_mapping_referencing_to_referenced": [
+            [
+              "l_orderkey",
+              "o_orderkey"
+            ]
+          ]
+        },
+        "folded_property_namespace": {
+          "strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+          "physical_names": "native TPC-H column names",
+          "table_aliases": {
+            "referencing": "l",
+            "referenced": "o"
+          },
+          "bindings": {
+            "referencing": [
+              {
+                "logical_name": "l_orderkey",
+                "folded_name": "l_orderkey"
+              },
+              {
+                "logical_name": "l_partkey",
+                "folded_name": "l_partkey"
+              },
+              {
+                "logical_name": "l_suppkey",
+                "folded_name": "l_suppkey"
+              },
+              {
+                "logical_name": "l_linenumber",
+                "folded_name": "l_linenumber"
+              },
+              {
+                "logical_name": "l_quantity",
+                "folded_name": "l_quantity"
+              },
+              {
+                "logical_name": "l_extendedprice",
+                "folded_name": "l_extendedprice"
+              },
+              {
+                "logical_name": "l_discount",
+                "folded_name": "l_discount"
+              },
+              {
+                "logical_name": "l_tax",
+                "folded_name": "l_tax"
+              },
+              {
+                "logical_name": "l_returnflag",
+                "folded_name": "l_returnflag"
+              },
+              {
+                "logical_name": "l_linestatus",
+                "folded_name": "l_linestatus"
+              },
+              {
+                "logical_name": "l_shipdate",
+                "folded_name": "l_shipdate"
+              },
+              {
+                "logical_name": "l_commitdate",
+                "folded_name": "l_commitdate"
+              },
+              {
+                "logical_name": "l_receiptdate",
+                "folded_name": "l_receiptdate"
+              },
+              {
+                "logical_name": "l_shipinstruct",
+                "folded_name": "l_shipinstruct"
+              },
+              {
+                "logical_name": "l_shipmode",
+                "folded_name": "l_shipmode"
+              },
+              {
+                "logical_name": "l_comment",
+                "folded_name": "l_comment"
+              }
+            ],
+            "referenced_non_key": [
+              {
+                "logical_name": "o_custkey",
+                "folded_name": "o_custkey"
+              },
+              {
+                "logical_name": "o_orderstatus",
+                "folded_name": "o_orderstatus"
+              },
+              {
+                "logical_name": "o_totalprice",
+                "folded_name": "o_totalprice"
+              },
+              {
+                "logical_name": "o_orderdate",
+                "folded_name": "o_orderdate"
+              },
+              {
+                "logical_name": "o_orderpriority",
+                "folded_name": "o_orderpriority"
+              },
+              {
+                "logical_name": "o_clerk",
+                "folded_name": "o_clerk"
+              },
+              {
+                "logical_name": "o_shippriority",
+                "folded_name": "o_shippriority"
+              },
+              {
+                "logical_name": "o_comment",
+                "folded_name": "o_comment"
+              }
+            ]
+          },
+          "referenced_key_copied": false,
+          "referenced_key_representation": [
+            {
+              "referencing_fk": "l_orderkey",
+              "folded_referencing_fk": "l_orderkey",
+              "referenced_key": "o_orderkey"
+            }
+          ]
+        },
+        "topology_fk_properties_excluded_from_updates": [
+          "o_custkey"
+        ],
+        "eligible_update_properties_before_domain_checks": [
+          "o_orderstatus",
+          "o_totalprice",
+          "o_orderdate",
+          "o_orderpriority",
+          "o_clerk",
+          "o_shippriority",
+          "o_comment"
+        ],
+        "default_update_property": "o_orderpriority",
+        "boundaries": [
+          {
+            "relationship": {
+              "row_label": "ORDERS",
+              "source_label": "ORDERS",
+              "target_label": "CUSTOMER",
+              "relationship_type": "ORDERS_CUSTOMER",
+              "source_keys": [
+                [
+                  "o_orderkey",
+                  "o_orderkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "c_custkey",
+                  "o_custkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": true,
+            "external_label": "CUSTOMER",
+            "copy_type": "JOIN_ORDERS_CUSTOMER",
+            "boundary_id": "referenced:ORDERS-[:ORDERS_CUSTOMER]->CUSTOMER"
+          },
+          {
+            "relationship": {
+              "row_label": "LINEITEM",
+              "source_label": "LINEITEM",
+              "target_label": "PARTSUPP",
+              "relationship_type": "LINEITEM_PARTSUPP",
+              "source_keys": [
+                [
+                  "l_orderkey",
+                  "l_orderkey"
+                ],
+                [
+                  "l_linenumber",
+                  "l_linenumber"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "ps_partkey",
+                  "l_partkey"
+                ],
+                [
+                  "ps_suppkey",
+                  "l_suppkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": true,
+            "external_label": "PARTSUPP",
+            "copy_type": "JOIN_LINEITEM_PARTSUPP",
+            "boundary_id": "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP"
+          }
+        ]
+      },
+      "execution": {
+        "mode": "run_scoped_batched_shadow_projection",
+        "topology_mode": "property-fd",
+        "source_policy": "the original graph is read-only; every experimental node and relationship is run-scoped and removed",
+        "boundary_overlay_note": "property-fd mode creates no boundary overlay",
+        "local_concurrency_policy": "exclusive advisory process lock",
+        "mutation_atomicity": "each configured-size subtransaction is atomic; a multi-batch phase is compensated by run-scoped cleanup if a later batch fails"
+      },
+      "dataset": {
+        "name": "TPC-H",
+        "source_graph_fingerprint_schema_version": 3,
+        "source_graph_fingerprint_algorithm": "tpch_schema_keyed_commutative_sha256_sum_xor_v1",
+        "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_sha256_during": null,
+        "source_graph_during_scan": "not scanned while artifacts exist; recomputed immediately after this case cleanup",
+        "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_verification_scope": "suite baseline fingerprint compared with a fresh fingerprint immediately after this case cleanup",
+        "join_fingerprint_schema_version": 3,
+        "join_fingerprint_algorithm": "commutative_join_row_sha256_sum_xor_v1",
+        "join_sha256": "f6112b2fd0940c5b452d89ed10c7560c282d4437115857d897b67b09e6e9a2d8",
+        "referencing_rows": 600572,
+        "full_referenced_rows": 150000,
+        "join_rows": 600572,
+        "participating_referenced_rows": 150000,
+        "boundary_expectations": []
+      },
+      "configuration": {
+        "update_property": "o_orderpriority",
+        "batch_size": 10000,
+        "batch_size_scope": "logical update parameters and physical graph mutation subtransactions",
+        "update_key_properties": [
+          "o_orderkey"
+        ],
+        "warmup_runs": 1,
+        "measured_update_runs": 1,
+        "normalization_warmup_runs": 1,
+        "normalization_runs": 1,
+        "folded_property_naming_strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+        "update_strategy_id": "deterministic_full_referenced_relation_domain_rotation_v2",
+        "update_null_policy": "reject_attribute_if_any_domain_or_updated_value_is_null",
+        "active_domain_scope": "full_original_ORDERS_relation",
+        "active_domain_size": 5,
+        "active_domain_source_tuple_count": 150000,
+        "logical_update_tuple_count": 150000,
+        "active_domain_sha256": "290a558ac464de217d3df527043e5006e319a4d43b0ed6f8322058f9fd4e7462",
+        "update_mapping_sha256": "23411789acbee288381e06a22ee306faff208c3b00d9978218420cc3f1a28560",
+        "update_value_type": "builtins.str",
+        "update_workload_storage": "run-local temporary SQLite spool, removed when the case finishes or fails",
+        "schema_objects_created_and_dropped": {
+          "folded_key": "mvfd_lineitem_orders_f74880f5931c4a9bb24844d5c4488cf1_folded_key",
+          "referencing_key": "mvfd_lineitem_orders_f74880f5931c4a9bb24844d5c4488cf1_referencing_key",
+          "referenced_key": "mvfd_lineitem_orders_f74880f5931c4a9bb24844d5c4488cf1_referenced_key",
+          "folded_fk": "mvfd_lineitem_orders_f74880f5931c4a9bb24844d5c4488cf1_folded_fk",
+          "referencing_fk": "mvfd_lineitem_orders_f74880f5931c4a9bb24844d5c4488cf1_referencing_fk"
+        },
+        "update_timing_scope": "sum of sequential database-batch wall times through result consumption and commit; spool iteration, restore, and validation excluded",
+        "normalization_timing_scope": "sequential batched subtransactions for referenced-property extraction and shadow data decomposition; DDL, validation, refolding, and cleanup excluded",
+        "transformation_validation_policy": "structural cardinality checks after every normalize/refold cycle; full label/property/relationship/value fingerprint checks at stable phase checkpoints",
+        "cache_policy": "warm workload; server page/query caches are not cleared"
+      },
+      "update_payload": {
+        "metric": "UTF-8 bytes for strings and UTF-8 bytes of str(value) for other types; this is a value-payload proxy, not Neo4j store bytes",
+        "normalized_logical": {
+          "property_writes": 150000,
+          "original_payload_bytes": 1258294,
+          "updated_payload_bytes": 1256989,
+          "payload_delta_bytes": -1305
+        },
+        "folded_join_fanout_weighted": {
+          "property_writes": 600572,
+          "original_payload_bytes": 5036797,
+          "updated_payload_bytes": 5035501,
+          "payload_delta_bytes": -1296
+        }
+      },
+      "step0_artifacts": {
+        "folded_nodes": 600572,
+        "boundary_relationships": {},
+        "boundary_relationship_total": 0
+      },
+      "folded_shadow_state": {
+        "folded_join_nodes": 600572,
+        "normalized_referencing_nodes": 0,
+        "normalized_referenced_nodes": 0,
+        "normalized_join_relationships": 0,
+        "boundary_relationships": {
+          "referenced:ORDERS-[:ORDERS_CUSTOMER]->CUSTOMER": 0,
+          "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP": 0
+        }
+      },
+      "normalized_shadow_state": {
+        "folded_join_nodes": 0,
+        "normalized_referencing_nodes": 600572,
+        "normalized_referenced_nodes": 150000,
+        "normalized_join_relationships": 600572,
+        "boundary_relationships": {
+          "referenced:ORDERS-[:ORDERS_CUSTOMER]->CUSTOMER": 0,
+          "referencing:LINEITEM-[:LINEITEM_PARTSUPP]->PARTSUPP": 0
+        }
+      },
+      "redundancy": {
+        "definition": {
+          "referencing_table": "LINEITEM",
+          "referenced_table": "ORDERS",
+          "join_tuple_count_J": 600572,
+          "participating_distinct_referenced_keys_D": 150000,
+          "full_referenced_relation_rows": 150000,
+          "redundant_referenced_tuple_copies": "J - D",
+          "redundant_referenced_property_slots": "(J - D) * (column_count(referenced) - key_length(referenced))"
+        },
+        "join_rows_J": 600572,
+        "full_referenced_rows": 150000,
+        "participating_referenced_rows_D": 150000,
+        "unused_referenced_rows": 0,
+        "redundant_referenced_tuple_copies": 450572,
+        "redundant_referenced_tuple_percentage_of_join": 75.02381063386238,
+        "referenced_column_count": 9,
+        "referenced_key_length": 1,
+        "dependent_property_count": 8,
+        "theoretical_redundant_dependent_property_slots": 3604576,
+        "redundant_non_null_dependent_values": 3604576,
+        "total_non_null_dependent_values_in_folded_join": 4804576,
+        "redundant_non_null_value_percentage": 75.02381063386238,
+        "redundant_value_payload_bytes": 43676144,
+        "total_value_payload_bytes_in_folded_join": 58182084,
+        "redundant_value_payload_percentage": 75.06802953294007,
+        "value_payload_metric": "UTF-8 bytes for strings; UTF-8 bytes of str(value) for other non-NULL values; this is not Neo4j on-disk storage",
+        "referenced_fanout_histogram": {
+          "1": 21379,
+          "2": 21357,
+          "3": 21418,
+          "4": 21375,
+          "5": 21554,
+          "6": 21464,
+          "7": 21453
+        },
+        "topology": {
+          "folded_boundary_relationships": 0,
+          "normalized_boundary_relationships": 0,
+          "redundant_folded_boundary_relationship_copies": 0,
+          "by_boundary": []
+        }
+      },
+      "timings": {
+        "folded_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 3373.70846,
+              "available_after_ms": 93,
+              "consumed_after_ms": 2510,
+              "neo4j_reported_total_ms": 2603,
+              "affected_nodes": 600572,
+              "properties_set": 600572,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 3373.70846,
+              "median": 3373.70846,
+              "stdev": 0.0,
+              "min": 3373.70846,
+              "p95": 3373.70846,
+              "max": 3373.70846
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 2603.0,
+              "median": 2603.0,
+              "stdev": 0.0,
+              "min": 2603.0,
+              "p95": 2603.0,
+              "max": 2603.0
+            },
+            "affected_nodes": [
+              600572
+            ],
+            "properties_set": [
+              600572
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "denormalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 3373.70846,
+              "available_after_ms": 93,
+              "consumed_after_ms": 2510,
+              "neo4j_reported_total_ms": 2603,
+              "affected_nodes": 600572,
+              "properties_set": 600572,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 3373.70846,
+              "median": 3373.70846,
+              "stdev": 0.0,
+              "min": 3373.70846,
+              "p95": 3373.70846,
+              "max": 3373.70846
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 2603.0,
+              "median": 2603.0,
+              "stdev": 0.0,
+              "min": 2603.0,
+              "p95": 2603.0,
+              "max": 2603.0
+            },
+            "affected_nodes": [
+              600572
+            ],
+            "properties_set": [
+              600572
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalization": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 22193.007875,
+              "available_after_ms": 22178,
+              "consumed_after_ms": 1,
+              "neo4j_reported_total_ms": 22179,
+              "affected_nodes": 600572,
+              "properties_set": 6754576,
+              "nodes_created": 150000,
+              "nodes_deleted": 0,
+              "relationships_created": 600572,
+              "relationships_deleted": 0,
+              "labels_added": 900572,
+              "labels_removed": 600572
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 22193.007875,
+              "median": 22193.007875,
+              "stdev": 0.0,
+              "min": 22193.007875,
+              "p95": 22193.007875,
+              "max": 22193.007875
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 22179.0,
+              "median": 22179.0,
+              "stdev": 0.0,
+              "min": 22179.0,
+              "p95": 22179.0,
+              "max": 22179.0
+            },
+            "affected_nodes": [
+              600572
+            ],
+            "properties_set": [
+              6754576
+            ],
+            "nodes_created": [
+              150000
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              600572
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 1857.981044,
+              "available_after_ms": 86,
+              "consumed_after_ms": 913,
+              "neo4j_reported_total_ms": 999,
+              "affected_nodes": 150000,
+              "properties_set": 150000,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 1857.981044,
+              "median": 1857.981044,
+              "stdev": 0.0,
+              "min": 1857.981044,
+              "p95": 1857.981044,
+              "max": 1857.981044
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 999.0,
+              "median": 999.0,
+              "stdev": 0.0,
+              "min": 999.0,
+              "p95": 999.0,
+              "max": 999.0
+            },
+            "affected_nodes": [
+              150000
+            ],
+            "properties_set": [
+              150000
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        }
+      },
+      "derived": {
+        "write_amplification_nodes": 4.0038133333333334,
+        "folded_to_normalized_update_median_ratio": 1.8157927234482591,
+        "median_client_ms_saved_per_logical_update_batch": 1515.7274159999997,
+        "has_fd_tuple_redundancy": true,
+        "data_rewrite_normalization_break_even_update_batches": 14.641819921399378,
+        "denormalized_to_normalized_update_median_ratio": 1.8157927234482591,
+        "shadow_data_rewrite_normalization_break_even_update_batches": 14.641819921399378
+      },
+      "cleanup": {
+        "deleted_nodes": 750572,
+        "deleted_relationships": 600572,
+        "final_shadow_state": "clean",
+        "experiment_owned_schema_dropped": true,
+        "original_graph_verified_unchanged": true,
+        "original_graph_verification": "case cleanup fingerprint matches suite baseline"
+      },
+      "final_state": {
+        "original_graph": "unchanged",
+        "shadow_graph": "removed"
+      }
+    },
+    {
+      "report_schema_version": 8,
+      "experiment": "tpch_direct_pair_fd",
+      "experiment_family": "tpch_direct_pair_fd",
+      "case_id": "lineitem_partsupp",
+      "run_id": "04df5f2ea4d24e7ba97a2a8ae13f9cd9",
+      "started_at_utc": "2026-08-04T02:25:22.050953+00:00",
+      "completed_at_utc": "2026-08-04T02:29:17.492921+00:00",
+      "database": "tpch-sf-01-redundancy",
+      "environment": {
+        "python_version": "3.13.14",
+        "neo4j_driver_version": "6.2.0",
+        "server_agent": "Neo4j/2026.06.0",
+        "bolt_protocol_version": "(6, 0)",
+        "server_address": "127.0.0.1:7687",
+        "cypher_runtime": "server default",
+        "dbms_components": [
+          {
+            "name": "Neo4j Kernel",
+            "versions": [
+              "2026.06.0"
+            ],
+            "edition": "enterprise"
+          },
+          {
+            "name": "Cypher",
+            "versions": [
+              "5",
+              "25"
+            ],
+            "edition": ""
+          }
+        ]
+      },
+      "pair": {
+        "case_id": "lineitem_partsupp",
+        "referencing_table": {
+          "label": "LINEITEM",
+          "columns": [
+            "l_orderkey",
+            "l_partkey",
+            "l_suppkey",
+            "l_linenumber",
+            "l_quantity",
+            "l_extendedprice",
+            "l_discount",
+            "l_tax",
+            "l_returnflag",
+            "l_linestatus",
+            "l_shipdate",
+            "l_commitdate",
+            "l_receiptdate",
+            "l_shipinstruct",
+            "l_shipmode",
+            "l_comment"
+          ],
+          "key": [
+            "l_orderkey",
+            "l_linenumber"
+          ]
+        },
+        "referenced_table": {
+          "label": "PARTSUPP",
+          "columns": [
+            "ps_partkey",
+            "ps_suppkey",
+            "ps_availqty",
+            "ps_supplycost",
+            "ps_comment"
+          ],
+          "key": [
+            "ps_partkey",
+            "ps_suppkey"
+          ],
+          "dependent_properties": [
+            "ps_availqty",
+            "ps_supplycost",
+            "ps_comment"
+          ]
+        },
+        "source_join": {
+          "relationship_type": "LINEITEM_PARTSUPP",
+          "direction": "LINEITEM->PARTSUPP",
+          "referencing_is_relationship_source": true,
+          "fk_mapping_referencing_to_referenced": [
+            [
+              "l_partkey",
+              "ps_partkey"
+            ],
+            [
+              "l_suppkey",
+              "ps_suppkey"
+            ]
+          ]
+        },
+        "folded_property_namespace": {
+          "strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+          "physical_names": "native TPC-H column names",
+          "table_aliases": {
+            "referencing": "l",
+            "referenced": "ps"
+          },
+          "bindings": {
+            "referencing": [
+              {
+                "logical_name": "l_orderkey",
+                "folded_name": "l_orderkey"
+              },
+              {
+                "logical_name": "l_partkey",
+                "folded_name": "l_partkey"
+              },
+              {
+                "logical_name": "l_suppkey",
+                "folded_name": "l_suppkey"
+              },
+              {
+                "logical_name": "l_linenumber",
+                "folded_name": "l_linenumber"
+              },
+              {
+                "logical_name": "l_quantity",
+                "folded_name": "l_quantity"
+              },
+              {
+                "logical_name": "l_extendedprice",
+                "folded_name": "l_extendedprice"
+              },
+              {
+                "logical_name": "l_discount",
+                "folded_name": "l_discount"
+              },
+              {
+                "logical_name": "l_tax",
+                "folded_name": "l_tax"
+              },
+              {
+                "logical_name": "l_returnflag",
+                "folded_name": "l_returnflag"
+              },
+              {
+                "logical_name": "l_linestatus",
+                "folded_name": "l_linestatus"
+              },
+              {
+                "logical_name": "l_shipdate",
+                "folded_name": "l_shipdate"
+              },
+              {
+                "logical_name": "l_commitdate",
+                "folded_name": "l_commitdate"
+              },
+              {
+                "logical_name": "l_receiptdate",
+                "folded_name": "l_receiptdate"
+              },
+              {
+                "logical_name": "l_shipinstruct",
+                "folded_name": "l_shipinstruct"
+              },
+              {
+                "logical_name": "l_shipmode",
+                "folded_name": "l_shipmode"
+              },
+              {
+                "logical_name": "l_comment",
+                "folded_name": "l_comment"
+              }
+            ],
+            "referenced_non_key": [
+              {
+                "logical_name": "ps_availqty",
+                "folded_name": "ps_availqty"
+              },
+              {
+                "logical_name": "ps_supplycost",
+                "folded_name": "ps_supplycost"
+              },
+              {
+                "logical_name": "ps_comment",
+                "folded_name": "ps_comment"
+              }
+            ]
+          },
+          "referenced_key_copied": false,
+          "referenced_key_representation": [
+            {
+              "referencing_fk": "l_partkey",
+              "folded_referencing_fk": "l_partkey",
+              "referenced_key": "ps_partkey"
+            },
+            {
+              "referencing_fk": "l_suppkey",
+              "folded_referencing_fk": "l_suppkey",
+              "referenced_key": "ps_suppkey"
+            }
+          ]
+        },
+        "topology_fk_properties_excluded_from_updates": [
+          "ps_partkey",
+          "ps_suppkey"
+        ],
+        "eligible_update_properties_before_domain_checks": [
+          "ps_availqty",
+          "ps_supplycost",
+          "ps_comment"
+        ],
+        "default_update_property": "ps_supplycost",
+        "boundaries": [
+          {
+            "relationship": {
+              "row_label": "PARTSUPP",
+              "source_label": "PARTSUPP",
+              "target_label": "PART",
+              "relationship_type": "PARTSUPP_PART",
+              "source_keys": [
+                [
+                  "ps_partkey",
+                  "ps_partkey"
+                ],
+                [
+                  "ps_suppkey",
+                  "ps_suppkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "p_partkey",
+                  "ps_partkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": true,
+            "external_label": "PART",
+            "copy_type": "JOIN_PARTSUPP_PART",
+            "boundary_id": "referenced:PARTSUPP-[:PARTSUPP_PART]->PART"
+          },
+          {
+            "relationship": {
+              "row_label": "PARTSUPP",
+              "source_label": "PARTSUPP",
+              "target_label": "SUPPLIER",
+              "relationship_type": "PARTSUPP_SUPPLIER",
+              "source_keys": [
+                [
+                  "ps_partkey",
+                  "ps_partkey"
+                ],
+                [
+                  "ps_suppkey",
+                  "ps_suppkey"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "s_suppkey",
+                  "ps_suppkey"
+                ]
+              ]
+            },
+            "owner": "referenced",
+            "owner_is_source": true,
+            "external_label": "SUPPLIER",
+            "copy_type": "JOIN_PARTSUPP_SUPPLIER",
+            "boundary_id": "referenced:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER"
+          },
+          {
+            "relationship": {
+              "row_label": "LINEITEM",
+              "source_label": "LINEITEM",
+              "target_label": "ORDERS",
+              "relationship_type": "LINEITEM_ORDERS",
+              "source_keys": [
+                [
+                  "l_orderkey",
+                  "l_orderkey"
+                ],
+                [
+                  "l_linenumber",
+                  "l_linenumber"
+                ]
+              ],
+              "target_keys": [
+                [
+                  "o_orderkey",
+                  "l_orderkey"
+                ]
+              ]
+            },
+            "owner": "referencing",
+            "owner_is_source": true,
+            "external_label": "ORDERS",
+            "copy_type": "JOIN_LINEITEM_ORDERS",
+            "boundary_id": "referencing:LINEITEM-[:LINEITEM_ORDERS]->ORDERS"
+          }
+        ]
+      },
+      "execution": {
+        "mode": "run_scoped_batched_shadow_projection",
+        "topology_mode": "property-fd",
+        "source_policy": "the original graph is read-only; every experimental node and relationship is run-scoped and removed",
+        "boundary_overlay_note": "property-fd mode creates no boundary overlay",
+        "local_concurrency_policy": "exclusive advisory process lock",
+        "mutation_atomicity": "each configured-size subtransaction is atomic; a multi-batch phase is compensated by run-scoped cleanup if a later batch fails"
+      },
+      "dataset": {
+        "name": "TPC-H",
+        "source_graph_fingerprint_schema_version": 3,
+        "source_graph_fingerprint_algorithm": "tpch_schema_keyed_commutative_sha256_sum_xor_v1",
+        "source_graph_sha256_before": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_sha256_during": null,
+        "source_graph_during_scan": "not scanned while artifacts exist; recomputed immediately after this case cleanup",
+        "source_graph_sha256_after": "6d32e82a4ea1695b711d8963d839d9b1ec923cdc3cbc65b43ccc9b779051edad",
+        "source_graph_verification_scope": "suite baseline fingerprint compared with a fresh fingerprint immediately after this case cleanup",
+        "join_fingerprint_schema_version": 3,
+        "join_fingerprint_algorithm": "commutative_join_row_sha256_sum_xor_v1",
+        "join_sha256": "a826f3383ce3773231e7b44e7fa0f28b8baad84d7198d7273f45991d5506615b",
+        "referencing_rows": 600572,
+        "full_referenced_rows": 80000,
+        "join_rows": 600572,
+        "participating_referenced_rows": 79943,
+        "boundary_expectations": []
+      },
+      "configuration": {
+        "update_property": "ps_supplycost",
+        "batch_size": 10000,
+        "batch_size_scope": "logical update parameters and physical graph mutation subtransactions",
+        "update_key_properties": [
+          "ps_partkey",
+          "ps_suppkey"
+        ],
+        "warmup_runs": 1,
+        "measured_update_runs": 1,
+        "normalization_warmup_runs": 1,
+        "normalization_runs": 1,
+        "folded_property_naming_strategy_id": "tpch_native_column_names_no_referenced_key_v1",
+        "update_strategy_id": "deterministic_full_referenced_relation_domain_rotation_v2",
+        "update_null_policy": "reject_attribute_if_any_domain_or_updated_value_is_null",
+        "active_domain_scope": "full_original_PARTSUPP_relation",
+        "active_domain_size": 54983,
+        "active_domain_source_tuple_count": 80000,
+        "logical_update_tuple_count": 79943,
+        "active_domain_sha256": "463fe65d51c5d34a078a0562973cae63db01b244be19a5a6d3348b5f87707d76",
+        "update_mapping_sha256": "558ced7c04f6fc83c9c700c09568cfba5f5d264fa3e2d0bc8b39f99c5d1140df",
+        "update_value_type": "builtins.float",
+        "update_workload_storage": "run-local temporary SQLite spool, removed when the case finishes or fails",
+        "schema_objects_created_and_dropped": {
+          "folded_key": "mvfd_lineitem_partsupp_04df5f2ea4d24e7ba97a2a8ae13f9cd9_folded_key",
+          "referencing_key": "mvfd_lineitem_partsupp_04df5f2ea4d24e7ba97a2a8ae13f9cd9_referencing_key",
+          "referenced_key": "mvfd_lineitem_partsupp_04df5f2ea4d24e7ba97a2a8ae13f9cd9_referenced_key",
+          "folded_fk": "mvfd_lineitem_partsupp_04df5f2ea4d24e7ba97a2a8ae13f9cd9_folded_fk",
+          "referencing_fk": "mvfd_lineitem_partsupp_04df5f2ea4d24e7ba97a2a8ae13f9cd9_referencing_fk"
+        },
+        "update_timing_scope": "sum of sequential database-batch wall times through result consumption and commit; spool iteration, restore, and validation excluded",
+        "normalization_timing_scope": "sequential batched subtransactions for referenced-property extraction and shadow data decomposition; DDL, validation, refolding, and cleanup excluded",
+        "transformation_validation_policy": "structural cardinality checks after every normalize/refold cycle; full label/property/relationship/value fingerprint checks at stable phase checkpoints",
+        "cache_policy": "warm workload; server page/query caches are not cleared"
+      },
+      "update_payload": {
+        "metric": "UTF-8 bytes for strings and UTF-8 bytes of str(value) for other types; this is a value-payload proxy, not Neo4j store bytes",
+        "normalized_logical": {
+          "property_writes": 79943,
+          "original_payload_bytes": 463181,
+          "updated_payload_bytes": 463153,
+          "payload_delta_bytes": -28
+        },
+        "folded_join_fanout_weighted": {
+          "property_writes": 600572,
+          "original_payload_bytes": 3479354,
+          "updated_payload_bytes": 3479063,
+          "payload_delta_bytes": -291
+        }
+      },
+      "step0_artifacts": {
+        "folded_nodes": 600572,
+        "boundary_relationships": {},
+        "boundary_relationship_total": 0
+      },
+      "folded_shadow_state": {
+        "folded_join_nodes": 600572,
+        "normalized_referencing_nodes": 0,
+        "normalized_referenced_nodes": 0,
+        "normalized_join_relationships": 0,
+        "boundary_relationships": {
+          "referenced:PARTSUPP-[:PARTSUPP_PART]->PART": 0,
+          "referenced:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER": 0,
+          "referencing:LINEITEM-[:LINEITEM_ORDERS]->ORDERS": 0
+        }
+      },
+      "normalized_shadow_state": {
+        "folded_join_nodes": 0,
+        "normalized_referencing_nodes": 600572,
+        "normalized_referenced_nodes": 79943,
+        "normalized_join_relationships": 600572,
+        "boundary_relationships": {
+          "referenced:PARTSUPP-[:PARTSUPP_PART]->PART": 0,
+          "referenced:PARTSUPP-[:PARTSUPP_SUPPLIER]->SUPPLIER": 0,
+          "referencing:LINEITEM-[:LINEITEM_ORDERS]->ORDERS": 0
+        }
+      },
+      "redundancy": {
+        "definition": {
+          "referencing_table": "LINEITEM",
+          "referenced_table": "PARTSUPP",
+          "join_tuple_count_J": 600572,
+          "participating_distinct_referenced_keys_D": 79943,
+          "full_referenced_relation_rows": 80000,
+          "redundant_referenced_tuple_copies": "J - D",
+          "redundant_referenced_property_slots": "(J - D) * (column_count(referenced) - key_length(referenced))"
+        },
+        "join_rows_J": 600572,
+        "full_referenced_rows": 80000,
+        "participating_referenced_rows_D": 79943,
+        "unused_referenced_rows": 57,
+        "redundant_referenced_tuple_copies": 520629,
+        "redundant_referenced_tuple_percentage_of_join": 86.68885662335241,
+        "referenced_column_count": 5,
+        "referenced_key_length": 2,
+        "dependent_property_count": 3,
+        "theoretical_redundant_dependent_property_slots": 1561887,
+        "redundant_non_null_dependent_values": 1561887,
+        "total_non_null_dependent_values_in_folded_join": 1801716,
+        "redundant_non_null_value_percentage": 86.68885662335241,
+        "redundant_value_payload_bytes": 69316559,
+        "total_value_payload_bytes_in_folded_join": 79961825,
+        "redundant_value_payload_percentage": 86.68706473370261,
+        "value_payload_metric": "UTF-8 bytes for strings; UTF-8 bytes of str(value) for other non-NULL values; this is not Neo4j on-disk storage",
+        "referenced_fanout_histogram": {
+          "1": 359,
+          "2": 1193,
+          "3": 3193,
+          "4": 5769,
+          "5": 8799,
+          "6": 10783,
+          "7": 11666,
+          "8": 11126,
+          "9": 8978,
+          "10": 6860,
+          "11": 4826,
+          "12": 2942,
+          "13": 1710,
+          "14": 929,
+          "15": 456,
+          "16": 206,
+          "17": 77,
+          "18": 39,
+          "19": 15,
+          "20": 10,
+          "21": 5,
+          "22": 2
+        },
+        "topology": {
+          "folded_boundary_relationships": 0,
+          "normalized_boundary_relationships": 0,
+          "redundant_folded_boundary_relationship_copies": 0,
+          "by_boundary": []
+        }
+      },
+      "timings": {
+        "folded_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 2243.201751,
+              "available_after_ms": 50,
+              "consumed_after_ms": 1767,
+              "neo4j_reported_total_ms": 1817,
+              "affected_nodes": 600572,
+              "properties_set": 600572,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 2243.201751,
+              "median": 2243.201751,
+              "stdev": 0.0,
+              "min": 2243.201751,
+              "p95": 2243.201751,
+              "max": 2243.201751
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 1817.0,
+              "median": 1817.0,
+              "stdev": 0.0,
+              "min": 1817.0,
+              "p95": 1817.0,
+              "max": 1817.0
+            },
+            "affected_nodes": [
+              600572
+            ],
+            "properties_set": [
+              600572
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "denormalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 2243.201751,
+              "available_after_ms": 50,
+              "consumed_after_ms": 1767,
+              "neo4j_reported_total_ms": 1817,
+              "affected_nodes": 600572,
+              "properties_set": 600572,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 2243.201751,
+              "median": 2243.201751,
+              "stdev": 0.0,
+              "min": 2243.201751,
+              "p95": 2243.201751,
+              "max": 2243.201751
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 1817.0,
+              "median": 1817.0,
+              "stdev": 0.0,
+              "min": 1817.0,
+              "p95": 1817.0,
+              "max": 1817.0
+            },
+            "affected_nodes": [
+              600572
+            ],
+            "properties_set": [
+              600572
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalization": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 15929.302291,
+              "available_after_ms": 15926,
+              "consumed_after_ms": 0,
+              "neo4j_reported_total_ms": 15926,
+              "affected_nodes": 600572,
+              "properties_set": 2601146,
+              "nodes_created": 79943,
+              "nodes_deleted": 0,
+              "relationships_created": 600572,
+              "relationships_deleted": 0,
+              "labels_added": 760458,
+              "labels_removed": 600572
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 15929.302291,
+              "median": 15929.302291,
+              "stdev": 0.0,
+              "min": 15929.302291,
+              "p95": 15929.302291,
+              "max": 15929.302291
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 15926.0,
+              "median": 15926.0,
+              "stdev": 0.0,
+              "min": 15926.0,
+              "p95": 15926.0,
+              "max": 15926.0
+            },
+            "affected_nodes": [
+              600572
+            ],
+            "properties_set": [
+              2601146
+            ],
+            "nodes_created": [
+              79943
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              600572
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        },
+        "normalized_update": {
+          "samples": [
+            {
+              "run": 1,
+              "client_wall_ms": 915.220292,
+              "available_after_ms": 52,
+              "consumed_after_ms": 435,
+              "neo4j_reported_total_ms": 487,
+              "affected_nodes": 79943,
+              "properties_set": 79943,
+              "nodes_created": 0,
+              "nodes_deleted": 0,
+              "relationships_created": 0,
+              "relationships_deleted": 0,
+              "labels_added": 0,
+              "labels_removed": 0
+            }
+          ],
+          "summary": {
+            "client_wall_ms": {
+              "n": 1,
+              "mean": 915.220292,
+              "median": 915.220292,
+              "stdev": 0.0,
+              "min": 915.220292,
+              "p95": 915.220292,
+              "max": 915.220292
+            },
+            "neo4j_reported_total_ms": {
+              "n": 1,
+              "mean": 487.0,
+              "median": 487.0,
+              "stdev": 0.0,
+              "min": 487.0,
+              "p95": 487.0,
+              "max": 487.0
+            },
+            "affected_nodes": [
+              79943
+            ],
+            "properties_set": [
+              79943
+            ],
+            "nodes_created": [
+              0
+            ],
+            "nodes_deleted": [
+              0
+            ],
+            "relationships_created": [
+              0
+            ],
+            "relationships_deleted": [
+              0
+            ]
+          }
+        }
+      },
+      "derived": {
+        "write_amplification_nodes": 7.512502658143927,
+        "folded_to_normalized_update_median_ratio": 2.450996520300055,
+        "median_client_ms_saved_per_logical_update_batch": 1327.981459,
+        "has_fd_tuple_redundancy": true,
+        "data_rewrite_normalization_break_even_update_batches": 11.995124015507809,
+        "denormalized_to_normalized_update_median_ratio": 2.450996520300055,
+        "shadow_data_rewrite_normalization_break_even_update_batches": 11.995124015507809
+      },
+      "cleanup": {
+        "deleted_nodes": 680515,
+        "deleted_relationships": 600572,
+        "final_shadow_state": "clean",
+        "experiment_owned_schema_dropped": true,
+        "original_graph_verified_unchanged": true,
+        "original_graph_verification": "case cleanup fingerprint matches suite baseline"
+      },
+      "final_state": {
+        "original_graph": "unchanged",
+        "shadow_graph": "removed"
+      }
+    }
+  ]
+}

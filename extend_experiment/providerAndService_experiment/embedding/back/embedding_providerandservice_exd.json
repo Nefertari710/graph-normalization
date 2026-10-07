@@ -1,0 +1,48 @@
+{
+  "experiment": "provider_service_sequential_normalization_embeddings",
+  "created_at": "2026-09-20T02:11:27.893537+12:00",
+  "database": "providerandservicecsv",
+  "neo4j_driver": "6.2.0",
+  "gds_version": "2026.06.0",
+  "relationship_orientation": "UNDIRECTED",
+  "settings": {
+    "pair_count": 1000,
+    "pair_sample_seed": 20260920,
+    "embedding_dimension": 128,
+    "random_seeds": [
+      20260917,
+      20260918,
+      20260919,
+      20260920,
+      20260921,
+      20260922,
+      20260923,
+      20260924,
+      20260925,
+      20260926
+    ],
+    "methods": [
+      "property_hash",
+      "fast_rp",
+      "node2vec",
+      "hash_gnn",
+      "graph_sage"
+    ]
+  },
+  "method_scope": "all three projections use the same fixed same-NPI record pairs and one private anchor per record; N1 extracts Service and N2 additionally extracts Provider",
+  "normalization_sequence": [
+    {
+      "step": 1,
+      "functional_dependency": "hcpcs_cd -> (hcpcs_desc, hcpcs_drug_ind)",
+      "comparison": "denormalized -> service_normalized"
+    },
+    {
+      "step": 2,
+      "functional_dependency": "rndrng_npi -> (rndrng_prvdr_last_org_name, rndrng_prvdr_first_name, rndrng_prvdr_mi, rndrng_prvdr_ent_cd, rndrng_prvdr_st1, rndrng_prvdr_st2, rndrng_prvdr_city, rndrng_prvdr_state_abrvtn, rndrng_prvdr_zip5, rndrng_prvdr_cntry)",
+      "comparison": "service_normalized -> service_provider_normalized"
+    }
+  ],
+  "experiments": {
+    "sequential": []
+  }
+}

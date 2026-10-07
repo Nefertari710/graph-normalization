@@ -1,0 +1,3010 @@
+{
+ "experiment": "offshore_entity_resolution",
+ "created_at": "2026-10-05T15:36:46.895011+13:00",
+ "settings": {
+  "duplicate_types": [
+   "same_company_as",
+   "same_as",
+   "same_name_as",
+   "similar_company_as"
+  ],
+  "excluded_types": [
+   "same_company_as",
+   "same_as",
+   "same_name_as",
+   "similar_company_as",
+   "similar",
+   "same_id_as",
+   "probably_same_officer_as",
+   "same_address_as",
+   "same_intermediary_as"
+  ],
+  "positives": 500,
+  "hard_negatives": 3,
+  "random_negatives": 3,
+  "seeds": [
+   20260917,
+   20260918,
+   20260919,
+   20260920,
+   20260921,
+   20260922,
+   20260923,
+   20260924,
+   20260925,
+   20260926
+  ]
+ },
+ "cases": [
+  {
+   "fd": "service_provider",
+   "seed": 20260917,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 445,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3973,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9832393333333334,
+      "auc_hard": 0.96532,
+      "mrr": 0.9377000000000001,
+      "auc_hard_same_det": 0.9718576779026217,
+      "auc_hard_diff_det": 0.9124242424242425
+     },
+     "D": {
+      "auc_random": 0.9549306666666667,
+      "auc_hard": 0.9173033333333334,
+      "mrr": 0.9124380952380953,
+      "auc_hard_same_det": 0.973092883895131,
+      "auc_hard_diff_det": 0.4659151515151515
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.7446586666666667,
+      "auc_hard": 0.6037693333333334,
+      "mrr": 0.5564666666666667,
+      "auc_hard_same_det": 0.6705767790262173,
+      "auc_hard_diff_det": 0.06323636363636363
+     },
+     "D": {
+      "auc_random": 0.6930493333333333,
+      "auc_hard": 0.5714333333333333,
+      "mrr": 0.4857142857142857,
+      "auc_hard_same_det": 0.5866397003745318,
+      "auc_hard_diff_det": 0.4484
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.38487466666666664,
+      "auc_hard": 0.3779613333333333,
+      "mrr": 0.30948571428571425,
+      "auc_hard_same_det": 0.37332434456928837,
+      "auc_hard_diff_det": 0.4154787878787879
+     },
+     "D": {
+      "auc_random": 0.39956,
+      "auc_hard": 0.40123733333333333,
+      "mrr": 0.31451428571428575,
+      "auc_hard_same_det": 0.40092134831460674,
+      "auc_hard_diff_det": 0.40379393939393937
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.7431733333333334,
+      "auc_hard": 0.692192,
+      "mrr": 0.6079095238095238,
+      "auc_hard_same_det": 0.6957692883895131,
+      "auc_hard_diff_det": 0.6632484848484849
+     },
+     "D": {
+      "auc_random": 0.7729293333333334,
+      "auc_hard": 0.7039333333333333,
+      "mrr": 0.6129714285714285,
+      "auc_hard_same_det": 0.742263670411985,
+      "auc_hard_diff_det": 0.3938060606060606
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.709092,
+      "auc_hard": 0.5450693333333333,
+      "mrr": 0.5045809523809524,
+      "auc_hard_same_det": 0.6124374531835206,
+      "auc_hard_diff_det": 0.0
+     },
+     "D": {
+      "auc_random": 0.672056,
+      "auc_hard": 0.47985466666666665,
+      "mrr": 0.4208380952380953,
+      "auc_hard_same_det": 0.5391625468164793,
+      "auc_hard_diff_det": 0.0
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260918,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 463,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3976,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9836306666666667,
+      "auc_hard": 0.9742286666666666,
+      "mrr": 0.9436333333333333,
+      "auc_hard_same_det": 0.9787429805615551,
+      "auc_hard_diff_det": 0.9177387387387388
+     },
+     "D": {
+      "auc_random": 0.9651673333333334,
+      "auc_hard": 0.9437726666666667,
+      "mrr": 0.9310238095238095,
+      "auc_hard_same_det": 0.9801497480201584,
+      "auc_hard_diff_det": 0.4885675675675676
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.7830793333333333,
+      "auc_hard": 0.6404166666666666,
+      "mrr": 0.6101809523809524,
+      "auc_hard_same_det": 0.6833239740820735,
+      "auc_hard_diff_det": 0.1034954954954955
+     },
+     "D": {
+      "auc_random": 0.7194393333333333,
+      "auc_hard": 0.5835886666666666,
+      "mrr": 0.5192809523809524,
+      "auc_hard_same_det": 0.6036177105831534,
+      "auc_hard_diff_det": 0.332954954954955
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.4888,
+      "auc_hard": 0.4924226666666667,
+      "mrr": 0.35366190476190473,
+      "auc_hard_same_det": 0.503866090712743,
+      "auc_hard_diff_det": 0.3492252252252252
+     },
+     "D": {
+      "auc_random": 0.47533333333333333,
+      "auc_hard": 0.46206533333333333,
+      "mrr": 0.3595095238095238,
+      "auc_hard_same_det": 0.47353203743700506,
+      "auc_hard_diff_det": 0.31857657657657656
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.7834666666666666,
+      "auc_hard": 0.727504,
+      "mrr": 0.646,
+      "auc_hard_same_det": 0.7447660187185026,
+      "auc_hard_diff_det": 0.5114954954954954
+     },
+     "D": {
+      "auc_random": 0.7089546666666666,
+      "auc_hard": 0.646312,
+      "mrr": 0.5455333333333333,
+      "auc_hard_same_det": 0.6526810655147588,
+      "auc_hard_diff_det": 0.5666126126126126
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.6766346666666667,
+      "auc_hard": 0.5596466666666666,
+      "mrr": 0.4844380952380952,
+      "auc_hard_same_det": 0.5927919366450684,
+      "auc_hard_diff_det": 0.1448828828828829
+     },
+     "D": {
+      "auc_random": 0.659964,
+      "auc_hard": 0.4512333333333333,
+      "mrr": 0.4338333333333333,
+      "auc_hard_same_det": 0.48364434845212384,
+      "auc_hard_diff_det": 0.045657657657657655
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260919,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 449,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3973,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9849453333333333,
+      "auc_hard": 0.9653826666666666,
+      "mrr": 0.9447333333333333,
+      "auc_hard_same_det": 0.9723459539717891,
+      "auc_hard_diff_det": 0.9040784313725491
+     },
+     "D": {
+      "auc_random": 0.957336,
+      "auc_hard": 0.9206493333333333,
+      "mrr": 0.9135428571428571,
+      "auc_hard_same_det": 0.9754677060133631,
+      "auc_hard_diff_det": 0.4380326797385621
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.7154813333333333,
+      "auc_hard": 0.5203893333333334,
+      "mrr": 0.45626190476190476,
+      "auc_hard_same_det": 0.5746963622865627,
+      "auc_hard_diff_det": 0.04227450980392157
+     },
+     "D": {
+      "auc_random": 0.5639553333333334,
+      "auc_hard": 0.39775466666666665,
+      "mrr": 0.3713904761904762,
+      "auc_hard_same_det": 0.40634743875278395,
+      "auc_hard_diff_det": 0.3221045751633987
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.44399466666666665,
+      "auc_hard": 0.4444,
+      "mrr": 0.34194761904761906,
+      "auc_hard_same_det": 0.45543578322197475,
+      "auc_hard_diff_det": 0.34724183006535947
+     },
+     "D": {
+      "auc_random": 0.41822533333333334,
+      "auc_hard": 0.4313826666666667,
+      "mrr": 0.33668095238095236,
+      "auc_hard_same_det": 0.43915812917594654,
+      "auc_hard_diff_det": 0.3629281045751634
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.7872506666666667,
+      "auc_hard": 0.7532506666666666,
+      "mrr": 0.6671571428571429,
+      "auc_hard_same_det": 0.755781737193764,
+      "auc_hard_diff_det": 0.730967320261438
+     },
+     "D": {
+      "auc_random": 0.735704,
+      "auc_hard": 0.6400773333333334,
+      "mrr": 0.5489571428571428,
+      "auc_hard_same_det": 0.6684053452115812,
+      "auc_hard_diff_det": 0.3906797385620915
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.6839426666666667,
+      "auc_hard": 0.517396,
+      "mrr": 0.4582333333333333,
+      "auc_hard_same_det": 0.5753674832962138,
+      "auc_hard_diff_det": 0.007019607843137255
+     },
+     "D": {
+      "auc_random": 0.650108,
+      "auc_hard": 0.48031466666666667,
+      "mrr": 0.46096666666666664,
+      "auc_hard_same_det": 0.5343904974016332,
+      "auc_hard_diff_det": 0.0042352941176470585
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260920,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 454,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3982,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9850446666666667,
+      "auc_hard": 0.970242,
+      "mrr": 0.9457000000000001,
+      "auc_hard_same_det": 0.9749919236417034,
+      "auc_hard_diff_det": 0.9233623188405797
+     },
+     "D": {
+      "auc_random": 0.962628,
+      "auc_hard": 0.9348273333333333,
+      "mrr": 0.9200904761904762,
+      "auc_hard_same_det": 0.9793252569750367,
+      "auc_hard_diff_det": 0.4956521739130435
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.787232,
+      "auc_hard": 0.651564,
+      "mrr": 0.5943952380952381,
+      "auc_hard_same_det": 0.712647577092511,
+      "auc_hard_diff_det": 0.04869565217391304
+     },
+     "D": {
+      "auc_random": 0.711804,
+      "auc_hard": 0.5697353333333334,
+      "mrr": 0.5046380952380952,
+      "auc_hard_same_det": 0.6035528634361234,
+      "auc_hard_diff_det": 0.23597101449275362
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.475552,
+      "auc_hard": 0.47385333333333335,
+      "mrr": 0.3762047619047619,
+      "auc_hard_same_det": 0.47126578560939797,
+      "auc_hard_diff_det": 0.4993913043478261
+     },
+     "D": {
+      "auc_random": 0.44845066666666666,
+      "auc_hard": 0.469008,
+      "mrr": 0.3584190476190476,
+      "auc_hard_same_det": 0.46881791483113067,
+      "auc_hard_diff_det": 0.4708840579710145
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8165853333333334,
+      "auc_hard": 0.7613093333333333,
+      "mrr": 0.6739190476190476,
+      "auc_hard_same_det": 0.7735095447870778,
+      "auc_hard_diff_det": 0.6408985507246376
+     },
+     "D": {
+      "auc_random": 0.775836,
+      "auc_hard": 0.7204053333333333,
+      "mrr": 0.6432809523809524,
+      "auc_hard_same_det": 0.7494434654919236,
+      "auc_hard_diff_det": 0.43381159420289855
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.727804,
+      "auc_hard": 0.585772,
+      "mrr": 0.5109857142857143,
+      "auc_hard_same_det": 0.6376372980910426,
+      "auc_hard_diff_det": 0.0738840579710145
+     },
+     "D": {
+      "auc_random": 0.6734013333333333,
+      "auc_hard": 0.4956373333333333,
+      "mrr": 0.4598285714285714,
+      "auc_hard_same_det": 0.543208516886931,
+      "auc_hard_diff_det": 0.026130434782608694
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260921,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 461,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3970,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9913653333333333,
+      "auc_hard": 0.976822,
+      "mrr": 0.9599,
+      "auc_hard_same_det": 0.9808980477223427,
+      "auc_hard_diff_det": 0.9286410256410257
+     },
+     "D": {
+      "auc_random": 0.970904,
+      "auc_hard": 0.9443706666666667,
+      "mrr": 0.9390333333333333,
+      "auc_hard_same_det": 0.982767895878525,
+      "auc_hard_diff_det": 0.4904957264957265
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8092726666666666,
+      "auc_hard": 0.683252,
+      "mrr": 0.671495238095238,
+      "auc_hard_same_det": 0.7407418655097614,
+      "auc_hard_diff_det": 0.0036923076923076922
+     },
+     "D": {
+      "auc_random": 0.7291246666666666,
+      "auc_hard": 0.5725166666666667,
+      "mrr": 0.5388936507936507,
+      "auc_hard_same_det": 0.615530730296457,
+      "auc_hard_diff_det": 0.06406837606837607
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.432236,
+      "auc_hard": 0.4395,
+      "mrr": 0.3632714285714285,
+      "auc_hard_same_det": 0.4416746203904555,
+      "auc_hard_diff_det": 0.4137948717948718
+     },
+     "D": {
+      "auc_random": 0.400996,
+      "auc_hard": 0.42096,
+      "mrr": 0.32482619047619044,
+      "auc_hard_same_det": 0.41880549530007233,
+      "auc_hard_diff_det": 0.44642735042735043
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8065866666666667,
+      "auc_hard": 0.738112,
+      "mrr": 0.6456857142857143,
+      "auc_hard_same_det": 0.7599378163412871,
+      "auc_hard_diff_det": 0.4801196581196581
+     },
+     "D": {
+      "auc_random": 0.8036106666666667,
+      "auc_hard": 0.7462613333333333,
+      "mrr": 0.6607818181818181,
+      "auc_hard_same_det": 0.7622805495300072,
+      "auc_hard_diff_det": 0.5569059829059829
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.755784,
+      "auc_hard": 0.6229093333333333,
+      "mrr": 0.5253523809523809,
+      "auc_hard_same_det": 0.6707462039045553,
+      "auc_hard_diff_det": 0.05745299145299145
+     },
+     "D": {
+      "auc_random": 0.7423493333333333,
+      "auc_hard": 0.5779266666666667,
+      "mrr": 0.5055833333333333,
+      "auc_hard_same_det": 0.6263398409255242,
+      "auc_hard_diff_det": 0.005658119658119658
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260922,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 459,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3978,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9844353333333333,
+      "auc_hard": 0.963702,
+      "mrr": 0.9402999999999999,
+      "auc_hard_same_det": 0.9667443718228032,
+      "auc_hard_diff_det": 0.9296422764227642
+     },
+     "D": {
+      "auc_random": 0.9652533333333333,
+      "auc_hard": 0.9308953333333333,
+      "mrr": 0.9193380952380952,
+      "auc_hard_same_det": 0.9682490922294844,
+      "auc_hard_diff_det": 0.5127154471544716
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8240773333333333,
+      "auc_hard": 0.6885886666666666,
+      "mrr": 0.6472190476190476,
+      "auc_hard_same_det": 0.7458467683369644,
+      "auc_hard_diff_det": 0.04757723577235772
+     },
+     "D": {
+      "auc_random": 0.7544306666666667,
+      "auc_hard": 0.6109953333333333,
+      "mrr": 0.5306952380952381,
+      "auc_hard_same_det": 0.6280559186637618,
+      "auc_hard_diff_det": 0.42
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.4307666666666667,
+      "auc_hard": 0.41928666666666664,
+      "mrr": 0.334652380952381,
+      "auc_hard_same_det": 0.42511692084241104,
+      "auc_hard_diff_det": 0.3540162601626016
+     },
+     "D": {
+      "auc_random": 0.42690266666666665,
+      "auc_hard": 0.40913866666666665,
+      "mrr": 0.3246142857142857,
+      "auc_hard_same_det": 0.4099360929557008,
+      "auc_hard_diff_det": 0.4002113821138211
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8044066666666667,
+      "auc_hard": 0.7516666666666667,
+      "mrr": 0.6541238095238096,
+      "auc_hard_same_det": 0.7596572258533043,
+      "auc_hard_diff_det": 0.6622113821138211
+     },
+     "D": {
+      "auc_random": 0.7353746666666666,
+      "auc_hard": 0.6697853333333333,
+      "mrr": 0.5636857142857143,
+      "auc_hard_same_det": 0.6920610021786492,
+      "auc_hard_diff_det": 0.42040650406504065
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.553928,
+      "auc_hard": 0.403244,
+      "mrr": 0.38143333333333335,
+      "auc_hard_same_det": 0.43652432824981846,
+      "auc_hard_diff_det": 0.030666666666666665
+     },
+     "D": {
+      "auc_random": 0.577292,
+      "auc_hard": 0.34246,
+      "mrr": 0.30434761904761903,
+      "auc_hard_same_det": 0.37285403050108934,
+      "auc_hard_diff_det": 0.0021951219512195124
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260923,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 453,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3976,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.98429,
+      "auc_hard": 0.96863,
+      "mrr": 0.9409,
+      "auc_hard_same_det": 0.972812362030905,
+      "auc_hard_diff_det": 0.9283191489361702
+     },
+     "D": {
+      "auc_random": 0.9616386666666666,
+      "auc_hard": 0.9303706666666667,
+      "mrr": 0.9188047619047619,
+      "auc_hard_same_det": 0.9747086092715231,
+      "auc_hard_diff_det": 0.5030283687943262
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.79101,
+      "auc_hard": 0.654214,
+      "mrr": 0.6112095238095239,
+      "auc_hard_same_det": 0.7152222222222222,
+      "auc_hard_diff_det": 0.06619858156028369
+     },
+     "D": {
+      "auc_random": 0.7148953333333333,
+      "auc_hard": 0.5685233333333334,
+      "mrr": 0.49551904761904764,
+      "auc_hard_same_det": 0.593532744665195,
+      "auc_hard_diff_det": 0.32747517730496456
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.4718866666666667,
+      "auc_hard": 0.4555666666666667,
+      "mrr": 0.3543952380952381,
+      "auc_hard_same_det": 0.46106548933039,
+      "auc_hard_diff_det": 0.4025673758865248
+     },
+     "D": {
+      "auc_random": 0.511072,
+      "auc_hard": 0.495228,
+      "mrr": 0.37693333333333334,
+      "auc_hard_same_det": 0.5091434878587197,
+      "auc_hard_diff_det": 0.3611063829787234
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.84754,
+      "auc_hard": 0.7701053333333333,
+      "mrr": 0.6958190476190477,
+      "auc_hard_same_det": 0.8022016188373804,
+      "auc_hard_diff_det": 0.4607517730496454
+     },
+     "D": {
+      "auc_random": 0.7366866666666667,
+      "auc_hard": 0.676248,
+      "mrr": 0.5667809523809524,
+      "auc_hard_same_det": 0.683924944812362,
+      "auc_hard_diff_det": 0.6022553191489362
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.665888,
+      "auc_hard": 0.4702653333333333,
+      "mrr": 0.43926190476190474,
+      "auc_hard_same_det": 0.5170610743193524,
+      "auc_hard_diff_det": 0.01923404255319149
+     },
+     "D": {
+      "auc_random": 0.661576,
+      "auc_hard": 0.4556053333333333,
+      "mrr": 0.44043333333333334,
+      "auc_hard_same_det": 0.5009771891096394,
+      "auc_hard_diff_det": 0.01829787234042553
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260924,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 455,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3982,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9886966666666667,
+      "auc_hard": 0.97158,
+      "mrr": 0.9542999999999999,
+      "auc_hard_same_det": 0.976051282051282,
+      "auc_hard_diff_det": 0.9263703703703704
+     },
+     "D": {
+      "auc_random": 0.9653933333333333,
+      "auc_hard": 0.9320813333333333,
+      "mrr": 0.9219857142857143,
+      "auc_hard_same_det": 0.9776901098901098,
+      "auc_hard_diff_det": 0.4709259259259259
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.790246,
+      "auc_hard": 0.6490773333333333,
+      "mrr": 0.5980666666666667,
+      "auc_hard_same_det": 0.706807326007326,
+      "auc_hard_diff_det": 0.06536296296296296
+     },
+     "D": {
+      "auc_random": 0.721454,
+      "auc_hard": 0.566032,
+      "mrr": 0.5010047619047618,
+      "auc_hard_same_det": 0.5945054945054945,
+      "auc_hard_diff_det": 0.27813333333333334
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.4274226666666667,
+      "auc_hard": 0.42770933333333333,
+      "mrr": 0.3353380952380952,
+      "auc_hard_same_det": 0.43485714285714283,
+      "auc_hard_diff_det": 0.35543703703703705
+     },
+     "D": {
+      "auc_random": 0.477848,
+      "auc_hard": 0.47471066666666667,
+      "mrr": 0.37473809523809526,
+      "auc_hard_same_det": 0.48237362637362635,
+      "auc_hard_diff_det": 0.39722962962962965
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8184106666666666,
+      "auc_hard": 0.7522226666666667,
+      "mrr": 0.679,
+      "auc_hard_same_det": 0.7825479853479853,
+      "auc_hard_diff_det": 0.4456
+     },
+     "D": {
+      "auc_random": 0.7939826666666666,
+      "auc_hard": 0.7116493333333334,
+      "mrr": 0.6526047619047619,
+      "auc_hard_same_det": 0.7452117216117217,
+      "auc_hard_diff_det": 0.3722962962962963
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.736508,
+      "auc_hard": 0.5874933333333333,
+      "mrr": 0.508252380952381,
+      "auc_hard_same_det": 0.6408981684981685,
+      "auc_hard_diff_det": 0.04751111111111111
+     },
+     "D": {
+      "auc_random": 0.7444333333333333,
+      "auc_hard": 0.6067986666666667,
+      "mrr": 0.5074095238095239,
+      "auc_hard_same_det": 0.6668117216117216,
+      "auc_hard_diff_det": 0.0
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260925,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 453,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3980,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9842393333333334,
+      "auc_hard": 0.9671873333333333,
+      "mrr": 0.9355190476190476,
+      "auc_hard_same_det": 0.9725121412803532,
+      "auc_hard_diff_det": 0.9158652482269504
+     },
+     "D": {
+      "auc_random": 0.9638333333333333,
+      "auc_hard": 0.9331693333333333,
+      "mrr": 0.9097285714285714,
+      "auc_hard_same_det": 0.9752847682119206,
+      "auc_hard_diff_det": 0.5272482269503546
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.7906473333333334,
+      "auc_hard": 0.6567946666666666,
+      "mrr": 0.6411642857142857,
+      "auc_hard_same_det": 0.7205798381162619,
+      "auc_hard_diff_det": 0.04201418439716312
+     },
+     "D": {
+      "auc_random": 0.7025273333333333,
+      "auc_hard": 0.544116,
+      "mrr": 0.5017199134199134,
+      "auc_hard_same_det": 0.5766063281824871,
+      "auc_hard_diff_det": 0.2309645390070922
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.45321066666666665,
+      "auc_hard": 0.4564,
+      "mrr": 0.3573722943722944,
+      "auc_hard_same_det": 0.46310522442972774,
+      "auc_hard_diff_det": 0.39177304964539006
+     },
+     "D": {
+      "auc_random": 0.43329066666666666,
+      "auc_hard": 0.42172133333333334,
+      "mrr": 0.3385238095238095,
+      "auc_hard_same_det": 0.43088153053715966,
+      "auc_hard_diff_det": 0.3334326241134752
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.7805306666666667,
+      "auc_hard": 0.7055706666666667,
+      "mrr": 0.6184952380952381,
+      "auc_hard_same_det": 0.7386651949963208,
+      "auc_hard_diff_det": 0.38659574468085106
+     },
+     "D": {
+      "auc_random": 0.7232866666666666,
+      "auc_hard": 0.6689453333333333,
+      "mrr": 0.5491309523809524,
+      "auc_hard_same_det": 0.6763355408388521,
+      "auc_hard_diff_det": 0.5977163120567376
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.726888,
+      "auc_hard": 0.5653466666666667,
+      "mrr": 0.49940238095238093,
+      "auc_hard_same_det": 0.6203620309050772,
+      "auc_hard_diff_det": 0.035092198581560284
+     },
+     "D": {
+      "auc_random": 0.6901706666666667,
+      "auc_hard": 0.507736,
+      "mrr": 0.46343571428571423,
+      "auc_hard_same_det": 0.5586872700515084,
+      "auc_hard_diff_det": 0.016652482269503548
+     }
+    }
+   }
+  },
+  {
+   "fd": "service_provider",
+   "seed": 20260926,
+   "usable_duplicate_pairs": 3146,
+   "positives": 500,
+   "positives_sharing_determinant": 446,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3976,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9813866666666666,
+      "auc_hard": 0.9662566666666667,
+      "mrr": 0.9416333333333333,
+      "auc_hard_same_det": 0.9720007473841554,
+      "auc_hard_diff_det": 0.9188148148148149
+     },
+     "D": {
+      "auc_random": 0.96019,
+      "auc_hard": 0.9286333333333333,
+      "mrr": 0.9133238095238094,
+      "auc_hard_same_det": 0.9746121076233184,
+      "auc_hard_diff_det": 0.5488827160493828
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.776164,
+      "auc_hard": 0.6302106666666667,
+      "mrr": 0.5878095238095239,
+      "auc_hard_same_det": 0.698695067264574,
+      "auc_hard_diff_det": 0.06458024691358025
+     },
+     "D": {
+      "auc_random": 0.7045586666666667,
+      "auc_hard": 0.5406346666666667,
+      "mrr": 0.4727047619047619,
+      "auc_hard_same_det": 0.5700388639760837,
+      "auc_hard_diff_det": 0.29777777777777775
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.49395733333333336,
+      "auc_hard": 0.49415733333333334,
+      "mrr": 0.37455714285714287,
+      "auc_hard_same_det": 0.501067264573991,
+      "auc_hard_diff_det": 0.43708641975308643
+     },
+     "D": {
+      "auc_random": 0.4957146666666667,
+      "auc_hard": 0.48963066666666666,
+      "mrr": 0.3925857142857143,
+      "auc_hard_same_det": 0.4996696562032885,
+      "auc_hard_diff_det": 0.40671604938271605
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.7443146666666667,
+      "auc_hard": 0.684168,
+      "mrr": 0.6066333333333334,
+      "auc_hard_same_det": 0.7011061285500747,
+      "auc_hard_diff_det": 0.5442716049382716
+     },
+     "D": {
+      "auc_random": 0.6820453333333333,
+      "auc_hard": 0.667324,
+      "mrr": 0.532552380952381,
+      "auc_hard_same_det": 0.6642750373692078,
+      "auc_hard_diff_det": 0.6925061728395062
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7354666666666667,
+      "auc_hard": 0.5860813333333333,
+      "mrr": 0.47037142857142855,
+      "auc_hard_same_det": 0.6280044843049327,
+      "auc_hard_diff_det": 0.23982716049382716
+     },
+     "D": {
+      "auc_random": 0.7011146666666667,
+      "auc_hard": 0.53526,
+      "mrr": 0.43702857142857143,
+      "auc_hard_same_det": 0.5963153961136024,
+      "auc_hard_diff_det": 0.030987654320987653
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260917,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 148,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3959,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9841386666666667,
+      "auc_hard": 0.8960446666666667,
+      "mrr": 0.901152380952381,
+      "auc_hard_same_det": 0.9848198198198198,
+      "auc_hard_diff_det": 0.85871875
+     },
+     "D": {
+      "auc_random": 0.981474,
+      "auc_hard": 0.8361,
+      "mrr": 0.8417523809523809,
+      "auc_hard_same_det": 0.9841981981981982,
+      "auc_hard_diff_det": 0.7738314393939394
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.789816,
+      "auc_hard": 0.34725133333333336,
+      "mrr": 0.4366285714285714,
+      "auc_hard_same_det": 0.8956914414414414,
+      "auc_hard_diff_det": 0.11665719696969697
+     },
+     "D": {
+      "auc_random": 0.813864,
+      "auc_hard": 0.6233446666666667,
+      "mrr": 0.5428857142857142,
+      "auc_hard_same_det": 0.9147815315315315,
+      "auc_hard_diff_det": 0.5008087121212121
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6650373333333334,
+      "auc_hard": 0.5797826666666667,
+      "mrr": 0.49806666666666666,
+      "auc_hard_same_det": 0.8271441441441442,
+      "auc_hard_diff_det": 0.47577840909090907
+     },
+     "D": {
+      "auc_random": 0.6005373333333334,
+      "auc_hard": 0.5229213333333333,
+      "mrr": 0.4484952380952381,
+      "auc_hard_same_det": 0.8263828828828829,
+      "auc_hard_diff_det": 0.39532954545454546
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8345826666666667,
+      "auc_hard": 0.6592453333333333,
+      "mrr": 0.6462809523809524,
+      "auc_hard_same_det": 0.9278603603603603,
+      "auc_hard_diff_det": 0.5463049242424243
+     },
+     "D": {
+      "auc_random": 0.8476266666666666,
+      "auc_hard": 0.7060506666666667,
+      "mrr": 0.6470952380952381,
+      "auc_hard_same_det": 0.9393828828828829,
+      "auc_hard_diff_det": 0.6079450757575757
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.8334706666666667,
+      "auc_hard": 0.6300893333333333,
+      "mrr": 0.5720952380952381,
+      "auc_hard_same_det": 0.8460675675675675,
+      "auc_hard_diff_det": 0.539280303030303
+     },
+     "D": {
+      "auc_random": 0.72876,
+      "auc_hard": 0.5363733333333334,
+      "mrr": 0.49145952380952385,
+      "auc_hard_same_det": 0.8181081081081081,
+      "auc_hard_diff_det": 0.41791666666666666
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260918,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 160,
+   "hard_negatives": 1498,
+   "random_negatives": 1500,
+   "entities": 3970,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9897046666666667,
+      "auc_hard": 0.9207777036048064,
+      "mrr": 0.9246714285714286,
+      "auc_hard_same_det": 0.9877378170894526,
+      "auc_hard_diff_det": 0.889267061964973
+     },
+     "D": {
+      "auc_random": 0.986894,
+      "auc_hard": 0.8656889185580774,
+      "mrr": 0.8698047619047619,
+      "auc_hard_same_det": 0.9868261849132176,
+      "auc_hard_diff_det": 0.8086831461556585
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.800554,
+      "auc_hard": 0.34264686248331105,
+      "mrr": 0.4351333333333333,
+      "auc_hard_same_det": 0.884844375834446,
+      "auc_hard_diff_det": 0.08749509149454174
+     },
+     "D": {
+      "auc_random": 0.8439686666666667,
+      "auc_hard": 0.6438765020026702,
+      "mrr": 0.598804761904762,
+      "auc_hard_same_det": 0.9014456775700934,
+      "auc_hard_diff_det": 0.5226674782062357
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.621464,
+      "auc_hard": 0.5644699599465954,
+      "mrr": 0.4882095238095238,
+      "auc_hard_same_det": 0.8454314085447263,
+      "auc_hard_diff_det": 0.43225280766512214
+     },
+     "D": {
+      "auc_random": 0.6310933333333333,
+      "auc_hard": 0.5758224299065421,
+      "mrr": 0.4836761904761905,
+      "auc_hard_same_det": 0.8574140520694259,
+      "auc_hard_diff_det": 0.4433087253593026
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8406586666666667,
+      "auc_hard": 0.6592069425901201,
+      "mrr": 0.6546761904761905,
+      "auc_hard_same_det": 0.9557993991989319,
+      "auc_hard_diff_det": 0.5196340218330323
+     },
+     "D": {
+      "auc_random": 0.8251986666666666,
+      "auc_hard": 0.720347129506008,
+      "mrr": 0.6962047619047619,
+      "auc_hard_same_det": 0.9221420226969292,
+      "auc_hard_diff_det": 0.6253848268279274
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.8434533333333334,
+      "auc_hard": 0.6692483311081442,
+      "mrr": 0.6130142857142857,
+      "auc_hard_same_det": 0.8632176234979974,
+      "auc_hard_diff_det": 0.5779686641011544
+     },
+     "D": {
+      "auc_random": 0.755132,
+      "auc_hard": 0.5776448598130841,
+      "mrr": 0.5849,
+      "auc_hard_same_det": 0.5774866488651536,
+      "auc_hard_diff_det": 0.5777193120238749
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260919,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 147,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3978,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.979356,
+      "auc_hard": 0.898544,
+      "mrr": 0.8907,
+      "auc_hard_same_det": 0.9862743764172336,
+      "auc_hard_diff_det": 0.862010387157696
+     },
+     "D": {
+      "auc_random": 0.9756733333333333,
+      "auc_hard": 0.8397133333333333,
+      "mrr": 0.828052380952381,
+      "auc_hard_same_det": 0.9860634920634921,
+      "auc_hard_diff_det": 0.7787686496694995
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.764724,
+      "auc_hard": 0.3288993333333333,
+      "mrr": 0.41690952380952384,
+      "auc_hard_same_det": 0.9056258503401361,
+      "auc_hard_diff_det": 0.08873276676109537
+     },
+     "D": {
+      "auc_random": 0.787804,
+      "auc_hard": 0.621656,
+      "mrr": 0.5527857142857143,
+      "auc_hard_same_det": 0.9049002267573696,
+      "auc_hard_diff_det": 0.5037044381491974
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6056306666666667,
+      "auc_hard": 0.5504893333333334,
+      "mrr": 0.46284285714285717,
+      "auc_hard_same_det": 0.8450521541950113,
+      "auc_hard_diff_det": 0.4278243626062323
+     },
+     "D": {
+      "auc_random": 0.618804,
+      "auc_hard": 0.5677293333333333,
+      "mrr": 0.48219999999999996,
+      "auc_hard_same_det": 0.8511972789115646,
+      "auc_hard_diff_det": 0.44968460812086875
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8101773333333333,
+      "auc_hard": 0.5970746666666666,
+      "mrr": 0.5996714285714286,
+      "auc_hard_same_det": 0.9428299319727891,
+      "auc_hard_diff_det": 0.4530915958451369
+     },
+     "D": {
+      "auc_random": 0.807156,
+      "auc_hard": 0.6550133333333333,
+      "mrr": 0.6162333333333333,
+      "auc_hard_same_det": 0.8966938775510204,
+      "auc_hard_diff_det": 0.5543701605288007
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.74684,
+      "auc_hard": 0.5630813333333333,
+      "mrr": 0.5256119047619048,
+      "auc_hard_same_det": 0.7924308390022676,
+      "auc_hard_diff_det": 0.4675731822474032
+     },
+     "D": {
+      "auc_random": 0.7710213333333333,
+      "auc_hard": 0.6138973333333333,
+      "mrr": 0.5218285714285714,
+      "auc_hard_same_det": 0.8174467120181406,
+      "auc_hard_diff_det": 0.5291331444759206
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260920,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 157,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3969,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9850926666666666,
+      "auc_hard": 0.917302,
+      "mrr": 0.9129190476190476,
+      "auc_hard_same_det": 0.986868365180467,
+      "auc_hard_diff_det": 0.8854596695821185
+     },
+     "D": {
+      "auc_random": 0.9804733333333333,
+      "auc_hard": 0.859616,
+      "mrr": 0.8608333333333333,
+      "auc_hard_same_det": 0.9862845010615712,
+      "auc_hard_diff_det": 0.8016365403304179
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.7789713333333333,
+      "auc_hard": 0.334842,
+      "mrr": 0.43865714285714286,
+      "auc_hard_same_det": 0.9104819532908704,
+      "auc_hard_diff_det": 0.07135665694849368
+     },
+     "D": {
+      "auc_random": 0.7934726666666667,
+      "auc_hard": 0.596598,
+      "mrr": 0.5651428571428571,
+      "auc_hard_same_det": 0.9073099787685774,
+      "auc_hard_diff_det": 0.454377065111759
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.5530146666666667,
+      "auc_hard": 0.5154653333333333,
+      "mrr": 0.4277190476190476,
+      "auc_hard_same_det": 0.8256772823779194,
+      "auc_hard_diff_det": 0.37347327502429545
+     },
+     "D": {
+      "auc_random": 0.5505226666666667,
+      "auc_hard": 0.5160426666666666,
+      "mrr": 0.4332,
+      "auc_hard_same_det": 0.8393121019108281,
+      "auc_hard_diff_det": 0.36807385811467447
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.7932666666666667,
+      "auc_hard": 0.590788,
+      "mrr": 0.5899333333333333,
+      "auc_hard_same_det": 0.9374734607218683,
+      "auc_hard_diff_det": 0.43210106899902817
+     },
+     "D": {
+      "auc_random": 0.834192,
+      "auc_hard": 0.7048693333333333,
+      "mrr": 0.6576380952380952,
+      "auc_hard_same_det": 0.9368407643312102,
+      "auc_hard_diff_det": 0.598689990281827
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7303186666666667,
+      "auc_hard": 0.5724893333333333,
+      "mrr": 0.49232380952380955,
+      "auc_hard_same_det": 0.8252696390658174,
+      "auc_hard_diff_det": 0.4567852283770651
+     },
+     "D": {
+      "auc_random": 0.8023986666666667,
+      "auc_hard": 0.671724,
+      "mrr": 0.59625,
+      "auc_hard_same_det": 0.8004246284501062,
+      "auc_hard_diff_det": 0.6128143828960155
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260921,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 182,
+   "hard_negatives": 1497,
+   "random_negatives": 1500,
+   "entities": 3964,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9772286666666666,
+      "auc_hard": 0.9054529058116233,
+      "mrr": 0.9036857142857143,
+      "auc_hard_same_det": 0.9902460598853384,
+      "auc_hard_diff_det": 0.8569234905870441
+     },
+     "D": {
+      "auc_random": 0.9733526666666666,
+      "auc_hard": 0.8524301937207749,
+      "mrr": 0.8553047619047619,
+      "auc_hard_same_det": 0.9897854316691992,
+      "auc_hard_diff_det": 0.773818076404381
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8342933333333333,
+      "auc_hard": 0.42958917835671345,
+      "mrr": 0.4903333333333333,
+      "auc_hard_same_det": 0.9084010511866223,
+      "auc_hard_diff_det": 0.15555219453582217
+     },
+     "D": {
+      "auc_random": 0.848478,
+      "auc_hard": 0.6987027388109552,
+      "mrr": 0.6343952380952381,
+      "auc_hard_same_det": 0.9147599227759549,
+      "auc_hard_diff_det": 0.5750473693718674
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6415146666666667,
+      "auc_hard": 0.5744342017368069,
+      "mrr": 0.47940476190476194,
+      "auc_hard_same_det": 0.8160239893706828,
+      "auc_hard_diff_det": 0.43616583271364534
+     },
+     "D": {
+      "auc_random": 0.6545493333333333,
+      "auc_hard": 0.6031503006012024,
+      "mrr": 0.4989142857142857,
+      "auc_hard_same_det": 0.833450784352588,
+      "auc_hard_diff_det": 0.4713431054982082
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8187053333333333,
+      "auc_hard": 0.6094762859051436,
+      "mrr": 0.6274952380952381,
+      "auc_hard_same_det": 0.9335484155123434,
+      "auc_hard_diff_det": 0.42400104191611737
+     },
+     "D": {
+      "auc_random": 0.8132386666666667,
+      "auc_hard": 0.6492839011356045,
+      "mrr": 0.6432476190476191,
+      "auc_hard_same_det": 0.9031983380680776,
+      "auc_hard_diff_det": 0.50396180201073
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.806644,
+      "auc_hard": 0.6175818303273213,
+      "mrr": 0.5628428571428572,
+      "auc_hard_same_det": 0.7710953041614365,
+      "auc_hard_diff_det": 0.5297219176298089
+     },
+     "D": {
+      "auc_random": 0.7672453333333333,
+      "auc_hard": 0.6917247828991316,
+      "mrr": 0.5763142857142857,
+      "auc_hard_same_det": 0.8131721318094064,
+      "auc_hard_diff_det": 0.6222171806926221
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260922,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 153,
+   "hard_negatives": 1497,
+   "random_negatives": 1500,
+   "entities": 3960,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9842873333333333,
+      "auc_hard": 0.9087969271877088,
+      "mrr": 0.8952190476190476,
+      "auc_hard_same_det": 0.9928113307224471,
+      "auc_hard_diff_det": 0.87175311237268
+     },
+     "D": {
+      "auc_random": 0.9793546666666667,
+      "auc_hard": 0.848935203740815,
+      "mrr": 0.8448190476190477,
+      "auc_hard_same_det": 0.9922481127833008,
+      "auc_hard_diff_det": 0.7857453620016209
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8580253333333333,
+      "auc_hard": 0.38805811623246494,
+      "mrr": 0.4488904761904762,
+      "auc_hard_same_det": 0.8895197803013434,
+      "auc_hard_diff_det": 0.1669525410090113
+     },
+     "D": {
+      "auc_random": 0.8568593333333333,
+      "auc_hard": 0.670689378757515,
+      "mrr": 0.6137857142857144,
+      "auc_hard_same_det": 0.9148274763033692,
+      "auc_hard_diff_det": 0.5630434740759136
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6229426666666666,
+      "auc_hard": 0.5723179692718771,
+      "mrr": 0.47112857142857145,
+      "auc_hard_same_det": 0.8423775655886937,
+      "auc_hard_diff_det": 0.4532427005788715
+     },
+     "D": {
+      "auc_random": 0.5892133333333334,
+      "auc_hard": 0.543871743486974,
+      "mrr": 0.45867619047619046,
+      "auc_hard_same_det": 0.8535895320051868,
+      "auc_hard_diff_det": 0.40731029782908756
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8366813333333334,
+      "auc_hard": 0.6399438877755511,
+      "mrr": 0.6391571428571429,
+      "auc_hard_same_det": 0.9468392121934501,
+      "auc_hard_diff_det": 0.5046269291705409
+     },
+     "D": {
+      "auc_random": 0.7423293333333333,
+      "auc_hard": 0.6105116900467602,
+      "mrr": 0.5893571428571429,
+      "auc_hard_same_det": 0.9238826236350697,
+      "auc_hard_diff_det": 0.47233949166344213
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7945386666666666,
+      "auc_hard": 0.6149311957247829,
+      "mrr": 0.5473714285714286,
+      "auc_hard_same_det": 0.8087460323697504,
+      "auc_hard_diff_det": 0.5294739334576934
+     },
+     "D": {
+      "auc_random": 0.8274053333333333,
+      "auc_hard": 0.6852171008684035,
+      "mrr": 0.6141809523809524,
+      "auc_hard_same_det": 0.8536855846769792,
+      "auc_hard_diff_det": 0.6109356080075617
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260923,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 144,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3960,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9866493333333334,
+      "auc_hard": 0.908284,
+      "mrr": 0.9011666666666667,
+      "auc_hard_same_det": 0.9891203703703704,
+      "auc_hard_diff_det": 0.8755861423220974
+     },
+     "D": {
+      "auc_random": 0.9825813333333333,
+      "auc_hard": 0.849642,
+      "mrr": 0.843052380952381,
+      "auc_hard_same_det": 0.9889027777777778,
+      "auc_hard_diff_det": 0.793311797752809
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8112873333333334,
+      "auc_hard": 0.3498966666666667,
+      "mrr": 0.44581428571428566,
+      "auc_hard_same_det": 0.9031319444444444,
+      "auc_hard_diff_det": 0.12611610486891386
+     },
+     "D": {
+      "auc_random": 0.80634,
+      "auc_hard": 0.651142,
+      "mrr": 0.5740285714285714,
+      "auc_hard_same_det": 0.9086689814814815,
+      "auc_hard_diff_det": 0.5469737827715356
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6489346666666667,
+      "auc_hard": 0.5869973333333334,
+      "mrr": 0.48345238095238097,
+      "auc_hard_same_det": 0.8827314814814815,
+      "auc_hard_diff_det": 0.467374531835206
+     },
+     "D": {
+      "auc_random": 0.6211453333333333,
+      "auc_hard": 0.565544,
+      "mrr": 0.4661619047619047,
+      "auc_hard_same_det": 0.8481805555555556,
+      "auc_hard_diff_det": 0.4512191011235955
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.806996,
+      "auc_hard": 0.5621573333333333,
+      "mrr": 0.5790333333333333,
+      "auc_hard_same_det": 0.9452546296296296,
+      "auc_hard_diff_det": 0.40719662921348315
+     },
+     "D": {
+      "auc_random": 0.832728,
+      "auc_hard": 0.69236,
+      "mrr": 0.6546238095238095,
+      "auc_hard_same_det": 0.9504537037037037,
+      "auc_hard_diff_det": 0.5879625468164794
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7969466666666667,
+      "auc_hard": 0.607904,
+      "mrr": 0.5524714285714285,
+      "auc_hard_same_det": 0.8259861111111111,
+      "auc_hard_diff_det": 0.5196910112359551
+     },
+     "D": {
+      "auc_random": 0.7559133333333333,
+      "auc_hard": 0.6896466666666666,
+      "mrr": 0.5501571428571428,
+      "auc_hard_same_det": 0.6685138888888889,
+      "auc_hard_diff_det": 0.6981947565543071
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260924,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 168,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3967,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9864026666666666,
+      "auc_hard": 0.9138473333333333,
+      "mrr": 0.9065666666666667,
+      "auc_hard_same_det": 0.9903472222222223,
+      "auc_hard_diff_det": 0.8751365461847389
+     },
+     "D": {
+      "auc_random": 0.98134,
+      "auc_hard": 0.8554113333333333,
+      "mrr": 0.8578666666666667,
+      "auc_hard_same_det": 0.9897261904761905,
+      "auc_hard_diff_det": 0.7874447791164658
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.7971766666666666,
+      "auc_hard": 0.36314,
+      "mrr": 0.45984761904761906,
+      "auc_hard_same_det": 0.882234126984127,
+      "auc_hard_diff_det": 0.10046586345381527
+     },
+     "D": {
+      "auc_random": 0.7640673333333333,
+      "auc_hard": 0.6203653333333333,
+      "mrr": 0.5838428571428571,
+      "auc_hard_same_det": 0.8788849206349206,
+      "auc_hard_diff_det": 0.48954819277108436
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6222586666666666,
+      "auc_hard": 0.5858386666666666,
+      "mrr": 0.47495714285714286,
+      "auc_hard_same_det": 0.8316349206349206,
+      "auc_hard_diff_det": 0.46145983935742974
+     },
+     "D": {
+      "auc_random": 0.609832,
+      "auc_hard": 0.5629866666666666,
+      "mrr": 0.46009523809523806,
+      "auc_hard_same_det": 0.8181626984126984,
+      "auc_hard_diff_det": 0.4338614457831325
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8742546666666666,
+      "auc_hard": 0.68126,
+      "mrr": 0.658452380952381,
+      "auc_hard_same_det": 0.9334325396825397,
+      "auc_hard_diff_det": 0.5536546184738956
+     },
+     "D": {
+      "auc_random": 0.8127386666666667,
+      "auc_hard": 0.6991546666666667,
+      "mrr": 0.6394666666666667,
+      "auc_hard_same_det": 0.9283373015873015,
+      "auc_hard_diff_det": 0.5831827309236948
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.8157426666666666,
+      "auc_hard": 0.6830186666666667,
+      "mrr": 0.5978571428571429,
+      "auc_hard_same_det": 0.7360357142857142,
+      "auc_hard_diff_det": 0.6561907630522088
+     },
+     "D": {
+      "auc_random": 0.777572,
+      "auc_hard": 0.595036,
+      "mrr": 0.5427904761904762,
+      "auc_hard_same_det": 0.8245992063492064,
+      "auc_hard_diff_det": 0.4788714859437751
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260925,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 165,
+   "hard_negatives": 1499,
+   "random_negatives": 1500,
+   "entities": 3964,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9789953333333333,
+      "auc_hard": 0.8958659106070714,
+      "mrr": 0.8988666666666667,
+      "auc_hard_same_det": 0.9882507530272707,
+      "auc_hard_diff_det": 0.8503629285195106
+     },
+     "D": {
+      "auc_random": 0.973848,
+      "auc_hard": 0.8347958639092729,
+      "mrr": 0.8426,
+      "auc_hard_same_det": 0.9881476539915499,
+      "auc_hard_diff_det": 0.7592643852120319
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.814166,
+      "auc_hard": 0.36692461641094065,
+      "mrr": 0.44274285714285716,
+      "auc_hard_same_det": 0.887104534336022,
+      "auc_hard_diff_det": 0.11071659713440801
+     },
+     "D": {
+      "auc_random": 0.812074,
+      "auc_hard": 0.6341227484989993,
+      "mrr": 0.5547095238095239,
+      "auc_hard_same_det": 0.8930317181151071,
+      "auc_hard_diff_det": 0.5066004201806179
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6396946666666666,
+      "auc_hard": 0.5790527018012008,
+      "mrr": 0.4989666666666666,
+      "auc_hard_same_det": 0.8236440455252997,
+      "auc_hard_diff_det": 0.4585823384744058
+     },
+     "D": {
+      "auc_random": 0.620024,
+      "auc_hard": 0.5628458972648432,
+      "mrr": 0.478347619047619,
+      "auc_hard_same_det": 0.8264903875310813,
+      "auc_hard_diff_det": 0.4329911483277409
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.86932,
+      "auc_hard": 0.6440493662441628,
+      "mrr": 0.6284190476190477,
+      "auc_hard_same_det": 0.9528372450320416,
+      "auc_hard_diff_det": 0.4919598140053568
+     },
+     "D": {
+      "auc_random": 0.804948,
+      "auc_hard": 0.6778879252835224,
+      "mrr": 0.6553571428571429,
+      "auc_hard_same_det": 0.9280409161663331,
+      "auc_hard_diff_det": 0.5546782432069141
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7605786666666666,
+      "auc_hard": 0.6531794529686458,
+      "mrr": 0.5480190476190475,
+      "auc_hard_same_det": 0.7846887824206036,
+      "auc_hard_diff_det": 0.5884062011490248
+     },
+     "D": {
+      "auc_random": 0.79322,
+      "auc_hard": 0.7225763842561708,
+      "mrr": 0.5713666666666667,
+      "auc_hard_same_det": 0.8453474033193846,
+      "auc_hard_diff_det": 0.6621070763593639
+     }
+    }
+   }
+  },
+  {
+   "fd": "country",
+   "seed": 20260926,
+   "usable_duplicate_pairs": 4148,
+   "positives": 500,
+   "positives_sharing_determinant": 148,
+   "hard_negatives": 1497,
+   "random_negatives": 1500,
+   "entities": 3961,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9830526666666667,
+      "auc_hard": 0.9045804943219773,
+      "mrr": 0.8925333333333333,
+      "auc_hard_same_det": 0.9920245897199805,
+      "auc_hard_diff_det": 0.8678142269387259
+     },
+     "D": {
+      "auc_random": 0.9784533333333333,
+      "auc_hard": 0.839312625250501,
+      "mrr": 0.8342666666666666,
+      "auc_hard_same_det": 0.9917086425102457,
+      "auc_hard_diff_det": 0.775237027084472
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8027986666666667,
+      "auc_hard": 0.3414509018036072,
+      "mrr": 0.43676666666666664,
+      "auc_hard_same_det": 0.9043988878658218,
+      "auc_hard_diff_det": 0.10475686220926701
+     },
+     "D": {
+      "auc_random": 0.810414,
+      "auc_hard": 0.613185036740147,
+      "mrr": 0.5780428571428571,
+      "auc_hard_same_det": 0.8939094405026269,
+      "auc_hard_diff_det": 0.4951531851581952
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6203533333333333,
+      "auc_hard": 0.5595390781563127,
+      "mrr": 0.4618619047619048,
+      "auc_hard_same_det": 0.8668463052230587,
+      "auc_hard_diff_det": 0.4303303576850671
+     },
+     "D": {
+      "auc_random": 0.655576,
+      "auc_hard": 0.5990394121576487,
+      "mrr": 0.5011904761904762,
+      "auc_hard_same_det": 0.8409882828720504,
+      "auc_hard_diff_det": 0.49731090969818426
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8607666666666667,
+      "auc_hard": 0.6773533734134937,
+      "mrr": 0.6242761904761904,
+      "auc_hard_same_det": 0.9398120565455235,
+      "auc_hard_diff_det": 0.5670014270966175
+     },
+     "D": {
+      "auc_random": 0.8104333333333333,
+      "auc_hard": 0.63937875751503,
+      "mrr": 0.5999238095238095,
+      "auc_hard_same_det": 0.9441676145082959,
+      "auc_hard_diff_det": 0.511228897188316
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7652466666666666,
+      "auc_hard": 0.5234749498997996,
+      "mrr": 0.5011904761904762,
+      "auc_hard_same_det": 0.8101473216703677,
+      "auc_hard_diff_det": 0.4029422481326289
+     },
+     "D": {
+      "auc_random": 0.7996213333333333,
+      "auc_hard": 0.652629258517034,
+      "mrr": 0.567052380952381,
+      "auc_hard_same_det": 0.842057989853581,
+      "auc_hard_diff_det": 0.572983087386895
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260917,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 152,
+   "hard_negatives": 1496,
+   "random_negatives": 1500,
+   "entities": 3963,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9848353333333333,
+      "auc_hard": 0.901451871657754,
+      "mrr": 0.8952380952380952,
+      "auc_hard_same_det": 0.989465328595553,
+      "auc_hard_diff_det": 0.8630092123056119
+     },
+     "D": {
+      "auc_random": 0.9804973333333333,
+      "auc_hard": 0.8351998663101604,
+      "mrr": 0.8424047619047619,
+      "auc_hard_same_det": 0.9878051998311286,
+      "auc_hard_diff_det": 0.7685446631630709
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8264826666666667,
+      "auc_hard": 0.3659017379679144,
+      "mrr": 0.44962380952380954,
+      "auc_hard_same_det": 0.9009177983394314,
+      "auc_hard_diff_det": 0.13221656217345873
+     },
+     "D": {
+      "auc_random": 0.8347226666666666,
+      "auc_hard": 0.6138201871657754,
+      "mrr": 0.578252380952381,
+      "auc_hard_same_det": 0.9119911870250492,
+      "auc_hard_diff_det": 0.4835845780318397
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.583068,
+      "auc_hard": 0.5252540106951872,
+      "mrr": 0.45667619047619046,
+      "auc_hard_same_det": 0.8308075921756263,
+      "auc_hard_diff_det": 0.3917938256807425
+     },
+     "D": {
+      "auc_random": 0.5636466666666666,
+      "auc_hard": 0.5124398395721925,
+      "mrr": 0.43743333333333334,
+      "auc_hard_same_det": 0.8251301716858992,
+      "auc_hard_diff_det": 0.3758624531317229
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8335133333333333,
+      "auc_hard": 0.6184933155080213,
+      "mrr": 0.6051523809523809,
+      "auc_hard_same_det": 0.9235944976076556,
+      "auc_hard_diff_det": 0.48523073022312374
+     },
+     "D": {
+      "auc_random": 0.842052,
+      "auc_hard": 0.7098208556149732,
+      "mrr": 0.6647857142857143,
+      "auc_hard_same_det": 0.943568815085843,
+      "auc_hard_diff_det": 0.6077240457311451
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.8262186666666667,
+      "auc_hard": 0.6227473262032086,
+      "mrr": 0.5961190476190475,
+      "auc_hard_same_det": 0.7839853644807205,
+      "auc_hard_diff_det": 0.552321516380847
+     },
+     "D": {
+      "auc_random": 0.829244,
+      "auc_hard": 0.6839131016042781,
+      "mrr": 0.5870571428571428,
+      "auc_hard_same_det": 0.8057099634112018,
+      "auc_hard_diff_det": 0.6307144723092999
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260918,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 155,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3970,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.985274,
+      "auc_hard": 0.9075426666666667,
+      "mrr": 0.9093190476190476,
+      "auc_hard_same_det": 0.9885591397849463,
+      "auc_hard_diff_det": 0.871143961352657
+     },
+     "D": {
+      "auc_random": 0.9810193333333334,
+      "auc_hard": 0.8494666666666667,
+      "mrr": 0.8605190476190475,
+      "auc_hard_same_det": 0.9869075268817205,
+      "auc_hard_diff_det": 0.7877178743961353
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.7784493333333333,
+      "auc_hard": 0.34619466666666665,
+      "mrr": 0.4380761904761905,
+      "auc_hard_same_det": 0.9105290322580645,
+      "auc_hard_diff_det": 0.09265314009661836
+     },
+     "D": {
+      "auc_random": 0.8389733333333333,
+      "auc_hard": 0.6432966666666666,
+      "mrr": 0.6043,
+      "auc_hard_same_det": 0.9063247311827957,
+      "auc_hard_diff_det": 0.5251246376811595
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.585664,
+      "auc_hard": 0.528788,
+      "mrr": 0.45459523809523805,
+      "auc_hard_same_det": 0.8400344086021505,
+      "auc_hard_diff_det": 0.3889526570048309
+     },
+     "D": {
+      "auc_random": 0.601788,
+      "auc_hard": 0.5636093333333333,
+      "mrr": 0.4648095238095238,
+      "auc_hard_same_det": 0.8524430107526881,
+      "auc_hard_diff_det": 0.43384347826086955
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.7819026666666666,
+      "auc_hard": 0.610252,
+      "mrr": 0.5998380952380952,
+      "auc_hard_same_det": 0.945952688172043,
+      "auc_hard_diff_det": 0.45942995169082124
+     },
+     "D": {
+      "auc_random": 0.8129373333333333,
+      "auc_hard": 0.7063973333333333,
+      "mrr": 0.6505047619047619,
+      "auc_hard_same_det": 0.9306752688172043,
+      "auc_hard_diff_det": 0.6056347826086956
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.8449746666666667,
+      "auc_hard": 0.7268346666666666,
+      "mrr": 0.6434238095238095,
+      "auc_hard_same_det": 0.8356602150537634,
+      "auc_hard_diff_det": 0.6779420289855073
+     },
+     "D": {
+      "auc_random": 0.835896,
+      "auc_hard": 0.711412,
+      "mrr": 0.6087190476190476,
+      "auc_hard_same_det": 0.8615483870967742,
+      "auc_hard_diff_det": 0.6439594202898551
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260919,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 135,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3975,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9798093333333333,
+      "auc_hard": 0.894248,
+      "mrr": 0.8891333333333333,
+      "auc_hard_same_det": 0.9836864197530865,
+      "auc_hard_diff_det": 0.8611680365296803
+     },
+     "D": {
+      "auc_random": 0.974944,
+      "auc_hard": 0.829994,
+      "mrr": 0.8346,
+      "auc_hard_same_det": 0.9821827160493827,
+      "auc_hard_diff_det": 0.7737050228310502
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.815692,
+      "auc_hard": 0.32910333333333336,
+      "mrr": 0.4199714285714286,
+      "auc_hard_same_det": 0.8990938271604938,
+      "auc_hard_diff_det": 0.11828493150684931
+     },
+     "D": {
+      "auc_random": 0.8055,
+      "auc_hard": 0.615904,
+      "mrr": 0.5519047619047619,
+      "auc_hard_same_det": 0.9171111111111111,
+      "auc_hard_diff_det": 0.5044986301369863
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.5909906666666667,
+      "auc_hard": 0.5251133333333333,
+      "mrr": 0.44376190476190475,
+      "auc_hard_same_det": 0.8623012345679012,
+      "auc_hard_diff_det": 0.4004
+     },
+     "D": {
+      "auc_random": 0.553948,
+      "auc_hard": 0.4991253333333333,
+      "mrr": 0.4418619047619048,
+      "auc_hard_same_det": 0.859362962962963,
+      "auc_hard_diff_det": 0.36588675799086756
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.83894,
+      "auc_hard": 0.6453866666666667,
+      "mrr": 0.6088809523809524,
+      "auc_hard_same_det": 0.9303506172839506,
+      "auc_hard_diff_det": 0.5399890410958904
+     },
+     "D": {
+      "auc_random": 0.849888,
+      "auc_hard": 0.672108,
+      "mrr": 0.6268714285714286,
+      "auc_hard_same_det": 0.9368197530864197,
+      "auc_hard_diff_det": 0.5742009132420092
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7995053333333333,
+      "auc_hard": 0.69854,
+      "mrr": 0.5736285714285714,
+      "auc_hard_same_det": 0.7465185185185185,
+      "auc_hard_diff_det": 0.6807945205479452
+     },
+     "D": {
+      "auc_random": 0.8076186666666667,
+      "auc_hard": 0.7162613333333333,
+      "mrr": 0.5886761904761906,
+      "auc_hard_same_det": 0.7414172839506172,
+      "auc_hard_diff_det": 0.7069570776255708
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260920,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 163,
+   "hard_negatives": 1498,
+   "random_negatives": 1500,
+   "entities": 3974,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9855173333333334,
+      "auc_hard": 0.9098397863818425,
+      "mrr": 0.9056333333333333,
+      "auc_hard_same_det": 0.9848878258946488,
+      "auc_hard_diff_det": 0.873540586261405
+     },
+     "D": {
+      "auc_random": 0.981878,
+      "auc_hard": 0.8520307076101469,
+      "mrr": 0.8607666666666667,
+      "auc_hard_same_det": 0.9836346212127417,
+      "auc_hard_diff_det": 0.7883765891614141
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.817798,
+      "auc_hard": 0.33663217623498,
+      "mrr": 0.44935238095238095,
+      "auc_hard_same_det": 0.8950686805310967,
+      "auc_hard_diff_det": 0.06652787297009266
+     },
+     "D": {
+      "auc_random": 0.8182833333333334,
+      "auc_hard": 0.6081041388518024,
+      "mrr": 0.6069142857142857,
+      "auc_hard_same_det": 0.8743437057180535,
+      "auc_hard_diff_det": 0.4793295115544762
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6042186666666667,
+      "auc_hard": 0.5555514018691589,
+      "mrr": 0.4590238095238095,
+      "auc_hard_same_det": 0.8528221677983733,
+      "auc_hard_diff_det": 0.41176761894197206
+     },
+     "D": {
+      "auc_random": 0.582664,
+      "auc_hard": 0.545739652870494,
+      "mrr": 0.45937142857142854,
+      "auc_hard_same_det": 0.834941476160443,
+      "auc_hard_diff_det": 0.40585865228811513
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8278493333333333,
+      "auc_hard": 0.5535153538050734,
+      "mrr": 0.5630666666666667,
+      "auc_hard_same_det": 0.9296567202077207,
+      "auc_hard_diff_det": 0.37158347628687904
+     },
+     "D": {
+      "auc_random": 0.8627853333333333,
+      "auc_hard": 0.7313364485981309,
+      "mrr": 0.6663619047619047,
+      "auc_hard_same_det": 0.9157240328618117,
+      "auc_hard_diff_det": 0.6421519493845405
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.8417106666666667,
+      "auc_hard": 0.6827823765020027,
+      "mrr": 0.6031190476190476,
+      "auc_hard_same_det": 0.8115933719396824,
+      "auc_hard_diff_det": 0.6204791353852614
+     },
+     "D": {
+      "auc_random": 0.781828,
+      "auc_hard": 0.6184485981308411,
+      "mrr": 0.5829190476190477,
+      "auc_hard_same_det": 0.6610982332271249,
+      "auc_hard_diff_det": 0.5978198428765555
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260921,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 183,
+   "hard_negatives": 1499,
+   "random_negatives": 1500,
+   "entities": 3974,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9786893333333333,
+      "auc_hard": 0.898263509006004,
+      "mrr": 0.9014333333333333,
+      "auc_hard_same_det": 0.9840640572768002,
+      "auc_hard_diff_det": 0.8487319622124528
+     },
+     "D": {
+      "auc_random": 0.972508,
+      "auc_hard": 0.8404142761841228,
+      "mrr": 0.843,
+      "auc_hard_same_det": 0.9821647947447661,
+      "auc_hard_diff_det": 0.7585835351853918
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8060453333333333,
+      "auc_hard": 0.38683122081387594,
+      "mrr": 0.4799809523809524,
+      "auc_hard_same_det": 0.8985553210336946,
+      "auc_hard_diff_det": 0.09141951627057365
+     },
+     "D": {
+      "auc_random": 0.8345753333333333,
+      "auc_hard": 0.6459432955303536,
+      "mrr": 0.6042428571428571,
+      "auc_hard_same_det": 0.9072970322655906,
+      "auc_hard_diff_det": 0.49506716359802433
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6340093333333333,
+      "auc_hard": 0.5706551034022682,
+      "mrr": 0.5023571428571428,
+      "auc_hard_same_det": 0.8467903921375635,
+      "auc_hard_diff_det": 0.4112457726812617
+     },
+     "D": {
+      "auc_random": 0.6166666666666667,
+      "auc_hard": 0.5617878585723816,
+      "mrr": 0.47387619047619045,
+      "auc_hard_same_det": 0.8478329815505419,
+      "auc_hard_diff_det": 0.39665770871432693
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8549573333333333,
+      "auc_hard": 0.6731154102735156,
+      "mrr": 0.6658809523809525,
+      "auc_hard_same_det": 0.9567434756139794,
+      "auc_hard_diff_det": 0.5093805965280744
+     },
+     "D": {
+      "auc_random": 0.8545853333333333,
+      "auc_hard": 0.7224162775183456,
+      "mrr": 0.6827952380952381,
+      "auc_hard_same_det": 0.9465107886131738,
+      "auc_hard_diff_det": 0.5930494146465678
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7748546666666667,
+      "auc_hard": 0.5255063375583723,
+      "mrr": 0.5542571428571429,
+      "auc_hard_same_det": 0.6483046985786517,
+      "auc_hard_diff_det": 0.454616431985151
+     },
+     "D": {
+      "auc_random": 0.82226,
+      "auc_hard": 0.6865096731154102,
+      "mrr": 0.6167,
+      "auc_hard_same_det": 0.8453067072037096,
+      "auc_hard_diff_det": 0.5948381991780008
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260922,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 152,
+   "hard_negatives": 1500,
+   "random_negatives": 1500,
+   "entities": 3968,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9836026666666666,
+      "auc_hard": 0.906234,
+      "mrr": 0.9080666666666667,
+      "auc_hard_same_det": 0.992326754385965,
+      "auc_hard_diff_det": 0.8686302681992337
+     },
+     "D": {
+      "auc_random": 0.9797466666666667,
+      "auc_hard": 0.8432593333333334,
+      "mrr": 0.8563333333333334,
+      "auc_hard_same_det": 0.9911337719298245,
+      "auc_hard_diff_det": 0.7786704980842912
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.8250366666666666,
+      "auc_hard": 0.35123,
+      "mrr": 0.4444619047619047,
+      "auc_hard_same_det": 0.8984100877192982,
+      "auc_hard_diff_det": 0.11223180076628353
+     },
+     "D": {
+      "auc_random": 0.8421893333333333,
+      "auc_hard": 0.61809,
+      "mrr": 0.5839333333333333,
+      "auc_hard_same_det": 0.914203947368421,
+      "auc_hard_diff_det": 0.4887528735632184
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6175613333333333,
+      "auc_hard": 0.5710986666666666,
+      "mrr": 0.4824238095238095,
+      "auc_hard_same_det": 0.8633640350877193,
+      "auc_hard_diff_det": 0.44344252873563217
+     },
+     "D": {
+      "auc_random": 0.5578373333333333,
+      "auc_hard": 0.51774,
+      "mrr": 0.44353809523809523,
+      "auc_hard_same_det": 0.8570526315789474,
+      "auc_hard_diff_det": 0.36953448275862066
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.7793533333333333,
+      "auc_hard": 0.5694386666666666,
+      "mrr": 0.593804761904762,
+      "auc_hard_same_det": 0.9583728070175439,
+      "auc_hard_diff_det": 0.39955938697318005
+     },
+     "D": {
+      "auc_random": 0.7400586666666666,
+      "auc_hard": 0.5892506666666667,
+      "mrr": 0.5942571428571428,
+      "auc_hard_same_det": 0.9217017543859649,
+      "auc_hard_diff_det": 0.44404214559386973
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.8291653333333333,
+      "auc_hard": 0.6248653333333334,
+      "mrr": 0.5967380952380952,
+      "auc_hard_same_det": 0.8131842105263158,
+      "auc_hard_diff_det": 0.5426111111111112
+     },
+     "D": {
+      "auc_random": 0.860428,
+      "auc_hard": 0.674804,
+      "mrr": 0.6165809523809523,
+      "auc_hard_same_det": 0.7966052631578947,
+      "auc_hard_diff_det": 0.6216034482758621
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260923,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 151,
+   "hard_negatives": 1499,
+   "random_negatives": 1500,
+   "entities": 3961,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9826693333333333,
+      "auc_hard": 0.9145023348899266,
+      "mrr": 0.9050523809523809,
+      "auc_hard_same_det": 0.9910160857790403,
+      "auc_hard_diff_det": 0.8813975314966425
+     },
+     "D": {
+      "auc_random": 0.97773,
+      "auc_hard": 0.8509979986657772,
+      "mrr": 0.844052380952381,
+      "auc_hard_same_det": 0.989993328885924,
+      "auc_hard_diff_det": 0.7908596179688082
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.801888,
+      "auc_hard": 0.34786390927284855,
+      "mrr": 0.4408333333333333,
+      "auc_hard_same_det": 0.9060212326981785,
+      "auc_hard_diff_det": 0.10636890687392359
+     },
+     "D": {
+      "auc_random": 0.8012373333333334,
+      "auc_hard": 0.6052101400933956,
+      "mrr": 0.5543047619047619,
+      "auc_hard_same_det": 0.9081219709386832,
+      "auc_hard_diff_det": 0.47415086657580696
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.5977306666666666,
+      "auc_hard": 0.5589326217478319,
+      "mrr": 0.4726460317460317,
+      "auc_hard_same_det": 0.8537435553061865,
+      "auc_hard_diff_det": 0.4313783209818962
+     },
+     "D": {
+      "auc_random": 0.6230813333333334,
+      "auc_hard": 0.5599986657771848,
+      "mrr": 0.48310384615384616,
+      "auc_hard_same_det": 0.8241167400783745,
+      "auc_hard_diff_det": 0.4457240834864121
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8593506666666667,
+      "auc_hard": 0.6316597731821214,
+      "mrr": 0.6043880952380952,
+      "auc_hard_same_det": 0.9380558341322471,
+      "auc_hard_diff_det": 0.4990929960948178
+     },
+     "D": {
+      "auc_random": 0.7727186666666667,
+      "auc_hard": 0.6439332888592395,
+      "mrr": 0.6315,
+      "auc_hard_same_det": 0.9410158648812232,
+      "auc_hard_diff_det": 0.5153961284600431
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.765488,
+      "auc_hard": 0.5208498999332889,
+      "mrr": 0.49596190476190477,
+      "auc_hard_same_det": 0.7031884390918449,
+      "auc_hard_diff_det": 0.441958440297352
+     },
+     "D": {
+      "auc_random": 0.848432,
+      "auc_hard": 0.7294929953302202,
+      "mrr": 0.6350238095238095,
+      "auc_hard_same_det": 0.7707169017755766,
+      "auc_hard_diff_det": 0.7116568638882464
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260924,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 172,
+   "hard_negatives": 1497,
+   "random_negatives": 1500,
+   "entities": 3964,
+   "projected_types": [
+    "intermediary_of",
+    "officer_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.986944,
+      "auc_hard": 0.9140133600534402,
+      "mrr": 0.913452380952381,
+      "auc_hard_same_det": 0.9881196501530192,
+      "auc_hard_diff_det": 0.8751527445134171
+     },
+     "D": {
+      "auc_random": 0.9819353333333334,
+      "auc_hard": 0.8539018036072145,
+      "mrr": 0.8583380952380952,
+      "auc_hard_same_det": 0.9859233971819609,
+      "auc_hard_diff_det": 0.7846709679521645
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.7818786666666667,
+      "auc_hard": 0.3621990647962592,
+      "mrr": 0.4546619047619047,
+      "auc_hard_same_det": 0.878776933712386,
+      "auc_hard_diff_det": 0.09131067012072926
+     },
+     "D": {
+      "auc_random": 0.7765893333333334,
+      "auc_hard": 0.5985544422177689,
+      "mrr": 0.5578,
+      "auc_hard_same_det": 0.871856115331438,
+      "auc_hard_diff_det": 0.4552377111947472
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.5865586666666667,
+      "auc_hard": 0.5453827655310621,
+      "mrr": 0.4536428571428572,
+      "auc_hard_same_det": 0.8248434854204533,
+      "auc_hard_diff_det": 0.3988362904671131
+     },
+     "D": {
+      "auc_random": 0.592388,
+      "auc_hard": 0.5588977955911824,
+      "mrr": 0.44920952380952384,
+      "auc_hard_same_det": 0.8165167544391108,
+      "auc_hard_diff_det": 0.42380492692702476
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8485173333333333,
+      "auc_hard": 0.6514255177020708,
+      "mrr": 0.6471428571428571,
+      "auc_hard_same_det": 0.9364970250578677,
+      "auc_hard_diff_det": 0.5019368004301286
+     },
+     "D": {
+      "auc_random": 0.8776506666666667,
+      "auc_hard": 0.735186372745491,
+      "mrr": 0.6697904761904762,
+      "auc_hard_same_det": 0.9128955585589784,
+      "auc_hard_diff_det": 0.6419974094530524
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.8234893333333333,
+      "auc_hard": 0.620311289245157,
+      "mrr": 0.5602571428571429,
+      "auc_hard_same_det": 0.8226957791552096,
+      "auc_hard_diff_det": 0.5141828372191538
+     },
+     "D": {
+      "auc_random": 0.7639866666666667,
+      "auc_hard": 0.5817955911823647,
+      "mrr": 0.5242238095238095,
+      "auc_hard_same_det": 0.804352891830172,
+      "auc_hard_diff_det": 0.46508871401339263
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260925,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 148,
+   "hard_negatives": 1499,
+   "random_negatives": 1500,
+   "entities": 3962,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9772766666666667,
+      "auc_hard": 0.8989539693128753,
+      "mrr": 0.8914047619047619,
+      "auc_hard_same_det": 0.9867231307358059,
+      "auc_hard_diff_det": 0.8620510264418704
+     },
+     "D": {
+      "auc_random": 0.9724793333333334,
+      "auc_hard": 0.8380026684456304,
+      "mrr": 0.8405714285714285,
+      "auc_hard_same_det": 0.9848930818744027,
+      "auc_hard_diff_det": 0.7762419264358057
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.801986,
+      "auc_hard": 0.33599466310873916,
+      "mrr": 0.4335952380952381,
+      "auc_hard_same_det": 0.8936723581486757,
+      "auc_hard_diff_det": 0.10151654133058402
+     },
+     "D": {
+      "auc_random": 0.7845593333333334,
+      "auc_hard": 0.6012261507671781,
+      "mrr": 0.5482285714285714,
+      "auc_hard_same_det": 0.8932937273497648,
+      "auc_hard_diff_det": 0.478425010613136
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.61188,
+      "auc_hard": 0.5566831220813876,
+      "mrr": 0.4857761904761905,
+      "auc_hard_same_det": 0.874898581036006,
+      "auc_hard_diff_det": 0.4228879859300139
+     },
+     "D": {
+      "auc_random": 0.5712013333333333,
+      "auc_hard": 0.5038719146097398,
+      "mrr": 0.434452380952381,
+      "auc_hard_same_det": 0.8720813875917278,
+      "auc_hard_diff_det": 0.3490565680150403
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.794476,
+      "auc_hard": 0.6077518345563709,
+      "mrr": 0.5954190476190476,
+      "auc_hard_same_det": 0.947690352126643,
+      "auc_hard_diff_det": 0.4648231396688702
+     },
+     "D": {
+      "auc_random": 0.8197666666666666,
+      "auc_hard": 0.6706551034022682,
+      "mrr": 0.6286761904761905,
+      "auc_hard_same_det": 0.9399013756919027,
+      "auc_hard_diff_det": 0.5574492843713991
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7568533333333334,
+      "auc_hard": 0.6914996664442962,
+      "mrr": 0.5565380952380953,
+      "auc_hard_same_det": 0.7707976488830391,
+      "auc_hard_diff_det": 0.658158469282552
+     },
+     "D": {
+      "auc_random": 0.73268,
+      "auc_hard": 0.5788739159439626,
+      "mrr": 0.5255904761904763,
+      "auc_hard_same_det": 0.7366577718478986,
+      "auc_hard_diff_det": 0.5125329765298078
+     }
+    }
+   }
+  },
+  {
+   "fd": "entity_country_reverse",
+   "seed": 20260926,
+   "usable_duplicate_pairs": 4160,
+   "positives": 500,
+   "positives_sharing_determinant": 161,
+   "hard_negatives": 1497,
+   "random_negatives": 1500,
+   "entities": 3972,
+   "projected_types": [
+    "officer_of",
+    "intermediary_of",
+    "registered_address",
+    "connected_to",
+    "underlying"
+   ],
+   "results": {
+    "property_hash": {
+     "N": {
+      "auc_random": 0.9802766666666667,
+      "auc_hard": 0.9108350033400133,
+      "mrr": 0.8984666666666667,
+      "auc_hard_same_det": 0.9900774634154437,
+      "auc_hard_diff_det": 0.8732006786434225
+     },
+     "D": {
+      "auc_random": 0.9743213333333334,
+      "auc_hard": 0.8514488977955912,
+      "mrr": 0.8308333333333334,
+      "auc_hard_same_det": 0.9885360783679159,
+      "auc_hard_diff_det": 0.7863425966978205
+     }
+    },
+    "fast_rp": {
+     "N": {
+      "auc_random": 0.803742,
+      "auc_hard": 0.3507808951235805,
+      "mrr": 0.4463047619047619,
+      "auc_hard_same_det": 0.8869436595758805,
+      "auc_hard_diff_det": 0.09614312203561498
+     },
+     "D": {
+      "auc_random": 0.7917666666666666,
+      "auc_hard": 0.5663059452237809,
+      "mrr": 0.559947619047619,
+      "auc_hard_same_det": 0.8698598024205761,
+      "auc_hard_diff_det": 0.42214024903297254
+     }
+    },
+    "node2vec": {
+     "N": {
+      "auc_random": 0.6278333333333334,
+      "auc_hard": 0.5761336005344021,
+      "mrr": 0.47382857142857143,
+      "auc_hard_same_det": 0.850989764207504,
+      "auc_hard_diff_det": 0.4455971924182682
+     },
+     "D": {
+      "auc_random": 0.6214786666666666,
+      "auc_hard": 0.5727094188376753,
+      "mrr": 0.4728095238095238,
+      "auc_hard_same_det": 0.836256363658995,
+      "auc_hard_diff_det": 0.4475440556629483
+     }
+    },
+    "hash_gnn": {
+     "N": {
+      "auc_random": 0.8238253333333333,
+      "auc_hard": 0.6113493653974615,
+      "mrr": 0.6090666666666668,
+      "auc_hard_same_det": 0.9409045834941103,
+      "auc_hard_diff_det": 0.45483494028371396
+     },
+     "D": {
+      "auc_random": 0.8276013333333333,
+      "auc_hard": 0.6855871743486974,
+      "mrr": 0.6519238095238095,
+      "auc_hard_same_det": 0.9221133778945053,
+      "auc_hard_diff_det": 0.5732546705998034
+     }
+    },
+    "graph_sage": {
+     "N": {
+      "auc_random": 0.7851186666666666,
+      "auc_hard": 0.514183032732131,
+      "mrr": 0.527752380952381,
+      "auc_hard_same_det": 0.776393366443031,
+      "auc_hard_diff_det": 0.3896524612647123
+     },
+     "D": {
+      "auc_random": 0.830848,
+      "auc_hard": 0.7335230460921843,
+      "mrr": 0.6276904761904761,
+      "auc_hard_same_det": 0.7987361887335748,
+      "auc_hard_diff_det": 0.7025516125663323
+     }
+    }
+   }
+  }
+ ]
+}
