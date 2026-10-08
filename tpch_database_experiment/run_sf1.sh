@@ -10,7 +10,7 @@
 set -euo pipefail
 source ~/neo4j/env.sh
 HERE="$(cd "$(dirname "$0")" && pwd)"
-OUT="$HERE/back/results_sf1/new_redundancy_results.json"
+OUT="$HERE/redundancy/results/sf1/new_redundancy_results.json"
 mkdir -p "$(dirname "$OUT")"
 
 if [ "${SKIP_IMPORT:-0}" != "1" ]; then
@@ -26,7 +26,7 @@ if [ "${SKIP_IMPORT:-0}" != "1" ]; then
 fi
 
 echo "Running update experiment ..."
-time python "$HERE/back/redundancy_20_9/scripts/new_redundancy.py" \
+time python "$HERE/redundancy/scripts/new_redundancy.py" \
   --database neo4j --output "$OUT" \
   --mask 2 --mask 16 --mask 18 --mask 32 --mask 48 \
   --mask 64 --mask 72 --mask 128 --mask 160 --mask 176
