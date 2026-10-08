@@ -267,7 +267,7 @@ def main(argv=None) -> int:
         print("\nCancelled. Committed batches remain; rerun with the same files to resume.", file=sys.stderr)
         return 130
     except ModuleNotFoundError as exc:
-        print(f"Missing dependency: {exc.name or str(exc)}. See import_database/README_CN.md.", file=sys.stderr)
+        print(f"Missing dependency: {exc.name or str(exc)}. See import_database/README.md.", file=sys.stderr)
         return 1
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
