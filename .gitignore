@@ -91,4 +91,4 @@ neo4j/plugins/
 *.sqlite3
 
 # Generated scale-factor comparison output
-/tpch_database_experiment/test/redundancy/results/sf_influence/
+/tpch_database_experiment/redundancy/results/sf_influence/
