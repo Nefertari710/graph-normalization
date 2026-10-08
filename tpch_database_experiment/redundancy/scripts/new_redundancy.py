@@ -852,6 +852,14 @@ def workload_dict(workload: dict[str, list[UpdateItem]], count: int) -> list[dic
     return groups
 def elapsed_ms(start_ns: int) -> float:
     return (time.perf_counter_ns() - start_ns) / 1_000_000
+def relative_result_path(path: Path) -> str:
+    """Record repository-relative paths, or only the name for external outputs."""
+    repository_root = Path(__file__).resolve().parents[3]
+    resolved_path = path.resolve()
+    try:
+        return resolved_path.relative_to(repository_root).as_posix()
+    except ValueError:
+        return resolved_path.name
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
@@ -926,7 +934,7 @@ def experiment(args: argparse.Namespace) -> dict[str, Any]:
                    "update_repeat_count": args.repeats,
                    "cleanup_batch_size": args.cleanup_batch_size,
                    "update_value_policy": "random_existing_participating_domain_value",
-                   "random_seed": args.seed, "results_file": str(output),
+                   "random_seed": args.seed, "results_file": relative_result_path(output),
                    "measurement_definitions": {
                        "normalization_save_ms": "denormalized - normalized",
                        "update_case_time": "median of repeated A0-to-A1 updates; A1-to-A0 restore excluded",
