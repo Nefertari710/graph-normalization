@@ -60,6 +60,12 @@ pip install neo4j
 
 ## Import the TPC-H `.tbl` data
 
+Run the following commands from the experiment directory:
+
+```bash
+cd tpch_database_experiment
+```
+
 The loader reads the eight files in `data/tbl_sf_001` through the Neo4j
 Python driver, so the files do not need to be copied into Neo4j's `import`
 directory.
