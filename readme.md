@@ -4,29 +4,33 @@
 
 ### install Neo4j
 
-1. install community-2026-06.0 in /Users/yma391/neo4j
+1. Install Neo4j 2026.06.0 in `$HOME/neo4j`.
+
+```bash
+mkdir -p "$HOME/neo4j"
+```
 
 community version
-```
-tar -xzf /Users/yma391/Downloads/neo4j-community-2026.06.0-unix.tar.gz -C /Users/yma391/neo4j/
+```bash
+tar -xzf "$HOME/Downloads/neo4j-community-2026.06.0-unix.tar.gz" -C "$HOME/neo4j/"
 ```
 
 enterprise version
-```
-tar -xzf /Users/yma391/Downloads/neo4j-enterprise-2026.06.0-unix.tar.gz -C /Users/yma391/neo4j/
+```bash
+tar -xzf "$HOME/Downloads/neo4j-enterprise-2026.06.0-unix.tar.gz" -C "$HOME/neo4j/"
 ```
 
 2. Write down in ~/.bash_profile
 
 vim ~/.bash_profile
 ```bash
-export NEO4J_HOME='/Users/yma391/neo4j/neo4j-enterprise-2026.06.0'
+export NEO4J_HOME="$HOME/neo4j/neo4j-enterprise-2026.06.0"
 export PATH="$NEO4J_HOME/bin:$PATH"
 ```
 
 source ~/.bash_profile
 
-command -v neo4j        -- /Users/yma391/neo4j/neo4j-enterprise-2026.06.0/bin/neo4jj
+Run `command -v neo4j` to verify that it resolves to `$NEO4J_HOME/bin/neo4j`.
 
 3. Start the neo4j
 
