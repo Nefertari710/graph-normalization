@@ -187,7 +187,7 @@ def make_params_q7(seed, runs):
 
 def make_params_q8(seed, runs):
     """
-    TPC-H Query 8 parameter generator (规范级正确).
+    TPC-H Query 8 parameter generator.
 
     Parameters:
     - nation : N_NAME
@@ -351,12 +351,12 @@ def make_params_q10(seed, runs):
 
 def make_params_q11(seed, runs, sf):
     """
-    TPC-H Query 11 parameter generator (规范级).
+    TPC-H Query 11 parameter generator (specification-compliant).
 
     Parameters:
     - nation   ∈ N_NAME
     - sf       = scale factor of the loaded TPC-H data set
-    - fraction = 0.0001 / SF   (固定, 非随机)
+    - fraction = 0.0001 / SF   (fixed, not random)
     """
     if sf <= 0:
         raise ValueError("sf must be greater than zero")
@@ -372,7 +372,7 @@ def make_params_q11(seed, runs, sf):
         "UNITED KINGDOM", "UNITED STATES"
     ]
 
-    fraction = 0.0001 / sf   # 必须固定
+    fraction = 0.0001 / sf   # Must remain fixed.
 
     params = []
     for _ in range(runs):
@@ -386,7 +386,7 @@ def make_params_q11(seed, runs, sf):
 
 def make_params_q12(seed, runs):
     """
-    TPC-H Query 12 parameter generator (规范级).
+    TPC-H Query 12 parameter generator (specification-compliant).
 
     Parameters:
     - shipmode1 ∈ Modes
@@ -527,7 +527,7 @@ def make_params_q16(seed, runs):
         n = rng.randint(1, 5)
         brand = f"Brand#{m}{n}"
 
-        # TYPE prefix (前两段)
+        # TYPE prefix (first two components)
         full_type = rng.choice(types_3)
         type_prefix = " ".join(full_type.split()[:2])
 

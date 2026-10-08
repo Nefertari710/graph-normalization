@@ -4,11 +4,11 @@
 The input is the v6 JSON report written by
 ``supplier_product_fd_experiment.py``.  This program validates the report,
 recomputes its headline metrics, creates reusable CSV/JSON summaries, draws
-publication-ready figures, and writes English and Chinese Markdown reports.
+publication-ready figures, and writes English Markdown reports.
 
 Default usage (inside the ``graph_database_denormalization`` Conda env)::
 
-    python case_study/analysis/analysis.py
+    python extend_experiment/northwind/analysis/analysis.py
 
 Use ``--help`` to select another input, output directory, or focus case.
 """
@@ -2023,207 +2023,222 @@ def build_chinese_report(
 ) -> str:
     strongest = max(cases, key=lambda case: case.update_time_ratio)
     break_even_whole = (
-        "无法达到"
+        "not reached"
         if focus.break_even_batches is None
         else (
-            f"{focus.break_even_batches:.2f} 个 batch，按完整批次约为第 "
-            f"{math.ceil(focus.break_even_batches)} 个 batch"
+            f"{focus.break_even_batches:.2f} batches; the first whole-batch "
+            f"threshold is approximately batch {math.ceil(focus.break_even_batches)}"
         )
     )
     break_even_calculation = (
-        "本案例没有定义 break-even，因为没有正的 median update saving。"
+        "Break-even is undefined for this case because the median update saving is not positive."
         if focus.break_even_batches is None
         else (
-            f"{focus.pair_label} 为 "
+            f"For {focus.pair_label}, the calculation is "
             f"{focus.normalization.median_ms:.3f}/"
             f"({focus.folded_update.median_ms:.3f}-"
             f"{focus.normalized_update.median_ms:.3f})"
-            f"={focus.break_even_batches:.3f}，因此按完整 batch 约第 "
-            f"{math.ceil(focus.break_even_batches)} 个回本。"
+            f"={focus.break_even_batches:.3f}; the first whole batch that recovers "
+            f"the cost is approximately batch {math.ceil(focus.break_even_batches)}."
         )
     )
     return dedent(
         rf"""
-        # Northwind 函数依赖规范化实验分析报告
+        # Northwind Functional Dependency Normalization Experiment Report
 
-        ## 摘要
+        ## Abstract
 
-        本报告分析 Northwind 中 {suite.case_count} 组直接关联表，并以
-        **{focus.pair_label}** 作为 Step 1–4 的重点案例，也就是把
-        {focus.referenced_table} 信息折叠到每个
-        {focus.referencing_table} tuple 的情形。所有实验都在带 `run_id` 的
-        shadow projection 上运行，原始 Northwind 图保持只读；每个 case
-        开始前、运行中和清理后的原图 SHA-256 完全相同。
+        This report analyzes {suite.case_count} directly related table pairs in
+        Northwind, using **{focus.pair_label}** as the focus case for Steps 1–4:
+        {focus.referenced_table} information is folded into each
+        {focus.referencing_table} tuple. All experiments run on shadow
+        projections tagged with `run_id`; the original Northwind graph remains
+        read-only. Its SHA-256 fingerprint is identical before, during, and
+        after cleanup of every case.
 
-        {focus.pair_label} 折叠连接有 \(J={focus.join_rows_j}\) 个
+        The {focus.pair_label} folded join contains \(J={focus.join_rows_j}\)
         {focus.referencing_table}
-        tuple 和 \(D={focus.participating_referenced_rows_d}\) 个不同且参与
-        join 的 {focus.referenced_table} key。因此规范化可以消除
-        **\(J-D={focus.redundant_tuples}\) 个 {focus.referenced_table}
-        tuple 副本，占 J 的
-        {focus.redundant_tuple_pct:.3f}%**。进一步计算得到
-        **{focus.redundant_property_slots:,} 个理论冗余 dependent-property
-        slots**、**{focus.redundant_non_null_values:,} 个冗余非 NULL 值**
-        和 **{focus.redundant_payload_bytes:,} bytes 的冗余 value-payload
-        proxy**。
+        tuples and \(D={focus.participating_referenced_rows_d}\) distinct
+        {focus.referenced_table} keys participating in the join. Normalization
+        therefore removes **\(J-D={focus.redundant_tuples}\)
+        {focus.referenced_table} tuple copies, representing
+        {focus.redundant_tuple_pct:.3f}% of J**. Further calculations give
+        **{focus.redundant_property_slots:,} theoretical redundant
+        dependent-property slots**, **{focus.redundant_non_null_values:,}
+        redundant non-NULL values**, and **{focus.redundant_payload_bytes:,}
+        bytes of redundant value-payload
+        proxy**.
 
-        更新 `{focus.referenced_table}.{focus.update_property}` 时，folded
-        表示写入 {focus.folded_writes} 个属性副本，normalized 表示只写
-        {focus.normalized_writes} 个不同 {focus.referenced_table} 节点，写放大为
-        **{focus.write_amplification:.3f}×**。client wall-clock median 分别为
-        **{focus.folded_update.median_ms:.3f} ms** 和
-        **{focus.normalized_update.median_ms:.3f} ms**，时间比为
-        **{focus.update_time_ratio:.3f}×**。Step 3 的 normalization median
-        为 **{focus.normalization.median_ms:.3f} ms**，按中位数估算的
-        break-even 为 **{break_even_whole}**。
+        When updating `{focus.referenced_table}.{focus.update_property}`, the
+        folded representation writes {focus.folded_writes} property copies,
+        while the normalized representation writes only
+        {focus.normalized_writes} distinct {focus.referenced_table} nodes. Write
+        amplification is **{focus.write_amplification:.3f}×**. The client
+        wall-clock medians are **{focus.folded_update.median_ms:.3f} ms** and
+        **{focus.normalized_update.median_ms:.3f} ms**, respectively, giving a
+        time ratio of **{focus.update_time_ratio:.3f}×**. The Step 3 normalization
+        median is **{focus.normalization.median_ms:.3f} ms**, and the estimated
+        break-even based on medians is **{break_even_whole}**.
 
-        ![Step 1–4 总结](figures/08_focus_step_summary.png)
+        ![Step 1–4 summary](figures/08_focus_step_summary.png)
 
-        ## 1. 研究问题
+        ## 1. Research Questions
 
-        - **RQ1：**函数依赖造成多少冗余，规范化能够节省多少？
-        - **RQ2：**把 folded MV 分解成规范化 MV 的一次性代价是多少？
-        - **RQ3：**同一组逻辑更新在 folded 和 normalized 表示上分别需要
-          多少物理写入与时间？
-        - **RQ4：**需要多少个同类更新 batch 才能通过更新收益收回
-          normalization 成本？
+        - **RQ1:** How much redundancy is caused by functional dependencies,
+          and how much can normalization eliminate?
+        - **RQ2:** What is the one-time cost of decomposing a folded MV into
+          normalized MVs?
+        - **RQ3:** How many physical writes and how much time does the same set
+          of logical updates require in folded and normalized representations?
+        - **RQ4:** How many comparable update batches are needed to recover the
+          normalization cost through update savings?
 
-        ## 2. 实验方法
+        ## 2. Experimental Method
 
-        ### Step 0：创建 folded baseline（不计时）
+        ### Step 0: Create the Folded Baseline (Not Timed)
 
-        程序为每个 join tuple 创建一个 run-scoped MV node，将 referencing
-        table 属性和 referenced table 的非 key 属性复制到这个节点，并按
-        complete topology 复制必要的 boundary relationships。这个 baseline
-        才是报告中的 “denormalized/original representation”；真实原图从未
-        被删除或修改。
+        The program creates one run-scoped MV node for each join tuple, copies
+        the referencing table properties and the referenced table's non-key
+        properties into that node, and copies the necessary boundary
+        relationships according to the complete topology. This baseline is the
+        report's "denormalized/original representation"; the actual source
+        graph is never deleted or modified.
 
-        ### Step 1：冗余计算
+        ### Step 1: Calculate Redundancy
 
-        设 \(J\) 为 folded join tuple 数量，\(D\) 为参与 join 的不同
-        referenced key 数量：
+        Let \(J\) be the number of folded join tuples and \(D\) the number of
+        distinct referenced keys participating in the join:
 
         \[
         R_{{tuple}}=J-D
         \]
 
-        referenced table 有 \(c_B\) 个列、key 长度为 \(k_B\) 时：
+        For a referenced table with \(c_B\) columns and key length \(k_B\):
 
         \[
         R_{{slot}}=(J-D)(c_B-k_B)
         \]
 
-        theoretical slot 包括 NULL 位置；non-NULL 指标只统计实际存在的重复
-        属性值。payload 指标对字符串计算 UTF-8 bytes，对其他值计算
-        `str(value)` 的 UTF-8 bytes。它只是**值内容大小 proxy，不是 Neo4j
-        实际磁盘占用**。topology relationship redundancy 是关系层的独立
-        指标，不能与属性数量直接相加。
+        Theoretical slots include NULL positions; the non-NULL metric counts
+        only duplicated property values that actually exist. The payload metric
+        counts UTF-8 bytes for strings and UTF-8 bytes of `str(value)` for other
+        values. It is only a **proxy for value-content size, not actual Neo4j
+        disk usage**. Topology relationship redundancy is a separate
+        relationship-level metric and cannot be added directly to property
+        counts.
 
-        ### Step 2 与 Step 4：相同逻辑更新
+        ### Steps 2 and 4: Identical Logical Updates
 
-        每个 case 从 referenced table 选择一个非 key 属性，在完整 referenced
-        relation 的 active domain 上做确定性的 value rotation。两个表示使用
-        完全相同的 key-to-value 映射：
+        Each case selects a non-key property from the referenced table and
+        applies a deterministic value rotation over the active domain of the
+        complete referenced relation. Both representations use exactly the
+        same key-to-value mapping:
 
-        - Step 2 在 folded MV 中更新全部 \(J\) 个重复位置；
-        - Step 4 在 normalized MV 中更新 \(D\) 个不同 referenced nodes。
+        - Step 2 updates all \(J\) duplicated positions in the folded MV;
+        - Step 4 updates \(D\) distinct referenced nodes in the normalized MV.
 
-        一个 measured run 是一个 autocommit batch，计时持续到结果消费和
-        commit 完成；restore 与 validation 不计时。每阶段有
-        {focus.folded_update.n} 次 measured runs，主要报告 client wall-clock
-        median。
+        One measured run is one autocommit batch, timed through result
+        consumption and commit completion; restoration and validation are not
+        timed. Each phase has {focus.folded_update.n} measured runs, with the
+        client wall-clock median as the primary reported statistic.
 
-        ### Step 3：Normalization
+        ### Step 3: Normalization
 
-        程序从 folded nodes 中重新创建 normalized referencing nodes；按
-        referenced key 做 DISTINCT 后创建 referenced nodes；补充显式 join
-        relationships；并迁移、去重 boundary relationships。计时包括显式
-        transaction、data decomposition 和 commit，不包含 DDL、validation、
-        refolding 与 cleanup。
+        The program recreates normalized referencing nodes from the folded
+        nodes, creates referenced nodes after applying DISTINCT to referenced
+        keys, adds explicit join relationships, and migrates and deduplicates
+        boundary relationships. Timing includes the explicit transaction,
+        data decomposition, and commit, but excludes DDL, validation,
+        refolding, and cleanup.
 
-        ## 3. 实验结果
+        ## 3. Experimental Results
 
-        ### 3.1 RQ1：冗余节省
+        ### 3.1 RQ1: Redundancy Savings
 
-        本案例 \(J-D={focus.join_rows_j}-
-        {focus.participating_referenced_rows_d}={focus.redundant_tuples}\)。
-        {focus.referenced_table} 有 {focus.dependent_property_count} 个
-        dependent properties，
-        因而理论冗余 slots 为
+        In the focus case, \(J-D={focus.join_rows_j}-
+        {focus.participating_referenced_rows_d}={focus.redundant_tuples}\).
+        {focus.referenced_table} has {focus.dependent_property_count}
+        dependent properties, so the theoretical redundant slot count is
         \({focus.redundant_tuples}\times
-        {focus.dependent_property_count}={focus.redundant_property_slots}\)。
+        {focus.dependent_property_count}={focus.redundant_property_slots}\).
 
-        {focus.referenced_table} fanout histogram 是
-        `{dict(focus.fanout_histogram)}`。fanout 为 \(f\) 的
-        {focus.referenced_table} 会贡献 \(f-1\) 个冗余 tuple 副本。
+        The {focus.referenced_table} fanout histogram is
+        `{dict(focus.fanout_histogram)}`. A {focus.referenced_table} row with
+        fanout \(f\) contributes \(f-1\) redundant tuple copies.
 
         ![{focus.referenced_table} fanout](figures/01_focus_fanout.png)
 
-        ![所有表对的冗余](figures/02_redundancy_by_pair.png)
+        ![Redundancy across all table pairs](figures/02_redundancy_by_pair.png)
 
-        | 表对 | 理论冗余属性槽 | 冗余非 NULL 值 | 冗余 payload proxy（bytes） | 冗余 topology relationships |
+        | Table pair | Theoretical redundant property slots | Redundant non-NULL values | Redundant payload proxy (bytes) | Redundant topology relationships |
         |---|---:|---:|---:|---:|
         {redundancy_results_table(cases)}
 
-        {focus.pair_label} 的 topology relationship redundancy 为
-        {focus.topology_redundant_relationships}，folded 与 normalized 都有
-        {focus.topology_folded_relationships:,} 条 boundary relationships。
-        关系冗余为 0 不表示属性冗余为 0；二者衡量的是不同资源。
+        For {focus.pair_label}, topology relationship redundancy is
+        {focus.topology_redundant_relationships}; both folded and normalized
+        representations have {focus.topology_folded_relationships:,} boundary
+        relationships. Zero relationship redundancy does not imply zero
+        property redundancy: the two metrics measure different resources.
 
-        ### 3.2 RQ3：更新成本
+        ### 3.2 RQ3: Update Cost
 
-        本案例一个 batch 有 {focus.logical_updates} 个逻辑
-        {focus.referenced_table} updates。
-        folded 结构更新 {focus.folded_writes} 个属性位置，normalized 结构
-        更新 {focus.normalized_writes} 个节点，因此：
+        One batch in the focus case contains {focus.logical_updates} logical
+        {focus.referenced_table} updates.
+        The folded structure updates {focus.folded_writes} property positions,
+        while the normalized structure updates {focus.normalized_writes}
+        nodes, so:
 
         \[
         A_{{write}}=J/D={focus.write_amplification:.3f}
         \]
 
-        folded median 为 {focus.folded_update.median_ms:.3f} ms，
-        normalized median 为 {focus.normalized_update.median_ms:.3f} ms。
-        folded median 高 {(focus.update_time_ratio - 1) * 100:.3f}%；从 folded
-        baseline 看，normalization 将 median 降低
-        {focus.normalized_time_reduction_pct:.3f}%。
+        The folded median is {focus.folded_update.median_ms:.3f} ms and the
+        normalized median is {focus.normalized_update.median_ms:.3f} ms.
+        The folded median is {(focus.update_time_ratio - 1) * 100:.3f}% higher;
+        relative to the folded baseline, normalization reduces the median by
+        {focus.normalized_time_reduction_pct:.3f}%.
 
-        ![Folded 与 normalized update](figures/03_update_comparison.png)
+        ![Folded and normalized updates](figures/03_update_comparison.png)
 
         ![{focus.pair_label} update raw samples](figures/04_focus_update_samples.png)
 
-        folded focus samples 的 mean={focus.folded_update.mean_ms:.3f} ms、
-        median={focus.folded_update.median_ms:.3f} ms、max=
-        {focus.folded_update.max_ms:.3f} ms。明显的慢样本会拉高 mean，所以
-        本报告以 median、IQR 和原始点为主，不使用 mean bar 作为核心证据。
+        The folded focus samples have mean={focus.folded_update.mean_ms:.3f} ms,
+        median={focus.folded_update.median_ms:.3f} ms, and max=
+        {focus.folded_update.max_ms:.3f} ms. Slow outliers raise the mean, so
+        this report emphasizes the median, IQR, and raw sample points rather
+        than using mean bars as the primary evidence.
 
-        ### 3.3 RQ2：Normalization 代价
+        ### 3.3 RQ2: Normalization Cost
 
-        {focus.folded_nodes} 个 folded nodes 被分解为
-        {focus.normalized_referencing_nodes} 个 normalized
-        {focus.referencing_table} nodes、
-        {focus.normalized_referenced_nodes} 个不同 {focus.referenced_table}
-        nodes，并创建
-        {focus.normalized_join_relationships} 条 join relationships。
-        normalization median 为 {focus.normalization.median_ms:.3f} ms。
+        The {focus.folded_nodes} folded nodes are decomposed into
+        {focus.normalized_referencing_nodes} normalized
+        {focus.referencing_table} nodes and
+        {focus.normalized_referenced_nodes} distinct {focus.referenced_table}
+        nodes, with {focus.normalized_join_relationships} join relationships
+        created. The normalization median is
+        {focus.normalization.median_ms:.3f} ms.
 
-        所以 \(J-D\) 表示移除了多少份 **referenced 属性副本**，不能解释为
-        图中物理节点净减少 \(J-D\) 个。规范化会增加 distinct referenced
-        nodes 与显式 join edges。
+        Thus, \(J-D\) counts the **referenced property copies** removed; it
+        cannot be interpreted as a net reduction of \(J-D\) physical graph
+        nodes. Normalization adds distinct referenced nodes and explicit join
+        edges.
 
         ![Normalization effort](figures/05_normalization_effort.png)
 
-        ### 3.4 写放大与时间比
+        ### 3.4 Write Amplification and Time Ratio
 
-        \(J/D\) 决定物理写入数量，但 elapsed time 还包含 transaction 启动、
-        查询执行、index/cache、结果消费和 commit 等固定或波动成本，所以
-        写放大不会等比例转化为时间放大。
+        \(J/D\) determines the number of physical writes, but elapsed time also
+        includes fixed or variable costs such as transaction startup, query
+        execution, index/cache behavior, result consumption, and commit.
+        Write amplification therefore does not translate proportionally into
+        time amplification.
 
-        ![写放大与时间比](figures/06_write_amplification_vs_speedup.png)
+        ![Write amplification and time ratio](figures/06_write_amplification_vs_speedup.png)
 
-        ### 3.5 RQ4：Break-even
+        ### 3.5 RQ4: Break-even
 
-        只有 \(J-D>0\) 且 folded median 严格大于 normalized median 时，
-        才定义：
+        Break-even is defined only when \(J-D>0\) and the folded median is
+        strictly greater than the normalized median:
 
         \[
         N_{{break-even}}=
@@ -2236,97 +2251,115 @@ def build_chinese_report(
 
         ![Break-even](figures/07_normalization_break_even.png)
 
-        EmployeeTerritory → Employee 虽有冗余，但 normalized median 略慢；
-        EmployeeTerritory → Territory 为 \(J=D=49\)，没有 tuple 冗余。这两组
-        break-even 都是未定义，不是 0 或无穷大。Product → Category 的
-        估算值约 1,940.6，但 median 差只有 0.004 ms，属于微基准噪声量级，
-        不宜当作精确预测。
+        EmployeeTerritory → Employee has redundancy, but its normalized median
+        is slightly slower. EmployeeTerritory → Territory has \(J=D=49\) and
+        no tuple redundancy. Break-even is undefined for both cases, rather
+        than zero or infinity. The estimate for Product → Category is about
+        1,940.6, but the median difference is only 0.004 ms, within the range
+        of microbenchmark noise, and should not be treated as a precise
+        prediction.
 
-        ## 4. 完整结果
+        ## 4. Complete Results
 
-        | 表对 | J | D | J−D | Tuple 冗余 | Folded update median (ms) | Normalized update median (ms) | 时间比 | Normalization median (ms) | Break-even batches |
+        | Table pair | J | D | J−D | Tuple redundancy | Folded update median (ms) | Normalized update median (ms) | Time ratio | Normalization median (ms) | Break-even batches |
         |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
         {main_results_table(cases)}
 
-        {suite.case_count} 组 case 中有
-        {suite.cases_with_tuple_redundancy} 组存在 tuple redundancy，
-        {suite.cases_with_lower_normalized_median} 组的 normalized median 更低。
-        最强运行时结果是 {strongest.pair_label}，folded/normalized median
-        ratio={strongest.update_time_ratio:.3f}×，估算 break-even=
-        {strongest.break_even_batches:.2f} batches。
+        Of the {suite.case_count} cases,
+        {suite.cases_with_tuple_redundancy} have tuple redundancy, and
+        {suite.cases_with_lower_normalized_median} have a lower normalized
+        median. The strongest runtime result is {strongest.pair_label}, with
+        folded/normalized median ratio={strongest.update_time_ratio:.3f}× and
+        estimated break-even=
+        {strongest.break_even_batches:.2f} batches.
 
-        十组独立 workload 的描述性加总是 J={suite.total_join_rows:,}、
-        D={suite.total_participating_referenced_rows:,}、J−D=
-        {suite.total_redundant_tuples:,}，weighted tuple redundancy=
-        {suite.weighted_redundancy_pct:.3f}%。这些 case 会共享/重叠原始表，
-        因此该加总**不等于**同时物化全部十组 MV 后的数据库净节省。
+        Descriptive totals across the ten separate workloads are
+        J={suite.total_join_rows:,},
+        D={suite.total_participating_referenced_rows:,}, J−D=
+        {suite.total_redundant_tuples:,}, and weighted tuple redundancy=
+        {suite.weighted_redundancy_pct:.3f}%. These cases share or overlap source
+        tables, so the total **does not equal** the net database savings from
+        materializing all ten MVs simultaneously.
 
-        ## 5. 讨论
+        ## 5. Discussion
 
-        1. 当 J>D 时，规范化确实消除了函数依赖导致的值重复；tuple、slot、
-           non-NULL、payload 从不同粒度描述这种冗余。
-        2. 更少的物理写入不保证按比例减少 wall-clock time。8/10 case 的
-           normalized median 更低，但固定开销会主导一些小 workload。
-        3. {strongest.pair_label} 是最强的更新性能证据：
-           {strongest.update_time_ratio:.3f}× time ratio，按中位数约
-           {math.ceil(strongest.break_even_batches or 0)} 个 batch 回本。
-        4. “original graph update” 应准确表述为 folded/denormalized shadow
-           update；真实 source graph 在整个实验中保持不变。
+        1. When J>D, normalization eliminates value duplication caused by
+           functional dependencies; tuple, slot, non-NULL, and payload metrics
+           describe this redundancy at different levels of granularity.
+        2. Fewer physical writes do not guarantee proportional reductions in
+           wall-clock time. The normalized median is lower in 8/10 cases, but
+           fixed overhead can dominate small workloads.
+        3. {strongest.pair_label} provides the strongest update-performance
+           evidence: a {strongest.update_time_ratio:.3f}× time ratio, with
+           median-based cost recovery after approximately
+           {math.ceil(strongest.break_even_batches or 0)} batches.
+        4. "Original graph update" should be described precisely as an update
+           to the folded/denormalized shadow representation; the actual source
+           graph remains unchanged throughout the experiment.
 
-        ## 6. 有效性限制
+        ## 6. Validity Limitations
 
-        - 数据来自一个本地 warm-cache suite（`{environment_text(report)}`），
-          没有清空 server page/query cache，也没有随机交错不同 phase。
-        - 20 个 timings 是同一数据库上的重复 transactions，不是 20 个独立
-          数据库部署；bootstrap interval 只描述当前样本序列的 resampling
-          variability，不作为总体显著性推断。
-        - 不同 case 更新的属性、类型、active-domain size、batch size 和
-          topology 不同。跨 case 绝对毫秒只能作为描述性背景；case 内
-          folded 与 normalized 才是受控比较。
-        - update restore/validation 不计时；normalization 不包含 DDL、
-          validation、refolding、cleanup。break-even 继承这些计时边界，
-          不是完整生产迁移成本预测。
-        - payload proxy 不包含 Neo4j record header、dynamic store、index、
-          label、relationship、transaction log、compression 和 page layout。
-          实际磁盘空间需要另做 store-level 实验。
-        - 本实验未测读查询、并发、锁与长期运行影响。
+        - The data come from one local warm-cache suite
+          (`{environment_text(report)}`). The server page/query cache was not
+          cleared, and different phases were not randomly interleaved.
+        - The 20 timings are repeated transactions on the same database, not
+          20 independent database deployments. Bootstrap intervals describe
+          only resampling variability in the current sample sequence and are
+          not used to infer population-level significance.
+        - Cases differ in the updated property, type, active-domain size,
+          batch size, and topology. Absolute milliseconds across cases provide
+          descriptive context only; folded-versus-normalized comparisons
+          within a case are controlled comparisons.
+        - Update restoration/validation are not timed; normalization excludes
+          DDL, validation, refolding, and cleanup. Break-even inherits these
+          timing boundaries and does not predict the full cost of a production
+          migration.
+        - The payload proxy excludes Neo4j record headers, dynamic stores,
+          indexes, labels, relationships, transaction logs, compression, and
+          page layout. Actual disk usage requires a separate store-level
+          experiment.
+        - Read queries, concurrency, locking, and long-term operation were not
+          measured.
 
-        ## 7. 结论
+        ## 7. Conclusion
 
-        {focus.pair_label} 案例直接回答了最初的三项任务：
+        The {focus.pair_label} case directly answers the three original tasks:
 
-        - **规范化节省的冗余：**{focus.redundant_tuples} 个
-          {focus.referenced_table} tuple copies、
-          {focus.redundant_property_slots} 个理论 dependent-property slots、
-          {focus.redundant_non_null_values} 个冗余非 NULL 值和
-          {focus.redundant_payload_bytes:,} bytes value-payload proxy；
-        - **规范化时间：**定义的数据重写范围 median=
-          {focus.normalization.median_ms:.3f} ms；
-        - **更新差异：**{focus.folded_writes} 对
-          {focus.normalized_writes} 次属性写入，folded median=
-          {focus.folded_update.median_ms:.3f} ms，normalized median=
-          {focus.normalized_update.median_ms:.3f} ms，folded/normalized=
-          {focus.update_time_ratio:.3f}×。
+        - **Redundancy eliminated by normalization:** {focus.redundant_tuples}
+          {focus.referenced_table} tuple copies,
+          {focus.redundant_property_slots} theoretical dependent-property slots,
+          {focus.redundant_non_null_values} redundant non-NULL values, and
+          {focus.redundant_payload_bytes:,} bytes value-payload proxy;
+        - **Normalization time:** median=
+          {focus.normalization.median_ms:.3f} ms for the defined data-rewrite
+          scope;
+        - **Update difference:** {focus.folded_writes} versus
+          {focus.normalized_writes} property writes, folded median=
+          {focus.folded_update.median_ms:.3f} ms, normalized median=
+          {focus.normalized_update.median_ms:.3f} ms, and folded/normalized=
+          {focus.update_time_ratio:.3f}×.
 
-        按本次 median 估算，break-even 为 {break_even_whole}。全套实验同时
-        表明：FD/write redundancy
-        很高时可能得到清晰更新收益，但小 workload 必须结合原始样本、
-        outlier 与固定开销谨慎解释。
+        Based on the measured medians, the estimated break-even is
+        {break_even_whole}. The full suite also shows that high FD/write
+        redundancy can produce clear update savings, while small workloads
+        require careful interpretation using raw samples, outliers, and fixed
+        overhead.
 
-        ## 附录：可复现性
+        ## Appendix: Reproducibility
 
-        - 输入文件：`{source_path.name}`
-        - 输入 SHA-256：`{source_sha256}`
-        - Report schema：v{get_path(report, "report_schema_version")}
-        - Join fingerprint schema：v2
-        - Database：`{get_path(report, "database")}`
-        - Topology mode：`{get_path(report, "topology_mode")}`
-        - 所有 case 的原图指纹在实验前、中、后相同
-        - 所有 shadow graph 与临时 schema 均在 case 结束后清理
+        - Input file: `{source_path.name}`
+        - Input SHA-256: `{source_sha256}`
+        - Report schema: v{get_path(report, "report_schema_version")}
+        - Join fingerprint schema: v2
+        - Database: `{get_path(report, "database")}`
+        - Topology mode: `{get_path(report, "topology_mode")}`
+        - Source graph fingerprints match before, during, and after every case
+        - All shadow graphs and temporary schema objects are cleaned up after
+          each case
 
-        `case_summary.csv`、`timing_samples.csv` 和
-        `analysis_summary.json` 保存了报告与图表使用的底层数据；每张图同时
-        输出 300 dpi PNG 和可缩放 SVG。
+        `case_summary.csv`, `timing_samples.csv`, and `analysis_summary.json`
+        contain the underlying data used in the report and figures. Each
+        figure is exported as both a 300 dpi PNG and a scalable SVG.
         """
     ).lstrip()
 
