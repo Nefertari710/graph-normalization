@@ -5,15 +5,21 @@ The graph keeps all eight TPC-H tables as nodes. Foreign keys are represented
 as relationships, which preserves the relational schema without losing the
 attributes or composite keys of PARTSUPP and LINEITEM.
 
+Before importing, the script checks the target database, attempts to create it
+if missing, and requires it to be online. Creating databases requires a server
+edition and privileges that support CREATE DATABASE; Neo4j Community supports
+only one standard database.
+
 For a new/empty graph, the import order is:
 
 1. create all nodes;
-2. add uniqueness constraints;
+2. add uniqueness constraints and foreign-key field range indexes;
 3. create all foreign-key relationships;
 4. validate the imported counts.
 
 If TPC-H nodes already exist (for example after an interrupted import), the
-script creates the constraints first and uses MERGE to make the retry safe.
+script creates the constraints and indexes first and uses MERGE to make the
+retry safe.
 """
 
 from __future__ import annotations
@@ -30,7 +36,8 @@ from pathlib import Path
 from typing import Any, Callable, Iterable, Iterator, Sequence
 
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "tbl_sf_001"
+DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "tbl_sf_1"
+SYSTEM_DATABASE = "system"
 
 # Local debugging only. Temporarily replace None with your Neo4j password.
 # Never commit or share this file while it contains a real password.
@@ -81,6 +88,13 @@ class RelationshipGroup:
     table: TableSpec
     source: EndpointSpec
     edges: tuple[EdgeSpec, ...]
+
+
+@dataclass(frozen=True)
+class ForeignKeyIndexSpec:
+    name: str
+    label: str
+    properties: tuple[str, ...]
 
 
 def as_text(raw: str) -> str:
@@ -339,6 +353,19 @@ RELATIONSHIP_GROUPS = (
 )
 
 
+# Derive indexes on the source-node foreign-key fields. Composite foreign keys
+# remain a single composite range index.
+FOREIGN_KEY_INDEXES = tuple(
+    ForeignKeyIndexSpec(
+        name=f"{edge.relationship_type.lower()}_fk",
+        label=group.table.label,
+        properties=tuple(row_property for _, row_property in edge.target.keys),
+    )
+    for group in RELATIONSHIP_GROUPS
+    for edge in group.edges
+)
+
+
 def iter_tbl_rows(data_dir: Path, table: TableSpec) -> Iterator[dict[str, Any]]:
     """Yield typed property dictionaries from one TPC-H .tbl file."""
 
@@ -425,6 +452,15 @@ def constraint_query(table: TableSpec) -> str:
     )
 
 
+def foreign_key_index_query(index: ForeignKeyIndexSpec) -> str:
+    properties = ", ".join(f"n.{field}" for field in index.properties)
+    return (
+        f"CREATE RANGE INDEX {index.name} IF NOT EXISTS\n"
+        f"FOR (n:{index.label})\n"
+        f"ON ({properties})"
+    )
+
+
 def relationship_query(group: RelationshipGroup) -> str:
     lines = [
         "UNWIND $rows AS row",
@@ -454,6 +490,52 @@ def execute_query(
         parameters_=parameters or {},
         database_=database,
     )
+
+
+def get_database_status(driver: Any, database: str) -> tuple[str, str] | None:
+    result = execute_query(
+        driver,
+        SYSTEM_DATABASE,
+        """
+        SHOW DATABASES
+        YIELD name, currentStatus, statusMessage
+        WHERE name = $database
+        RETURN currentStatus, statusMessage
+        """,
+        {"database": database},
+    )
+    if not result.records:
+        return None
+    record = result.records[0]
+    return str(record["currentStatus"]), str(record["statusMessage"] or "")
+
+
+def ensure_database(driver: Any, database: str) -> str:
+    database = database.lower()
+    status = get_database_status(driver, database)
+    if status is None:
+        print(f"Database {database!r} does not exist; attempting to create it")
+        execute_query(
+            driver,
+            SYSTEM_DATABASE,
+            "CREATE DATABASE $database IF NOT EXISTS WAIT 30 SECONDS",
+            {"database": database},
+        )
+        status = get_database_status(driver, database)
+    else:
+        print(f"Database {database!r} already exists")
+
+    if status is None:
+        raise RuntimeError(f"Database {database!r} was not found after creation")
+    current_status, status_message = status
+    if current_status != "online":
+        detail = f": {status_message}" if status_message else ""
+        raise RuntimeError(
+            f"Database {database!r} is not online "
+            f"(status={current_status}){detail}"
+        )
+    print(f"Database {database!r} is online")
+    return database
 
 
 def existing_tpch_node_count(driver: Any, database: str) -> int:
@@ -496,6 +578,13 @@ def create_constraints(driver: Any, database: str) -> None:
     for table in NODE_TABLES:
         execute_query(driver, database, constraint_query(table))
         print(f"  constraint {table.constraint_name}")
+
+
+def create_foreign_key_indexes(driver: Any, database: str) -> None:
+    for index in FOREIGN_KEY_INDEXES:
+        execute_query(driver, database, foreign_key_index_query(index))
+        properties = ", ".join(index.properties)
+        print(f"  foreign-key index {index.name} on {index.label}({properties})")
 
 
 def edge_id(group: RelationshipGroup, edge: EdgeSpec) -> str:
@@ -676,20 +765,22 @@ def run_import(args: argparse.Namespace, password: str) -> None:
 
     with GraphDatabase.driver(args.uri, auth=(args.user, password)) as driver:
         driver.verify_connectivity()
-        existing_nodes = existing_tpch_node_count(driver, args.database)
+        database = ensure_database(driver, args.database)
+        existing_nodes = existing_tpch_node_count(driver, database)
 
         if existing_nodes == 0:
             print("[1/4] Creating nodes")
             node_counts = load_nodes(
                 driver,
-                args.database,
+                database,
                 data_dir,
                 args.batch_size,
                 merge=False,
             )
 
-            print("[2/4] Adding uniqueness constraints")
-            create_constraints(driver, args.database)
+            print("[2/4] Adding uniqueness constraints and foreign-key indexes")
+            create_constraints(driver, database)
+            create_foreign_key_indexes(driver, database)
         else:
             print(
                 f"WARNING: Found {existing_nodes:,} existing TPC-H nodes. "
@@ -698,13 +789,14 @@ def run_import(args: argparse.Namespace, password: str) -> None:
                 "primary keys may be updated.",
                 file=sys.stderr,
             )
-            print("[1/4] Ensuring uniqueness constraints")
-            create_constraints(driver, args.database)
+            print("[1/4] Ensuring uniqueness constraints and foreign-key indexes")
+            create_constraints(driver, database)
+            create_foreign_key_indexes(driver, database)
 
             print("[2/4] Merging nodes")
             node_counts = load_nodes(
                 driver,
-                args.database,
+                database,
                 data_dir,
                 args.batch_size,
                 merge=True,
@@ -713,7 +805,7 @@ def run_import(args: argparse.Namespace, password: str) -> None:
         print("[3/4] Creating relationships")
         relationship_counts = load_relationships(
             driver,
-            args.database,
+            database,
             data_dir,
             args.batch_size,
         )
@@ -721,7 +813,7 @@ def run_import(args: argparse.Namespace, password: str) -> None:
         print("[4/4] Validating imported graph")
         node_total, relationship_total = validate_import(
             driver,
-            args.database,
+            database,
             node_counts,
             relationship_counts,
         )
