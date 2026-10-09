@@ -10,7 +10,7 @@
 set -euo pipefail
 source ~/neo4j/env.sh
 HERE="$(cd "$(dirname "$0")/../.." && pwd)"
-OUT="$HERE/redundancy/results/sf1/new_redundancy_results.json"
+OUT="$HERE/usecases/results/sf1/redundancy/new_redundancy_results.json"
 mkdir -p "$(dirname "$OUT")"
 
 if [ "${SKIP_IMPORT:-0}" != "1" ]; then

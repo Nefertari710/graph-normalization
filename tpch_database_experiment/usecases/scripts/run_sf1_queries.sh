@@ -2,14 +2,14 @@
 # TPC-H SF 1 query experiment for the 20 variants of the query table
 # (12 that favour normalization, 8 that favour de-normalization at SF 0.1).
 # Requires the SF 1 graph in database "neo4j" (see run_sf1.sh).
-# One JSON report per variant in query/results/sf1/; finished variants are
+# One JSON report per variant in usecases/results/sf1/query/; finished variants are
 # skipped, so the script can simply be restarted after an interruption.
 # A variant whose build fails with the default batch size is retried with
 # --batch-size 1000 (transaction-memory limit on LINEITEM folds).
 set -uo pipefail
 source ~/neo4j/env.sh
 HERE="$(cd "$(dirname "$0")/../.." && pwd)"
-OUT="$HERE/query/results/sf1"
+OUT="$HERE/usecases/results/sf1/query"
 mkdir -p "$OUT"
 cd "$HERE"
 
