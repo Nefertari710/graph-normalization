@@ -17,7 +17,7 @@ DATABASE = "tpch-sf-1-usecase"
 SCALE_FACTOR = 1
 RUNS = 50
 BATCH_SIZE = 1000
-HERE = Path(__file__).resolve().parents[2]
+HERE = Path(__file__).resolve().parents[3]
 RUNNER = HERE / "query" / "scripts" / "run_benchmark.py"
 OUTPUT_DIR = HERE / "usecases" / "results" / "sf1" / "query"
 
