@@ -16,7 +16,11 @@ def main() -> int:
         environment["NEO4J_PASSWORD"] = getpass("Neo4j password: ")
 
     for step, script_name in enumerate(
-        ("run_sf1.py", "run_sf1_queries.py"), start=1
+        (
+            "components/run_sf1_redundancy.py",
+            "components/run_sf1_queries.py",
+        ),
+        start=1,
     ):
         print(f"[{step}/2] Running {script_name} ...", flush=True)
         result = subprocess.run(
