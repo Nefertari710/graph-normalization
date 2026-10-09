@@ -53,7 +53,7 @@ for v in "${VARIANTS[@]}"; do
   if [ -f "$j" ] && ok "$j"; then echo "[$n/20] $s: done, skipped"; continue; fi
   for bs in 10000 1000; do
     echo "[$n/20] $s (batch size $bs) $(date +%H:%M:%S)"
-    if python query/run_benchmark.py --database neo4j --sf 1 \
+    if python query/scripts/run_benchmark.py --database neo4j --sf 1 \
         --query-id "$q" --strategy "$s" --batch-size "$bs" \
         --output-json "$j" > "$OUT/$s.log" 2>&1 && ok "$j"; then
       tail -n 3 "$OUT/$s.log" | head -n 1
