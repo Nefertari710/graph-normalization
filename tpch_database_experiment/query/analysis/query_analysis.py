@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Generate Markdown tables from the fast TPC-H query benchmark JSON.
+"""Generate Markdown tables from the TPC-H query benchmark JSON.
 
 By default, the script reads
-``../results/results_benchmark_fast/run_benchmark_fast_results.json``
-relative to this file and writes ``run_benchmark_fast_results.md`` beside the
+``../results/results_benchmark/tpch-sf-01/run_benchmark_results.json``
+relative to this file and writes ``run_benchmark_results.md`` beside the
 JSON report::
 
     python query_analysis.py
@@ -652,14 +652,14 @@ def render_markdown(
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate a Markdown table from the fast TPC-H benchmark JSON.",
+        description="Generate Markdown tables from the TPC-H query benchmark JSON.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
         "--input",
         type=Path,
         default=DEFAULT_INPUT,
-        help="fast benchmark JSON report",
+        help="TPC-H query benchmark JSON report",
     )
     parser.add_argument(
         "--output",
