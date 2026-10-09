@@ -31,7 +31,7 @@ from pathlib import Path
 from typing import Any, Callable, Iterable, Iterator, Sequence
 
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "tbl_sf_005"
+DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "tbl_sf_1"
 
 # Edit this value to select the target Neo4j database. If it does not exist,
 # the importer creates it before loading data. Neo4j database names cannot
