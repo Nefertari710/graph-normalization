@@ -74,7 +74,9 @@ CLIENT_CONFIGURED_TIMEOUT_CODE = (
 DATABASE_NAME = "tpch-sf-01"
 EXPERIMENT_NAME = auto_join_mv.EXPERIMENT_NAME
 MATERIALIZATION_SCHEMA_VERSION = auto_join_mv.MATERIALIZATION_SCHEMA_VERSION
-TEMPLATE_DIRECTORY = Path(__file__).resolve().parents[1] / "templates_manual"
+TEMPLATE_DIRECTORY = (
+    Path(__file__).resolve().parent / "templates" / "templates_manual"
+)
 DEFAULT_OUTPUT_JSON = (
     Path(__file__).resolve().parents[0]
     / "results"
@@ -82,8 +84,6 @@ DEFAULT_OUTPUT_JSON = (
     / DATABASE_NAME
     / "run_benchmark_results.json"
 )
-# TEMPLATE_DIRECTORY = Path(__file__).resolve().parents[1] / "templates_manual_foreign"
-# TEMPLATE_DIRECTORY = Path(__file__).resolve().parents[1] / "templates_manual_test"
 
 
 # Local debugging only.  NEO4J_PASSWORD takes precedence when it is set.
