@@ -25,8 +25,8 @@ OUTPUT = (
     / "sf1" / "redundancy" / "new_redundancy_results.json"
 )
 MASKS = (2, 16, 18, 32, 48, 64, 72, 128, 160, 176)
-UPDATES = 1        # 50
-REPEATS = 1        # 10
+UPDATES = 50        # 50
+REPEATS = 10        # 10
 SKIP_IMPORT = os.getenv("SKIP_IMPORT", "0") == "1"
 
 
