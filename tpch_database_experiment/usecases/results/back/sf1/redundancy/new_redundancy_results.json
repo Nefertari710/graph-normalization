@@ -1,0 +1,1647 @@
+{
+  "experiment": "tpch_256_fold_terminal_update",
+  "created_at": "2026-10-09T22:57:29.901359+13:00",
+  "edge_bits": {
+    "0": "L_PS",
+    "1": "L_O",
+    "2": "PS_P",
+    "3": "PS_S",
+    "4": "O_C",
+    "5": "C_N",
+    "6": "S_N",
+    "7": "N_R"
+  },
+  "configuration_count": 10,
+  "configurations": [
+    {
+      "mask": 2,
+      "folded_edges": [
+        "L_O"
+      ],
+      "terminal_relations": [
+        "O"
+      ],
+      "fold": {
+        "elapsed_ms": 187832.841667,
+        "created_node_count": 6001215,
+        "created_property_cell_count": 144029160,
+        "created_inherited_relationship_count": 12002430,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "L_O",
+            "elapsed_ms": 104973.330334,
+            "created_node_count": 6001215
+          },
+          {
+            "kind": "inherit",
+            "edge": "L_PS",
+            "type": "LINEITEM_PARTSUPP",
+            "source": "L_O",
+            "target": "PS",
+            "elapsed_ms": 46633.312375,
+            "created_relationship_count": 6001215
+          },
+          {
+            "kind": "inherit",
+            "edge": "O_C",
+            "type": "ORDERS_CUSTOMER",
+            "source": "L_O",
+            "target": "C",
+            "elapsed_ms": 36225.183792,
+            "created_relationship_count": 6001215
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 7161245,
+        "relationship_count": 13762455,
+        "property_cell_count": 151099275
+      },
+      "structural_delta": {
+        "delta_nodes": -1500000,
+        "delta_relationships": -1500000,
+        "delta_property_cells": 34509720
+      },
+      "index_build": {
+        "elapsed_ms": 3580.260917,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_75E420175C9A_L_O__L_O",
+            "type": "RANGE",
+            "label": "NR_FOLD_L_O",
+            "properties": [
+              "l_orderkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "O": {
+          "property": "o_comment",
+          "repeat_count": 1,
+          "copy_locations": 1,
+          "indexed_lookup": [
+            {
+              "fold": "L_O",
+              "properties": [
+                "l_orderkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 38.589375,
+          "median_ms": 38.589375,
+          "max_ms": 38.589375,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "o_orderkey": 1
+              },
+              "a0": "nstructions sleep furiously among ",
+              "a1": " foxes. pending accounts at the pending, silent asymptot",
+              "touched_nodes": 6,
+              "repeat_elapsed_ms": [
+                38.589375
+              ],
+              "elapsed_ms": 38.589375
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 10.160791,
+            "median_ms": 10.160791,
+            "max_ms": 10.160791
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 28.428583999999997,
+            "median_ms": 28.428583999999997,
+            "max_ms": 28.428583999999997
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 260108.163708,
+        "index_build_ms": 160.958458,
+        "node_rebuild_ms": 148530.223333,
+        "relationship_rebuild_ms": 111416.771708,
+        "created_node_count": 7501215,
+        "created_relationship_count": 13502430
+      },
+      "index_drop": {
+        "elapsed_ms": 74.061667,
+        "index_count": 3
+      }
+    },
+    {
+      "mask": 16,
+      "folded_edges": [
+        "O_C"
+      ],
+      "terminal_relations": [
+        "C"
+      ],
+      "fold": {
+        "elapsed_ms": 92627.250792,
+        "created_node_count": 1500000,
+        "created_property_cell_count": 24000000,
+        "created_inherited_relationship_count": 7501215,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "O_C",
+            "elapsed_ms": 37483.936166,
+            "created_node_count": 1500000
+          },
+          {
+            "kind": "inherit",
+            "edge": "L_O",
+            "type": "LINEITEM_ORDERS",
+            "source": "L",
+            "target": "O_C",
+            "elapsed_ms": 45172.555334,
+            "created_relationship_count": 6001215
+          },
+          {
+            "kind": "inherit",
+            "edge": "C_N",
+            "type": "CUSTOMER_NATION",
+            "source": "O_C",
+            "target": "N",
+            "elapsed_ms": 9970.021833,
+            "created_relationship_count": 1500000
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 8511245,
+        "relationship_count": 15112455,
+        "property_cell_count": 125889555
+      },
+      "structural_delta": {
+        "delta_nodes": -150000,
+        "delta_relationships": -150000,
+        "delta_property_cells": 9300000
+      },
+      "index_build": {
+        "elapsed_ms": 977.909209,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_B0FA06948C28_O_C__O_C",
+            "type": "RANGE",
+            "label": "NR_FOLD_O_C",
+            "properties": [
+              "o_custkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "C": {
+          "property": "c_comment",
+          "repeat_count": 1,
+          "copy_locations": 1,
+          "indexed_lookup": [
+            {
+              "fold": "O_C",
+              "properties": [
+                "o_custkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 45.292208,
+          "median_ms": 45.292208,
+          "max_ms": 45.292208,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "c_custkey": 1
+              },
+              "a0": "to the even, regular platelets. regular, ironic epitaphs nag e",
+              "a1": "l accounts. blithely ironic theodolites integrate boldly: caref",
+              "touched_nodes": 6,
+              "repeat_elapsed_ms": [
+                45.292208
+              ],
+              "elapsed_ms": 45.292208
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 10.417292,
+            "median_ms": 10.417292,
+            "max_ms": 10.417292
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 34.874916,
+            "median_ms": 34.874916,
+            "max_ms": 34.874916
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 83728.827208,
+        "index_build_ms": 134.591084,
+        "node_rebuild_ms": 40616.131375,
+        "relationship_rebuild_ms": 42977.983333,
+        "created_node_count": 1599996,
+        "created_relationship_count": 7601211
+      },
+      "index_drop": {
+        "elapsed_ms": 28.724083,
+        "index_count": 3
+      }
+    },
+    {
+      "mask": 18,
+      "folded_edges": [
+        "L_O",
+        "O_C"
+      ],
+      "terminal_relations": [
+        "C"
+      ],
+      "fold": {
+        "elapsed_ms": 292737.730792,
+        "created_node_count": 6001215,
+        "created_property_cell_count": 186037665,
+        "created_inherited_relationship_count": 12002430,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "L_O__O_C",
+            "elapsed_ms": 182242.434583,
+            "created_node_count": 6001215
+          },
+          {
+            "kind": "inherit",
+            "edge": "L_PS",
+            "type": "LINEITEM_PARTSUPP",
+            "source": "L_O__O_C",
+            "target": "PS",
+            "elapsed_ms": 63658.470709,
+            "created_relationship_count": 6001215
+          },
+          {
+            "kind": "inherit",
+            "edge": "C_N",
+            "type": "CUSTOMER_NATION",
+            "source": "L_O__O_C",
+            "target": "N",
+            "elapsed_ms": 46832.438,
+            "created_relationship_count": 6001215
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 7011245,
+        "relationship_count": 13612455,
+        "property_cell_count": 191907780
+      },
+      "structural_delta": {
+        "delta_nodes": -1650000,
+        "delta_relationships": -1650000,
+        "delta_property_cells": 75318225
+      },
+      "index_build": {
+        "elapsed_ms": 4081.195792,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_7EE636A2F08F_L_C__L_O__O_C",
+            "type": "RANGE",
+            "label": "NR_FOLD_L_O__O_C",
+            "properties": [
+              "o_custkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "C": {
+          "property": "c_comment",
+          "repeat_count": 1,
+          "copy_locations": 1,
+          "indexed_lookup": [
+            {
+              "fold": "L_O__O_C",
+              "properties": [
+                "o_custkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 52.98475,
+          "median_ms": 52.98475,
+          "max_ms": 52.98475,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "c_custkey": 1
+              },
+              "a0": "to the even, regular platelets. regular, ironic epitaphs nag e",
+              "a1": "l accounts. blithely ironic theodolites integrate boldly: caref",
+              "touched_nodes": 15,
+              "repeat_elapsed_ms": [
+                52.98475
+              ],
+              "elapsed_ms": 52.98475
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 10.417292,
+            "median_ms": 10.417292,
+            "max_ms": 10.417292
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 42.567458,
+            "median_ms": 42.567458,
+            "max_ms": 42.567458
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 400011.682959,
+        "index_build_ms": 179.944417,
+        "node_rebuild_ms": 280822.412666,
+        "relationship_rebuild_ms": 119008.872875,
+        "created_node_count": 7601211,
+        "created_relationship_count": 13602426
+      },
+      "index_drop": {
+        "elapsed_ms": 118.8915,
+        "index_count": 4
+      }
+    },
+    {
+      "mask": 32,
+      "folded_edges": [
+        "C_N"
+      ],
+      "terminal_relations": [
+        "N"
+      ],
+      "fold": {
+        "elapsed_ms": 20776.033959,
+        "created_node_count": 150000,
+        "created_property_cell_count": 1650000,
+        "created_inherited_relationship_count": 1650000,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "C_N",
+            "elapsed_ms": 4594.217167,
+            "created_node_count": 150000
+          },
+          {
+            "kind": "inherit",
+            "edge": "O_C",
+            "type": "ORDERS_CUSTOMER",
+            "source": "O",
+            "target": "C_N",
+            "elapsed_ms": 14411.640125,
+            "created_relationship_count": 1500000
+          },
+          {
+            "kind": "inherit",
+            "edge": "N_R",
+            "type": "NATION_REGION",
+            "source": "C_N",
+            "target": "R",
+            "elapsed_ms": 1769.906166,
+            "created_relationship_count": 150000
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 8661245,
+        "relationship_count": 15262455,
+        "property_cell_count": 117039555
+      },
+      "structural_delta": {
+        "delta_nodes": 0,
+        "delta_relationships": 0,
+        "delta_property_cells": 450000
+      },
+      "index_build": {
+        "elapsed_ms": 350.561917,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_A68D6576A13D_C_N__C_N",
+            "type": "RANGE",
+            "label": "NR_FOLD_C_N",
+            "properties": [
+              "c_nationkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "N": {
+          "property": "n_comment",
+          "repeat_count": 1,
+          "copy_locations": 1,
+          "indexed_lookup": [
+            {
+              "fold": "C_N",
+              "properties": [
+                "c_nationkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 110.984666,
+          "median_ms": 110.984666,
+          "max_ms": 110.984666,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "n_nationkey": 0
+              },
+              "a0": " haggle. carefully final deposits detect slyly agai",
+              "a1": "al foxes promise slyly according to the regular accounts. bold requests alon",
+              "touched_nodes": 5925,
+              "repeat_elapsed_ms": [
+                110.984666
+              ],
+              "elapsed_ms": 110.984666
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 11.259041,
+            "median_ms": 11.259041,
+            "max_ms": 11.259041
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 99.72562500000001,
+            "median_ms": 99.72562500000001,
+            "max_ms": 99.72562500000001
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 15811.538917,
+        "index_build_ms": 263.718167,
+        "node_rebuild_ms": 2082.240916,
+        "relationship_rebuild_ms": 13465.571667,
+        "created_node_count": 150000,
+        "created_relationship_count": 1650000
+      },
+      "index_drop": {
+        "elapsed_ms": 31.290708,
+        "index_count": 2
+      }
+    },
+    {
+      "mask": 48,
+      "folded_edges": [
+        "O_C",
+        "C_N"
+      ],
+      "terminal_relations": [
+        "N"
+      ],
+      "fold": {
+        "elapsed_ms": 87918.346958,
+        "created_node_count": 1500000,
+        "created_property_cell_count": 28500000,
+        "created_inherited_relationship_count": 7501215,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "O_C__C_N",
+            "elapsed_ms": 40046.16125,
+            "created_node_count": 1500000
+          },
+          {
+            "kind": "inherit",
+            "edge": "L_O",
+            "type": "LINEITEM_ORDERS",
+            "source": "L",
+            "target": "O_C__C_N",
+            "elapsed_ms": 39558.875667,
+            "created_relationship_count": 6001215
+          },
+          {
+            "kind": "inherit",
+            "edge": "N_R",
+            "type": "NATION_REGION",
+            "source": "O_C__C_N",
+            "target": "R",
+            "elapsed_ms": 8312.778958,
+            "created_relationship_count": 1500000
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 8511245,
+        "relationship_count": 15112455,
+        "property_cell_count": 130389555
+      },
+      "structural_delta": {
+        "delta_nodes": -150000,
+        "delta_relationships": -150000,
+        "delta_property_cells": 13800000
+      },
+      "index_build": {
+        "elapsed_ms": 958.958,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_4953002FB00E_O_N__O_C__C_N",
+            "type": "RANGE",
+            "label": "NR_FOLD_O_C__C_N",
+            "properties": [
+              "c_nationkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "N": {
+          "property": "n_comment",
+          "repeat_count": 1,
+          "copy_locations": 1,
+          "indexed_lookup": [
+            {
+              "fold": "O_C__C_N",
+              "properties": [
+                "c_nationkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 419.698875,
+          "median_ms": 419.698875,
+          "max_ms": 419.698875,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "n_nationkey": 0
+              },
+              "a0": " haggle. carefully final deposits detect slyly agai",
+              "a1": "al foxes promise slyly according to the regular accounts. bold requests alon",
+              "touched_nodes": 59622,
+              "repeat_elapsed_ms": [
+                419.698875
+              ],
+              "elapsed_ms": 419.698875
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 11.259041,
+            "median_ms": 11.259041,
+            "max_ms": 11.259041
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 408.43983399999996,
+            "median_ms": 408.43983399999996,
+            "max_ms": 408.43983399999996
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 91143.275083,
+        "index_build_ms": 128.303,
+        "node_rebuild_ms": 40106.5155,
+        "relationship_rebuild_ms": 50908.225333,
+        "created_node_count": 1599996,
+        "created_relationship_count": 7601211
+      },
+      "index_drop": {
+        "elapsed_ms": 42.545041,
+        "index_count": 3
+      }
+    },
+    {
+      "mask": 64,
+      "folded_edges": [
+        "S_N"
+      ],
+      "terminal_relations": [
+        "N"
+      ],
+      "fold": {
+        "elapsed_ms": 9322.044292,
+        "created_node_count": 10000,
+        "created_property_cell_count": 100000,
+        "created_inherited_relationship_count": 810000,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "S_N",
+            "elapsed_ms": 516.791291,
+            "created_node_count": 10000
+          },
+          {
+            "kind": "inherit",
+            "edge": "PS_S",
+            "type": "PARTSUPP_SUPPLIER",
+            "source": "PS",
+            "target": "S_N",
+            "elapsed_ms": 8301.338583,
+            "created_relationship_count": 800000
+          },
+          {
+            "kind": "inherit",
+            "edge": "N_R",
+            "type": "NATION_REGION",
+            "source": "S_N",
+            "target": "R",
+            "elapsed_ms": 503.396334,
+            "created_relationship_count": 10000
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 8661245,
+        "relationship_count": 15262455,
+        "property_cell_count": 116619555
+      },
+      "structural_delta": {
+        "delta_nodes": 0,
+        "delta_relationships": 0,
+        "delta_property_cells": 30000
+      },
+      "index_build": {
+        "elapsed_ms": 136.135166,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_2D65FD26B88E_S_N__S_N",
+            "type": "RANGE",
+            "label": "NR_FOLD_S_N",
+            "properties": [
+              "s_nationkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "N": {
+          "property": "n_comment",
+          "repeat_count": 1,
+          "copy_locations": 1,
+          "indexed_lookup": [
+            {
+              "fold": "S_N",
+              "properties": [
+                "s_nationkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 31.390959,
+          "median_ms": 31.390959,
+          "max_ms": 31.390959,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "n_nationkey": 0
+              },
+              "a0": " haggle. carefully final deposits detect slyly agai",
+              "a1": "al foxes promise slyly according to the regular accounts. bold requests alon",
+              "touched_nodes": 420,
+              "repeat_elapsed_ms": [
+                31.390959
+              ],
+              "elapsed_ms": 31.390959
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 11.259041,
+            "median_ms": 11.259041,
+            "max_ms": 11.259041
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 20.131918,
+            "median_ms": 20.131918,
+            "max_ms": 20.131918
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 7230.219166,
+        "index_build_ms": 126.6715,
+        "node_rebuild_ms": 171.231083,
+        "relationship_rebuild_ms": 6932.311,
+        "created_node_count": 10000,
+        "created_relationship_count": 810000
+      },
+      "index_drop": {
+        "elapsed_ms": 20.722417,
+        "index_count": 2
+      }
+    },
+    {
+      "mask": 72,
+      "folded_edges": [
+        "PS_S",
+        "S_N"
+      ],
+      "terminal_relations": [
+        "N"
+      ],
+      "fold": {
+        "elapsed_ms": 70781.350584,
+        "created_node_count": 800000,
+        "created_property_cell_count": 11200000,
+        "created_inherited_relationship_count": 7601215,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "PS_S__S_N",
+            "elapsed_ms": 15720.8775,
+            "created_node_count": 800000
+          },
+          {
+            "kind": "inherit",
+            "edge": "L_PS",
+            "type": "LINEITEM_PARTSUPP",
+            "source": "L",
+            "target": "PS_S__S_N",
+            "elapsed_ms": 40586.930791,
+            "created_relationship_count": 6001215
+          },
+          {
+            "kind": "inherit",
+            "edge": "PS_P",
+            "type": "PARTSUPP_PART",
+            "source": "PS_S__S_N",
+            "target": "P",
+            "elapsed_ms": 9407.422584,
+            "created_relationship_count": 800000
+          },
+          {
+            "kind": "inherit",
+            "edge": "N_R",
+            "type": "NATION_REGION",
+            "source": "PS_S__S_N",
+            "target": "R",
+            "elapsed_ms": 5064.660125,
+            "created_relationship_count": 800000
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 8651245,
+        "relationship_count": 15252455,
+        "property_cell_count": 123719555
+      },
+      "structural_delta": {
+        "delta_nodes": -10000,
+        "delta_relationships": -10000,
+        "delta_property_cells": 7130000
+      },
+      "index_build": {
+        "elapsed_ms": 556.575167,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_289A9205D27C_PS_N__PS_S__S_N",
+            "type": "RANGE",
+            "label": "NR_FOLD_PS_S__S_N",
+            "properties": [
+              "s_nationkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "N": {
+          "property": "n_comment",
+          "repeat_count": 1,
+          "copy_locations": 1,
+          "indexed_lookup": [
+            {
+              "fold": "PS_S__S_N",
+              "properties": [
+                "s_nationkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 159.8305,
+          "median_ms": 159.8305,
+          "max_ms": 159.8305,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "n_nationkey": 0
+              },
+              "a0": " haggle. carefully final deposits detect slyly agai",
+              "a1": "al foxes promise slyly according to the regular accounts. bold requests alon",
+              "touched_nodes": 33600,
+              "repeat_elapsed_ms": [
+                159.8305
+              ],
+              "elapsed_ms": 159.8305
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 11.259041,
+            "median_ms": 11.259041,
+            "max_ms": 11.259041
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 148.571459,
+            "median_ms": 148.571459,
+            "max_ms": 148.571459
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 109264.21975,
+        "index_build_ms": 89.246625,
+        "node_rebuild_ms": 20192.164041,
+        "relationship_rebuild_ms": 88982.6205,
+        "created_node_count": 810000,
+        "created_relationship_count": 7611215
+      },
+      "index_drop": {
+        "elapsed_ms": 31.33325,
+        "index_count": 3
+      }
+    },
+    {
+      "mask": 128,
+      "folded_edges": [
+        "N_R"
+      ],
+      "terminal_relations": [
+        "R"
+      ],
+      "fold": {
+        "elapsed_ms": 2331.259833,
+        "created_node_count": 25,
+        "created_property_cell_count": 150,
+        "created_inherited_relationship_count": 160000,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "N_R",
+            "elapsed_ms": 118.876042,
+            "created_node_count": 25
+          },
+          {
+            "kind": "inherit",
+            "edge": "C_N",
+            "type": "CUSTOMER_NATION",
+            "source": "C",
+            "target": "N_R",
+            "elapsed_ms": 2055.758458,
+            "created_relationship_count": 150000
+          },
+          {
+            "kind": "inherit",
+            "edge": "S_N",
+            "type": "SUPPLIER_NATION",
+            "source": "S",
+            "target": "N_R",
+            "elapsed_ms": 156.3035,
+            "created_relationship_count": 10000
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 8661240,
+        "relationship_count": 15262430,
+        "property_cell_count": 116589590
+      },
+      "structural_delta": {
+        "delta_nodes": -5,
+        "delta_relationships": -25,
+        "delta_property_cells": 35
+      },
+      "index_build": {
+        "elapsed_ms": 120.207709,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_FD25F894CC5F_N_R__N_R",
+            "type": "RANGE",
+            "label": "NR_FOLD_N_R",
+            "properties": [
+              "n_regionkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "R": {
+          "property": "r_comment",
+          "repeat_count": 1,
+          "copy_locations": 1,
+          "indexed_lookup": [
+            {
+              "fold": "N_R",
+              "properties": [
+                "n_regionkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 24.067459,
+          "median_ms": 24.067459,
+          "max_ms": 24.067459,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "r_regionkey": 0
+              },
+              "a0": "lar deposits. blithely final packages cajole. regular waters are final requests. regular accounts are according to ",
+              "a1": "hs use ironic, even requests. s",
+              "touched_nodes": 5,
+              "repeat_elapsed_ms": [
+                24.067459
+              ],
+              "elapsed_ms": 24.067459
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 9.720292,
+            "median_ms": 9.720292,
+            "max_ms": 9.720292
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 14.347166999999999,
+            "median_ms": 14.347166999999999,
+            "max_ms": 14.347166999999999
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 1358.429458,
+        "index_build_ms": 89.252958,
+        "node_rebuild_ms": 67.250125,
+        "relationship_rebuild_ms": 1201.92125,
+        "created_node_count": 30,
+        "created_relationship_count": 160025
+      },
+      "index_drop": {
+        "elapsed_ms": 20.136416,
+        "index_count": 3
+      }
+    },
+    {
+      "mask": 160,
+      "folded_edges": [
+        "C_N",
+        "N_R"
+      ],
+      "terminal_relations": [
+        "R"
+      ],
+      "fold": {
+        "elapsed_ms": 15392.992125,
+        "created_node_count": 150025,
+        "created_property_cell_count": 1950150,
+        "created_inherited_relationship_count": 1510000,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "C_N__N_R",
+            "elapsed_ms": 3423.473541,
+            "created_node_count": 150000
+          },
+          {
+            "kind": "fold",
+            "name": "N_R",
+            "elapsed_ms": 57.170834,
+            "created_node_count": 25
+          },
+          {
+            "kind": "inherit",
+            "edge": "O_C",
+            "type": "ORDERS_CUSTOMER",
+            "source": "O",
+            "target": "C_N__N_R",
+            "elapsed_ms": 11789.261209,
+            "created_relationship_count": 1500000
+          },
+          {
+            "kind": "inherit",
+            "edge": "S_N",
+            "type": "SUPPLIER_NATION",
+            "source": "S",
+            "target": "N_R",
+            "elapsed_ms": 122.245291,
+            "created_relationship_count": 10000
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 8661240,
+        "relationship_count": 15112430,
+        "property_cell_count": 117339590
+      },
+      "structural_delta": {
+        "delta_nodes": -5,
+        "delta_relationships": -150025,
+        "delta_property_cells": 750035
+      },
+      "index_build": {
+        "elapsed_ms": 236.99875,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_302D6E5BC113_C_R__C_N__N_R",
+            "type": "RANGE",
+            "label": "NR_FOLD_C_N__N_R",
+            "properties": [
+              "n_regionkey"
+            ],
+            "unique": false
+          },
+          {
+            "name": "NR_IDX_302D6E5BC113_N_R__N_R",
+            "type": "RANGE",
+            "label": "NR_FOLD_N_R",
+            "properties": [
+              "n_regionkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "R": {
+          "property": "r_comment",
+          "repeat_count": 1,
+          "copy_locations": 2,
+          "indexed_lookup": [
+            {
+              "fold": "C_N__N_R",
+              "properties": [
+                "n_regionkey"
+              ]
+            },
+            {
+              "fold": "N_R",
+              "properties": [
+                "n_regionkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 130.512042,
+          "median_ms": 130.512042,
+          "max_ms": 130.512042,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "r_regionkey": 0
+              },
+              "a0": "lar deposits. blithely final packages cajole. regular waters are final requests. regular accounts are according to ",
+              "a1": "hs use ironic, even requests. s",
+              "touched_nodes": 29769,
+              "repeat_elapsed_ms": [
+                130.512042
+              ],
+              "elapsed_ms": 130.512042
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 9.720292,
+            "median_ms": 9.720292,
+            "max_ms": 9.720292
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 120.79175000000001,
+            "median_ms": 120.79175000000001,
+            "max_ms": 120.79175000000001
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 18910.472375,
+        "index_build_ms": 148.745792,
+        "node_rebuild_ms": 3947.953875,
+        "relationship_rebuild_ms": 14813.765375,
+        "created_node_count": 150030,
+        "created_relationship_count": 1660025
+      },
+      "index_drop": {
+        "elapsed_ms": 33.956208,
+        "index_count": 5
+      }
+    },
+    {
+      "mask": 176,
+      "folded_edges": [
+        "O_C",
+        "C_N",
+        "N_R"
+      ],
+      "terminal_relations": [
+        "R"
+      ],
+      "fold": {
+        "elapsed_ms": 85105.000334,
+        "created_node_count": 1500025,
+        "created_property_cell_count": 31500150,
+        "created_inherited_relationship_count": 6011215,
+        "steps": [
+          {
+            "kind": "fold",
+            "name": "O_C__C_N__N_R",
+            "elapsed_ms": 41255.097333,
+            "created_node_count": 1500000
+          },
+          {
+            "kind": "fold",
+            "name": "N_R",
+            "elapsed_ms": 27.54625,
+            "created_node_count": 25
+          },
+          {
+            "kind": "inherit",
+            "edge": "L_O",
+            "type": "LINEITEM_ORDERS",
+            "source": "L",
+            "target": "O_C__C_N__N_R",
+            "elapsed_ms": 43658.507,
+            "created_relationship_count": 6001215
+          },
+          {
+            "kind": "inherit",
+            "edge": "S_N",
+            "type": "SUPPLIER_NATION",
+            "source": "S",
+            "target": "N_R",
+            "elapsed_ms": 161.922917,
+            "created_relationship_count": 10000
+          }
+        ]
+      },
+      "denormalized_state": {
+        "node_count": 8511240,
+        "relationship_count": 13612430,
+        "property_cell_count": 133389590
+      },
+      "structural_delta": {
+        "delta_nodes": -150005,
+        "delta_relationships": -1650025,
+        "delta_property_cells": 16800035
+      },
+      "index_build": {
+        "elapsed_ms": 1397.289667,
+        "wait_timeout_seconds": 3000,
+        "indexes": [
+          {
+            "name": "NR_IDX_F7E78CA6F1E0_O_R__O_C__C_N__N_R",
+            "type": "RANGE",
+            "label": "NR_FOLD_O_C__C_N__N_R",
+            "properties": [
+              "n_regionkey"
+            ],
+            "unique": false
+          },
+          {
+            "name": "NR_IDX_F7E78CA6F1E0_N_R__N_R",
+            "type": "RANGE",
+            "label": "NR_FOLD_N_R",
+            "properties": [
+              "n_regionkey"
+            ],
+            "unique": false
+          }
+        ]
+      },
+      "updates": {
+        "R": {
+          "property": "r_comment",
+          "repeat_count": 1,
+          "copy_locations": 2,
+          "indexed_lookup": [
+            {
+              "fold": "O_C__C_N__N_R",
+              "properties": [
+                "n_regionkey"
+              ]
+            },
+            {
+              "fold": "N_R",
+              "properties": [
+                "n_regionkey"
+              ]
+            }
+          ],
+          "sample_count": 1,
+          "min_ms": 2347.452375,
+          "median_ms": 2347.452375,
+          "max_ms": 2347.452375,
+          "samples": [
+            {
+              "group": 1,
+              "key": {
+                "r_regionkey": 0
+              },
+              "a0": "lar deposits. blithely final packages cajole. regular waters are final requests. regular accounts are according to ",
+              "a1": "hs use ironic, even requests. s",
+              "touched_nodes": 298999,
+              "repeat_elapsed_ms": [
+                2347.452375
+              ],
+              "elapsed_ms": 2347.452375
+            }
+          ],
+          "normalized_update": {
+            "sample_count": 1,
+            "repeat_count": 1,
+            "min_ms": 9.720292,
+            "median_ms": 9.720292,
+            "max_ms": 9.720292
+          },
+          "normalization_save": {
+            "sample_count": 1,
+            "min_ms": 2337.732083,
+            "median_ms": 2337.732083,
+            "max_ms": 2337.732083
+          }
+        }
+      },
+      "normalization": {
+        "method": "rebuild_from_folded_data",
+        "scope": "participating tuples",
+        "sample_count": 1,
+        "elapsed_ms": 115297.105083,
+        "index_build_ms": 204.708667,
+        "node_rebuild_ms": 63239.062667,
+        "relationship_rebuild_ms": 51853.2875,
+        "created_node_count": 1600026,
+        "created_relationship_count": 7611236
+      },
+      "index_drop": {
+        "elapsed_ms": 58.846083,
+        "index_count": 6
+      }
+    }
+  ],
+  "database": "tpch-sf-1-usecase",
+  "neo4j_driver": "6.2.0",
+  "update_group_count": 1,
+  "update_repeat_count": 1,
+  "cleanup_batch_size": 1000,
+  "update_value_policy": "random_existing_participating_domain_value",
+  "random_seed": 20260818,
+  "results_file": "tpch_database_experiment/usecases/results/sf1/redundancy/new_redundancy_results.json",
+  "measurement_definitions": {
+    "normalization_save_ms": "denormalized - normalized",
+    "update_case_time": "median of repeated A0-to-A1 updates; A1-to-A0 restore excluded",
+    "state_delta": "denormalized - normalized",
+    "property_cells": "non-null TPC-H properties; nr_* excluded",
+    "normalization_time": "rebuild normalized nodes, relationships and indexes from Fold data; cleanup excluded"
+  },
+  "update_groups": [
+    {
+      "group": 1,
+      "updates": {
+        "PS": {
+          "key": {
+            "ps_partkey": 1,
+            "ps_suppkey": 2
+          },
+          "property": "ps_comment",
+          "a0": ", even theodolites. regular, final theodolites eat after the carefully pending foxes. furiously regular deposits sleep slyly. carefully bold realms above the ironic dependencies haggle careful",
+          "a1": "ven ideas. quickly even packages print. pending multipliers must have to are fluff"
+        },
+        "P": {
+          "key": {
+            "p_partkey": 1
+          },
+          "property": "p_comment",
+          "a0": "ly. slyly ironi",
+          "a1": "lar accounts amo"
+        },
+        "O": {
+          "key": {
+            "o_orderkey": 1
+          },
+          "property": "o_comment",
+          "a0": "nstructions sleep furiously among ",
+          "a1": " foxes. pending accounts at the pending, silent asymptot"
+        },
+        "C": {
+          "key": {
+            "c_custkey": 1
+          },
+          "property": "c_comment",
+          "a0": "to the even, regular platelets. regular, ironic epitaphs nag e",
+          "a1": "l accounts. blithely ironic theodolites integrate boldly: caref"
+        },
+        "S": {
+          "key": {
+            "s_suppkey": 1
+          },
+          "property": "s_comment",
+          "a0": "each slyly above the careful",
+          "a1": " slyly bold instructions. idle dependen"
+        },
+        "N": {
+          "key": {
+            "n_nationkey": 0
+          },
+          "property": "n_comment",
+          "a0": " haggle. carefully final deposits detect slyly agai",
+          "a1": "al foxes promise slyly according to the regular accounts. bold requests alon"
+        },
+        "R": {
+          "key": {
+            "r_regionkey": 0
+          },
+          "property": "r_comment",
+          "a0": "lar deposits. blithely final packages cajole. regular waters are final requests. regular accounts are according to ",
+          "a1": "hs use ironic, even requests. s"
+        }
+      }
+    }
+  ],
+  "normalized_baseline": {
+    "state": {
+      "node_count": 8661245,
+      "relationship_count": 15262455,
+      "property_cell_count": 116589555
+    },
+    "updates": {
+      "PS": {
+        "property": "ps_comment",
+        "repeat_count": 1,
+        "indexed_lookup": {
+          "label": "PARTSUPP",
+          "properties": [
+            "ps_partkey",
+            "ps_suppkey"
+          ]
+        },
+        "sample_count": 1,
+        "min_ms": 23.929792,
+        "median_ms": 23.929792,
+        "max_ms": 23.929792,
+        "samples": [
+          {
+            "group": 1,
+            "key": {
+              "ps_partkey": 1,
+              "ps_suppkey": 2
+            },
+            "a0": ", even theodolites. regular, final theodolites eat after the carefully pending foxes. furiously regular deposits sleep slyly. carefully bold realms above the ironic dependencies haggle careful",
+            "a1": "ven ideas. quickly even packages print. pending multipliers must have to are fluff",
+            "touched_nodes": 1,
+            "repeat_elapsed_ms": [
+              23.929792
+            ],
+            "elapsed_ms": 23.929792
+          }
+        ]
+      },
+      "P": {
+        "property": "p_comment",
+        "repeat_count": 1,
+        "indexed_lookup": {
+          "label": "PART",
+          "properties": [
+            "p_partkey"
+          ]
+        },
+        "sample_count": 1,
+        "min_ms": 11.955834,
+        "median_ms": 11.955834,
+        "max_ms": 11.955834,
+        "samples": [
+          {
+            "group": 1,
+            "key": {
+              "p_partkey": 1
+            },
+            "a0": "ly. slyly ironi",
+            "a1": "lar accounts amo",
+            "touched_nodes": 1,
+            "repeat_elapsed_ms": [
+              11.955834
+            ],
+            "elapsed_ms": 11.955834
+          }
+        ]
+      },
+      "O": {
+        "property": "o_comment",
+        "repeat_count": 1,
+        "indexed_lookup": {
+          "label": "ORDERS",
+          "properties": [
+            "o_orderkey"
+          ]
+        },
+        "sample_count": 1,
+        "min_ms": 10.160791,
+        "median_ms": 10.160791,
+        "max_ms": 10.160791,
+        "samples": [
+          {
+            "group": 1,
+            "key": {
+              "o_orderkey": 1
+            },
+            "a0": "nstructions sleep furiously among ",
+            "a1": " foxes. pending accounts at the pending, silent asymptot",
+            "touched_nodes": 1,
+            "repeat_elapsed_ms": [
+              10.160791
+            ],
+            "elapsed_ms": 10.160791
+          }
+        ]
+      },
+      "C": {
+        "property": "c_comment",
+        "repeat_count": 1,
+        "indexed_lookup": {
+          "label": "CUSTOMER",
+          "properties": [
+            "c_custkey"
+          ]
+        },
+        "sample_count": 1,
+        "min_ms": 10.417292,
+        "median_ms": 10.417292,
+        "max_ms": 10.417292,
+        "samples": [
+          {
+            "group": 1,
+            "key": {
+              "c_custkey": 1
+            },
+            "a0": "to the even, regular platelets. regular, ironic epitaphs nag e",
+            "a1": "l accounts. blithely ironic theodolites integrate boldly: caref",
+            "touched_nodes": 1,
+            "repeat_elapsed_ms": [
+              10.417292
+            ],
+            "elapsed_ms": 10.417292
+          }
+        ]
+      },
+      "S": {
+        "property": "s_comment",
+        "repeat_count": 1,
+        "indexed_lookup": {
+          "label": "SUPPLIER",
+          "properties": [
+            "s_suppkey"
+          ]
+        },
+        "sample_count": 1,
+        "min_ms": 10.993125,
+        "median_ms": 10.993125,
+        "max_ms": 10.993125,
+        "samples": [
+          {
+            "group": 1,
+            "key": {
+              "s_suppkey": 1
+            },
+            "a0": "each slyly above the careful",
+            "a1": " slyly bold instructions. idle dependen",
+            "touched_nodes": 1,
+            "repeat_elapsed_ms": [
+              10.993125
+            ],
+            "elapsed_ms": 10.993125
+          }
+        ]
+      },
+      "N": {
+        "property": "n_comment",
+        "repeat_count": 1,
+        "indexed_lookup": {
+          "label": "NATION",
+          "properties": [
+            "n_nationkey"
+          ]
+        },
+        "sample_count": 1,
+        "min_ms": 11.259041,
+        "median_ms": 11.259041,
+        "max_ms": 11.259041,
+        "samples": [
+          {
+            "group": 1,
+            "key": {
+              "n_nationkey": 0
+            },
+            "a0": " haggle. carefully final deposits detect slyly agai",
+            "a1": "al foxes promise slyly according to the regular accounts. bold requests alon",
+            "touched_nodes": 1,
+            "repeat_elapsed_ms": [
+              11.259041
+            ],
+            "elapsed_ms": 11.259041
+          }
+        ]
+      },
+      "R": {
+        "property": "r_comment",
+        "repeat_count": 1,
+        "indexed_lookup": {
+          "label": "REGION",
+          "properties": [
+            "r_regionkey"
+          ]
+        },
+        "sample_count": 1,
+        "min_ms": 9.720292,
+        "median_ms": 9.720292,
+        "max_ms": 9.720292,
+        "samples": [
+          {
+            "group": 1,
+            "key": {
+              "r_regionkey": 0
+            },
+            "a0": "lar deposits. blithely final packages cajole. regular waters are final requests. regular accounts are according to ",
+            "a1": "hs use ironic, even requests. s",
+            "touched_nodes": 1,
+            "repeat_elapsed_ms": [
+              9.720292
+            ],
+            "elapsed_ms": 9.720292
+          }
+        ]
+      }
+    }
+  }
+}
