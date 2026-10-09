@@ -9,7 +9,7 @@
 # {e5,e6,e8}=176.
 set -euo pipefail
 source ~/neo4j/env.sh
-HERE="$(cd "$(dirname "$0")" && pwd)"
+HERE="$(cd "$(dirname "$0")/../.." && pwd)"
 OUT="$HERE/redundancy/results/sf1/new_redundancy_results.json"
 mkdir -p "$(dirname "$OUT")"
 

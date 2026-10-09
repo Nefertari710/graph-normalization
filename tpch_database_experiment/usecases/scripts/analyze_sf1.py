@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from statistics import median
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[2]
 FILES = [HERE / "redundancy/results/sf1/new_redundancy_results.json",
          HERE / "redundancy/results/sf1/new_redundancy_results_part2.json"]
 EDGE = {"L_PS": "e_1", "L_O": "e_2", "PS_P": "e_3", "PS_S": "e_4",

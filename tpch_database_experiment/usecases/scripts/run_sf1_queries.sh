@@ -8,7 +8,7 @@
 # --batch-size 1000 (transaction-memory limit on LINEITEM folds).
 set -uo pipefail
 source ~/neo4j/env.sh
-HERE="$(cd "$(dirname "$0")" && pwd)"
+HERE="$(cd "$(dirname "$0")/../.." && pwd)"
 OUT="$HERE/query/results/sf1"
 mkdir -p "$OUT"
 cd "$HERE"

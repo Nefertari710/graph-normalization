@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 from statistics import mean, median
-D = Path(__file__).resolve().parent / "query/results/sf1"
+D = Path(__file__).resolve().parents[2] / "query/results/sf1"
 for f in sorted(D.glob("q*_mv_*.json")):
     r = json.loads(f.read_text())
     b = [x["baseline"]["client_time_ms"] for x in r]
