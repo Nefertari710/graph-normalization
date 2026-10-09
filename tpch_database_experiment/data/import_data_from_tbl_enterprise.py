@@ -31,12 +31,12 @@ from pathlib import Path
 from typing import Any, Callable, Iterable, Iterator, Sequence
 
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "tbl_sf_1"
+DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "tbl_sf_01"
 
 # Edit this value to select the target Neo4j database. If it does not exist,
 # the importer creates it before loading data. Neo4j database names cannot
 # contain underscores, so use a name such as "tpchsf1" or "tpch-sf-1".
-DATABASE_NAME = "tpch-sf-005"
+DATABASE_NAME = "tpch-sf-01"
 
 # Local debugging only. Temporarily replace None with your Neo4j password.
 # Never commit or share this file while it contains a real password.

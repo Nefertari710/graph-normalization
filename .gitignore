@@ -46,8 +46,9 @@ dist/
 tmp/
 .cache/
 
-# Generated TPC-H benchmark data
+# Generated TPC-H benchmark data (keep only SF 0.1 in the repository)
 **/data/tbl_sf_*/*.tbl
+!**/data/tbl_sf_01/*.tbl
 
 # Compressed RDF Turtle data
 *.ttl.bz2
