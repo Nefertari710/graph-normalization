@@ -42,16 +42,14 @@ from time import perf_counter_ns
 from typing import Any
 
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
+REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 if str(REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(REPOSITORY_ROOT))
 
-if __package__:
-    from . import generate_params_neo4j
-    from .benchmark_query_neo4j import BENCHMARK_QUERIES
-else:
-    import generate_params_neo4j
-    from benchmark_query_neo4j import BENCHMARK_QUERIES
+from tpch_database_experiment.query.scripts.component import generate_params_neo4j
+from tpch_database_experiment.query.scripts.component.benchmark_query_neo4j import (
+    BENCHMARK_QUERIES,
+)
 
 from tpch_database_experiment.join import (  # noqa: E402
     auto_join_mv_schema_neo4j as auto_join_mv,
@@ -75,10 +73,10 @@ DATABASE_NAME = "tpch-sf-01"
 EXPERIMENT_NAME = auto_join_mv.EXPERIMENT_NAME
 MATERIALIZATION_SCHEMA_VERSION = auto_join_mv.MATERIALIZATION_SCHEMA_VERSION
 TEMPLATE_DIRECTORY = (
-    Path(__file__).resolve().parent / "templates" / "templates_manual"
+    Path(__file__).resolve().parents[1] / "templates" / "templates_manual"
 )
 DEFAULT_OUTPUT_JSON = (
-    Path(__file__).resolve().parents[0]
+    Path(__file__).resolve().parents[1]
     / "results"
     / "results_benchmark"
     / DATABASE_NAME
