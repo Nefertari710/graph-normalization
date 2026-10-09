@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # TPC-H SF 1 query experiment for the 20 variants of the query table
 # (12 that favour normalization, 8 that favour de-normalization at SF 0.1).
-# Requires the SF 1 graph in database "neo4j" (see run_sf1.sh).
+# Requires the SF 1 graph in database "tpch-sf-1-usecase" (see run_sf1.py).
 # One JSON report per variant in usecases/results/sf1/query/; finished variants are
 # skipped, so the script can simply be restarted after an interruption.
 # A variant whose build fails with the default batch size is retried with
@@ -53,7 +53,7 @@ for v in "${VARIANTS[@]}"; do
   if [ -f "$j" ] && ok "$j"; then echo "[$n/20] $s: done, skipped"; continue; fi
   for bs in 10000 1000; do
     echo "[$n/20] $s (batch size $bs) $(date +%H:%M:%S)"
-    if python query/scripts/run_benchmark.py --database neo4j --sf 1 \
+    if python query/scripts/run_benchmark.py --database tpch-sf-1-usecase --sf 1 \
         --query-id "$q" --strategy "$s" --batch-size "$bs" \
         --output-json "$j" > "$OUT/$s.log" 2>&1 && ok "$j"; then
       tail -n 3 "$OUT/$s.log" | head -n 1
