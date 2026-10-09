@@ -8,7 +8,7 @@ from pathlib import Path
 
 from neo4j import GraphDatabase
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
+REPOSITORY_ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPOSITORY_ROOT))
 
 from tpch_database_experiment.data import import_data_from_tbl_enterprise as importer
