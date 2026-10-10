@@ -2,13 +2,14 @@
 """Import the Offshore CSVs into the default database of Neo4j Community.
 
 Neo4j Community supports a single user database, so this wrapper reuses the
-header rewriting and import options of ``dataset/import_database.py`` but
+header rewriting and import options of ``import_offshore_enterprise.py`` but
 imports into ``neo4j`` (with the server stopped) instead of creating the
 ``offshorecsv`` database.
 
 Usage (after ``source ~/neo4j/env.sh``)::
 
-    python import_community.py --data-dir ~/neo4j/offshore_data
+    python import_offshore_community.py
+    python import_offshore_community.py --data-dir /path/to/csv
 """
 
 import argparse
@@ -21,7 +22,7 @@ from pathlib import Path
 
 DATABASE = "neo4j"
 HERE = Path(__file__).resolve().parent
-ORIGINAL = HERE.parent / "dataset" / "import_database.py"
+ORIGINAL = HERE / "import_offshore_enterprise.py"
 
 
 def load_original(data_dir: Path):
@@ -36,7 +37,7 @@ def load_original(data_dir: Path):
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data-dir", type=Path,
-                        default=Path.home() / "neo4j" / "offshore_data")
+                        default=HERE / "data")
     args = parser.parse_args()
     original = load_original(args.data_dir.expanduser().resolve())
     password = os.environ["NEO4J_PASSWORD"]

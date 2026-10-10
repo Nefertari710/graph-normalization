@@ -9,7 +9,7 @@ import tempfile
 import time
 from pathlib import Path
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parent
+DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "data"
 DATABASE_NAME = "offshorecsv"
 NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USER = "neo4j"

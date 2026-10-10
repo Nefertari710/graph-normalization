@@ -64,6 +64,7 @@ case_study/data/dataset/*.csv
 
 # Local Offshore Leaks dataset
 /offshore_experiment/dataset/*.csv
+/offshore_experiment/dataset/data/*.csv
 /offshore_experiment/dataset/*.dump
 
 # Local Provider and Service dataset

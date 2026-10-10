@@ -15,7 +15,7 @@ from statistics import fmean
 import numpy as np
 from scipy.stats import wilcoxon
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 RESULTS = HERE / "results" / "usecases_offshore.json"
 FIGURE = HERE / "results" / "usecase_partial_updates.png"
 METHODS = ("property_hash", "fast_rp", "node2vec", "hash_gnn", "graph_sage")
