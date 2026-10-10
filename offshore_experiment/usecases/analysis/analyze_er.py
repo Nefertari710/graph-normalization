@@ -11,6 +11,7 @@ from statistics import fmean
 import numpy as np
 from scipy.stats import wilcoxon
 
+
 HERE = Path(__file__).resolve().parents[1]
 RESULTS = HERE / "results" / "er_offshore.json"
 METHODS = ("property_hash", "fast_rp", "node2vec", "hash_gnn", "graph_sage")
