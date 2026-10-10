@@ -43,8 +43,8 @@ from statistics import median
 from typing import Any
 
 HERE = Path(__file__).resolve().parent
-ORIGINAL = HERE.parent / "embedding" / "scripts" / "embedding_offshore.py"
-OUTPUT = HERE / "results" / "updates_offshore.json"
+ORIGINAL = HERE.parent.parent / "embedding" / "scripts" / "embedding_offshore.py"
+OUTPUT = HERE.parent / "results" / "updates_offshore.json"
 DIMENSION = "OFFSHORE_UPD_DIM"
 RELATIONSHIP = "HAS_UPD_DIM"
 SEED = 20261006
