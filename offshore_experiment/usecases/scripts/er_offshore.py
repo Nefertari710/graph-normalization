@@ -278,7 +278,7 @@ def main() -> None:
     from neo4j import GraphDatabase
     with GraphDatabase.driver(O.NEO4J_URI, auth=(
             O.NEO4J_USER, os.environ["NEO4J_PASSWORD"])) as driver:
-        with driver.session(database="neo4j") as session:
+        with driver.session(database="offshorecsv") as session:
             report = {"experiment": "offshore_entity_resolution",
                       "created_at": datetime.now().astimezone().isoformat(),
                       "settings": {"duplicate_types": DUPLICATE_TYPES,
