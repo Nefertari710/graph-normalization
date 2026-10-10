@@ -18,7 +18,10 @@ unchanged, and adds per (FD, seed):
 The medians of the original experiment are recorded as well, so that the run
 also reproduces Table 5 of the paper.
 
-Usage (after ``source ~/neo4j/env.sh``)::
+Set ``DEBUG_NEO4J_PASSWORD`` below or use ``NEO4J_PASSWORD`` in the environment;
+otherwise the script prompts for the password when running.
+
+Usage::
 
     python usecases_offshore.py                 # all 12 FDs, 10 seeds
     python usecases_offshore.py --fds address_country --seeds 1
@@ -27,6 +30,7 @@ Usage (after ``source ~/neo4j/env.sh``)::
 from __future__ import annotations
 
 import argparse
+import getpass
 import importlib.util
 import json
 import math
@@ -46,6 +50,7 @@ from scipy.stats import mannwhitneyu
 HERE = Path(__file__).resolve().parent
 ORIGINAL = HERE.parent.parent / "embedding" / "scripts" / "embedding_offshore.py"
 OUTPUT = HERE.parent / "results" / "usecases_offshore.json"
+DEBUG_NEO4J_PASSWORD: str | None = ""  # Empty: use the environment or prompt.
 
 RANDOM_GRAPH = "offshore_embedding_random"
 UPDATED_GRAPH = "offshore_embedding_updated"
@@ -489,7 +494,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--fds", nargs="*", default=None)
     parser.add_argument("--seeds", type=int, default=10)
-    parser.add_argument("--database", default="neo4j")
+    parser.add_argument("--database", default="offshorecsv")
     parser.add_argument("--resume", action="store_true",
                         help="keep finished (FD, seed) cases in the output "
                              "file and run only the missing ones")
@@ -499,9 +504,13 @@ def main() -> None:
     fds = [fd for fd in O.FDS if not args.fds or fd.name in args.fds]
     seeds = list(range(20260917, 20260917 + args.seeds))
 
+    password = DEBUG_NEO4J_PASSWORD or os.environ.get("NEO4J_PASSWORD")
+    if not password:
+        password = getpass.getpass(f"Neo4j password for {O.NEO4J_USER}: ")
+
     from neo4j import GraphDatabase
     with GraphDatabase.driver(O.NEO4J_URI, auth=(
-            O.NEO4J_USER, os.environ["NEO4J_PASSWORD"])) as driver:
+            O.NEO4J_USER, password)) as driver:
         with driver.session(database=args.database) as session:
             report = {
                 "experiment": "offshore_fd_embedding_usecases",
