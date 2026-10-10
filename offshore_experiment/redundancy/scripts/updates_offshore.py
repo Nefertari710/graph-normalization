@@ -18,7 +18,10 @@ For each of the 12 Offshore FDs X -> Y of the embedding experiment:
    removed; source-node indexes created for the experiment are kept unless
    --drop-source-indexes is given.
 
-Usage (after ``source ~/neo4j/env.sh``)::
+Set ``DEBUG_NEO4J_PASSWORD`` below or use ``NEO4J_PASSWORD`` in the environment;
+otherwise the script prompts for the password when running.
+
+Usage::
 
     python updates_offshore.py                 # all 12 FDs
     python updates_offshore.py --fds address_country --groups 5 --repeats 2
@@ -27,6 +30,7 @@ Usage (after ``source ~/neo4j/env.sh``)::
 from __future__ import annotations
 
 import argparse
+import getpass
 import importlib.util
 import json
 import os
@@ -45,6 +49,7 @@ DIMENSION = "OFFSHORE_UPD_DIM"
 RELATIONSHIP = "HAS_UPD_DIM"
 SEED = 20261006
 SUFFIX = " [corrected]"
+DEBUG_NEO4J_PASSWORD: str | None = ""  # Empty: use the environment or prompt.
 
 
 def load_original():
@@ -143,10 +148,14 @@ def main() -> None:
     args = parser.parse_args()
     fds = [fd for fd in O.FDS if not args.fds or fd.name in args.fds]
 
+    password = DEBUG_NEO4J_PASSWORD or os.environ.get("NEO4J_PASSWORD")
+    if not password:
+        password = getpass.getpass(f"Neo4j password for {O.NEO4J_USER}: ")
+
     from neo4j import GraphDatabase
     with GraphDatabase.driver(O.NEO4J_URI, auth=(
-            O.NEO4J_USER, os.environ["NEO4J_PASSWORD"])) as driver:
-        with driver.session(database="neo4j") as session:
+            O.NEO4J_USER, password)) as driver:
+        with driver.session(database="offshorecsv") as session:
             report: dict[str, Any] = {
                 "experiment": "offshore_updates_full_graph",
                 "created_at": datetime.now().astimezone().isoformat(),
