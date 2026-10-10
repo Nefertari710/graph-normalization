@@ -2,7 +2,8 @@
 """Analyze Offshore update results with the paper's aggregation rules.
 
 Run this file directly, or pass --input /path/to/updates_offshore.json.
-The report is printed to stdout; this script does not write any files.
+The report is printed to stdout and saved to
+../results/report/updates_offshore.md; use --output to change the report path.
 
 Per FD, table medians are medians of the sampled groups' median times.
 For the speedup analysis, compute D/N for each group before taking the
@@ -21,6 +22,7 @@ from statistics import median
 DEFAULT_INPUT = (
     Path(__file__).resolve().parent.parent / "results" / "updates_offshore.json"
 )
+DEFAULT_OUTPUT = DEFAULT_INPUT.parent / "updates_offshore.md"
 COPY_BINS = (
     ("<100", 0, 100),
     ("100–999", 100, 1000),
@@ -218,13 +220,20 @@ def main() -> None:
         "--input", type=Path, default=DEFAULT_INPUT,
         help="Input JSON; defaults to ../results/updates_offshore.json.",
     )
+    parser.add_argument(
+        "--output", type=Path, default=DEFAULT_OUTPUT,
+        help="Markdown report; defaults to ../results/report/updates_offshore.md.",
+    )
     args = parser.parse_args()
     try:
         report = load_results(args.input)
         output = render_analysis(report, args.input.resolve())
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(output + "\n", encoding="utf-8")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         parser.exit(1, f"Analysis failed: {exc}\n")
     print(output)
+    print(f"\nMarkdown report saved to: {args.output.resolve()}")
 
 
 if __name__ == "__main__":
