@@ -14,7 +14,10 @@ cannot see the links they are evaluated on.
 Uses its own labels, property and graph names, so it can run while
 ``usecases_offshore.py`` is running.
 
-Usage (after ``source ~/neo4j/env.sh``)::
+Set ``DEBUG_NEO4J_PASSWORD`` below or use ``NEO4J_PASSWORD`` in the environment;
+otherwise the script prompts for the password when running.
+
+Usage::
 
     python er_offshore.py                       # 3 Entity FDs, 10 seeds
     python er_offshore.py --fds service_provider --seeds 1
@@ -23,6 +26,7 @@ Usage (after ``source ~/neo4j/env.sh``)::
 from __future__ import annotations
 
 import argparse
+import getpass
 import importlib.util
 import json
 import os
@@ -36,6 +40,7 @@ from typing import Any
 
 HERE = Path(__file__).resolve().parent
 OUTPUT = HERE.parent / "results" / "er_offshore.json"
+DEBUG_NEO4J_PASSWORD: str | None = ""  # Empty: use the environment or prompt.
 
 
 def load(name: str, path: Path):
@@ -275,9 +280,13 @@ def main() -> None:
     fds = [fd for fd in O.FDS if fd.name in args.fds]
     seeds = list(range(20260917, 20260917 + args.seeds))
 
+    password = DEBUG_NEO4J_PASSWORD or os.environ.get("NEO4J_PASSWORD")
+    if not password:
+        password = getpass.getpass(f"Neo4j password for {O.NEO4J_USER}: ")
+
     from neo4j import GraphDatabase
     with GraphDatabase.driver(O.NEO4J_URI, auth=(
-            O.NEO4J_USER, os.environ["NEO4J_PASSWORD"])) as driver:
+            O.NEO4J_USER, password)) as driver:
         with driver.session(database="offshorecsv") as session:
             report = {"experiment": "offshore_entity_resolution",
                       "created_at": datetime.now().astimezone().isoformat(),
