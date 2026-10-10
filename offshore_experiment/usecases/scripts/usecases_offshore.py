@@ -44,8 +44,8 @@ import numpy as np
 from scipy.stats import mannwhitneyu
 
 HERE = Path(__file__).resolve().parent
-ORIGINAL = HERE.parent / "embedding" / "scripts" / "embedding_offshore.py"
-OUTPUT = HERE / "results" / "usecases_offshore.json"
+ORIGINAL = HERE.parent.parent / "embedding" / "scripts" / "embedding_offshore.py"
+OUTPUT = HERE.parent / "results" / "usecases_offshore.json"
 
 RANDOM_GRAPH = "offshore_embedding_random"
 UPDATED_GRAPH = "offshore_embedding_updated"

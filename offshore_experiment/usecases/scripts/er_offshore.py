@@ -35,7 +35,7 @@ from statistics import fmean
 from typing import Any
 
 HERE = Path(__file__).resolve().parent
-OUTPUT = HERE / "results" / "er_offshore.json"
+OUTPUT = HERE.parent / "results" / "er_offshore.json"
 
 
 def load(name: str, path: Path):
