@@ -1,0 +1,2451 @@
+{
+ "experiment": "offshore_updates_full_graph",
+ "created_at": "2026-10-11T02:44:01.025128+13:00",
+ "settings": {
+  "groups": 50,
+  "repeats": 5,
+  "seed": 20261006
+ },
+ "fds": {
+  "address_country": {
+   "node_type": "Address",
+   "fd": "countries -> country_codes",
+   "valid_groups": 323,
+   "valid_nodes": 277066,
+   "redundant_values": 276743,
+   "normalization_seconds": 2.7262600410031155,
+   "dimension_nodes": 323,
+   "links": 277066,
+   "cases": [
+    {
+     "key": "Guernsey",
+     "copies": 2080,
+     "d_median_ms": 10.988875001203269,
+     "n_median_ms": 7.053020992316306,
+     "paired_diff_ms": 4.026729497127235
+    },
+    {
+     "key": "Malaysia",
+     "copies": 3303,
+     "d_median_ms": 7.813854506821372,
+     "n_median_ms": 3.869499487336725,
+     "paired_diff_ms": 4.072521522175521
+    },
+    {
+     "key": "Bolivia",
+     "copies": 41,
+     "d_median_ms": 4.000291490228847,
+     "n_median_ms": 3.9638335001654923,
+     "paired_diff_ms": 0.037645004340447485
+    },
+    {
+     "key": "KEN",
+     "copies": 5,
+     "d_median_ms": 4.017624989501201,
+     "n_median_ms": 3.9371460006805137,
+     "paired_diff_ms": 0.24756301718298346
+    },
+    {
+     "key": "VNM",
+     "copies": 4,
+     "d_median_ms": 4.26514599530492,
+     "n_median_ms": 3.988937009125948,
+     "paired_diff_ms": 0.44168751628603786
+    },
+    {
+     "key": "ZAF",
+     "copies": 28,
+     "d_median_ms": 3.9894380170153454,
+     "n_median_ms": 4.0068129892461,
+     "paired_diff_ms": -0.13941698125563562
+    },
+    {
+     "key": "Togo",
+     "copies": 3,
+     "d_median_ms": 4.021937507786788,
+     "n_median_ms": 3.8979170203674585,
+     "paired_diff_ms": 0.07327049388550222
+    },
+    {
+     "key": "CHL",
+     "copies": 7,
+     "d_median_ms": 3.9864379941718653,
+     "n_median_ms": 4.075583492522128,
+     "paired_diff_ms": -0.07602050027344376
+    },
+    {
+     "key": "JPN",
+     "copies": 2,
+     "d_median_ms": 3.8517499924637377,
+     "n_median_ms": 4.131812500418164,
+     "paired_diff_ms": -0.22772948432248086
+    },
+    {
+     "key": "China",
+     "copies": 32493,
+     "d_median_ms": 71.89458349603228,
+     "n_median_ms": 4.379395497380756,
+     "paired_diff_ms": 68.08875050046481
+    },
+    {
+     "key": "Samoa",
+     "copies": 1043,
+     "d_median_ms": 5.37275051465258,
+     "n_median_ms": 3.6882499989587814,
+     "paired_diff_ms": 1.6632920014671981
+    },
+    {
+     "key": "Tajikistan",
+     "copies": 43,
+     "d_median_ms": 3.996437502792105,
+     "n_median_ms": 4.014313002699055,
+     "paired_diff_ms": -0.043187508708797395
+    },
+    {
+     "key": "CIV",
+     "copies": 4,
+     "d_median_ms": 3.9704374939901754,
+     "n_median_ms": 3.969500001403503,
+     "paired_diff_ms": -0.05635448906105012
+    },
+    {
+     "key": "R\u00e9union",
+     "copies": 7,
+     "d_median_ms": 4.004104004707187,
+     "n_median_ms": 4.031479504192248,
+     "paired_diff_ms": -0.07622952398378402
+    },
+    {
+     "key": "ALB",
+     "copies": 4,
+     "d_median_ms": 4.048187489388511,
+     "n_median_ms": 4.022145498311147,
+     "paired_diff_ms": 0.05935448280069977
+    },
+    {
+     "key": "Finland",
+     "copies": 114,
+     "d_median_ms": 4.029417003039271,
+     "n_median_ms": 4.083000007085502,
+     "paired_diff_ms": -0.14533300418406725
+    },
+    {
+     "key": "Cayman Islands",
+     "copies": 2307,
+     "d_median_ms": 7.327104001888074,
+     "n_median_ms": 3.9256875024875626,
+     "paired_diff_ms": 3.3949785138247535
+    },
+    {
+     "key": "Sweden",
+     "copies": 410,
+     "d_median_ms": 4.19139550649561,
+     "n_median_ms": 3.7404790055006742,
+     "paired_diff_ms": 0.43049950909335166
+    },
+    {
+     "key": "EGY",
+     "copies": 10,
+     "d_median_ms": 3.9104995084926486,
+     "n_median_ms": 4.060895487782545,
+     "paired_diff_ms": -0.15466651530005038
+    },
+    {
+     "key": "El Salvador",
+     "copies": 178,
+     "d_median_ms": 4.190832987660542,
+     "n_median_ms": 3.8408955006161705,
+     "paired_diff_ms": 0.396187009755522
+    },
+    {
+     "key": "CZE",
+     "copies": 9,
+     "d_median_ms": 4.123000006075017,
+     "n_median_ms": 3.5252079978818074,
+     "paired_diff_ms": 0.540021515917033
+    },
+    {
+     "key": "Lebanon",
+     "copies": 781,
+     "d_median_ms": 5.605521000688896,
+     "n_median_ms": 4.319791492889635,
+     "paired_diff_ms": 1.2843745207646862
+    },
+    {
+     "key": "French Polynesia",
+     "copies": 19,
+     "d_median_ms": 3.884062505676411,
+     "n_median_ms": 3.945937496609986,
+     "paired_diff_ms": -0.0627919944236055
+    },
+    {
+     "key": "Marshall Islands",
+     "copies": 129,
+     "d_median_ms": 4.558104003081098,
+     "n_median_ms": 3.9873120113043115,
+     "paired_diff_ms": 0.7084164972184226
+    },
+    {
+     "key": "Uzbekistan",
+     "copies": 152,
+     "d_median_ms": 3.9087289915187284,
+     "n_median_ms": 3.7136249884497374,
+     "paired_diff_ms": 0.1184164866572246
+    },
+    {
+     "key": "SRB",
+     "copies": 7,
+     "d_median_ms": 3.8433959998656064,
+     "n_median_ms": 3.7468124937731773,
+     "paired_diff_ms": 0.12581249757204205
+    },
+    {
+     "key": "HKG",
+     "copies": 14,
+     "d_median_ms": 4.714833514299244,
+     "n_median_ms": 4.136396004469134,
+     "paired_diff_ms": 0.014457502402365208
+    },
+    {
+     "key": "AIA",
+     "copies": 12,
+     "d_median_ms": 4.88656249945052,
+     "n_median_ms": 5.0004169752355665,
+     "paired_diff_ms": -0.12916700507048517
+    },
+    {
+     "key": "MHL",
+     "copies": 2,
+     "d_median_ms": 4.892437485978007,
+     "n_median_ms": 4.953437004587613,
+     "paired_diff_ms": -0.16329201753251255
+    },
+    {
+     "key": "Iran",
+     "copies": 83,
+     "d_median_ms": 4.871999990427867,
+     "n_median_ms": 4.137479510973208,
+     "paired_diff_ms": 0.7497079932363704
+    },
+    {
+     "key": "Syria",
+     "copies": 45,
+     "d_median_ms": 5.044395991717465,
+     "n_median_ms": 4.915166995488107,
+     "paired_diff_ms": -0.008771006832830608
+    },
+    {
+     "key": "BHS",
+     "copies": 8,
+     "d_median_ms": 4.7747704811627045,
+     "n_median_ms": 4.77289549598936,
+     "paired_diff_ms": 0.006666479748673737
+    },
+    {
+     "key": "Germany",
+     "copies": 874,
+     "d_median_ms": 7.968791484017856,
+     "n_median_ms": 4.79597900994122,
+     "paired_diff_ms": 3.282458506873809
+    },
+    {
+     "key": "Bahamas",
+     "copies": 2250,
+     "d_median_ms": 7.886479506851174,
+     "n_median_ms": 4.602312503266148,
+     "paired_diff_ms": 3.274354516179301
+    },
+    {
+     "key": "British Virgin Islands",
+     "copies": 5556,
+     "d_median_ms": 11.723020492354408,
+     "n_median_ms": 4.342291998909786,
+     "paired_diff_ms": 7.380728493444622
+    },
+    {
+     "key": "Austria",
+     "copies": 233,
+     "d_median_ms": 3.356999994139187,
+     "n_median_ms": 3.4541460045147687,
+     "paired_diff_ms": 0.09464551112614572
+    },
+    {
+     "key": "Afghanistan",
+     "copies": 2,
+     "d_median_ms": 3.104667004663497,
+     "n_median_ms": 2.8510834963526577,
+     "paired_diff_ms": 0.36616649595089257
+    },
+    {
+     "key": "Aruba",
+     "copies": 17516,
+     "d_median_ms": 23.337061997153796,
+     "n_median_ms": 4.5021874975645915,
+     "paired_diff_ms": 19.511562000843696
+    },
+    {
+     "key": "Seychelles",
+     "copies": 978,
+     "d_median_ms": 6.86556201253552,
+     "n_median_ms": 4.413291011587717,
+     "paired_diff_ms": 1.9043115171371028
+    },
+    {
+     "key": "Angola",
+     "copies": 119,
+     "d_median_ms": 4.16691649297718,
+     "n_median_ms": 4.336562487878837,
+     "paired_diff_ms": -0.33662450732663274
+    },
+    {
+     "key": "QAT",
+     "copies": 12,
+     "d_median_ms": 3.8668959896313027,
+     "n_median_ms": 3.972104503191076,
+     "paired_diff_ms": -0.23054200573824346
+    },
+    {
+     "key": "Cameroon",
+     "copies": 42,
+     "d_median_ms": 3.9630210085306317,
+     "n_median_ms": 3.9577085117343813,
+     "paired_diff_ms": -0.04510348662734032
+    },
+    {
+     "key": "Jordan",
+     "copies": 384,
+     "d_median_ms": 5.072499508969486,
+     "n_median_ms": 4.4352499971864745,
+     "paired_diff_ms": 0.5216665012994781
+    },
+    {
+     "key": "Liechtenstein",
+     "copies": 864,
+     "d_median_ms": 5.519562502740882,
+     "n_median_ms": 4.426228493684903,
+     "paired_diff_ms": 1.0773959947982803
+    },
+    {
+     "key": "Zambia",
+     "copies": 45,
+     "d_median_ms": 3.8824580115033314,
+     "n_median_ms": 4.00652049575001,
+     "paired_diff_ms": 0.25962501240428537
+    },
+    {
+     "key": "BMU",
+     "copies": 2,
+     "d_median_ms": 4.648312489734963,
+     "n_median_ms": 4.162103999988176,
+     "paired_diff_ms": 0.1773745025275275
+    },
+    {
+     "key": "BLR",
+     "copies": 3,
+     "d_median_ms": 4.0124790102709085,
+     "n_median_ms": 4.151854489464313,
+     "paired_diff_ms": -0.28770798235200346
+    },
+    {
+     "key": "RUS",
+     "copies": 24,
+     "d_median_ms": 4.018854509922676,
+     "n_median_ms": 3.985395989730023,
+     "paired_diff_ms": 0.09052100358530879
+    },
+    {
+     "key": "France",
+     "copies": 1621,
+     "d_median_ms": 6.017791500198655,
+     "n_median_ms": 3.9009795000310987,
+     "paired_diff_ms": 2.523646006011404
+    },
+    {
+     "key": "Senegal",
+     "copies": 27,
+     "d_median_ms": 3.9652494888287038,
+     "n_median_ms": 3.8177499955054373,
+     "paired_diff_ms": 0.02693802525755018
+    }
+   ]
+  },
+  "service_provider": {
+   "node_type": "Entity",
+   "fd": "service_provider -> sourceID, valid_until",
+   "valid_groups": 4,
+   "valid_nodes": 344086,
+   "redundant_values": 688164,
+   "normalization_seconds": 1.9812377500056755,
+   "dimension_nodes": 4,
+   "links": 344086,
+   "cases": [
+    {
+     "key": "Mossack Fonseca",
+     "copies": 213634,
+     "d_median_ms": 242.27731200517155,
+     "n_median_ms": 5.115395993925631,
+     "paired_diff_ms": 238.02145750960335
+    },
+    {
+     "key": "Appleby",
+     "copies": 24936,
+     "d_median_ms": 48.20116648625117,
+     "n_median_ms": 4.388687491882592,
+     "paired_diff_ms": 43.91312449297402
+    },
+    {
+     "key": "Commonwealth Trust Limited",
+     "copies": 44393,
+     "d_median_ms": 49.84977100684773,
+     "n_median_ms": 4.225229000439867,
+     "paired_diff_ms": 46.17379151750356
+    },
+    {
+     "key": "Portcullis Trustnet",
+     "copies": 61123,
+     "d_median_ms": 61.28122851077933,
+     "n_median_ms": 4.089770998689346,
+     "paired_diff_ms": 57.41524900076911
+    }
+   ]
+  },
+  "country": {
+   "node_type": "Entity",
+   "fd": "country_codes -> countries",
+   "valid_groups": 682,
+   "valid_nodes": 499862,
+   "redundant_values": 499180,
+   "normalization_seconds": 5.555877083010273,
+   "dimension_nodes": 682,
+   "links": 499862,
+   "cases": [
+    {
+     "key": "CYM;CHE",
+     "copies": 33,
+     "d_median_ms": 3.637062502093613,
+     "n_median_ms": 3.8091665046522394,
+     "paired_diff_ms": 0.27449998015072197
+    },
+    {
+     "key": "SGP;COK",
+     "copies": 20,
+     "d_median_ms": 3.536687494488433,
+     "n_median_ms": 3.9118124986998737,
+     "paired_diff_ms": -0.43416651897132397
+    },
+    {
+     "key": "BRB;GRD",
+     "copies": 2,
+     "d_median_ms": 4.0308334864676,
+     "n_median_ms": 3.9260204939637333,
+     "paired_diff_ms": 0.12922949099447578
+    },
+    {
+     "key": "IMN;SGP",
+     "copies": 2,
+     "d_median_ms": 3.7552500143647194,
+     "n_median_ms": 3.815208503510803,
+     "paired_diff_ms": 0.04416651790961623
+    },
+    {
+     "key": "BMU;IMN",
+     "copies": 4,
+     "d_median_ms": 4.1129580058623105,
+     "n_median_ms": 3.8439159834524617,
+     "paired_diff_ms": 0.3258130163885653
+    },
+    {
+     "key": "CUW",
+     "copies": 35,
+     "d_median_ms": 4.5185205090092495,
+     "n_median_ms": 4.121896010474302,
+     "paired_diff_ms": 1.0106255067512393
+    },
+    {
+     "key": "ZMB",
+     "copies": 2,
+     "d_median_ms": 4.116645999602042,
+     "n_median_ms": 4.205999997793697,
+     "paired_diff_ms": 0.10695851233322173
+    },
+    {
+     "key": "XXX;POL",
+     "copies": 2,
+     "d_median_ms": 4.952666495228186,
+     "n_median_ms": 4.996167015633546,
+     "paired_diff_ms": -0.022875014110468328
+    },
+    {
+     "key": "VGB;BLZ",
+     "copies": 16,
+     "d_median_ms": 5.408416502177715,
+     "n_median_ms": 4.6162084909155965,
+     "paired_diff_ms": 0.66329151741229
+    },
+    {
+     "key": "CYM;MEX",
+     "copies": 5,
+     "d_median_ms": 4.579646003548987,
+     "n_median_ms": 4.64279149309732,
+     "paired_diff_ms": 0.09531297837384045
+    },
+    {
+     "key": "BMU;MCO",
+     "copies": 23,
+     "d_median_ms": 4.160312004387379,
+     "n_median_ms": 4.177750015514903,
+     "paired_diff_ms": 0.08456296927761286
+    },
+    {
+     "key": "CZE;XXX",
+     "copies": 31,
+     "d_median_ms": 4.2864999995799735,
+     "n_median_ms": 3.8877710030646995,
+     "paired_diff_ms": 0.5871670000487939
+    },
+    {
+     "key": "DEU;VGB",
+     "copies": 11,
+     "d_median_ms": 4.533188010100275,
+     "n_median_ms": 4.290687502361834,
+     "paired_diff_ms": 0.3668120043585077
+    },
+    {
+     "key": "IRL;BRB",
+     "copies": 4,
+     "d_median_ms": 4.031916498206556,
+     "n_median_ms": 4.047082984470762,
+     "paired_diff_ms": -0.007561990059912205
+    },
+    {
+     "key": "GUF",
+     "copies": 2,
+     "d_median_ms": 3.9495004893979058,
+     "n_median_ms": 4.026000504381955,
+     "paired_diff_ms": -0.002374508767388761
+    },
+    {
+     "key": "VGB;CAN",
+     "copies": 39,
+     "d_median_ms": 4.247499993653037,
+     "n_median_ms": 3.7940000038361177,
+     "paired_diff_ms": 0.4783329932251945
+    },
+    {
+     "key": "LUX;XXX",
+     "copies": 6,
+     "d_median_ms": 4.083312494913116,
+     "n_median_ms": 3.8278539868770167,
+     "paired_diff_ms": 0.28350048523861915
+    },
+    {
+     "key": "LVA;VGB",
+     "copies": 672,
+     "d_median_ms": 7.761875007417984,
+     "n_median_ms": 4.193500484689139,
+     "paired_diff_ms": 3.65791650256142
+    },
+    {
+     "key": "SLV;PAN",
+     "copies": 10,
+     "d_median_ms": 4.040645508212037,
+     "n_median_ms": 3.817770484602079,
+     "paired_diff_ms": 0.3345210134284571
+    },
+    {
+     "key": "XXX;MLT",
+     "copies": 4,
+     "d_median_ms": 4.231979008181952,
+     "n_median_ms": 3.5389999975450337,
+     "paired_diff_ms": 1.0937699989881366
+    },
+    {
+     "key": "BHR;BMU",
+     "copies": 3,
+     "d_median_ms": 4.039895997266285,
+     "n_median_ms": 3.9269164844881743,
+     "paired_diff_ms": 0.5119374982314184
+    },
+    {
+     "key": "VGB",
+     "copies": 54932,
+     "d_median_ms": 281.46858350373805,
+     "n_median_ms": 4.5836249919375405,
+     "paired_diff_ms": 276.70962498814333
+    },
+    {
+     "key": "SGP;SYC",
+     "copies": 5,
+     "d_median_ms": 3.7842499878024682,
+     "n_median_ms": 3.368645498994738,
+     "paired_diff_ms": 0.1296044938499108
+    },
+    {
+     "key": "MLT;VGB",
+     "copies": 9,
+     "d_median_ms": 4.162687488133088,
+     "n_median_ms": 3.864604019327089,
+     "paired_diff_ms": 0.43968798127025366
+    },
+    {
+     "key": "CYM;CHN",
+     "copies": 132,
+     "d_median_ms": 5.26329199783504,
+     "n_median_ms": 3.758353996090591,
+     "paired_diff_ms": 1.341395516647026
+    },
+    {
+     "key": "QAT",
+     "copies": 38,
+     "d_median_ms": 5.359562492230907,
+     "n_median_ms": 3.6999165022280067,
+     "paired_diff_ms": 1.2223130033817142
+    },
+    {
+     "key": "NZL;VGB",
+     "copies": 3,
+     "d_median_ms": 4.052125004818663,
+     "n_median_ms": 3.748646005988121,
+     "paired_diff_ms": 0.11441599053796381
+    },
+    {
+     "key": "CRI;XXX",
+     "copies": 4,
+     "d_median_ms": 4.287125004339032,
+     "n_median_ms": 3.8382290076697245,
+     "paired_diff_ms": 0.22335399989970028
+    },
+    {
+     "key": "VGB;LVA",
+     "copies": 634,
+     "d_median_ms": 7.659854003577493,
+     "n_median_ms": 4.142291494645178,
+     "paired_diff_ms": 3.7959584878990427
+    },
+    {
+     "key": "VEN;BLZ;PAN",
+     "copies": 3,
+     "d_median_ms": 3.904957993654534,
+     "n_median_ms": 3.9415204955730587,
+     "paired_diff_ms": -0.12597949535120279
+    },
+    {
+     "key": "EST",
+     "copies": 880,
+     "d_median_ms": 7.662749994779006,
+     "n_median_ms": 3.7630830047419295,
+     "paired_diff_ms": 3.9616674912394956
+    },
+    {
+     "key": "XXX;THA",
+     "copies": 6,
+     "d_median_ms": 4.224104006425478,
+     "n_median_ms": 3.7080210022395477,
+     "paired_diff_ms": 0.36535400431603193
+    },
+    {
+     "key": "IND;JEY",
+     "copies": 3,
+     "d_median_ms": 4.0005629998631775,
+     "n_median_ms": 4.0079375030472875,
+     "paired_diff_ms": -0.07610399916302413
+    },
+    {
+     "key": "VGB;GUF",
+     "copies": 20,
+     "d_median_ms": 4.071000003023073,
+     "n_median_ms": 3.944541502278298,
+     "paired_diff_ms": 0.10885451047215611
+    },
+    {
+     "key": "SGP;CYM",
+     "copies": 6,
+     "d_median_ms": 3.980145978857763,
+     "n_median_ms": 3.9815835043555126,
+     "paired_diff_ms": 0.08356197213288397
+    },
+    {
+     "key": "JOR;PAN",
+     "copies": 4,
+     "d_median_ms": 4.018416497274302,
+     "n_median_ms": 4.402708509587683,
+     "paired_diff_ms": -0.07241651474032551
+    },
+    {
+     "key": "IRL;IMN",
+     "copies": 24,
+     "d_median_ms": 4.562896487186663,
+     "n_median_ms": 4.527811994194053,
+     "paired_diff_ms": 0.0498744921060279
+    },
+    {
+     "key": "CRI",
+     "copies": 886,
+     "d_median_ms": 8.647000009659678,
+     "n_median_ms": 4.295312479371205,
+     "paired_diff_ms": 4.750457999762148
+    },
+    {
+     "key": "SYR",
+     "copies": 4,
+     "d_median_ms": 4.297353996662423,
+     "n_median_ms": 3.9748959825374186,
+     "paired_diff_ms": 0.311646013869904
+    },
+    {
+     "key": "MUS;HKG",
+     "copies": 2,
+     "d_median_ms": 4.055333498399705,
+     "n_median_ms": 3.9566664927406237,
+     "paired_diff_ms": 0.1328335056314245
+    },
+    {
+     "key": "BMU;KOR",
+     "copies": 2,
+     "d_median_ms": 4.079499514773488,
+     "n_median_ms": 3.9335629990091547,
+     "paired_diff_ms": 0.15533299301750958
+    },
+    {
+     "key": "CYM;GTM",
+     "copies": 8,
+     "d_median_ms": 4.152854497078806,
+     "n_median_ms": 4.261875001247972,
+     "paired_diff_ms": 0.014541496057063341
+    },
+    {
+     "key": "SVN",
+     "copies": 22,
+     "d_median_ms": 4.97900000482332,
+     "n_median_ms": 4.36764549522195,
+     "paired_diff_ms": 0.2367295091971755
+    },
+    {
+     "key": "VGB;CYM",
+     "copies": 437,
+     "d_median_ms": 7.873437483794987,
+     "n_median_ms": 4.448666993994266,
+     "paired_diff_ms": 3.781375475227833
+    },
+    {
+     "key": "VGB;PRT",
+     "copies": 2,
+     "d_median_ms": 4.029958508908749,
+     "n_median_ms": 3.9641874900553375,
+     "paired_diff_ms": 0.03372902574483305
+    },
+    {
+     "key": "XXX;ZAF",
+     "copies": 4,
+     "d_median_ms": 4.069417002028786,
+     "n_median_ms": 4.121187492273748,
+     "paired_diff_ms": -0.08425000123679638
+    },
+    {
+     "key": "JEY",
+     "copies": 15166,
+     "d_median_ms": 74.37349999963772,
+     "n_median_ms": 4.580687498673797,
+     "paired_diff_ms": 69.47087499429472
+    },
+    {
+     "key": "NZL;XXX",
+     "copies": 2,
+     "d_median_ms": 5.774978984845802,
+     "n_median_ms": 5.357083515264094,
+     "paired_diff_ms": 0.40406199696008116
+    },
+    {
+     "key": "VGB;BLR",
+     "copies": 10,
+     "d_median_ms": 4.020103995571844,
+     "n_median_ms": 3.9862079865997657,
+     "paired_diff_ms": 0.09058300929609686
+    },
+    {
+     "key": "LVA;KNA",
+     "copies": 3,
+     "d_median_ms": 4.010999997262843,
+     "n_median_ms": 3.9442080014850944,
+     "paired_diff_ms": -0.019853978301398456
+    }
+   ]
+  },
+  "entity_country_reverse": {
+   "node_type": "Entity",
+   "fd": "countries -> country_codes",
+   "valid_groups": 686,
+   "valid_nodes": 504570,
+   "redundant_values": 503884,
+   "normalization_seconds": 5.370217707997654,
+   "dimension_nodes": 686,
+   "links": 504570,
+   "cases": [
+    {
+     "key": "Germany;British Virgin Islands",
+     "copies": 11,
+     "d_median_ms": 4.015313010313548,
+     "n_median_ms": 3.940666501875967,
+     "paired_diff_ms": 0.5329590203473344
+    },
+    {
+     "key": "Canada;Barbados",
+     "copies": 47,
+     "d_median_ms": 4.586229013511911,
+     "n_median_ms": 4.7595630021533,
+     "paired_diff_ms": 0.06122850754763931
+    },
+    {
+     "key": "Venezuela",
+     "copies": 762,
+     "d_median_ms": 7.541479004430585,
+     "n_median_ms": 3.501354018226266,
+     "paired_diff_ms": 4.184249497484416
+    },
+    {
+     "key": "Barbados;Bermuda",
+     "copies": 14,
+     "d_median_ms": 1.306229503825307,
+     "n_median_ms": 1.1563750013010576,
+     "paired_diff_ms": 0.09675000910647213
+    },
+    {
+     "key": "Cayman Islands;Ireland",
+     "copies": 9,
+     "d_median_ms": 2.3501869873143733,
+     "n_median_ms": 2.338250502361916,
+     "paired_diff_ms": 0.06399999256245792
+    },
+    {
+     "key": "C\u00f4te d'Ivoire",
+     "copies": 21,
+     "d_median_ms": 1.124353992054239,
+     "n_median_ms": 1.1194375110790133,
+     "paired_diff_ms": 0.08139597775880247
+    },
+    {
+     "key": "Ireland;Isle of Man;United Kingdom",
+     "copies": 3,
+     "d_median_ms": 4.5849590096622705,
+     "n_median_ms": 4.252770493621938,
+     "paired_diff_ms": 0.08933349454309791
+    },
+    {
+     "key": "Czech Republic;British Virgin Islands",
+     "copies": 35,
+     "d_median_ms": 5.547437511268072,
+     "n_median_ms": 5.109584002639167,
+     "paired_diff_ms": 0.5654580018017441
+    },
+    {
+     "key": "Greece",
+     "copies": 223,
+     "d_median_ms": 4.982875514542684,
+     "n_median_ms": 4.02104199747555,
+     "paired_diff_ms": 1.2025630130665377
+    },
+    {
+     "key": "Cayman Islands;Hong Kong",
+     "copies": 227,
+     "d_median_ms": 4.466458500246517,
+     "n_median_ms": 3.5862704971805215,
+     "paired_diff_ms": 0.8150624926201999
+    },
+    {
+     "key": "Turkey",
+     "copies": 113,
+     "d_median_ms": 4.27662450238131,
+     "n_median_ms": 3.8160415133461356,
+     "paired_diff_ms": 0.5442085093818605
+    },
+    {
+     "key": "British Virgin Islands;Cyprus",
+     "copies": 1187,
+     "d_median_ms": 8.48412499180995,
+     "n_median_ms": 4.3102289928356186,
+     "paired_diff_ms": 4.518500005360693
+    },
+    {
+     "key": "British Virgin Islands;Chile",
+     "copies": 2,
+     "d_median_ms": 4.067437490448356,
+     "n_median_ms": 3.8378540048142895,
+     "paired_diff_ms": 0.10681198909878731
+    },
+    {
+     "key": "Indonesia;British Virgin Islands",
+     "copies": 17,
+     "d_median_ms": 4.088667003088631,
+     "n_median_ms": 3.823978506261483,
+     "paired_diff_ms": 0.23750000400468707
+    },
+    {
+     "key": "Malta",
+     "copies": 84331,
+     "d_median_ms": 319.6029375103535,
+     "n_median_ms": 4.575249506160617,
+     "paired_diff_ms": 315.77829201705754
+    },
+    {
+     "key": "Angola",
+     "copies": 10,
+     "d_median_ms": 4.091458511538804,
+     "n_median_ms": 3.9366664859699085,
+     "paired_diff_ms": 0.0748550082789734
+    },
+    {
+     "key": "Saint Kitts and Nevis;Not identified",
+     "copies": 60,
+     "d_median_ms": 4.161249991739169,
+     "n_median_ms": 3.9341869996860623,
+     "paired_diff_ms": 0.1801879843696952
+    },
+    {
+     "key": "Not identified;Mauritius",
+     "copies": 11,
+     "d_median_ms": 4.171478998614475,
+     "n_median_ms": 4.102853985386901,
+     "paired_diff_ms": -0.056771503295749426
+    },
+    {
+     "key": "China;British Virgin Islands",
+     "copies": 428,
+     "d_median_ms": 5.969291509245522,
+     "n_median_ms": 4.026958500617184,
+     "paired_diff_ms": 1.927937482832931
+    },
+    {
+     "key": "Czech Republic;Not identified",
+     "copies": 31,
+     "d_median_ms": 4.068312511662953,
+     "n_median_ms": 3.891416999977082,
+     "paired_diff_ms": 0.17631302762310952
+    },
+    {
+     "key": "Lithuania",
+     "copies": 33,
+     "d_median_ms": 4.064937500515953,
+     "n_median_ms": 3.9252084970939904,
+     "paired_diff_ms": 0.1345000055152923
+    },
+    {
+     "key": "South Korea",
+     "copies": 8,
+     "d_median_ms": 4.048624992719851,
+     "n_median_ms": 3.9650414983043447,
+     "paired_diff_ms": 0.08587549382355064
+    },
+    {
+     "key": "British Virgin Islands;Cook Islands",
+     "copies": 4,
+     "d_median_ms": 4.054875505971722,
+     "n_median_ms": 3.952500002924353,
+     "paired_diff_ms": 0.09341700933873653
+    },
+    {
+     "key": "British Virgin Islands;Jersey",
+     "copies": 160,
+     "d_median_ms": 4.280749999452382,
+     "n_median_ms": 3.7401250010589138,
+     "paired_diff_ms": 0.5454169877339154
+    },
+    {
+     "key": "France",
+     "copies": 289,
+     "d_median_ms": 5.25970799208153,
+     "n_median_ms": 4.26712550688535,
+     "paired_diff_ms": 0.9828329930314794
+    },
+    {
+     "key": "Cayman Islands;Viet Nam",
+     "copies": 11,
+     "d_median_ms": 3.980124994996004,
+     "n_median_ms": 3.985166986240074,
+     "paired_diff_ms": 0.007208000170066953
+    },
+    {
+     "key": "Colombia",
+     "copies": 1860,
+     "d_median_ms": 11.131686987937428,
+     "n_median_ms": 4.040875501232222,
+     "paired_diff_ms": 7.335353482631035
+    },
+    {
+     "key": "Bermuda;India",
+     "copies": 9,
+     "d_median_ms": 3.93914598680567,
+     "n_median_ms": 4.05354100803379,
+     "paired_diff_ms": -0.16949998098425567
+    },
+    {
+     "key": "Bermuda;China",
+     "copies": 35,
+     "d_median_ms": 4.182083503110334,
+     "n_median_ms": 3.9102709997678176,
+     "paired_diff_ms": 0.24458349798806012
+    },
+    {
+     "key": "Barbados;Netherlands",
+     "copies": 7,
+     "d_median_ms": 4.267062482540496,
+     "n_median_ms": 4.592145487549715,
+     "paired_diff_ms": -0.0843534799059853
+    },
+    {
+     "key": "Bermuda;Brazil",
+     "copies": 3,
+     "d_median_ms": 4.046645495691337,
+     "n_median_ms": 3.9815420168451965,
+     "paired_diff_ms": 0.061040991568006575
+    },
+    {
+     "key": "Cayman Islands;Luxembourg",
+     "copies": 8,
+     "d_median_ms": 5.308103995048441,
+     "n_median_ms": 5.48683300439734,
+     "paired_diff_ms": -0.17345800006296486
+    },
+    {
+     "key": "Cura\u00e7ao;Not identified",
+     "copies": 9,
+     "d_median_ms": 4.705687504610978,
+     "n_median_ms": 4.528562509221956,
+     "paired_diff_ms": 0.2581244916655123
+    },
+    {
+     "key": "Indonesia;Samoa",
+     "copies": 2,
+     "d_median_ms": 4.3654375040205196,
+     "n_median_ms": 4.157229006523266,
+     "paired_diff_ms": 0.10841699258890003
+    },
+    {
+     "key": "China;Hong Kong",
+     "copies": 19,
+     "d_median_ms": 4.849708508118056,
+     "n_median_ms": 4.019082989543676,
+     "paired_diff_ms": 0.3194994933437556
+    },
+    {
+     "key": "Barbados;Mexico",
+     "copies": 2,
+     "d_median_ms": 5.0930829893331975,
+     "n_median_ms": 5.005166502087377,
+     "paired_diff_ms": -0.31035402207635343
+    },
+    {
+     "key": "Malta;British Virgin Islands",
+     "copies": 9,
+     "d_median_ms": 5.079707989352755,
+     "n_median_ms": 5.587728999671526,
+     "paired_diff_ms": -0.19285450980532914
+    },
+    {
+     "key": "Hong Kong;Turks and Caicos Islands",
+     "copies": 2,
+     "d_median_ms": 5.12243750563357,
+     "n_median_ms": 4.979666482540779,
+     "paired_diff_ms": 0.036083016311749816
+    },
+    {
+     "key": "Bermuda;Switzerland",
+     "copies": 87,
+     "d_median_ms": 6.451021006796509,
+     "n_median_ms": 5.442395995487459,
+     "paired_diff_ms": 1.0173754999414086
+    },
+    {
+     "key": "Indonesia;Singapore",
+     "copies": 4,
+     "d_median_ms": 5.65422949148342,
+     "n_median_ms": 5.169437499716878,
+     "paired_diff_ms": 0.516875006724149
+    },
+    {
+     "key": "Saint Kitts and Nevis",
+     "copies": 265,
+     "d_median_ms": 8.270333506516181,
+     "n_median_ms": 4.681833495851606,
+     "paired_diff_ms": 3.6252505087759346
+    },
+    {
+     "key": "Panama;Ecuador",
+     "copies": 8,
+     "d_median_ms": 5.7534789957571775,
+     "n_median_ms": 5.3251254867063835,
+     "paired_diff_ms": 0.4655619995901361
+    },
+    {
+     "key": "Barbados;Australia",
+     "copies": 2,
+     "d_median_ms": 5.098854497191496,
+     "n_median_ms": 5.160791493835859,
+     "paired_diff_ms": 0.10393798584118485
+    },
+    {
+     "key": "Panama;Switzerland",
+     "copies": 2,
+     "d_median_ms": 5.318249997799285,
+     "n_median_ms": 5.154978993232362,
+     "paired_diff_ms": 0.025042012566700578
+    },
+    {
+     "key": "Jamaica",
+     "copies": 10,
+     "d_median_ms": 5.051771004218608,
+     "n_median_ms": 4.958437508321367,
+     "paired_diff_ms": -0.09245850378647447
+    },
+    {
+     "key": "British Virgin Islands;Gibraltar",
+     "copies": 23,
+     "d_median_ms": 5.498770988197066,
+     "n_median_ms": 4.886708004050888,
+     "paired_diff_ms": 0.34785500611178577
+    },
+    {
+     "key": "Slovenia",
+     "copies": 22,
+     "d_median_ms": 5.383583004004322,
+     "n_median_ms": 5.170937511138618,
+     "paired_diff_ms": 0.5935414956184104
+    },
+    {
+     "key": "British Virgin Islands;Seychelles",
+     "copies": 145,
+     "d_median_ms": 8.10577099036891,
+     "n_median_ms": 5.282458005240187,
+     "paired_diff_ms": 2.7830209874082357
+    },
+    {
+     "key": "Barbados;United Kingdom",
+     "copies": 46,
+     "d_median_ms": 5.563145998166874,
+     "n_median_ms": 5.2596460009226575,
+     "paired_diff_ms": 0.3371459897607565
+    },
+    {
+     "key": "Saint Kitts and Nevis;Barbados",
+     "copies": 2,
+     "d_median_ms": 4.974813011358492,
+     "n_median_ms": 5.010270979255438,
+     "paired_diff_ms": -0.05981247522868216
+    }
+   ]
+  },
+  "intermediary_country": {
+   "node_type": "Intermediary",
+   "fd": "country_codes -> countries",
+   "valid_groups": 166,
+   "valid_nodes": 23033,
+   "redundant_values": 22867,
+   "normalization_seconds": 0.9613987499906216,
+   "dimension_nodes": 166,
+   "links": 23033,
+   "cases": [
+    {
+     "key": "ROU",
+     "copies": 6,
+     "d_median_ms": 4.203187505481765,
+     "n_median_ms": 3.926353994756937,
+     "paired_diff_ms": 1.1175204999744892
+    },
+    {
+     "key": "MAR",
+     "copies": 2,
+     "d_median_ms": 4.052791511639953,
+     "n_median_ms": 3.9390835008816794,
+     "paired_diff_ms": 0.06637451588176191
+    },
+    {
+     "key": "RUS",
+     "copies": 137,
+     "d_median_ms": 4.35262500832323,
+     "n_median_ms": 3.815000003669411,
+     "paired_diff_ms": 0.3790204937104136
+    },
+    {
+     "key": "MAC",
+     "copies": 12,
+     "d_median_ms": 4.093458002898842,
+     "n_median_ms": 4.103958504856564,
+     "paired_diff_ms": -0.028125476092100143
+    },
+    {
+     "key": "JEY;GBR",
+     "copies": 310,
+     "d_median_ms": 4.800312002771534,
+     "n_median_ms": 3.901250005583279,
+     "paired_diff_ms": 0.7398964808089659
+    },
+    {
+     "key": "BMU",
+     "copies": 41,
+     "d_median_ms": 4.136979507165961,
+     "n_median_ms": 3.848645996185951,
+     "paired_diff_ms": 0.2541665016906336
+    },
+    {
+     "key": "BHR",
+     "copies": 12,
+     "d_median_ms": 3.9289999986067414,
+     "n_median_ms": 4.0600834909128025,
+     "paired_diff_ms": -0.1695620157988742
+    },
+    {
+     "key": "MEX",
+     "copies": 34,
+     "d_median_ms": 4.043187000206672,
+     "n_median_ms": 3.9162914908956736,
+     "paired_diff_ms": 0.13962501543574035
+    },
+    {
+     "key": "PRY",
+     "copies": 9,
+     "d_median_ms": 3.9713955047773197,
+     "n_median_ms": 4.015853992314078,
+     "paired_diff_ms": -0.025458502932451665
+    },
+    {
+     "key": "BGR",
+     "copies": 8,
+     "d_median_ms": 4.036625512526371,
+     "n_median_ms": 3.944729483919218,
+     "paired_diff_ms": 0.08941601845435798
+    },
+    {
+     "key": "ARG",
+     "copies": 89,
+     "d_median_ms": 4.184000004897825,
+     "n_median_ms": 3.7831874942639843,
+     "paired_diff_ms": 0.35895851033274084
+    },
+    {
+     "key": "ZMB",
+     "copies": 2,
+     "d_median_ms": 4.059270504512824,
+     "n_median_ms": 3.9999375003390014,
+     "paired_diff_ms": 0.0465620105387643
+    },
+    {
+     "key": "GRD",
+     "copies": 2,
+     "d_median_ms": 4.127624997636303,
+     "n_median_ms": 3.858937503537163,
+     "paired_diff_ms": 0.35831198329105973
+    },
+    {
+     "key": "SYR",
+     "copies": 5,
+     "d_median_ms": 4.139750002650544,
+     "n_median_ms": 3.927854006178677,
+     "paired_diff_ms": 0.07302100129891187
+    },
+    {
+     "key": "CYM",
+     "copies": 67,
+     "d_median_ms": 4.083041494595818,
+     "n_median_ms": 3.889770508976653,
+     "paired_diff_ms": 0.10820850729942322
+    },
+    {
+     "key": "PRI",
+     "copies": 2,
+     "d_median_ms": 4.026000009616837,
+     "n_median_ms": 3.9822289982112125,
+     "paired_diff_ms": 0.014500488759949803
+    },
+    {
+     "key": "AUT",
+     "copies": 23,
+     "d_median_ms": 4.108833498321474,
+     "n_median_ms": 3.8977500225882977,
+     "paired_diff_ms": 0.15641748905181885
+    },
+    {
+     "key": "ABW",
+     "copies": 5,
+     "d_median_ms": 4.15858298947569,
+     "n_median_ms": 3.9192289987113327,
+     "paired_diff_ms": 0.14245847705751657
+    },
+    {
+     "key": "HKG;CHN",
+     "copies": 6,
+     "d_median_ms": 4.052228992804885,
+     "n_median_ms": 3.9885630103526637,
+     "paired_diff_ms": 0.17695801216177642
+    },
+    {
+     "key": "HUN",
+     "copies": 16,
+     "d_median_ms": 4.057917001773603,
+     "n_median_ms": 3.925166995031759,
+     "paired_diff_ms": 0.06285449489951134
+    },
+    {
+     "key": "DOM",
+     "copies": 64,
+     "d_median_ms": 4.431396009749733,
+     "n_median_ms": 3.803333005635068,
+     "paired_diff_ms": 0.4943745007039979
+    },
+    {
+     "key": "GEO",
+     "copies": 2,
+     "d_median_ms": 4.058167003677227,
+     "n_median_ms": 3.927853496861644,
+     "paired_diff_ms": 0.0874379911692813
+    },
+    {
+     "key": "MNE;SRB",
+     "copies": 2,
+     "d_median_ms": 4.023104003863409,
+     "n_median_ms": 4.075146003742702,
+     "paired_diff_ms": -0.1502920058555901
+    },
+    {
+     "key": "PER",
+     "copies": 22,
+     "d_median_ms": 4.027312490507029,
+     "n_median_ms": 4.076354001881555,
+     "paired_diff_ms": -0.05656249413732439
+    },
+    {
+     "key": "KAZ",
+     "copies": 7,
+     "d_median_ms": 4.060728984768502,
+     "n_median_ms": 3.8996045041130856,
+     "paired_diff_ms": 0.13677100650966167
+    },
+    {
+     "key": "ATG",
+     "copies": 7,
+     "d_median_ms": 4.193104017758742,
+     "n_median_ms": 3.839520999463275,
+     "paired_diff_ms": 0.2825419942382723
+    },
+    {
+     "key": "CZE",
+     "copies": 16,
+     "d_median_ms": 3.9833329938119277,
+     "n_median_ms": 3.8820204936200753,
+     "paired_diff_ms": -0.015146491932682693
+    },
+    {
+     "key": "IND",
+     "copies": 41,
+     "d_median_ms": 4.088458503247239,
+     "n_median_ms": 3.939792004530318,
+     "paired_diff_ms": 0.15116647409740835
+    },
+    {
+     "key": "PAK",
+     "copies": 5,
+     "d_median_ms": 3.97333299042657,
+     "n_median_ms": 4.018229505163617,
+     "paired_diff_ms": -0.04708398773800582
+    },
+    {
+     "key": "MCO",
+     "copies": 170,
+     "d_median_ms": 4.354813005193137,
+     "n_median_ms": 3.68802051525563,
+     "paired_diff_ms": 0.7491669966839254
+    },
+    {
+     "key": "GGY;GBR",
+     "copies": 236,
+     "d_median_ms": 4.807020493899472,
+     "n_median_ms": 3.9531670045107603,
+     "paired_diff_ms": 1.080729503883049
+    },
+    {
+     "key": "KOR",
+     "copies": 35,
+     "d_median_ms": 4.247875505825505,
+     "n_median_ms": 3.916853995178826,
+     "paired_diff_ms": 0.21364650456234813
+    },
+    {
+     "key": "GTM",
+     "copies": 441,
+     "d_median_ms": 6.273687511566095,
+     "n_median_ms": 4.044624991365708,
+     "paired_diff_ms": 2.0132085046498105
+    },
+    {
+     "key": "XXX",
+     "copies": 394,
+     "d_median_ms": 6.189770501805469,
+     "n_median_ms": 4.231541999615729,
+     "paired_diff_ms": 1.6837494913488626
+    },
+    {
+     "key": "SGP;XXX",
+     "copies": 3,
+     "d_median_ms": 3.9022290002321824,
+     "n_median_ms": 3.841625017230399,
+     "paired_diff_ms": 0.1542499812785536
+    },
+    {
+     "key": "COK",
+     "copies": 28,
+     "d_median_ms": 4.0271455072797835,
+     "n_median_ms": 3.9799374935682863,
+     "paired_diff_ms": -0.0065415079006925225
+    },
+    {
+     "key": "ESP",
+     "copies": 203,
+     "d_median_ms": 4.316041507991031,
+     "n_median_ms": 3.768958486034535,
+     "paired_diff_ms": 0.5137705011293292
+    },
+    {
+     "key": "PAN;USA",
+     "copies": 12,
+     "d_median_ms": 3.964332994655706,
+     "n_median_ms": 4.014271005871706,
+     "paired_diff_ms": 0.02554149250499904
+    },
+    {
+     "key": "BRB",
+     "copies": 62,
+     "d_median_ms": 4.101187500054948,
+     "n_median_ms": 3.8543334958376363,
+     "paired_diff_ms": 0.27429200417827815
+    },
+    {
+     "key": "ZAF",
+     "copies": 74,
+     "d_median_ms": 4.210854502161965,
+     "n_median_ms": 3.898416514857672,
+     "paired_diff_ms": 0.2610420051496476
+    },
+    {
+     "key": "PAN;DEU",
+     "copies": 2,
+     "d_median_ms": 4.073583506396972,
+     "n_median_ms": 3.920437491615303,
+     "paired_diff_ms": 0.1567284925840795
+    },
+    {
+     "key": "HRV",
+     "copies": 4,
+     "d_median_ms": 3.9757295016897842,
+     "n_median_ms": 3.9509790076408535,
+     "paired_diff_ms": 0.0013329845387488604
+    },
+    {
+     "key": "FIN",
+     "copies": 14,
+     "d_median_ms": 4.1634585068095475,
+     "n_median_ms": 3.9376875065499917,
+     "paired_diff_ms": 0.19635450735222548
+    },
+    {
+     "key": "PYF",
+     "copies": 4,
+     "d_median_ms": 4.501937495660968,
+     "n_median_ms": 4.093395502422936,
+     "paired_diff_ms": 0.054957985412329435
+    },
+    {
+     "key": "GBR",
+     "copies": 1545,
+     "d_median_ms": 13.602020480902866,
+     "n_median_ms": 4.502249998040497,
+     "paired_diff_ms": 8.708624489372596
+    },
+    {
+     "key": "DEU",
+     "copies": 93,
+     "d_median_ms": 4.222999996272847,
+     "n_median_ms": 3.8818125030957162,
+     "paired_diff_ms": 0.35889598075300455
+    },
+    {
+     "key": "EGY",
+     "copies": 19,
+     "d_median_ms": 4.051916504977271,
+     "n_median_ms": 3.9140624867286533,
+     "paired_diff_ms": 0.10681198909878731
+    },
+    {
+     "key": "HND",
+     "copies": 10,
+     "d_median_ms": 4.065500499564223,
+     "n_median_ms": 3.9602085162186995,
+     "paired_diff_ms": 0.08350047573912889
+    },
+    {
+     "key": "ZWE",
+     "copies": 6,
+     "d_median_ms": 4.110187495825812,
+     "n_median_ms": 4.013146011857316,
+     "paired_diff_ms": 0.11229199299123138
+    },
+    {
+     "key": "COL",
+     "copies": 227,
+     "d_median_ms": 5.758854007581249,
+     "n_median_ms": 4.1938539943657815,
+     "paired_diff_ms": 1.5985205100150779
+    }
+   ]
+  },
+  "intermediary_country_reverse": {
+   "node_type": "Intermediary",
+   "fd": "countries -> country_codes",
+   "valid_groups": 166,
+   "valid_nodes": 23033,
+   "redundant_values": 22867,
+   "normalization_seconds": 1.5322250000026543,
+   "dimension_nodes": 166,
+   "links": 23033,
+   "cases": [
+    {
+     "key": "Panama;Brazil",
+     "copies": 3,
+     "d_median_ms": 4.175375492195599,
+     "n_median_ms": 4.827896002097987,
+     "paired_diff_ms": -0.2506040036678314
+    },
+    {
+     "key": "Argentina",
+     "copies": 89,
+     "d_median_ms": 5.370833008782938,
+     "n_median_ms": 4.745729514979757,
+     "paired_diff_ms": 0.5290834960760549
+    },
+    {
+     "key": "Belize",
+     "copies": 10,
+     "d_median_ms": 4.4857079919893295,
+     "n_median_ms": 4.878749998169951,
+     "paired_diff_ms": -0.037313002394512296
+    },
+    {
+     "key": "Andorra",
+     "copies": 22,
+     "d_median_ms": 4.0731250192038715,
+     "n_median_ms": 4.458374984096736,
+     "paired_diff_ms": -0.06285448034759611
+    },
+    {
+     "key": "Belgium",
+     "copies": 51,
+     "d_median_ms": 4.126603991608135,
+     "n_median_ms": 4.878396008280106,
+     "paired_diff_ms": 0.012833494110964239
+    },
+    {
+     "key": "Thailand;Hong Kong",
+     "copies": 2,
+     "d_median_ms": 5.139749511727132,
+     "n_median_ms": 4.347125010099262,
+     "paired_diff_ms": 0.987228486337699
+    },
+    {
+     "key": "Sweden",
+     "copies": 34,
+     "d_median_ms": 4.18960400565993,
+     "n_median_ms": 4.393520997837186,
+     "paired_diff_ms": -0.20639601279981434
+    },
+    {
+     "key": "British Virgin Islands",
+     "copies": 90,
+     "d_median_ms": 4.1998335073003545,
+     "n_median_ms": 4.062333493493497,
+     "paired_diff_ms": 0.22018801246304065
+    },
+    {
+     "key": "Hungary",
+     "copies": 16,
+     "d_median_ms": 4.036187499877997,
+     "n_median_ms": 4.0972079877974465,
+     "paired_diff_ms": -0.20539548131637275
+    },
+    {
+     "key": "Not identified;United States",
+     "copies": 2,
+     "d_median_ms": 4.041624997626059,
+     "n_median_ms": 4.11606251145713,
+     "paired_diff_ms": -0.3757290105568245
+    },
+    {
+     "key": "Viet Nam",
+     "copies": 23,
+     "d_median_ms": 5.083187512354925,
+     "n_median_ms": 4.794437511009164,
+     "paired_diff_ms": 0.44072898162994534
+    },
+    {
+     "key": "French Polynesia",
+     "copies": 4,
+     "d_median_ms": 4.864062502747402,
+     "n_median_ms": 4.427395993843675,
+     "paired_diff_ms": 0.537708488991484
+    },
+    {
+     "key": "India",
+     "copies": 41,
+     "d_median_ms": 5.189583505853079,
+     "n_median_ms": 4.652167015592568,
+     "paired_diff_ms": 0.4537289933068678
+    },
+    {
+     "key": "Thailand",
+     "copies": 358,
+     "d_median_ms": 6.565708506968804,
+     "n_median_ms": 4.465750505914912,
+     "paired_diff_ms": 2.042791005806066
+    },
+    {
+     "key": "Uruguay",
+     "copies": 296,
+     "d_median_ms": 5.539708494325168,
+     "n_median_ms": 4.349812486907467,
+     "paired_diff_ms": 1.318124501267448
+    },
+    {
+     "key": "Indonesia",
+     "copies": 522,
+     "d_median_ms": 7.0480624854099005,
+     "n_median_ms": 4.785415992955677,
+     "paired_diff_ms": 2.2581669909413904
+    },
+    {
+     "key": "Bulgaria",
+     "copies": 8,
+     "d_median_ms": 4.418250508024357,
+     "n_median_ms": 4.68841650581453,
+     "paired_diff_ms": -0.135374502860941
+    },
+    {
+     "key": "Syria",
+     "copies": 5,
+     "d_median_ms": 5.131041500135325,
+     "n_median_ms": 5.230291513726115,
+     "paired_diff_ms": -0.6189575069583952
+    },
+    {
+     "key": "Malawi",
+     "copies": 2,
+     "d_median_ms": 4.8243335040751845,
+     "n_median_ms": 4.873874990153126,
+     "paired_diff_ms": -0.19464601064100862
+    },
+    {
+     "key": "Panama;United States",
+     "copies": 12,
+     "d_median_ms": 5.193041492020711,
+     "n_median_ms": 5.070729501312599,
+     "paired_diff_ms": 0.37560350028797984
+    },
+    {
+     "key": "Cuba",
+     "copies": 7,
+     "d_median_ms": 6.5594170009717345,
+     "n_median_ms": 7.20154149166774,
+     "paired_diff_ms": -0.9828750335145742
+    },
+    {
+     "key": "Switzerland;United Kingdom",
+     "copies": 3,
+     "d_median_ms": 9.684395990916528,
+     "n_median_ms": 8.733312002732418,
+     "paired_diff_ms": -0.17018751532305032
+    },
+    {
+     "key": "Cyprus;Luxembourg",
+     "copies": 2,
+     "d_median_ms": 5.028312501963228,
+     "n_median_ms": 4.9503545014886186,
+     "paired_diff_ms": 0.29895800980739295
+    },
+    {
+     "key": "Cayman Islands",
+     "copies": 67,
+     "d_median_ms": 5.1008750015171245,
+     "n_median_ms": 4.749999498017132,
+     "paired_diff_ms": 0.3743330162251368
+    },
+    {
+     "key": "Montenegro;Serbia",
+     "copies": 2,
+     "d_median_ms": 3.992604004452005,
+     "n_median_ms": 4.070687500643544,
+     "paired_diff_ms": -0.23531301121693105
+    },
+    {
+     "key": "Kenya",
+     "copies": 12,
+     "d_median_ms": 3.958249988500029,
+     "n_median_ms": 4.063000495079905,
+     "paired_diff_ms": -0.023520507966168225
+    },
+    {
+     "key": "Philippines",
+     "copies": 76,
+     "d_median_ms": 4.159000003710389,
+     "n_median_ms": 3.8400000194087625,
+     "paired_diff_ms": 0.30552099633496255
+    },
+    {
+     "key": "Brazil",
+     "copies": 402,
+     "d_median_ms": 6.155333510832861,
+     "n_median_ms": 4.124958504689857,
+     "paired_diff_ms": 2.0460204978007823
+    },
+    {
+     "key": "Liechtenstein",
+     "copies": 123,
+     "d_median_ms": 4.249604506185278,
+     "n_median_ms": 4.401562488055788,
+     "paired_diff_ms": -0.15604148211423308
+    },
+    {
+     "key": "China;Hong Kong",
+     "copies": 3,
+     "d_median_ms": 4.167479506577365,
+     "n_median_ms": 3.8147499872138724,
+     "paired_diff_ms": 0.37352101935539395
+    },
+    {
+     "key": "Chile",
+     "copies": 67,
+     "d_median_ms": 4.044291999889538,
+     "n_median_ms": 3.854458496789448,
+     "paired_diff_ms": 0.16604199481662363
+    },
+    {
+     "key": "United States;Colombia",
+     "copies": 3,
+     "d_median_ms": 4.144895501667634,
+     "n_median_ms": 3.924395496142097,
+     "paired_diff_ms": -0.0019999861251562834
+    },
+    {
+     "key": "Portugal",
+     "copies": 40,
+     "d_median_ms": 5.389665995608084,
+     "n_median_ms": 4.787062498508021,
+     "paired_diff_ms": 0.7517909980379045
+    },
+    {
+     "key": "Monaco",
+     "copies": 170,
+     "d_median_ms": 5.120791000081226,
+     "n_median_ms": 3.826375017524697,
+     "paired_diff_ms": 1.1402285163057968
+    },
+    {
+     "key": "Brunei",
+     "copies": 9,
+     "d_median_ms": 3.992166486568749,
+     "n_median_ms": 3.945562508306466,
+     "paired_diff_ms": 0.04997948417440057
+    },
+    {
+     "key": "Switzerland;Monaco",
+     "copies": 2,
+     "d_median_ms": 4.041541498736478,
+     "n_median_ms": 3.9918330003274605,
+     "paired_diff_ms": 0.009354494977742434
+    },
+    {
+     "key": "Bangladesh",
+     "copies": 3,
+     "d_median_ms": 4.393916504341178,
+     "n_median_ms": 4.160771015449427,
+     "paired_diff_ms": -0.08954200893640518
+    },
+    {
+     "key": "Antigua and Barbuda",
+     "copies": 7,
+     "d_median_ms": 4.603083492838778,
+     "n_median_ms": 4.1038955096155405,
+     "paired_diff_ms": 0.03418751293793321
+    },
+    {
+     "key": "Slovenia",
+     "copies": 6,
+     "d_median_ms": 4.055604513268918,
+     "n_median_ms": 3.9022709970595315,
+     "paired_diff_ms": -0.05556199175771326
+    },
+    {
+     "key": "Niue",
+     "copies": 3,
+     "d_median_ms": 4.200625495286658,
+     "n_median_ms": 4.120270517887548,
+     "paired_diff_ms": -0.28933298017363995
+    },
+    {
+     "key": "Trinidad and Tobago",
+     "copies": 4,
+     "d_median_ms": 3.8452500011771917,
+     "n_median_ms": 4.090291011380032,
+     "paired_diff_ms": -0.20593751105479896
+    },
+    {
+     "key": "Guernsey",
+     "copies": 20,
+     "d_median_ms": 3.977708503953181,
+     "n_median_ms": 3.8522914983332157,
+     "paired_diff_ms": 0.30787500145379454
+    },
+    {
+     "key": "Finland",
+     "copies": 14,
+     "d_median_ms": 4.06249999650754,
+     "n_median_ms": 3.942895491491072,
+     "paired_diff_ms": 0.18910449580289423
+    },
+    {
+     "key": "Latvia",
+     "copies": 17,
+     "d_median_ms": 4.353124488261528,
+     "n_median_ms": 4.084021493326873,
+     "paired_diff_ms": 0.6189160048961639
+    },
+    {
+     "key": "Jersey;United Kingdom",
+     "copies": 310,
+     "d_median_ms": 5.99406250694301,
+     "n_median_ms": 4.416187497554347,
+     "paired_diff_ms": 2.677478492842056
+    },
+    {
+     "key": "Ukraine",
+     "copies": 20,
+     "d_median_ms": 4.009354001027532,
+     "n_median_ms": 3.9246870001079515,
+     "paired_diff_ms": 0.06310451135504991
+    },
+    {
+     "key": "Guernsey;United Kingdom",
+     "copies": 236,
+     "d_median_ms": 5.470729505759664,
+     "n_median_ms": 4.133229493163526,
+     "paired_diff_ms": 1.3758125278400257
+    },
+    {
+     "key": "United Arab Emirates",
+     "copies": 179,
+     "d_median_ms": 4.633999997167848,
+     "n_median_ms": 3.9753960008965805,
+     "paired_diff_ms": 0.7753954851068556
+    },
+    {
+     "key": "Netherlands",
+     "copies": 61,
+     "d_median_ms": 4.146791499806568,
+     "n_median_ms": 3.7342709983931854,
+     "paired_diff_ms": 0.4576250066747889
+    },
+    {
+     "key": "U.S. Virgin Islands",
+     "copies": 8,
+     "d_median_ms": 4.036687998450361,
+     "n_median_ms": 3.9751880103722215,
+     "paired_diff_ms": 0.058313002227805555
+    }
+   ]
+  },
+  "intermediary_valid_until": {
+   "node_type": "Intermediary",
+   "fd": "valid_until -> sourceID",
+   "valid_groups": 10,
+   "valid_nodes": 26767,
+   "redundant_values": 26757,
+   "normalization_seconds": 0.30224591700243764,
+   "dimension_nodes": 10,
+   "links": 26767,
+   "cases": [
+    {
+     "key": "The Panama Papers  data is current through 2015",
+     "copies": 14110,
+     "d_median_ms": 58.50064550759271,
+     "n_median_ms": 4.464791491045617,
+     "paired_diff_ms": 54.245958002866246
+    },
+    {
+     "key": "The Bahamas Leaks data is current through early 2016.",
+     "copies": 541,
+     "d_median_ms": 5.5270624870900065,
+     "n_median_ms": 3.977500004111789,
+     "paired_diff_ms": 1.6417084989370778
+    },
+    {
+     "key": "Barbados corporate registry data is current through 2016",
+     "copies": 974,
+     "d_median_ms": 8.741333498619497,
+     "n_median_ms": 4.406312495120801,
+     "paired_diff_ms": 4.239104004227556
+    },
+    {
+     "key": "Nevis corporate registry data is current through 2016",
+     "copies": 96,
+     "d_median_ms": 4.165291509707458,
+     "n_median_ms": 3.659145993879065,
+     "paired_diff_ms": 0.5041670374339446
+    },
+    {
+     "key": "Provider data is current through 2017",
+     "copies": 260,
+     "d_median_ms": 5.761000502388924,
+     "n_median_ms": 3.841354511678219,
+     "paired_diff_ms": 1.9948964909417555
+    },
+    {
+     "key": "Bahamas corporate registry data is current through 2016",
+     "copies": 239,
+     "d_median_ms": 4.414416500367224,
+     "n_median_ms": 3.7411039957078174,
+     "paired_diff_ms": 0.8974994998425245
+    },
+    {
+     "key": "The Offshore Leaks data is current through 2010",
+     "copies": 9526,
+     "d_median_ms": 33.664187518297695,
+     "n_median_ms": 4.090229500434361,
+     "paired_diff_ms": 29.174958006478846
+    },
+    {
+     "key": "Appleby data is current through 2014",
+     "copies": 185,
+     "d_median_ms": 4.520708505879156,
+     "n_median_ms": 4.150145512539893,
+     "paired_diff_ms": 0.5881459801457822
+    },
+    {
+     "key": "Aruba corporate registry data is current through 2016",
+     "copies": 74,
+     "d_median_ms": 4.245792006258853,
+     "n_median_ms": 3.878999996231869,
+     "paired_diff_ms": 0.3361045091878623
+    },
+    {
+     "key": "Provider data is current through 2018",
+     "copies": 762,
+     "d_median_ms": 8.950124494731426,
+     "n_median_ms": 4.857624997384846,
+     "paired_diff_ms": 3.848166496027261
+    }
+   ]
+  },
+  "intermediary_source": {
+   "node_type": "Intermediary",
+   "fd": "sourceID -> valid_until",
+   "valid_groups": 8,
+   "valid_nodes": 25745,
+   "redundant_values": 25737,
+   "normalization_seconds": 0.2464902919891756,
+   "dimension_nodes": 8,
+   "links": 25745,
+   "cases": [
+    {
+     "key": "Panama Papers",
+     "copies": 14110,
+     "d_median_ms": 67.26816701120697,
+     "n_median_ms": 4.533958490355872,
+     "paired_diff_ms": 60.704208503011614
+    },
+    {
+     "key": "Paradise Papers - Bahamas corporate registry",
+     "copies": 239,
+     "d_median_ms": 5.563854007050395,
+     "n_median_ms": 4.495958506595343,
+     "paired_diff_ms": 1.9050614937441424
+    },
+    {
+     "key": "Offshore Leaks",
+     "copies": 9526,
+     "d_median_ms": 46.57772899372503,
+     "n_median_ms": 5.020000011427328,
+     "paired_diff_ms": 41.97041649604216
+    },
+    {
+     "key": "Paradise Papers - Appleby",
+     "copies": 185,
+     "d_median_ms": 5.514708507689647,
+     "n_median_ms": 4.495208500884473,
+     "paired_diff_ms": 0.9754165075719357
+    },
+    {
+     "key": "Paradise Papers - Nevis corporate registry",
+     "copies": 96,
+     "d_median_ms": 4.726563012809493,
+     "n_median_ms": 4.409396002301946,
+     "paired_diff_ms": 0.7353334804065526
+    },
+    {
+     "key": "Paradise Papers - Aruba corporate registry",
+     "copies": 74,
+     "d_median_ms": 4.255833511706442,
+     "n_median_ms": 4.2988124914700165,
+     "paired_diff_ms": -0.1959790097316727
+    },
+    {
+     "key": "Paradise Papers - Barbados corporate registry",
+     "copies": 974,
+     "d_median_ms": 8.428833491052501,
+     "n_median_ms": 4.483541997615248,
+     "paired_diff_ms": 3.6425209837034345
+    },
+    {
+     "key": "Bahamas Leaks",
+     "copies": 541,
+     "d_median_ms": 6.495500507298857,
+     "n_median_ms": 4.213042018818669,
+     "paired_diff_ms": 2.4754585028858855
+    }
+   ]
+  },
+  "other_jurisdiction": {
+   "node_type": "Other",
+   "fd": "jurisdiction -> jurisdiction_description",
+   "valid_groups": 5,
+   "valid_nodes": 957,
+   "redundant_values": 952,
+   "normalization_seconds": 0.16932279197499156,
+   "dimension_nodes": 5,
+   "links": 957,
+   "cases": [
+    {
+     "key": "BLZ",
+     "copies": 3,
+     "d_median_ms": 5.4666669893777,
+     "n_median_ms": 4.356833000201732,
+     "paired_diff_ms": 0.5739790067309514
+    },
+    {
+     "key": "VGB",
+     "copies": 62,
+     "d_median_ms": 4.213478998281062,
+     "n_median_ms": 3.9483540022047237,
+     "paired_diff_ms": 0.14987500617280602
+    },
+    {
+     "key": "PAN",
+     "copies": 2,
+     "d_median_ms": 4.085417007445358,
+     "n_median_ms": 3.9576249982928857,
+     "paired_diff_ms": 0.03331201151013374
+    },
+    {
+     "key": "KNA",
+     "copies": 2,
+     "d_median_ms": 3.8910625007702038,
+     "n_median_ms": 3.911167004844174,
+     "paired_diff_ms": -0.05475050420500338
+    },
+    {
+     "key": "AW",
+     "copies": 888,
+     "d_median_ms": 8.04710399825126,
+     "n_median_ms": 4.05362450692337,
+     "paired_diff_ms": 4.072895986610092
+    }
+   ]
+  },
+  "other_jurisdiction_reverse": {
+   "node_type": "Other",
+   "fd": "jurisdiction_description -> jurisdiction",
+   "valid_groups": 5,
+   "valid_nodes": 957,
+   "redundant_values": 952,
+   "normalization_seconds": 0.1684983330196701,
+   "dimension_nodes": 5,
+   "links": 957,
+   "cases": [
+    {
+     "key": "Belize",
+     "copies": 3,
+     "d_median_ms": 4.310645992518403,
+     "n_median_ms": 4.070478506037034,
+     "paired_diff_ms": 0.06914648110978305
+    },
+    {
+     "key": "Nevis",
+     "copies": 2,
+     "d_median_ms": 4.151916495175101,
+     "n_median_ms": 4.065833010827191,
+     "paired_diff_ms": 0.26835399330593646
+    },
+    {
+     "key": "British Virgin Islands",
+     "copies": 62,
+     "d_median_ms": 4.234749998431653,
+     "n_median_ms": 3.951541511924006,
+     "paired_diff_ms": 0.18145849753636867
+    },
+    {
+     "key": "Panama",
+     "copies": 2,
+     "d_median_ms": 3.879854004480876,
+     "n_median_ms": 3.964229501434602,
+     "paired_diff_ms": -0.01620898547116667
+    },
+    {
+     "key": "Aruba",
+     "copies": 888,
+     "d_median_ms": 7.845854008337483,
+     "n_median_ms": 4.193146000034176,
+     "paired_diff_ms": 3.652708008303307
+    }
+   ]
+  },
+  "other_country": {
+   "node_type": "Other",
+   "fd": "country_codes -> countries",
+   "valid_groups": 23,
+   "valid_nodes": 346,
+   "redundant_values": 323,
+   "normalization_seconds": 0.24048941701767035,
+   "dimension_nodes": 23,
+   "links": 346,
+   "cases": [
+    {
+     "key": "GGY",
+     "copies": 5,
+     "d_median_ms": 4.5366460108198225,
+     "n_median_ms": 4.251124992151745,
+     "paired_diff_ms": 0.8128759945975617
+    },
+    {
+     "key": "AUS",
+     "copies": 2,
+     "d_median_ms": 3.838521006400697,
+     "n_median_ms": 3.9891040069051087,
+     "paired_diff_ms": -0.14070849283598363
+    },
+    {
+     "key": "IRL",
+     "copies": 14,
+     "d_median_ms": 4.2937085090670735,
+     "n_median_ms": 3.7463750049937516,
+     "paired_diff_ms": 0.2906254958361387
+    },
+    {
+     "key": "CYM",
+     "copies": 79,
+     "d_median_ms": 4.2921040003420785,
+     "n_median_ms": 3.871041495585814,
+     "paired_diff_ms": 0.27970800874754786
+    },
+    {
+     "key": "CHE",
+     "copies": 5,
+     "d_median_ms": 4.029978488688357,
+     "n_median_ms": 3.8862289948156103,
+     "paired_diff_ms": 0.1303540193475783
+    },
+    {
+     "key": "ISR",
+     "copies": 2,
+     "d_median_ms": 3.7737499951617792,
+     "n_median_ms": 3.8101459940662608,
+     "paired_diff_ms": -0.10943750385195017
+    },
+    {
+     "key": "JEY",
+     "copies": 12,
+     "d_median_ms": 4.1165215079672635,
+     "n_median_ms": 3.9563745085615665,
+     "paired_diff_ms": 0.15489647921640426
+    },
+    {
+     "key": "HKG",
+     "copies": 4,
+     "d_median_ms": 3.970354504417628,
+     "n_median_ms": 3.8895835168659687,
+     "paired_diff_ms": 0.10133298928849399
+    },
+    {
+     "key": "GRC",
+     "copies": 3,
+     "d_median_ms": 4.005896495073102,
+     "n_median_ms": 4.003103997092694,
+     "paired_diff_ms": -0.047208493924699724
+    },
+    {
+     "key": "CAN",
+     "copies": 4,
+     "d_median_ms": 4.037791499285959,
+     "n_median_ms": 3.772062511416152,
+     "paired_diff_ms": 0.15075049304869026
+    },
+    {
+     "key": "GBR",
+     "copies": 26,
+     "d_median_ms": 3.9990834920899943,
+     "n_median_ms": 3.9412710029864684,
+     "paired_diff_ms": -0.02589551149867475
+    },
+    {
+     "key": "VGB;IMN",
+     "copies": 9,
+     "d_median_ms": 4.112249502213672,
+     "n_median_ms": 3.947853503632359,
+     "paired_diff_ms": 0.08422850805800408
+    },
+    {
+     "key": "DEU",
+     "copies": 2,
+     "d_median_ms": 4.87945850181859,
+     "n_median_ms": 4.627437505405396,
+     "paired_diff_ms": -0.028770475182682276
+    },
+    {
+     "key": "IMN",
+     "copies": 105,
+     "d_median_ms": 4.0148119878722355,
+     "n_median_ms": 3.924146483768709,
+     "paired_diff_ms": 0.11483300477266312
+    },
+    {
+     "key": "BMU",
+     "copies": 10,
+     "d_median_ms": 4.850978992180899,
+     "n_median_ms": 4.962166494806297,
+     "paired_diff_ms": -0.32343702332582325
+    },
+    {
+     "key": "IND",
+     "copies": 3,
+     "d_median_ms": 4.740624994155951,
+     "n_median_ms": 4.681312013417482,
+     "paired_diff_ms": 0.19020798208657652
+    },
+    {
+     "key": "MUS",
+     "copies": 7,
+     "d_median_ms": 5.2929375087842345,
+     "n_median_ms": 5.116583502967842,
+     "paired_diff_ms": 0.13760502042714506
+    },
+    {
+     "key": "USA",
+     "copies": 24,
+     "d_median_ms": 4.852041514823213,
+     "n_median_ms": 4.326062495238148,
+     "paired_diff_ms": 0.2238549932371825
+    },
+    {
+     "key": "MCO",
+     "copies": 3,
+     "d_median_ms": 3.9915834786370397,
+     "n_median_ms": 3.9602705073775724,
+     "paired_diff_ms": 0.003854991518892348
+    },
+    {
+     "key": "IMN;GBR",
+     "copies": 5,
+     "d_median_ms": 3.978938009822741,
+     "n_median_ms": 4.097978991921991,
+     "paired_diff_ms": -0.08458300726488233
+    },
+    {
+     "key": "CHN",
+     "copies": 13,
+     "d_median_ms": 4.820146001293324,
+     "n_median_ms": 4.546979005681351,
+     "paired_diff_ms": 0.2851249882951379
+    },
+    {
+     "key": "MEX",
+     "copies": 2,
+     "d_median_ms": 4.948270492604934,
+     "n_median_ms": 4.753874993184581,
+     "paired_diff_ms": -0.02022896660491824
+    },
+    {
+     "key": "VGB",
+     "copies": 7,
+     "d_median_ms": 5.316770504578017,
+     "n_median_ms": 5.159291991731152,
+     "paired_diff_ms": 0.791374986874871
+    }
+   ]
+  },
+  "other_country_reverse": {
+   "node_type": "Other",
+   "fd": "countries -> country_codes",
+   "valid_groups": 23,
+   "valid_nodes": 346,
+   "redundant_values": 323,
+   "normalization_seconds": 0.23775116700562648,
+   "dimension_nodes": 23,
+   "links": 346,
+   "cases": [
+    {
+     "key": "China",
+     "copies": 13,
+     "d_median_ms": 4.6967705129645765,
+     "n_median_ms": 4.1713539976626635,
+     "paired_diff_ms": -0.08331249409820884
+    },
+    {
+     "key": "Hong Kong",
+     "copies": 4,
+     "d_median_ms": 4.025916496175341,
+     "n_median_ms": 4.058854494360276,
+     "paired_diff_ms": -0.06716699863318354
+    },
+    {
+     "key": "British Virgin Islands",
+     "copies": 7,
+     "d_median_ms": 4.062208507093601,
+     "n_median_ms": 4.519187496043742,
+     "paired_diff_ms": -0.4366454959381372
+    },
+    {
+     "key": "Isle of Man;United Kingdom",
+     "copies": 5,
+     "d_median_ms": 3.9576455019414425,
+     "n_median_ms": 3.977833504904993,
+     "paired_diff_ms": -0.34779148700181395
+    },
+    {
+     "key": "Jersey",
+     "copies": 12,
+     "d_median_ms": 4.015500002424233,
+     "n_median_ms": 4.222728501190431,
+     "paired_diff_ms": -0.14535400259774178
+    },
+    {
+     "key": "Mauritius",
+     "copies": 7,
+     "d_median_ms": 3.9054584922268987,
+     "n_median_ms": 3.9683125069132075,
+     "paired_diff_ms": -0.10210400796495378
+    },
+    {
+     "key": "British Virgin Islands;Isle of Man",
+     "copies": 9,
+     "d_median_ms": 4.7270000068238005,
+     "n_median_ms": 5.088375502964482,
+     "paired_diff_ms": -0.22193801123648882
+    },
+    {
+     "key": "Germany",
+     "copies": 2,
+     "d_median_ms": 3.6037704994669184,
+     "n_median_ms": 3.8581039989367127,
+     "paired_diff_ms": -0.3800209960900247
+    },
+    {
+     "key": "Monaco",
+     "copies": 3,
+     "d_median_ms": 5.114166502607986,
+     "n_median_ms": 4.899063002085313,
+     "paired_diff_ms": -0.20070849859621376
+    },
+    {
+     "key": "Australia",
+     "copies": 2,
+     "d_median_ms": 3.851520494208671,
+     "n_median_ms": 3.930625505745411,
+     "paired_diff_ms": 0.02441649849060923
+    },
+    {
+     "key": "Guernsey",
+     "copies": 5,
+     "d_median_ms": 4.007332987384871,
+     "n_median_ms": 3.928603997337632,
+     "paired_diff_ms": 0.033916483516804874
+    },
+    {
+     "key": "Canada",
+     "copies": 4,
+     "d_median_ms": 4.121624995605089,
+     "n_median_ms": 4.030771000543609,
+     "paired_diff_ms": 0.22489551338367164
+    },
+    {
+     "key": "India",
+     "copies": 3,
+     "d_median_ms": 4.064062508405186,
+     "n_median_ms": 3.9382704999297857,
+     "paired_diff_ms": 0.0696460047038272
+    },
+    {
+     "key": "Ireland",
+     "copies": 14,
+     "d_median_ms": 4.081312494236045,
+     "n_median_ms": 4.025250003905967,
+     "paired_diff_ms": 0.017520476831123233
+    },
+    {
+     "key": "Switzerland",
+     "copies": 5,
+     "d_median_ms": 4.053291500895284,
+     "n_median_ms": 3.979479501140304,
+     "paired_diff_ms": 0.018228485714644194
+    },
+    {
+     "key": "Isle of Man",
+     "copies": 105,
+     "d_median_ms": 6.073916491004638,
+     "n_median_ms": 4.992041504010558,
+     "paired_diff_ms": 1.0790624801302329
+    },
+    {
+     "key": "Bermuda",
+     "copies": 10,
+     "d_median_ms": 4.092103990842588,
+     "n_median_ms": 3.8682289887219667,
+     "paired_diff_ms": 0.20393749582581222
+    },
+    {
+     "key": "United States",
+     "copies": 24,
+     "d_median_ms": 3.906937490683049,
+     "n_median_ms": 3.872707995469682,
+     "paired_diff_ms": -0.2619585138745606
+    },
+    {
+     "key": "Israel",
+     "copies": 2,
+     "d_median_ms": 3.978729000664316,
+     "n_median_ms": 3.940979004255496,
+     "paired_diff_ms": 0.0373330112779513
+    },
+    {
+     "key": "United Kingdom",
+     "copies": 26,
+     "d_median_ms": 4.271041994797997,
+     "n_median_ms": 3.812374998233281,
+     "paired_diff_ms": 0.40954150608740747
+    },
+    {
+     "key": "Greece",
+     "copies": 3,
+     "d_median_ms": 4.1676250111777335,
+     "n_median_ms": 4.036499492940493,
+     "paired_diff_ms": 0.17485348507761955
+    },
+    {
+     "key": "Mexico",
+     "copies": 2,
+     "d_median_ms": 4.040625513880514,
+     "n_median_ms": 4.033604505821131,
+     "paired_diff_ms": -0.05760451313108206
+    },
+    {
+     "key": "Cayman Islands",
+     "copies": 79,
+     "d_median_ms": 4.9805419985204935,
+     "n_median_ms": 4.6857705019647256,
+     "paired_diff_ms": 0.6218959897523746
+    }
+   ]
+  }
+ }
+}
