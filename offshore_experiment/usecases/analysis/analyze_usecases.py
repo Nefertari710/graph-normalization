@@ -250,18 +250,19 @@ def main() -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    figure, axis = plt.subplots(figsize=(3.4, 2.2))
+    figure, axis = plt.subplots(figsize=(4.5, 2.0))
     xs = [float(q) for q in FRACTIONS]
     for method, curve in curves.items():
         axis.plot(xs, curve, marker="o", markersize=3, label=NAMES[method])
     axis.axhline(1.0, color="grey", linewidth=0.8, linestyle="--")
+    axis.set_xticks(xs, labels=[f"{q:g}" for q in xs])
     axis.set_xlabel("fraction $q$ of updated copies (D)")
     axis.set_ylabel("within-group sim.\nrelative to $q=1$")
     axis.legend(fontsize=6, frameon=False)
     axis.tick_params(labelsize=7)
     figure.tight_layout()
     REPORT.parent.mkdir(parents=True, exist_ok=True)
-    figure.savefig(FIGURE, dpi=300)
+    figure.savefig(FIGURE, dpi=300, bbox_inches="tight", pad_inches=0.03)
     print(f"\nFigure written to {FIGURE}")
     REPORT.write_text("\n".join(report), encoding="utf-8")
     print(f"Markdown report saved to: {REPORT}")
