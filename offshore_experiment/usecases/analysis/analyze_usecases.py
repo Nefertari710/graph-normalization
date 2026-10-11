@@ -2,7 +2,7 @@
 """Aggregate results/usecases_offshore.json into the numbers of Tables 6-8.
 
 Prints a reproduction check against Table 5, the U1/U2/U3 summaries, and
-writes the U3 figure to results/usecase_partial_updates.png. The same
+writes the U3 figure to results/report/usecase_partial_updates.png. The same
 summaries are saved to results/report/usecases_offshore.md.
 """
 
@@ -18,8 +18,8 @@ from scipy.stats import wilcoxon
 
 HERE = Path(__file__).resolve().parents[1]
 RESULTS = HERE / "results" / "usecases_offshore.json"
-FIGURE = HERE / "results" / "usecase_partial_updates.png"
 REPORT = HERE / "results" / "report" / "usecases_offshore.md"
+FIGURE = REPORT.parent / "usecase_partial_updates.png"
 METHODS = ("property_hash", "fast_rp", "node2vec", "hash_gnn", "graph_sage")
 NAMES = {"property_hash": "Property Hash", "fast_rp": "FastRP",
          "node2vec": "Node2Vec", "hash_gnn": "HashGNN",
@@ -245,8 +245,6 @@ def main() -> None:
                        [[NAMES[method], *(f"{value:.4f}" for value in curve)]
                         for method, curve in curves.items()]),
         "",
-        "![Partial feature updates](../usecase_partial_updates.png)",
-        "",
     ])
 
     import matplotlib
@@ -262,9 +260,9 @@ def main() -> None:
     axis.legend(fontsize=6, frameon=False)
     axis.tick_params(labelsize=7)
     figure.tight_layout()
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(FIGURE, dpi=300)
     print(f"\nFigure written to {FIGURE}")
-    REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text("\n".join(report), encoding="utf-8")
     print(f"Markdown report saved to: {REPORT}")
 

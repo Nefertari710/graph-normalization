@@ -104,5 +104,3 @@ Each case first computes WGS_D(q)/WGS_D(1); the table and curves average those r
 | FastRP | 0.9958 | 0.9737 | 0.9716 | 0.9896 | 1.0000 |
 | HashGNN | 1.0040 | 0.9889 | 0.9806 | 0.9936 | 1.0000 |
 | GraphSAGE | 1.0064 | 0.9982 | 1.0004 | 1.0047 | 1.0000 |
-
-![Partial feature updates](../usecase_partial_updates.png)
