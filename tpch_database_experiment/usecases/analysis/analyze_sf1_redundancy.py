@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""Summarise the TPC-H SF 1 runs of new_redundancy.py (both result files)."""
+"""Summarise the TPC-H SF 1 runs of new_redundancy.py."""
 
 import json
 from pathlib import Path
 from statistics import median
 
 HERE = Path(__file__).resolve().parents[2]
-FILES = [HERE / "usecases/results/sf1/redundancy/new_redundancy_results.json",
-         HERE / "usecases/results/sf1/redundancy/new_redundancy_results_part2.json"]
+FILES = [HERE / "usecases/results/sf1/redundancy/new_redundancy_results.json"]
 REPORT = HERE / "usecases/results/sf1/report/sf1_redundancy.md"
 EDGE = {"L_PS": "e_1", "L_O": "e_2", "PS_P": "e_3", "PS_S": "e_4",
         "O_C": "e_5", "C_N": "e_6", "S_N": "e_7", "N_R": "e_8"}
