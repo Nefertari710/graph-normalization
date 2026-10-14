@@ -54,28 +54,15 @@ tmp/
 *.ttl.bz2
 
 # Local DBLP RDF dataset
-/dblp/dataset/*.nt.gz
-
-# Generated DBLP CSV exports
-/dblp/export_database/output/
-
-# Local Northwind case-study data
-case_study/data/dataset/*.csv
+/extend_experiment/dblp/dataset/*.nt.gz
 
 # Local Offshore Leaks dataset
-/offshore_experiment/dataset/*.csv
 /offshore_experiment/dataset/data/*.csv
-/offshore_experiment/dataset/*.dump
 
 # Local Provider and Service dataset
-/providerAndService_experiment/dataset/PHY*.csv
-
-# Generated embedding figures
-/case_study/embedding/**/*.png
-/case_study/back/**/*.png
+/extend_experiment/providerAndService_experiment/dataset/PHY*.csv
 
 # Generated embedding experiment output
-/case_study/embedding/embedding_results_exd.json
 /offshore_experiment/embedding/results/embedding_offshore.json
 
 # Generated benchmark/runtime markers
