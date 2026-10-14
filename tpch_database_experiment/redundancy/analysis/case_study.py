@@ -17,7 +17,6 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_INPUT = (
     SCRIPT_DIR.parent
     / "results"
-    / "new"
     / "tpch-sf-005"
     / "new_redundancy_results.json"
 )

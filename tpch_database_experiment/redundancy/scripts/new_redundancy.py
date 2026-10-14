@@ -33,11 +33,9 @@ DEFAULT_INDEX_TIMEOUT = 3000
 DEFAULT_RANDOM_SEED = 20260818
 # None runs all 256 configurations; for example, (2, 12, 96) runs only three.
 DEFAULT_MASKS: tuple[int, ...] | None = None
-# None writes to results/new_redundancy/<database>/results.json.
 DEFAULT_OUTPUT: Path | None = (
     Path(__file__).resolve().parents[1]
     / "results"
-    / "test"
     / DEFAULT_DATABASE
     / "new_redundancy_results.json"
 )
@@ -926,8 +924,8 @@ def experiment(args: argparse.Namespace) -> dict[str, Any]:
 
     password = args.password or getpass("Neo4j password: ")
     output = args.output or (
-        Path(__file__).resolve().parent.parent / "results" / "new_redundancy"
-        / args.database / "results.json"
+        Path(__file__).resolve().parents[1] / "results" / args.database
+        / "new_redundancy_results.json"
     )
     header.update({"database": args.database, "neo4j_driver": neo4j.__version__,
                    "update_group_count": args.updates,

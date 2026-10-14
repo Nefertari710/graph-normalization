@@ -16,7 +16,7 @@ from typing import Any
 SCRIPT_DIR = Path(__file__).resolve().parent
 RESULTS_DIR = SCRIPT_DIR.parent / "results"
 DEFAULT_INPUTS = tuple(
-    RESULTS_DIR / "new" / database / "new_redundancy_results.json"
+    RESULTS_DIR / database / "new_redundancy_results.json"
     for database in ("tpch-sf-005", "tpch-sf-01", "tpch-sf-02")
 )
 DEFAULT_SPEEDUP_OUTPUT = (
@@ -415,7 +415,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         type=Path,
         help=(
             "result JSON; repeat for multiple SFs. By default, results for "
-            "SF 0.05, 0.1, and 0.2 under results/new are used"
+            "SF 0.05, 0.1, and 0.2 under results/<database> are used"
         ),
     )
     parser.add_argument(

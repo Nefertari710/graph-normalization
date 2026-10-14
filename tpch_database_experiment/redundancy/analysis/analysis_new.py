@@ -15,7 +15,7 @@ from typing import Any
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_INPUT = (
-    SCRIPT_DIR.parent / "results" / "new" / "tpch-sf-005"
+    SCRIPT_DIR.parent / "results" / "tpch-sf-005"
     / "new_redundancy_results.json"
 )
 DEFAULT_OUTPUT: Path | None = None
