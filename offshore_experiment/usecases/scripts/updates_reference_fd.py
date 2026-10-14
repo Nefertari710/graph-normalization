@@ -164,7 +164,7 @@ def main():
         print(f"\\textsc{{{label}}} & \\textit{{registered\\_address}} & {r['valid_groups']:,} & {r['redundant_values']/1000:.1f}K & "
               f"{r['normalization_seconds']:.1f} & {median(x['d_median_ms'] for x in c):.1f} & {median(x['n_median_ms'] for x in c):.1f} & "
               f"{big['copies']:,} & {big['d_median_ms']:.1f} & {big['n_median_ms']:.1f} \\\\")
-    print(f"Done: {OUTPUT}")
+    print(f"Done: {OUTPUT.relative_to(HERE.parents[2]).as_posix()}")
 
 
 if __name__ == "__main__":

@@ -20,6 +20,15 @@ DEFAULT_INPUT = HERE / "results" / "updates_reference_fd.json"
 DEFAULT_OUTPUT = HERE / "results" / "report" / "updates_reference_fd.md"
 
 
+def relative_output_path(path: Path) -> str:
+    """Show a repository-relative path, or the filename for external outputs."""
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(HERE.parents[1]).as_posix()
+    except ValueError:
+        return resolved.name
+
+
 def load_results(path: Path) -> dict:
     report = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(report, dict) or not isinstance(report.get("types"), dict) or not report["types"]:
@@ -100,7 +109,7 @@ def main() -> None:
     except (OSError, ValueError, KeyError, TypeError) as exc:
         parser.exit(1, f"Analysis failed: {exc}\n")
     print(report, end="")
-    print(f"\nMarkdown report saved to: {args.output.resolve()}")
+    print(f"\nMarkdown report saved to: {relative_output_path(args.output)}")
 
 
 if __name__ == "__main__":
