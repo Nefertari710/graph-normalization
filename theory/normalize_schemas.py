@@ -18,14 +18,14 @@ Workloads:
   * The running example with phi1 and phi2, which must block.
 Each workload is run in R random orders; we report decompositions, blocks,
 whether the result is independent of the order, and the runtime.
-Results are printed and saved to results/report/normalize_schemas.md.
+Results are printed and saved to report/normalize_schemas.md.
 Usage: normalize_schemas.py [R]
 """
 import random, sys, time
 from itertools import combinations
 from pathlib import Path
 
-REPORT = Path(__file__).resolve().parent / "results" / "report" / "normalize_schemas.md"
+REPORT = Path(__file__).resolve().parent / "report" / "normalize_schemas.md"
 
 def closure(X, fds):
     C = set(X); changed = True

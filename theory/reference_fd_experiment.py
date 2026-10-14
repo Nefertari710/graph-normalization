@@ -19,7 +19,7 @@ Workloads
   * Offshore Leaks Intermediary, Officer, Entity with the reference
     registered_address (nodes with exactly one such edge) and the FDs that hold.
 Usage: reference_fd_experiment.py [R]
-Results are printed to the terminal and saved to results/report/reference_fd_experiment.md.
+Results are printed to the terminal and saved to report/reference_fd_experiment.md.
 """
 import random, sys, time, itertools
 from collections import Counter
@@ -30,7 +30,7 @@ from normalize_schemas import NT, closure, closed_cover, decompose, signature
 HERE = Path(__file__).resolve().parent
 NW = HERE.parent / 'extend_experiment' / 'northwind' / 'northwind_dataset' / 'CSVs'
 OL = HERE.parent / 'offshore_experiment' / 'dataset' / 'data'
-REPORT = HERE / 'results' / 'report' / 'reference_fd_experiment.md'
+REPORT = HERE / 'report' / 'reference_fd_experiment.md'
 
 # ------------------------------------------------------------------ data
 def northwind():
@@ -178,7 +178,7 @@ def write_markdown(results, R):
 
     lines = [
         '# Reference FD Normalization Experiment Report', '',
-        'Source: [reference_fd_experiment.py](../../reference_fd_experiment.py).', '',
+        'Source: [reference_fd_experiment.py](../reference_fd_experiment.py).', '',
         f'Random orders per workload: {R}.', '',
         'The FDs are predefined and checked on the retained complete records. Offshore records also require exactly one registered_address edge to a valid Address node.', '',
         '## Input Workloads', '',
