@@ -1,0 +1,57 @@
+MATCH (c:Customer), (o:Order)
+WHERE c.CustomerID = o.CustomerID
+CREATE (o)-[:PLACED_BY]->(c);
+
+
+
+MATCH (o:Order), (od:OrderDetail)
+WHERE o.OrderID = od.OrderID
+CREATE (od)-[:OF_ORDER]->(o);
+
+
+
+MATCH (od:OrderDetail), (p:Product)
+WHERE od.ProductID = p.ProductID
+CREATE (od)-[:OF_PRODUCT]->(p);
+
+
+
+MATCH (p:Product), (c:Category)
+WHERE p.CategoryID = c.CategoryID
+CREATE (p)-[:IN_CATEGORY]->(c);
+
+
+
+MATCH (p:Product), (s:Supplier)
+WHERE p.SupplierID = s.SupplierID
+CREATE (p)-[:SUPPLIED_BY]->(s);
+
+
+
+MATCH (o:Order), (e:Employee)
+WHERE o.EmployeeID = e.EmployeeID
+CREATE (o)-[:HANDLED_BY]->(e);
+
+
+
+MATCH (o:Order), (s:Shipper)
+WHERE o.ShipVia = s.ShipperID
+CREATE (o)-[:SHIPPED_BY]->(s);
+
+
+
+MATCH (et:EmployeeTerritory), (e:Employee)
+WHERE et.EmployeeID = e.EmployeeID
+CREATE (et)-[:HAS_TERRITORY]->(e);
+
+
+
+MATCH (et:EmployeeTerritory), (t:Territory)
+WHERE et.TerritoryID = t.TerritoryID
+CREATE (et)-[:IN_TERRITORY]->(t);
+
+
+MATCH (t:Territory), (r:Region)
+WHERE t.RegionID = r.RegionID
+CREATE (t)-[:IN_REGION]->(r);
+

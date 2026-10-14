@@ -1,0 +1,174 @@
+LOAD CSV WITH HEADERS
+FROM 'file:///categories.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Category {
+    CategoryID: toInteger(row.CategoryID),
+    CategoryName: row.CategoryName,
+    Description: row.Description,
+    Picture: row.Picture
+});
+
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///customers.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Customer {
+    CustomerID: row.CustomerID,
+    CompanyName: row.CompanyName,
+    ContactName: row.ContactName,
+    ContactTitle: row.ContactTitle,
+    Address: row.Address,
+    City: row.City,
+    Region: row.Region,
+    PostalCode: row.PostalCode,
+    Country: row.Country,
+    Phone: row.Phone,
+    Fax: row.Fax
+});
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///employees.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Employee {
+    EmployeeID: toInteger(row.EmployeeID),
+    LastName: row.LastName,
+    FirstName: row.FirstName,
+    Title: row.Title,
+    TitleOfCourtesy: row.TitleOfCourtesy,
+    BirthDate: row.BirthDate,
+    HireDate: row.HireDate,
+    Address: row.Address,
+    City: row.City,
+    Region: row.Region,
+    PostalCode: row.PostalCode,
+    Country: row.Country,
+    HomePhone: row.HomePhone,
+    Extension: row.Extension,
+    Photo: row.Photo,
+    Notes: row.Notes,
+    ReportsTo: CASE WHEN row.ReportsTo = '' THEN NULL ELSE toInteger(row.ReportsTo) END,
+    PhotoPath: row.PhotoPath
+});
+
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///employee_territories.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:EmployeeTerritory {
+    EmployeeID: toInteger(row.EmployeeID),
+    TerritoryID: row.TerritoryID
+});
+
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///order_details.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:OrderDetail {
+    OrderID: toInteger(row.OrderID),
+    ProductID: toInteger(row.ProductID),
+    UnitPrice: toFloat(row.UnitPrice),
+    Quantity: toInteger(row.Quantity),
+    Discount: toFloat(row.Discount)
+});
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///orders.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Order {
+    OrderID: toInteger(row.OrderID),
+    CustomerID: row.CustomerID,
+    EmployeeID: CASE WHEN row.EmployeeID = '' THEN NULL ELSE toInteger(row.EmployeeID) END,
+    OrderDate: row.OrderDate,
+    RequiredDate: row.RequiredDate,
+    ShippedDate: row.ShippedDate,
+    ShipVia: CASE WHEN row.ShipVia = '' THEN NULL ELSE toInteger(row.ShipVia) END,
+    Freight: CASE WHEN row.Freight = '' THEN NULL ELSE toFloat(row.Freight) END,
+    ShipName: row.ShipName,
+    ShipAddress: row.ShipAddress,
+    ShipCity: row.ShipCity,
+    ShipRegion: row.ShipRegion,
+    ShipPostalCode: row.ShipPostalCode,
+    ShipCountry: row.ShipCountry
+});
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///products.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Product {
+    ProductID: toInteger(row.ProductID),
+    ProductName: row.ProductName,
+    SupplierID: CASE WHEN row.SupplierID = '' THEN NULL ELSE toInteger(row.SupplierID) END,
+    CategoryID: CASE WHEN row.CategoryID = '' THEN NULL ELSE toInteger(row.CategoryID) END,
+    QuantityPerUnit: row.QuantityPerUnit,
+    UnitPrice: CASE WHEN row.UnitPrice = '' THEN NULL ELSE toFloat(row.UnitPrice) END,
+    UnitsInStock: CASE WHEN row.UnitsInStock = '' THEN NULL ELSE toInteger(row.UnitsInStock) END,
+    UnitsOnOrder: CASE WHEN row.UnitsOnOrder = '' THEN NULL ELSE toInteger(row.UnitsOnOrder) END,
+    ReorderLevel: CASE WHEN row.ReorderLevel = '' THEN NULL ELSE toInteger(row.ReorderLevel) END,
+    Discontinued: toBoolean(row.Discontinued)
+});
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///regions.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Region {
+    RegionID: toInteger(row.RegionID),
+    RegionDescription: row.RegionDescription
+});
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///shippers.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Shipper {
+    ShipperID: toInteger(row.ShipperID),
+    CompanyName: row.CompanyName,
+    Phone: row.Phone
+});
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///suppliers.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Supplier {
+    SupplierID: toInteger(row.SupplierID),
+    CompanyName: row.CompanyName,
+    ContactName: row.ContactName,
+    ContactTitle: row.ContactTitle,
+    Address: row.Address,
+    City: row.City,
+    Region: row.Region,
+    PostalCode: row.PostalCode,
+    Country: row.Country,
+    Phone: row.Phone,
+    Fax: row.Fax,
+    HomePage: row.HomePage
+});
+
+
+
+LOAD CSV WITH HEADERS
+FROM 'file:///territories.csv' AS row
+FIELDTERMINATOR '|'
+CREATE (:Territory {
+    TerritoryID: row.TerritoryID,
+    TerritoryDescription: row.TerritoryDescription,
+    RegionID: toInteger(row.RegionID)
+});
+
+

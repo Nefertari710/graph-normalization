@@ -1,0 +1,63 @@
+CREATE CONSTRAINT category_node_key IF NOT EXISTS
+FOR (c:Category)
+REQUIRE c.CategoryID IS NODE KEY;
+
+
+
+CREATE CONSTRAINT customer_node_key IF NOT EXISTS
+FOR (c:Customer)
+REQUIRE c.CustomerID IS NODE KEY;
+
+
+
+CREATE CONSTRAINT employee_node_key IF NOT EXISTS
+FOR (e:Employee)
+REQUIRE e.EmployeeID IS NODE KEY;
+
+
+
+CREATE CONSTRAINT employee_territory_node_key IF NOT EXISTS
+FOR (et:EmployeeTerritory)
+REQUIRE (et.EmployeeID, et.TerritoryID) IS NODE KEY;
+
+
+
+CREATE CONSTRAINT order_detail_node_key IF NOT EXISTS
+FOR (od:OrderDetail)
+REQUIRE (od.OrderID, od.ProductID) IS NODE KEY;
+
+
+
+CREATE CONSTRAINT order_node_key IF NOT EXISTS
+FOR (o:Order)
+REQUIRE o.OrderID IS NODE KEY;
+
+
+
+CREATE CONSTRAINT product_node_key IF NOT EXISTS
+FOR (p:Product)
+REQUIRE p.ProductID IS NODE KEY;
+
+
+
+CREATE CONSTRAINT region_node_key IF NOT EXISTS
+FOR (r:Region)
+REQUIRE r.RegionID IS NODE KEY;
+
+
+
+CREATE CONSTRAINT shipper_node_key IF NOT EXISTS
+FOR (s:Shipper)
+REQUIRE s.ShipperID IS NODE KEY;
+
+
+
+CREATE CONSTRAINT supplier_node_key IF NOT EXISTS
+FOR (s:Supplier)
+REQUIRE s.SupplierID IS NODE KEY;
+
+
+
+CREATE CONSTRAINT territory_node_key IF NOT EXISTS
+FOR (t:Territory)
+REQUIRE t.TerritoryID IS NODE KEY;
