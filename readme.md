@@ -70,15 +70,15 @@ Run the following commands from the experiment directory:
 cd tpch_database_experiment
 ```
 
-The loader reads the eight files in `data/tbl_sf_001` through the Neo4j
+The Enterprise loader reads the eight files in `data/tbl_sf_01` through the Neo4j
 Python driver, so the files do not need to be copied into Neo4j's `import`
-directory.
+directory. Its default target database is `tpch-sf-01`.
 
 First, check that every source row has the expected TPC-H columns and types:
 
 ```bash
 conda activate graph_database_denormalization
-python data/import_data_from_tbl.py --validate-only
+python data/import_data_from_tbl_enterprise.py --validate-only
 ```
 
 Then start Neo4j and run the import. If `NEO4J_PASSWORD` is not set, the
@@ -86,7 +86,7 @@ script asks for it without displaying it on screen:
 
 ```bash
 neo4j start
-python data/import_data_from_tbl.py
+python data/import_data_from_tbl_enterprise.py
 ```
 
 Connection settings can be changed with command-line arguments or environment
@@ -95,19 +95,19 @@ variables:
 ```bash
 export NEO4J_URI='bolt://localhost:7687'
 export NEO4J_USER='neo4j'
-export NEO4J_DATABASE='neo4j'
+export NEO4J_DATABASE='tpch-sf-01'
 
-python data/import_data_from_tbl.py --batch-size 1000
+python data/import_data_from_tbl_enterprise.py --batch-size 1000
 
 # Or load another dbgen output directory with the same eight file names.
-python data/import_data_from_tbl.py --data-dir /path/to/tbl_dir
+python data/import_data_from_tbl_enterprise.py --data-dir /path/to/tbl_dir
 ```
 
-Run `python data/import_data_from_tbl.py --help` for all options. The normal
-first import into an empty graph executes in this order:
+Run `python data/import_data_from_tbl_enterprise.py --help` for all options.
+The normal first import into an empty graph executes in this order:
 
 1. Create all nodes.
-2. Add the eight primary-key Node Key constraints.
+2. Add the eight primary-key Node Key constraints and foreign-key indexes.
 3. Create all foreign-key relationships.
 4. Validate the final node and relationship counts.
 
@@ -115,10 +115,11 @@ The loader uses Neo4j Enterprise Node Key constraints, which require every
 primary-key property to exist and make each key value or composite key unique.
 The loader does not delete existing data. Use an empty or dedicated database.
 When the same source data is retried after an interrupted or completed run,
-the loader first ensures that the constraints exist and then uses `MERGE` to
-resume without duplicating nodes or relationships. Loading a different data
-set into the same labels can leave old nodes behind and will fail the final
-exact-count validation. Every `.tbl` row must retain dbgen's trailing `|`.
+the loader first ensures that the constraints and foreign-key indexes exist
+and then uses `MERGE` to resume without duplicating nodes or relationships.
+Loading a different data set into the same labels can leave old nodes behind
+and will fail the final exact-count validation. Every `.tbl` row must retain
+dbgen's trailing `|`.
 
 ### Graph model
 
@@ -149,6 +150,6 @@ Foreign keys become these directed relationships:
 (LINEITEM)-[:LINEITEM_PARTSUPP]->(PARTSUPP)
 ```
 
-For the current SF 0.01 files, successful validation reports `86,805` nodes
-and `152,975` relationships. Dates are stored as Neo4j `DATE` values; TPC-H
+For the current SF 0.1 files, expected validation totals are `866,602` nodes
+and `1,527,169` relationships. Dates are stored as Neo4j `DATE` values; TPC-H
 decimal values are stored as Neo4j `FLOAT` values.
