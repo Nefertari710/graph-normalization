@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Analyse the Northwind FD-normalisation benchmark.
 
-The input is the v6 JSON report written by
-``supplier_product_fd_experiment.py``.  This program validates the report,
+The input is a v6 JSON report. This program validates the report,
 recomputes its headline metrics, creates reusable CSV/JSON summaries, draws
 publication-ready figures, and writes English and Chinese Markdown reports.
 
