@@ -1,6 +1,6 @@
 """TPC-H Q1-Q22 translated from PostgreSQL SQL to Neo4j Cypher.
 
-The queries target the graph created by ``data/import_data_from_tbl.py``.
+The queries target the graph created by ``data/import_data_from_tbl_enterprise.py``.
 They deliberately follow the stored relationship directions:
 
     NATION   -[:NATION_REGION]-> REGION
