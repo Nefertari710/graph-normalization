@@ -1,9 +1,9 @@
 {
   "manifest_schema_version": 1,
   "generated_at_utc": "2026-07-29T12:05:11.527866+00:00",
-  "generator": "/Users/yma391/Desktop/M5_home/PhD_research/research/research_2_graph_denormalization/graph_database_denormalization/case_study/analysis/analysis.py",
+  "generator": "extend_experiment/northwind/analysis/analysis.py",
   "command_options": {
-    "source": "/Users/yma391/Desktop/M5_home/PhD_research/research/research_2_graph_denormalization/graph_database_denormalization/case_study/analysis/northwind_fd_experiment_results.json",
+    "source": "extend_experiment/northwind/analysis/northwind_fd_experiment_results.json",
     "focus_case_id": "product_supplier",
     "bootstrap_seed": 20260729,
     "bootstrap_resamples": 10000,
@@ -17,16 +17,8 @@
     "numpy": "2.5.1",
     "matplotlib": "3.11.0"
   },
-  "git": {
-    "commit": "1791d1f0880724209d1606effba67b296845c140",
-    "worktree_dirty": true,
-    "status_short": [
-      "AM case_study/analysis/analysis.py",
-      "?? case_study/analysis/output/"
-    ]
-  },
   "source_report": {
-    "path": "/Users/yma391/Desktop/M5_home/PhD_research/research/research_2_graph_denormalization/graph_database_denormalization/case_study/analysis/northwind_fd_experiment_results.json",
+    "path": "extend_experiment/northwind/analysis/northwind_fd_experiment_results.json",
     "sha256": "2d88fdf3d14d34f576c1ea26b67e19f9dfb290c814a430ffa8e74be6a4adc031",
     "report_schema_version": 6,
     "join_fingerprint_schema_version": 2,

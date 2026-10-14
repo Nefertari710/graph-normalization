@@ -1,6 +1,6 @@
 # Offshore Update Experiment Analysis
 
-Input: /Users/yma391/Desktop/M5/M5_home/PhD_research/research/research_2_graph_denormalization/github_final_code/graph-normalization/offshore_experiment/redundancy/results/updates_offshore.json
+Input: offshore_experiment/redundancy/results/updates_offshore.json
 Experiment timestamp: 2026-10-11T02:44:01.025128+13:00
 FDs: 12; maximum sampled groups per FD: 50; repetitions: 5; random seed: 20261006.
 
