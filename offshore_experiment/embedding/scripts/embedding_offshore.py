@@ -59,7 +59,7 @@ DIMENSION = 128
 RANDOM_SEEDS = range(20260917, 20260927)
 DIFFERENT_LHS_SEED_OFFSET = 1_000_003
 WRITE_BATCH = 500
-OUTPUT = (Path(__file__).resolve().parents[1] / "results" / DATABASE
+OUTPUT = (Path(__file__).resolve().parents[1] / "results"
           / "embedding_offshore.json")
 
 GRAPH_NODE = "OFFSHORE_EMB_NODE"

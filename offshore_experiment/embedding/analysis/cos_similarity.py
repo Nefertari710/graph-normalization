@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 EMBEDDING_DIR = Path(__file__).resolve().parents[1]
 ANALYSIS_DIR = Path(__file__).resolve().parent
 DEFAULT_INPUT = (
-    EMBEDDING_DIR / "results" / "offshorecsv" / "embedding_offshore.json"
+    EMBEDDING_DIR / "results" / "embedding_offshore.json"
 )
 DEFAULT_OUTPUT = ANALYSIS_DIR / "cosine_similarity_ecdf.png"
 
