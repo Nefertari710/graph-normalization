@@ -3,7 +3,7 @@
 
 Run this file directly, or pass --input /path/to/updates_offshore.json.
 The report is printed to stdout and saved to
-../results/report/updates_offshore.md; use --output to change the report path.
+../results/updates_offshore.md; use --output to change the report path.
 
 Per FD, table medians are medians of the sampled groups' median times.
 For the speedup analysis, compute D/N for each group before taking the
@@ -222,7 +222,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--output", type=Path, default=DEFAULT_OUTPUT,
-        help="Markdown report; defaults to ../results/report/updates_offshore.md.",
+        help="Markdown report; defaults to ../results/updates_offshore.md.",
     )
     args = parser.parse_args()
     try:
