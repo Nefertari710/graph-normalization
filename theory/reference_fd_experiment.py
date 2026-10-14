@@ -22,17 +22,18 @@ Usage: reference_fd_experiment.py [R]
 """
 import json, random, sys, time, itertools
 from collections import Counter
+from pathlib import Path
 import pandas as pd
 from normalize_schemas import NT, closure, closed_cover, decompose, signature
 
-HERE = __file__.rsplit('/', 1)[0] if '/' in __file__ else '.'
-NW = HERE + '/../case_study/northwind_dataset/CSVs/'
-OL = HERE + '/../offshore-leak-database/'
+HERE = Path(__file__).resolve().parent
+NW = HERE.parent / 'extend_experiment' / 'northwind' / 'northwind_dataset' / 'CSVs'
+OL = HERE.parent / 'offshore_experiment' / 'dataset' / 'data'
 
 # ------------------------------------------------------------------ data
 def northwind():
-    o = pd.read_csv(NW + 'orders.csv', sep='|', dtype=str)
-    d = pd.read_csv(NW + 'order_details.csv', sep='|', dtype=str)
+    o = pd.read_csv(NW / 'orders.csv', sep='|', dtype=str)
+    d = pd.read_csv(NW / 'order_details.csv', sep='|', dtype=str)
     j = d.merge(o, on='OrderID').replace('NULL', pd.NA)
     ren = {'ProductID': 'product', 'CustomerID': 'customer', 'EmployeeID': 'employee', 'ShipVia': 'shipper',
            'OrderDate': 'orderDate', 'RequiredDate': 'requiredDate', 'ShippedDate': 'shippedDate', 'Freight': 'freight',
@@ -49,7 +50,7 @@ def northwind():
     return 'Northwind OrderInfo', j, refs, key, fds
 
 def offshore_type(name, file, feats, fds, ra1, addr_ids):
-    T = pd.read_csv(OL + file, dtype=str, low_memory=False).set_index('node_id')
+    T = pd.read_csv(OL / file, dtype=str, low_memory=False).set_index('node_id')
     ids = T.index.intersection(ra1.index)
     T = T.loc[ids].copy(); T['registered_address'] = ra1.loc[ids].values
     T = T[T.registered_address.isin(addr_ids)]
@@ -58,11 +59,11 @@ def offshore_type(name, file, feats, fds, ra1, addr_ids):
     return 'Offshore ' + name, T, {'registered_address'}, {'node_id'}, fds
 
 def offshore():
-    r = pd.read_csv(OL + 'relationships.csv', dtype=str, low_memory=False, usecols=['node_id_start', 'node_id_end', 'rel_type'])
+    r = pd.read_csv(OL / 'relationships.csv', dtype=str, low_memory=False, usecols=['node_id_start', 'node_id_end', 'rel_type'])
     ra = r[r.rel_type == 'registered_address']
     cnt = ra.groupby('node_id_start').size()
     ra1 = ra[ra.node_id_start.isin(cnt[cnt == 1].index)].set_index('node_id_start')['node_id_end']
-    addr_ids = set(pd.read_csv(OL + 'nodes-addresses.csv', dtype=str, low_memory=False, usecols=['node_id'])['node_id'])
+    addr_ids = set(pd.read_csv(OL / 'nodes-addresses.csv', dtype=str, low_memory=False, usecols=['node_id'])['node_id'])
     A = {'registered_address'}
     yield offshore_type('Intermediary', 'nodes-intermediaries.csv',
                         ['countries', 'country_codes', 'sourceID', 'valid_until'],
@@ -169,4 +170,4 @@ if __name__ == '__main__':
     for name, df, refs, key, fds in [northwind(), *offshore()]:
         r = run(name, df, refs, key, fds, R, rng); out.append(r)
         print(json.dumps(r, indent=1))
-    json.dump(out, open(HERE + '/reference_fd_results.json', 'w'), indent=1)
+    json.dump(out, open(HERE / 'reference_fd_results.json', 'w'), indent=1)

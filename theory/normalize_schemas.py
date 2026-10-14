@@ -22,6 +22,7 @@ Usage: normalize_schemas.py [R]
 """
 import random, sys, time
 from itertools import combinations
+from pathlib import Path
 
 def closure(X, fds):
     C = set(X); changed = True
@@ -168,7 +169,9 @@ def offshore():
     return [NT(T, c.split(","), {"node_id"}, [({V}, set(W)) for V, W in fds[T]]) for T, c in cols.items()]
 
 # ---------------------------------------------------------------- DBpedia
-def dbpedia(path="../dbpedia_experiment/find_functional_dependency/functional_dependencies_all.json"):
+def dbpedia(path=(Path(__file__).resolve().parent.parent / "extend_experiment"
+                  / "dbpedia_experiment" / "find_functional_dependency"
+                  / "functional_dependencies_all.json")):
     """one node type per class with discovered FDs; features: the FD attributes and the URI as key"""
     import json
     from collections import defaultdict
