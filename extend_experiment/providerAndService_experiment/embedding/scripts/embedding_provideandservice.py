@@ -35,7 +35,6 @@ RELATIONSHIP_ORIENTATION = "UNDIRECTED"  # or "NATURAL"
 OUTPUT = (
         Path(__file__).resolve().parents[1]
         / "results"
-        / DATABASE
         / "embedding_providerandservice.json"
 )
 

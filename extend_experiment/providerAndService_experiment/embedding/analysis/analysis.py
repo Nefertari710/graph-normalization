@@ -15,7 +15,6 @@ ANALYSIS_DIR = Path(__file__).resolve().parent
 DEFAULT_INPUT = (
         EMBEDDING_DIR
         / "results"
-        / "providerandservicecsv"
         / "embedding_providerandservice.json"
 )
 DEFAULT_OUTPUT = ANALYSIS_DIR / "result.md"
