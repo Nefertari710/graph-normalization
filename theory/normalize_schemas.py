@@ -18,11 +18,14 @@ Workloads:
   * The running example with phi1 and phi2, which must block.
 Each workload is run in R random orders; we report decompositions, blocks,
 whether the result is independent of the order, and the runtime.
+Results are printed and saved to results/report/normalize_schemas.md.
 Usage: normalize_schemas.py [R]
 """
 import random, sys, time
 from itertools import combinations
 from pathlib import Path
+
+REPORT = Path(__file__).resolve().parent / "results" / "report" / "normalize_schemas.md"
 
 def closure(X, fds):
     C = set(X); changed = True
@@ -202,6 +205,79 @@ def run(name, nts, R, rng):
     return dict(workload=name, node_types=len(nts), fds=nfds, decompositions=sorted(decs), blocks=sorted(blocks),
                 order_independent=len(sigs) == 1, max_ms=round(1000 * max(times), 3))
 
+def write_markdown_report(R, tpch, offshore_result, dbpedia_results, dbpedia_summary, running_results):
+    """Write the existing experiment results without rerunning Normalize."""
+    def table(headers, rows):
+        def cell(value):
+            return str(value).replace("|", r"\|").replace("\n", " ")
+        return [
+            "| " + " | ".join(map(cell, headers)) + " |",
+            "| " + " | ".join("---" for _ in headers) + " |",
+            *("| " + " | ".join(map(cell, row)) + " |" for row in rows),
+        ]
+
+    headers = ["Workload", "Node types", "Declared FDs", "Decompositions",
+               "Blocked candidates", "Order-independent signature", "Max Normalize time (ms)"]
+    def workload_rows(results):
+        return [[r["workload"], r["node_types"], r["fds"], r["decompositions"],
+                 r["blocks"], "Yes" if r["order_independent"] else "No", f'{r["max_ms"]:.3f}']
+                for r in results]
+
+    lines = [
+        "# Schema-level Normalize Experiment",
+        "",
+        f"Each workload is evaluated in {R} randomized orders of eligible FD choices. "
+        "The random generator starts with seed 1 and is shared by the existing experiment passes.",
+        "",
+        "Order-independent signature means that all sampled orders yield the same multiset "
+        "of original feature sets and counts of new references. This is a finite signature "
+        "comparison; keys, FDs and reference targets are not part of the signature. "
+        "Decomposition and block columns list the observed counts across these runs.",
+        "",
+        "Maximum runtime measures Normalize only, including its closed-cover construction. "
+        "Workload construction, input reads and report writing are outside the timing.",
+        "",
+        "## TPC-H",
+        "",
+        "All subsets of the eight references are evaluated. Recovered checks only whether "
+        "one additional normalization per variant returns the expected number of node types "
+        "(initial types plus copied-path FDs); it does not check full schema equivalence.",
+        "",
+        *table(["Metric", "Value"], [
+            ["Variants", tpch["variants"]],
+            ["Variants with blocked candidates", tpch["blocked_variants"]],
+            ["Variants with differing sampled signatures", tpch["order_dependent"]],
+            ["Recovered variants (node-type count check)", tpch["recovered"]],
+            ["Maximum decompositions", tpch["max_decompositions"]],
+            ["Maximum Normalize time (ms)", f'{tpch["max_ms"]:.3f}'],
+        ]),
+        "",
+        "## Offshore",
+        "",
+        *table(headers, workload_rows([offshore_result])),
+        "",
+        "## DBpedia",
+        "",
+        *table(["Metric", "Value"], [
+            ["Classes", dbpedia_summary["classes"]],
+            ["Declared FDs", dbpedia_summary["fds"]],
+            ["Blocking classes", ", ".join(dbpedia_summary["blocking_classes"]) or "None"],
+        ]),
+        "",
+        "The per-class table uses the existing first pass. The blocking-class summary "
+        "uses the existing second pass, with another set of randomized orders.",
+        "",
+        *table(headers, workload_rows(dbpedia_results)),
+        "",
+        "## Running examples",
+        "",
+        *table(headers, workload_rows(running_results)),
+        "",
+    ]
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    REPORT.write_text("\n".join(lines), encoding="utf-8")
+    print(f"Markdown report saved to: {REPORT}")
+
 if __name__ == "__main__":
     R = int(sys.argv[1]) if len(sys.argv) > 1 else 20
     rng = random.Random(1)
@@ -221,12 +297,22 @@ if __name__ == "__main__":
             expected = sum(1 for nt in nts) + sum(1 for nt in nts for V, W in nt.fds)
             tot["recovered"] += (len(st) == expected)
     print("TPC-H", tot)
-    print(run("offshore", offshore(), R, rng))
+    offshore_result = run("offshore", offshore(), R, rng)
+    print(offshore_result)
+    dbpedia_results = []
     for nt in dbpedia():
         r = run("dbpedia " + nt.name, [nt], R, rng)
+        dbpedia_results.append(r)
         if max(r["blocks"]) > 0 or len(nt.fds) > 2:
             print(r, [("".join(sorted(V)), "".join(sorted(W))) for V, W in nt.fds] if max(r["blocks"]) else "")
     allb = [nt for nt in dbpedia() if max(run("x", [nt], R, rng)["blocks"]) > 0]
-    print("dbpedia classes", len(dbpedia()), "fds", sum(len(nt.fds) for nt in dbpedia()), "blocking classes", [nt.name for nt in allb])
-    print(run("running phi", running("phi"), R, rng))
-    print(run("running phi1,phi2", running("phi12"), R, rng))
+    dbpedia_summary = dict(classes=len(dbpedia()), fds=sum(len(nt.fds) for nt in dbpedia()),
+                          blocking_classes=[nt.name for nt in allb])
+    print("dbpedia classes", dbpedia_summary["classes"], "fds", dbpedia_summary["fds"],
+          "blocking classes", dbpedia_summary["blocking_classes"])
+    running_phi = run("running phi", running("phi"), R, rng)
+    print(running_phi)
+    running_phi12 = run("running phi1,phi2", running("phi12"), R, rng)
+    print(running_phi12)
+    write_markdown_report(R, tot, offshore_result, dbpedia_results, dbpedia_summary,
+                          [running_phi, running_phi12])

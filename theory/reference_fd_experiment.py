@@ -19,8 +19,9 @@ Workloads
   * Offshore Leaks Intermediary, Officer, Entity with the reference
     registered_address (nodes with exactly one such edge) and the FDs that hold.
 Usage: reference_fd_experiment.py [R]
+Results are printed to the terminal and saved to results/report/reference_fd_experiment.md.
 """
-import json, random, sys, time, itertools
+import random, sys, time, itertools
 from collections import Counter
 from pathlib import Path
 import pandas as pd
@@ -29,6 +30,7 @@ from normalize_schemas import NT, closure, closed_cover, decompose, signature
 HERE = Path(__file__).resolve().parent
 NW = HERE.parent / 'extend_experiment' / 'northwind' / 'northwind_dataset' / 'CSVs'
 OL = HERE.parent / 'offshore_experiment' / 'dataset' / 'data'
+REPORT = HERE / 'results' / 'report' / 'reference_fd_experiment.md'
 
 # ------------------------------------------------------------------ data
 def northwind():
@@ -163,11 +165,73 @@ def run(name, df, refs, key, fds, R, rng):
                 occurrences_before=before, occurrences_after=after, eliminated=before - after,
                 result_types={k: v for k, v in nodes.items()}, blocked_fds=blocked_fds)
 
+def write_markdown(results, R):
+    """Write the existing result records as an English Markdown report."""
+    def table(headers, rows):
+        def cell(value):
+            return str(value).replace('|', '\\|').replace('\n', ' ')
+        return '\n'.join([
+            '| ' + ' | '.join(map(cell, headers)) + ' |',
+            '| ' + ' | '.join('---' for _ in headers) + ' |',
+            *('| ' + ' | '.join(map(cell, row)) + ' |' for row in rows),
+        ])
+
+    lines = [
+        '# Reference FD Normalization Experiment Report', '',
+        'Source: [reference_fd_experiment.py](../../reference_fd_experiment.py).', '',
+        f'Random orders per workload: {R}.', '',
+        'The FDs are predefined and checked on the retained complete records. Offshore records also require exactly one registered_address edge to a valid Address node.', '',
+        '## Input Workloads', '',
+        table(['Workload', 'Records', 'Features', 'References', 'FDs', 'FDs involving references'],
+              [[r['workload'], r['nodes'], r['features'], ', '.join(r['references']), r['fds'], r['fds_with_refs']] for r in results]), '',
+        '## Normalization Results', '',
+        'Decompositions, blocks, and key translations list the distinct counts observed across random orders. Z-locality types are the union observed across those orders. Matching signatures compare feature sets and new-reference counts; they do not compare keys, FDs, or reference targets.', '',
+        table(['Workload', 'Decompositions', 'Blocked FDs', 'Matching signatures', 'Z-locality types', 'Key translations with rho', 'Maximum time (ms)'],
+              [[r['workload'], r['decompositions'], r['blocks'], 'Yes' if r['order_independent'] else 'No', ', '.join(r['z_types']) or 'None', r['key_with_rho'], f"{r['max_ms']:.2f}"] for r in results]), '',
+        'Timings cover schema normalization only, excluding CSV loading, FD checks, and storage estimation.', '',
+        '## Estimated Stored Occurrences', '',
+        'These are logical feature-occurrence counts, not bytes or measured database writes. Before = records × features. After uses distinct flattened-key values for each resulting type, including new references. Storage counts and result types use the final tested order.', '',
+        table(['Workload', 'Before', 'After', 'Eliminated', 'Reduction (%)'],
+              [[r['workload'], r['occurrences_before'], r['occurrences_after'], r['eliminated'],
+                f"{100 * r['eliminated'] / r['occurrences_before']:.2f}" if r['occurrences_before'] else 'N/A'] for r in results]), '',
+        '## Result Types', '',
+        'A type merged into a referenced target reuses the original reference; its storage estimate omits one reference feature. The features column still lists the complete schema features.', '',
+        'Blocked-FD details recheck candidates from the original closed cover when the final order reports blocks; they are not a complete list of remaining FDs in the final schema.', '',
+    ]
+    for r in results:
+        lines.extend([
+            '### ' + r['workload'], '',
+            table(['Type', 'Distinct keys', 'Key', 'Flattened key', 'Features', 'Merged into referenced target'],
+                  [[name, t['nodes'], ', '.join(t['key']), ', '.join(t['flat_key']), ', '.join(t['features']),
+                    'Yes' if t['merged_into_target'] else 'No'] for name, t in r['result_types'].items()]), '',
+            'Recorded blocked-FD details:', '',
+        ])
+        if r['blocked_fds']:
+            lines.extend([table(['Determinant', 'Dependent features'],
+                                [[', '.join(V), ', '.join(W)] for V, W in r['blocked_fds']]), ''])
+        else:
+            lines.extend(['No blocked-FD details recorded.', ''])
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    REPORT.write_text('\n'.join(lines), encoding='utf-8')
+    print(f'Markdown report: {REPORT}')
+
+def print_summary(result):
+    """Print a compact text summary; detailed tables are in the Markdown report."""
+    print(f"\n{result['workload']}")
+    print(f"  Records: {result['nodes']:,}; features: {result['features']}; "
+          f"FDs: {result['fds']} (with references: {result['fds_with_refs']})")
+    print(f"  Decompositions: {', '.join(map(str, result['decompositions']))}; "
+          f"blocked FDs: {', '.join(map(str, result['blocks']))}")
+    print(f"  Matching signatures across tested orders: {'Yes' if result['order_independent'] else 'No'}")
+    print(f"  Stored occurrences: {result['occurrences_before']:,} -> "
+          f"{result['occurrences_after']:,}; eliminated: {result['eliminated']:,}")
+    print(f"  Maximum Normalize time: {result['max_ms']:.2f} ms")
+
 if __name__ == '__main__':
     R = int(sys.argv[1]) if len(sys.argv) > 1 else 20
     rng = random.Random(1)
     out = []
     for name, df, refs, key, fds in [northwind(), *offshore()]:
         r = run(name, df, refs, key, fds, R, rng); out.append(r)
-        print(json.dumps(r, indent=1))
-    json.dump(out, open(HERE / 'reference_fd_results.json', 'w'), indent=1)
+        print_summary(r)
+    write_markdown(out, R)
