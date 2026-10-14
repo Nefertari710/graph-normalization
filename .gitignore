@@ -76,7 +76,7 @@ case_study/data/dataset/*.csv
 
 # Generated embedding experiment output
 /case_study/embedding/embedding_results_exd.json
-/offshore_experiment/embedding/results/offshorecsv/embedding_offshore.json
+/offshore_experiment/embedding/results/embedding_offshore.json
 
 # Generated benchmark/runtime markers
 **/exceed_marks/
