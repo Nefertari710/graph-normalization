@@ -21,7 +21,6 @@ import json
 import math
 import os
 import statistics
-import subprocess
 import sys
 import tempfile
 from dataclasses import asdict, dataclass, field
@@ -51,6 +50,7 @@ except ImportError as exc:  # pragma: no cover - only used for a bad environment
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parents[2]
 DEFAULT_INPUT = SCRIPT_DIR / "northwind_fd_experiment_results.json"
 DEFAULT_OUTPUT_DIR = SCRIPT_DIR / "output"
 SUPPORTED_REPORT_SCHEMA = 6
@@ -643,11 +643,16 @@ def load_report(
     try:
         raw = path.read_bytes()
     except OSError as exc:
-        raise AnalysisError(f"Cannot read {path}: {exc}") from exc
+        raise AnalysisError(
+            f"Cannot read {display_path(path)} (OS error {exc.errno})"
+        ) from exc
     try:
         report = json.loads(raw)
     except json.JSONDecodeError as exc:
-        raise AnalysisError(f"Invalid JSON in {path}: {exc}") from exc
+        raise AnalysisError(
+            f"Invalid JSON in {display_path(path)} "
+            f"at line {exc.lineno}, column {exc.colno}"
+        ) from exc
     require(isinstance(report, dict), "Top-level JSON value must be an object")
     schema = get_path(report, "report_schema_version")
     require(
@@ -2338,27 +2343,13 @@ def file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def git_metadata(repo_root: Path) -> dict[str, Any]:
-    def run_git(*arguments: str) -> str | None:
-        try:
-            completed = subprocess.run(
-                ["git", *arguments],
-                cwd=repo_root,
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-        except (OSError, subprocess.CalledProcessError):
-            return None
-        return completed.stdout.strip()
-
-    commit = run_git("rev-parse", "HEAD")
-    status = run_git("status", "--short")
-    return {
-        "commit": commit,
-        "worktree_dirty": None if status is None else bool(status),
-        "status_short": None if status is None else status.splitlines(),
-    }
+def display_path(path: Path) -> str:
+    """Use repository-relative paths, or a filename for external files."""
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        return resolved.name
 
 
 def write_manifest(
@@ -2374,14 +2365,13 @@ def write_manifest(
     bootstrap_resamples: int,
     formats: Sequence[str],
 ) -> None:
-    repo_root = SCRIPT_DIR.parent.parent
     first_configuration = get_path(report["cases"][0], "configuration")
     payload = {
         "manifest_schema_version": 1,
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "generator": str(Path(__file__).resolve()),
+        "generator": display_path(Path(__file__)),
         "command_options": {
-            "source": str(source_path),
+            "source": display_path(source_path),
             "focus_case_id": focus_case_id,
             "bootstrap_seed": bootstrap_seed,
             "bootstrap_resamples": bootstrap_resamples,
@@ -2392,9 +2382,8 @@ def write_manifest(
             "numpy": np.__version__,
             "matplotlib": matplotlib.__version__,
         },
-        "git": git_metadata(repo_root),
         "source_report": {
-            "path": str(source_path),
+            "path": display_path(source_path),
             "sha256": source_sha256,
             "report_schema_version": get_path(
                 report, "report_schema_version"
@@ -2554,13 +2543,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--input",
         type=Path,
         default=DEFAULT_INPUT,
-        help=f"v6 JSON report (default: {DEFAULT_INPUT})",
+        help=f"v6 JSON report (default: {display_path(DEFAULT_INPUT)})",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
         default=DEFAULT_OUTPUT_DIR,
-        help=f"artifact directory (default: {DEFAULT_OUTPUT_DIR})",
+        help=f"artifact directory (default: {display_path(DEFAULT_OUTPUT_DIR)})",
     )
     parser.add_argument(
         "--focus-case",
@@ -2651,11 +2640,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             bootstrap_resamples=args.bootstrap_resamples,
             formats=tuple(dict.fromkeys(args.formats)),
         )
-        print(f"Generated {len(outputs)} artifacts in {output_dir}")
+        print(f"Generated {len(outputs)} artifacts in {display_path(output_dir)}")
         for output in outputs:
             print(f"  {output.relative_to(output_dir)}")
         return 0
-    except (AnalysisError, OSError, ValueError, TypeError) as exc:
+    except OSError as exc:
+        print(f"ERROR: File operation failed (OS error {exc.errno})", file=sys.stderr)
+        return 2
+    except (AnalysisError, ValueError, TypeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
 
