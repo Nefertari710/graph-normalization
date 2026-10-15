@@ -1,0 +1,7 @@
+# Versions from the inspected Python 3.13 environment.
+neo4j==6.2.0
+numpy==2.5.1
+scipy==1.18.1
+matplotlib==3.11.0
+pandas==3.0.6
+pyoxigraph==0.5.6
