@@ -12,7 +12,7 @@ from pathlib import Path
 
 from neo4j import GraphDatabase
 
-CSV_FILE = Path(__file__).with_name("PHY_R26_P05_V10_D24_Prov_Svc.csv")
+CSV_FILE = Path(__file__).resolve().parent / "data" / "PHY_R26_P05_V10_D24_Prov_Svc.csv"
 URI = os.getenv("NEO4J_URI") or "bolt://localhost:7687"
 USER = os.getenv("NEO4J_USER") or "neo4j"
 DATABASE = os.getenv("NEO4J_DATABASE") or "providerandservicecsv"
