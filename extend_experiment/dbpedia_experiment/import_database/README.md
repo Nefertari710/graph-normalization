@@ -7,15 +7,12 @@ recorded for this project. Both Community and Enterprise are supported; APOC and
 
 ## Usage
 
-Install the dependencies in the project Python environment, working from the project root.
-This project currently uses Conda:
+Follow the [root setup instructions](../../../README.md#setup) to create and activate
+a Python environment. Install the dependencies from the repository root:
 
 ```bash
-conda activate graph_database_denormalization
-conda install -c conda-forge neo4j-python-driver pyoxigraph
+python -m pip install -r requirements.txt
 ```
-
-For a separate pip/venv environment, install the dependencies from this directory's `requirements.txt`.
 
 Set the password and target database name in the connection configuration at the top of `import_data.py`:
 
@@ -80,7 +77,7 @@ Changing the script does not automatically change the execution logic of an alre
 | Literal properties | The full predicate URI is the property key, such as `http://dbpedia.org/ontology/alias`, with values such as `["Chk Chk Chk"]` |
 | Resource relationships | The full predicate URI is the directed relationship type, such as `http://dbpedia.org/ontology/bandMember`; the relationship's `predicate` property also stores this URI |
 
-Following [readDBpedia() in main.cpp](../GraphNormalization-main/main.cpp), type, property, and relationship names use full URIs directly.
+Type, property, and relationship names use full URIs directly.
 There is no prefix table or abbreviation conversion. Full URIs distinguish identically named terms in different namespaces.
 For example, `http://dbpedia.org/ontology/name` and `http://dbpedia.org/property/name` are separate properties.
 In Cypher, enclose full URIs in backticks or access properties dynamically with `n[$property_uri]`;
@@ -332,7 +329,6 @@ and [RDF literal identity](https://www.w3.org/TR/rdf11-concepts/#section-Graph-L
 ## References
 
 - [Source data description](../dataset/README.md): roles and examples for the four files.
-- [GraphNormalization main.cpp](../GraphNormalization-main/main.cpp): `readDBpedia()` preserves full URIs as resource identifiers, types, property keys, and edge labels.
 - [PyOxigraph RDF parsing](https://pyoxigraph.readthedocs.io/en/stable/io.html): streaming Turtle parsing from compressed input, yielding RDF records.
 - [W3C RDF 1.1 Literals](https://www.w3.org/TR/rdf11-concepts/#section-Graph-Literal): lexical values, datatypes, and language information.
 - [Neo4j Python Driver performance recommendations](https://neo4j.com/docs/python-manual/current/performance/#batch-data-creation): batch writes with `UNWIND`.

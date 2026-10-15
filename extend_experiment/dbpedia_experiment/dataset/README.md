@@ -1,6 +1,32 @@
 # DBpedia Dataset
 
-This directory contains four data files from the English DBpedia knowledge graph. In the filenames, `lang=en` indicates the English edition, `.ttl` indicates the RDF Turtle format, and `.bz2` indicates bzip2 compression. The data is organized as subject–property or relation–object triples.
+The importer expects four data files from the English DBpedia knowledge graph in this directory. They are not included in Git. In the filenames, `lang=en` indicates the English edition, `.ttl` indicates the RDF Turtle format, and `.bz2` indicates bzip2 compression. The data is organized as subject–property or relation–object triples.
+
+## Download
+
+The commands below download the four files from DBpedia's official **2022.12.01** release. Run them from the repository root and keep the files compressed:
+
+```bash
+DATA_DIR=extend_experiment/dbpedia_experiment/dataset
+curl -fL --retry 3 -o "$DATA_DIR/instance-types_lang=en_specific.ttl.bz2" \
+  'https://downloads.dbpedia.org/repo/dbpedia/mappings/instance-types/2022.12.01/instance-types_lang=en_specific.ttl.bz2'
+curl -fL --retry 3 -o "$DATA_DIR/labels_lang=en.ttl.bz2" \
+  'https://downloads.dbpedia.org/repo/dbpedia/generic/labels/2022.12.01/labels_lang=en.ttl.bz2'
+curl -fL --retry 3 -o "$DATA_DIR/mappingbased-literals_lang=en.ttl.bz2" \
+  'https://downloads.dbpedia.org/repo/dbpedia/mappings/mappingbased-literals/2022.12.01/mappingbased-literals_lang=en.ttl.bz2'
+curl -fL --retry 3 -o "$DATA_DIR/mappingbased-objects_lang=en.ttl.bz2" \
+  'https://downloads.dbpedia.org/repo/dbpedia/mappings/mappingbased-objects/2022.12.01/mappingbased-objects_lang=en.ttl.bz2'
+```
+
+This fixes a source release for a new run; the release used for the repository's historical results is not recorded. Its compressed-file SHA-256 hashes are available under `import_at_start.manifest` in the [saved FD results](../find_functional_dependency/functional_dependencies_all.json). Compare those hashes if reproducing that exact snapshot.
+
+Install dependencies using the [root setup instructions](../../../README.md#setup), then run:
+
+```bash
+python extend_experiment/dbpedia_experiment/import_database/import_data.py --database dbpedia1
+```
+
+## File contents
 
 | File | Contents | Main uses |
 | --- | --- | --- |
