@@ -18,8 +18,8 @@ For each of the 12 Offshore FDs X -> Y of the embedding experiment:
    removed; source-node indexes created for the experiment are kept unless
    --drop-source-indexes is given.
 
-Set ``DEBUG_NEO4J_PASSWORD`` below or use ``NEO4J_PASSWORD`` in the environment;
-otherwise the script prompts for the password when running.
+Use ``NEO4J_URI``, ``NEO4J_USER``, ``NEO4J_DATABASE`` and ``NEO4J_PASSWORD``
+in the environment. Without a password, the script prompts when running.
 
 Usage::
 
@@ -49,7 +49,6 @@ DIMENSION = "OFFSHORE_UPD_DIM"
 RELATIONSHIP = "HAS_UPD_DIM"
 SEED = 20261006
 SUFFIX = " [corrected]"
-DEBUG_NEO4J_PASSWORD: str | None = ""  # Empty: use the environment or prompt.
 
 
 def load_original():
@@ -148,17 +147,18 @@ def main() -> None:
     args = parser.parse_args()
     fds = [fd for fd in O.FDS if not args.fds or fd.name in args.fds]
 
-    password = DEBUG_NEO4J_PASSWORD or os.environ.get("NEO4J_PASSWORD")
+    password = os.environ.get("NEO4J_PASSWORD")
     if not password:
         password = getpass.getpass(f"Neo4j password for {O.NEO4J_USER}: ")
 
     from neo4j import GraphDatabase
     with GraphDatabase.driver(O.NEO4J_URI, auth=(
             O.NEO4J_USER, password)) as driver:
-        with driver.session(database="offshorecsv") as session:
+        with driver.session(database=O.DATABASE) as session:
             report: dict[str, Any] = {
                 "experiment": "offshore_updates_full_graph",
                 "created_at": datetime.now().astimezone().isoformat(),
+                "database": O.DATABASE,
                 "settings": {"groups": args.groups, "repeats": args.repeats,
                              "seed": SEED},
                 "fds": {}}

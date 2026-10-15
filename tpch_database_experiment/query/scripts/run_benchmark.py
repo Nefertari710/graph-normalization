@@ -84,10 +84,6 @@ DEFAULT_OUTPUT_JSON = (
 )
 
 
-# Local debugging only.  NEO4J_PASSWORD takes precedence when it is set.
-# Keep this as None in committed code; it can be temporarily filled locally.
-DEBUG_NEO4J_PASSWORD: str | None = ""
-
 PARAMETER_PATTERN = re.compile(r"\$([A-Za-z_][A-Za-z0-9_]*)")
 TEMPLATE_FILE_PATTERN = re.compile(r"template_(\d+)_([A-Za-z0-9_]+)\.py")
 STRATEGY_NAME_PATTERN = re.compile(
@@ -316,12 +312,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--uri",
-        default=os.getenv("NEO4J_URI", "bolt://localhost:7687"),
+        default=os.getenv("NEO4J_URI") or "bolt://localhost:7687",
         help="Neo4j URI (default: NEO4J_URI or bolt://localhost:7687)",
     )
     parser.add_argument(
         "--user",
-        default=os.getenv("NEO4J_USER", "neo4j"),
+        default=os.getenv("NEO4J_USER") or "neo4j",
         help="Neo4j user (default: NEO4J_USER or neo4j)",
     )
     parser.add_argument(
@@ -2516,8 +2512,8 @@ def run_benchmark(args: argparse.Namespace, password: str) -> bool:
 def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
     try:
-        password = os.getenv("NEO4J_PASSWORD") or DEBUG_NEO4J_PASSWORD
-        if password is None:
+        password = os.getenv("NEO4J_PASSWORD")
+        if not password:
             password = getpass(f"Neo4j password for {args.user}: ")
         all_passed = run_benchmark(args, password)
     except KeyboardInterrupt:

@@ -23,7 +23,6 @@ from pathlib import Path
 from typing import Any, Iterable
 DEFAULT_URI = "bolt://localhost:7687"
 DEFAULT_USER = "neo4j"
-DEFAULT_PASSWORD: str | None = ""
 DEFAULT_DATABASE = "tpch-sf-005"
 DEFAULT_UPDATE_COUNT = 50       # 50
 DEFAULT_UPDATE_REPEATS = 10     # 10
@@ -867,11 +866,11 @@ def write_json(path: Path, value: Any) -> None:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Materialize all TPC-H fold schemas and time terminal FD updates.")
-    parser.add_argument("--uri", default=os.getenv("NEO4J_URI", DEFAULT_URI))
-    parser.add_argument("--user", default=os.getenv("NEO4J_USER", DEFAULT_USER))
+    parser.add_argument("--uri", default=os.getenv("NEO4J_URI") or DEFAULT_URI)
+    parser.add_argument("--user", default=os.getenv("NEO4J_USER") or DEFAULT_USER)
     parser.add_argument("--password",
-                        default=os.getenv("NEO4J_PASSWORD", DEFAULT_PASSWORD))
-    parser.add_argument("--database", default=os.getenv("NEO4J_DATABASE", DEFAULT_DATABASE))
+                        default=os.getenv("NEO4J_PASSWORD") or None)
+    parser.add_argument("--database", default=os.getenv("NEO4J_DATABASE") or DEFAULT_DATABASE)
     parser.add_argument("--updates", type=int, default=DEFAULT_UPDATE_COUNT,
                         help="number of seven-table update groups")
     parser.add_argument("--repeats", type=int, default=DEFAULT_UPDATE_REPEATS,
@@ -922,7 +921,7 @@ def experiment(args: argparse.Namespace) -> dict[str, Any]:
     except ImportError as exc:
         raise SystemExit("neo4j driver is required: install package 'neo4j'") from exc
 
-    password = args.password or getpass("Neo4j password: ")
+    password = args.password or os.getenv("NEO4J_PASSWORD") or getpass("Neo4j password: ")
     output = args.output or (
         Path(__file__).resolve().parents[1] / "results" / args.database
         / "new_redundancy_results.json"

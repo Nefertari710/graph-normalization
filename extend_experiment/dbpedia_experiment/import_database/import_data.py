@@ -28,7 +28,6 @@ from typing import Iterator
 
 NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = ""
 NEO4J_DATABASE = "dbpedia1"
 
 
@@ -222,7 +221,7 @@ def prepare_database(session, manifest: str) -> None:
 def run_import(args, manifest: str) -> None:
     from neo4j import GraphDatabase
 
-    password = os.getenv("NEO4J_PASSWORD") or NEO4J_PASSWORD or getpass(f"Neo4j password for {args.user}: ")
+    password = os.getenv("NEO4J_PASSWORD") or getpass(f"Neo4j password for {args.user}: ")
     with GraphDatabase.driver(args.uri, auth=(args.user, password)) as driver:
         driver.verify_connectivity()
         create_database_if_missing(driver, args.database)
@@ -249,9 +248,9 @@ def positive_int(text: str) -> int:
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)
-    parser.add_argument("--uri", default=os.getenv("NEO4J_URI", NEO4J_URI))
-    parser.add_argument("--user", default=os.getenv("NEO4J_USER", NEO4J_USER))
-    parser.add_argument("--database", default=os.getenv("NEO4J_DATABASE", NEO4J_DATABASE))
+    parser.add_argument("--uri", default=os.getenv("NEO4J_URI") or NEO4J_URI)
+    parser.add_argument("--user", default=os.getenv("NEO4J_USER") or NEO4J_USER)
+    parser.add_argument("--database", default=os.getenv("NEO4J_DATABASE") or NEO4J_DATABASE)
     parser.add_argument("--batch-size", type=positive_int, default=2000)
     return parser.parse_args(argv)
 

@@ -7,15 +7,15 @@ https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-othe
 
 import csv
 import os
+from getpass import getpass
 from pathlib import Path
 
 from neo4j import GraphDatabase
 
 CSV_FILE = Path(__file__).with_name("PHY_R26_P05_V10_D24_Prov_Svc.csv")
-URI = "bolt://localhost:7687"
-USER = "neo4j"
-PASSWORD = os.getenv("NEO4J_PASSWORD", "")
-DATABASE = "providerandservicecsv"
+URI = os.getenv("NEO4J_URI") or "bolt://localhost:7687"
+USER = os.getenv("NEO4J_USER") or "neo4j"
+DATABASE = os.getenv("NEO4J_DATABASE") or "providerandservicecsv"
 BATCH_SIZE = 2_000
 
 IMPORT_QUERY = """
@@ -51,12 +51,14 @@ def read_batches():
 
 
 def main():
-    with GraphDatabase.driver(URI, auth=(USER, PASSWORD)) as driver:
+    password = os.getenv("NEO4J_PASSWORD") or getpass(f"Neo4j password for {USER}: ")
+    with GraphDatabase.driver(URI, auth=(USER, password)) as driver:
         driver.verify_connectivity()
 
         with driver.session(database="system") as session:
             session.run(
-                f"CREATE DATABASE {DATABASE} IF NOT EXISTS WAIT 60 SECONDS"
+                "CREATE DATABASE $name IF NOT EXISTS WAIT 60 SECONDS",
+                name=DATABASE,
             ).consume()
 
         with driver.session(database=DATABASE) as session:

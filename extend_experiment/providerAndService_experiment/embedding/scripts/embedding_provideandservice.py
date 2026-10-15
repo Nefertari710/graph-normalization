@@ -18,14 +18,14 @@ import os
 import random
 import re
 from datetime import datetime
+from getpass import getpass
 from pathlib import Path
 from statistics import fmean, median
 from typing import Any, Iterable
 
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "")
-DATABASE = "providerandservicecsv"
+NEO4J_URI = os.getenv("NEO4J_URI") or "bolt://localhost:7687"
+NEO4J_USER = os.getenv("NEO4J_USER") or "neo4j"
+DATABASE = os.getenv("NEO4J_DATABASE") or "providerandservicecsv"
 
 PAIR_COUNT = 1_000
 RANDOM_SEEDS = range(20260917, 20260927)
@@ -774,9 +774,10 @@ def write_report(report: dict[str, Any]) -> None:
 def main() -> None:
     from neo4j import GraphDatabase, __version__ as driver_version
 
+    password = os.getenv("NEO4J_PASSWORD") or getpass(f"Neo4j password for {NEO4J_USER}: ")
     print(f"Connecting to {DATABASE} at {NEO4J_URI}")
     with GraphDatabase.driver(
-            NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD)
+            NEO4J_URI, auth=(NEO4J_USER, password)
     ) as driver:
         driver.verify_connectivity()
         with driver.session(database=DATABASE) as session:

@@ -25,8 +25,8 @@ each followed by a timed update back to the original value; medians per group.
 
 Cleanup removes the <dependent>_<SourceLabel> properties and the index.
 
-Set ``DEBUG_NEO4J_PASSWORD`` below or use ``NEO4J_PASSWORD`` in the environment;
-otherwise the script prompts for the password when running.
+Use ``NEO4J_URI``, ``NEO4J_USER``, ``NEO4J_DATABASE`` and ``NEO4J_PASSWORD``
+in the environment. Without a password, the script prompts when running.
 
 Usage (with Neo4j running and Offshore data imported into offshorecsv)::
 
@@ -45,10 +45,9 @@ from typing import Any
 
 HERE = Path(__file__).resolve().parent
 OUTPUT = HERE.parent / "results" / "updates_reference_fd.json"
-NEO4J_URI = os.environ.get("NEO4J_URI", "bolt://localhost:7687")
-NEO4J_USER = os.environ.get("NEO4J_USER", "neo4j")
-NEO4J_DATABASE = "offshorecsv"
-DEBUG_NEO4J_PASSWORD: str | None = ""  # Empty: use the environment or prompt.
+NEO4J_URI = os.environ.get("NEO4J_URI") or "bolt://localhost:7687"
+NEO4J_USER = os.environ.get("NEO4J_USER") or "neo4j"
+NEO4J_DATABASE = os.environ.get("NEO4J_DATABASE") or "offshorecsv"
 SEED = 20261014
 SUFFIX = " [corrected]"
 CASES = {  # source label -> dependent
@@ -128,11 +127,12 @@ def main():
     ap.add_argument("--repeats", type=int, default=5)
     ap.add_argument("--resume", action="store_true")
     args = ap.parse_args()
-    password = DEBUG_NEO4J_PASSWORD or os.environ.get("NEO4J_PASSWORD")
+    password = os.environ.get("NEO4J_PASSWORD")
     if not password:
         password = getpass.getpass(f"Neo4j password for {NEO4J_USER}: ")
     from neo4j import GraphDatabase
     report = {"experiment": "offshore_reference_fd_updates", "created_at": datetime.now().astimezone().isoformat(),
+              "database": NEO4J_DATABASE,
               "settings": vars(args) | {"seed": SEED}, "types": {}}
     if args.resume and OUTPUT.exists():
         report["types"] = json.loads(OUTPUT.read_text())["types"]

@@ -39,10 +39,6 @@ from typing import Any, Callable, Iterable, Iterator, Sequence
 DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "tbl_sf_01"
 SYSTEM_DATABASE = "system"
 
-# Local debugging only. Temporarily replace None with your Neo4j password.
-# Never commit or share this file while it contains a real password.
-DEBUG_NEO4J_PASSWORD: str | None = ""
-
 
 class TblFormatError(ValueError):
     """Raised when a TPC-H .tbl row does not match its declared schema."""
@@ -724,17 +720,17 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--uri",
-        default=os.getenv("NEO4J_URI", "bolt://localhost:7687"),
+        default=os.getenv("NEO4J_URI") or "bolt://localhost:7687",
         help="Neo4j URI (default: NEO4J_URI or bolt://localhost:7687)",
     )
     parser.add_argument(
         "--user",
-        default=os.getenv("NEO4J_USER", "neo4j"),
+        default=os.getenv("NEO4J_USER") or "neo4j",
         help="Neo4j user (default: NEO4J_USER or neo4j)",
     )
     parser.add_argument(
         "--database",
-        default=os.getenv("NEO4J_DATABASE", "neo4j"),
+        default=os.getenv("NEO4J_DATABASE") or "neo4j",
         help="Neo4j database (default: NEO4J_DATABASE or neo4j)",
     )
     parser.add_argument(
@@ -834,7 +830,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             validate_source_only(data_dir)
             return 0
 
-        password = DEBUG_NEO4J_PASSWORD or os.getenv("NEO4J_PASSWORD")
+        password = os.getenv("NEO4J_PASSWORD")
         if not password:
             password = getpass(f"Neo4j password for {args.user}: ")
         run_import(args, password)

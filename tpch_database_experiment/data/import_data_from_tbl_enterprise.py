@@ -38,10 +38,6 @@ DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "tbl_sf_01"
 # contain underscores, so use a name such as "tpchsf1" or "tpch-sf-1".
 DATABASE_NAME = "tpch-sf-01"
 
-# Local debugging only. Temporarily replace None with your Neo4j password.
-# Never commit or share this file while it contains a real password.
-DEBUG_NEO4J_PASSWORD: str | None = ""
-
 SYSTEM_DATABASE = "system"
 
 class TblFormatError(ValueError):
@@ -743,12 +739,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--uri",
-        default=os.getenv("NEO4J_URI", "bolt://localhost:7687"),
+        default=os.getenv("NEO4J_URI") or "bolt://localhost:7687",
         help="Neo4j URI (default: NEO4J_URI or bolt://localhost:7687)",
     )
     parser.add_argument(
         "--user",
-        default=os.getenv("NEO4J_USER", "neo4j"),
+        default=os.getenv("NEO4J_USER") or "neo4j",
         help="Neo4j user (default: NEO4J_USER or neo4j)",
     )
     parser.add_argument(
@@ -864,7 +860,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             validate_source_only(data_dir)
             return 0
 
-        password = DEBUG_NEO4J_PASSWORD or os.getenv("NEO4J_PASSWORD")
+        password = os.getenv("NEO4J_PASSWORD")
         if not password:
             password = getpass(f"Neo4j password for {args.user}: ")
         run_import(args, password)

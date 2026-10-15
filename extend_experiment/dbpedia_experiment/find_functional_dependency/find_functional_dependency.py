@@ -29,10 +29,9 @@ from neo4j import GraphDatabase, Query, READ_ACCESS
 from neo4j.exceptions import Neo4jError, ServiceUnavailable, SessionExpired
 
 # Neo4j connection defaults. Environment variables and command-line options
-# override these values. Leave the password empty to enter it securely at run time.
+# override these values. Set NEO4J_PASSWORD or enter it securely at run time.
 NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = ""
 NEO4J_DATABASE = "dbpedia1"
 RDFS_LABEL = "http://www.w3.org/2000/01/rdf-schema#label"
 
@@ -576,7 +575,7 @@ def run_search(session, args, labels):
 
 def main(argv=None):
     args = parse_args(argv)
-    password = os.getenv("NEO4J_PASSWORD") or NEO4J_PASSWORD
+    password = os.getenv("NEO4J_PASSWORD")
     if not password:
         from getpass import getpass
         password = getpass("Neo4j password: ")

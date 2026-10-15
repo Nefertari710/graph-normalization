@@ -10,10 +10,10 @@ from getpass import getpass
 from pathlib import Path
 
 # Connection and use-case settings.
-URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
-USER = os.getenv("NEO4J_USER", "neo4j")
-PASSWORD = os.getenv("NEO4J_PASSWORD", "")  # Empty: prompt when running.
-DATABASE = "tpch-sf-1-usecase"
+URI = os.getenv("NEO4J_URI") or "bolt://localhost:7687"
+USER = os.getenv("NEO4J_USER") or "neo4j"
+PASSWORD = os.getenv("NEO4J_PASSWORD")  # Missing or empty: prompt when running.
+DATABASE = os.getenv("NEO4J_DATABASE") or "tpch-sf-1-usecase"
 SCALE_FACTOR = 1
 RUNS = 50
 BATCH_SIZE = 1000

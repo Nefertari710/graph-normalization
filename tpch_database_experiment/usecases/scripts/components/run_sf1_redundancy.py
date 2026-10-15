@@ -15,10 +15,10 @@ from tpch_database_experiment.data import import_data_from_tbl_enterprise as imp
 from tpch_database_experiment.redundancy.scripts import new_redundancy
 
 # Connection and use-case settings.
-URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
-USER = os.getenv("NEO4J_USER", "neo4j")
-PASSWORD = os.getenv("NEO4J_PASSWORD", "")  # Empty: prompt when running.
-DATABASE = "tpch-sf-1-usecase"
+URI = os.getenv("NEO4J_URI") or "bolt://localhost:7687"
+USER = os.getenv("NEO4J_USER") or "neo4j"
+PASSWORD = os.getenv("NEO4J_PASSWORD")  # Missing or empty: prompt when running.
+DATABASE = os.getenv("NEO4J_DATABASE") or "tpch-sf-1-usecase"
 DATA_DIR = REPOSITORY_ROOT / "tpch_database_experiment" / "data" / "tbl_sf_1"
 OUTPUT = (
     REPOSITORY_ROOT / "tpch_database_experiment" / "usecases" / "results"

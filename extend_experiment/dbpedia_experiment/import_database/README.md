@@ -14,17 +14,17 @@ a Python environment. Install the dependencies from the repository root:
 python -m pip install -r requirements.txt
 ```
 
-Set the password and target database name in the connection configuration at the top of `import_data.py`:
+Set connection settings through environment variables. The URI and user shown
+below are also the defaults; the default database is `dbpedia1`.
 
-```python
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = ""  # Enter your password here.
-NEO4J_DATABASE = "dbpedia"
+```bash
+export NEO4J_URI='bolt://localhost:7687'
+export NEO4J_USER='neo4j'
+export NEO4J_PASSWORD='your-local-password'
 ```
 
-If the password is empty and the `NEO4J_PASSWORD` environment variable is unset,
-the program prompts for a password at runtime. Start Neo4j, then run the import:
+If `NEO4J_PASSWORD` is unset or empty, the program prompts for a password at
+runtime. Start Neo4j, then run the import:
 
 ```bash
 python extend_experiment/dbpedia_experiment/import_database/import_data.py
@@ -33,12 +33,12 @@ python extend_experiment/dbpedia_experiment/import_database/import_data.py
 Specify the target database and batch size:
 
 ```bash
-python extend_experiment/dbpedia_experiment/import_database/import_data.py --database dbpedia --batch-size 5000
+python extend_experiment/dbpedia_experiment/import_database/import_data.py --database dbpedia1 --batch-size 5000
 ```
 
 The program also accepts the `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`, and `NEO4J_DATABASE`
 environment variables, along with the `--uri`, `--user`, and `--data-dir` options.
-Connection settings take precedence in this order: explicit command-line arguments > environment variables > configuration at the top of the file.
+Connection settings take precedence in this order: explicit command-line arguments > nonempty environment variables > the script's defaults.
 During a normal import, the program first connects to the `system` database. If the target database is missing,
 it runs `CREATE DATABASE $name IF NOT EXISTS WAIT 60 SECONDS` and confirms that its status is `online`
 before importing. An existing database is used directly.
@@ -166,21 +166,11 @@ RETURN band.`http://www.w3.org/2000/01/rdf-schema#label` AS band_name,
 ## Find functional dependencies within classes
 
 Run `find_functional_dependency.py` in its separate directory. It neither imports nor depends on `import_data.py`.
-Configure the connection URI, username, password, and database name separately at the top of the search script;
-it also accepts `NEO4J_*` environment variables and command-line arguments.
-An empty password triggers a runtime prompt. The program runs read-only queries and does not modify Neo4j.
-
-```python
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = ""
-NEO4J_DATABASE = "dbpedia1"
-```
-
-The search program does not read connection settings from `import_database/`.
-Configuration precedence is: command-line `--uri`, `--user`, and `--database` > corresponding `NEO4J_*`
-environment variables > configuration at the top of the search file.
-The password comes from `NEO4J_PASSWORD` or the file configuration; an interactive prompt is used only when both are empty.
+The search script reads the same `NEO4J_URI`, `NEO4J_USER`, `NEO4J_DATABASE`, and
+`NEO4J_PASSWORD` environment variables as the importer. Available command-line
+connection options override the environment; otherwise, each script uses its defaults.
+Both default to database `dbpedia1`. A missing or empty password triggers a runtime
+prompt. The program runs read-only queries and does not modify Neo4j.
 
 ```bash
 python extend_experiment/dbpedia_experiment/find_functional_dependency/find_functional_dependency.py

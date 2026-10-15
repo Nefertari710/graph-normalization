@@ -37,9 +37,11 @@ values, using the same sampled nodes and embeddings.
 
 from __future__ import annotations
 
+import getpass
 import hashlib
 import json
 import math
+import os
 import random
 import re
 from bisect import bisect_right
@@ -49,10 +51,9 @@ from pathlib import Path
 from statistics import fmean, median
 from typing import Any, Iterable
 
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = ""
-DATABASE = "offshorecsv"
+NEO4J_URI = os.environ.get("NEO4J_URI") or "bolt://localhost:7687"
+NEO4J_USER = os.environ.get("NEO4J_USER") or "neo4j"
+DATABASE = os.environ.get("NEO4J_DATABASE") or "offshorecsv"
 
 PAIR_COUNT = 1_000  # 4_000
 DIMENSION = 128
@@ -722,9 +723,13 @@ def write_report(report: dict[str, Any]) -> None:
 def main() -> None:
     from neo4j import GraphDatabase, __version__ as driver_version
 
+    password = os.environ.get("NEO4J_PASSWORD")
+    if not password:
+        password = getpass.getpass(f"Neo4j password for {NEO4J_USER}: ")
+
     print(f"Connecting to {DATABASE} at {NEO4J_URI}")
     with GraphDatabase.driver(
-            NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD)) as driver:
+            NEO4J_URI, auth=(NEO4J_USER, password)) as driver:
         driver.verify_connectivity()
         with driver.session(database=DATABASE) as session:
             gds_version = session.run(

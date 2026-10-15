@@ -6,6 +6,9 @@ header rewriting and import options of ``import_offshore_enterprise.py`` but
 imports into ``neo4j`` (with the server stopped) instead of creating the
 ``offshorecsv`` database.
 
+``NEO4J_URI``, ``NEO4J_USER`` and ``NEO4J_PASSWORD`` configure the connection.
+The import target is always ``neo4j``; ``NEO4J_DATABASE`` is ignored here.
+
 Usage (after ``source ~/neo4j/env.sh``)::
 
     python import_offshore_community.py
@@ -13,6 +16,7 @@ Usage (after ``source ~/neo4j/env.sh``)::
 """
 
 import argparse
+import getpass
 import importlib.util
 import os
 import subprocess
@@ -40,7 +44,9 @@ def main() -> None:
                         default=HERE / "data")
     args = parser.parse_args()
     original = load_original(args.data_dir.expanduser().resolve())
-    password = os.environ["NEO4J_PASSWORD"]
+    password = os.environ.get("NEO4J_PASSWORD")
+    if not password:
+        password = getpass.getpass(f"Neo4j password for {original.NEO4J_USER}: ")
 
     subprocess.run(["neo4j", "stop"], check=False)
     overlap_ids = original.shared_intermediary_officer_ids()

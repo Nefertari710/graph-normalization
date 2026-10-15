@@ -7,10 +7,12 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import random
 import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from getpass import getpass
 from itertools import combinations
 from pathlib import Path
 from statistics import fmean, median, stdev
@@ -21,7 +23,6 @@ from neo4j import GraphDatabase
 
 DEFAULT_URI = "bolt://localhost:7687"
 DEFAULT_USER = "neo4j"
-DEFAULT_PASSWORD = ""
 DEFAULT_DATABASE = "northwind"
 DEFAULT_SEED = 20260827
 DEFAULT_RUNS = 10
@@ -151,10 +152,22 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Compare nine independent Northwind denormalization cases."
     )
-    parser.add_argument("--uri", default=DEFAULT_URI)
-    parser.add_argument("--user", default=DEFAULT_USER)
-    parser.add_argument("--password", default=DEFAULT_PASSWORD)
-    parser.add_argument("--database", default=DEFAULT_DATABASE)
+    parser.add_argument(
+        "--uri", default=os.getenv("NEO4J_URI") or DEFAULT_URI,
+        help=f"Neo4j URI (default: NEO4J_URI or {DEFAULT_URI})",
+    )
+    parser.add_argument(
+        "--user", default=os.getenv("NEO4J_USER") or DEFAULT_USER,
+        help=f"Neo4j user (default: NEO4J_USER or {DEFAULT_USER})",
+    )
+    parser.add_argument(
+        "--password", default=None,
+        help="Neo4j password (default: NEO4J_PASSWORD or an interactive prompt)",
+    )
+    parser.add_argument(
+        "--database", default=os.getenv("NEO4J_DATABASE") or DEFAULT_DATABASE,
+        help=f"Neo4j database (default: NEO4J_DATABASE or {DEFAULT_DATABASE})",
+    )
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
     parser.add_argument("--runs", type=int, default=DEFAULT_RUNS)
     parser.add_argument("--dimension", type=int, default=DEFAULT_DIMENSION)
@@ -162,6 +175,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--hash-gnn-seeds", type=int, default=DEFAULT_HASH_GNN_SEEDS, help="number of HashGNN random seeds")
     parser.add_argument("--keep-artifacts", action="store_true", help="keep temporary folded nodes")
     args = parser.parse_args(argv)
+    args.password = args.password or os.getenv("NEO4J_PASSWORD") or None
     if args.dimension < 8:
         parser.error("--dimension must be at least 8")
     if args.pair_count < 1:
@@ -1065,6 +1079,8 @@ def print_summary(result: dict[str, Any]) -> None:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
+    if not args.password:
+        args.password = getpass(f"Neo4j password for {args.user}: ")
     driver = GraphDatabase.driver(args.uri, auth=(args.user, args.password))
     result: dict[str, Any] | None = None
     try:

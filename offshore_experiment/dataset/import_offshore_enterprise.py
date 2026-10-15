@@ -10,10 +10,9 @@ import time
 from pathlib import Path
 
 DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "data"
-DATABASE_NAME = "offshorecsv"
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-DEBUG_NEO4J_PASSWORD: str | None = ""
+DATABASE_NAME = os.environ.get("NEO4J_DATABASE") or "offshorecsv"
+NEO4J_URI = os.environ.get("NEO4J_URI") or "bolt://localhost:7687"
+NEO4J_USER = os.environ.get("NEO4J_USER") or "neo4j"
 SYSTEM_DATABASE = "system"
 
 NODE_FILES = [
@@ -120,7 +119,7 @@ def import_csv(headers):
 
 
 def main():
-    password = DEBUG_NEO4J_PASSWORD or os.environ.get("NEO4J_PASSWORD")
+    password = os.environ.get("NEO4J_PASSWORD")
     if not password:
         password = getpass.getpass(f"Neo4j password for {NEO4J_USER}: ")
 

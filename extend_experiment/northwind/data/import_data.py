@@ -58,9 +58,6 @@ DEFAULT_BATCH_SIZE = 1_000
 SYSTEM_DATABASE = "system"
 DATABASE_CREATE_WAIT_SECONDS = 30
 
-# Local debugging only. Never commit a real password here.
-DEBUG_NEO4J_PASSWORD: str | None = ""
-
 NULL_VALUES = frozenset({"", "NULL"})
 
 
@@ -1153,12 +1150,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--uri",
-        default=os.getenv("NEO4J_URI", DEFAULT_URI),
+        default=os.getenv("NEO4J_URI") or DEFAULT_URI,
         help=f"Neo4j URI (default: NEO4J_URI or {DEFAULT_URI})",
     )
     parser.add_argument(
         "--user",
-        default=os.getenv("NEO4J_USER", DEFAULT_USER),
+        default=os.getenv("NEO4J_USER") or DEFAULT_USER,
         help=f"Neo4j user (default: NEO4J_USER or {DEFAULT_USER})",
     )
     parser.add_argument(
@@ -1178,7 +1175,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--constraint-type",
         choices=("node-key", "unique"),
-        default=os.getenv("NEO4J_CONSTRAINT_TYPE", "node-key"),
+        default=os.getenv("NEO4J_CONSTRAINT_TYPE") or "node-key",
         help=(
             "node-key preserves the original Enterprise constraints; "
             "use unique for Neo4j Community (default: node-key)"
@@ -1267,8 +1264,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.validate_only:
             return 0
 
-        password = os.getenv("NEO4J_PASSWORD") or DEBUG_NEO4J_PASSWORD
-        if password is None:
+        password = os.getenv("NEO4J_PASSWORD")
+        if not password:
             password = getpass(f"Neo4j password for {args.user}: ")
 
         run_import(args, password, source_data)

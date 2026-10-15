@@ -6,15 +6,17 @@ Normalized temporary graph:
 """
 
 import json
+import os
 import random
 import time
 from datetime import datetime
+from getpass import getpass
 from pathlib import Path
 
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = ""
-DATABASE = "hospitalcsv"
+NEO4J_URI = os.getenv("NEO4J_URI") or "bolt://localhost:7687"
+NEO4J_USER = os.getenv("NEO4J_USER") or "neo4j"
+DEFAULT_DATABASE = "hospitalcsv"
+DATABASE = os.getenv("NEO4J_DATABASE") or DEFAULT_DATABASE
 
 UPDATE_COUNT = 50
 UPDATE_REPEATS = 10
@@ -23,7 +25,7 @@ RANDOM_SEED = 20260919
 OUTPUT = (
         Path(__file__).resolve().parents[1]
         / "results"
-        / DATABASE
+        / DEFAULT_DATABASE
         / "redundancy_experiment.json"
 )
 
@@ -259,9 +261,10 @@ def benchmark(session, workload, normalized):
 def main():
     from neo4j import GraphDatabase
 
+    password = os.getenv("NEO4J_PASSWORD") or getpass(f"Neo4j password for {NEO4J_USER}: ")
     print(f"Connecting to {DATABASE} at {NEO4J_URI}")
     with GraphDatabase.driver(
-            NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD)
+            NEO4J_URI, auth=(NEO4J_USER, password)
     ) as driver:
         driver.verify_connectivity()
         with driver.session(database=DATABASE) as session:
