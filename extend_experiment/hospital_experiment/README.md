@@ -12,6 +12,8 @@ The [CSV](dataset/Timely_and_Effective_Care-Hospital.csv) is included in `datase
 python extend_experiment/hospital_experiment/dataset/import_database.py
 ```
 
+Imported schema: each CSV row becomes a `HospitalRecord` node; the initial graph has no relationships.
+
 ## 2. Run the experiment and analysis
 
 ```bash

@@ -24,6 +24,10 @@ python offshore_experiment/dataset/import_offshore_enterprise.py
 
 The importer creates a new database, `offshorecsv` by default, and refuses to overwrite an existing database. Set `NEO4J_DATABASE` to use another new database for import and experiments.
 
+![Offshore imported graph schema, selected relationships](../docs/offshore_schema.svg)
+
+Selected relationships from the imported graph.
+
 ## 2. Run experiments
 
 Run sequentially. Embeddings, use cases, and entity resolution require GDS from the shared setup.

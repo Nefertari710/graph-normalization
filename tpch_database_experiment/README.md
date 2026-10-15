@@ -14,11 +14,7 @@ python tpch_database_experiment/data/import_data_from_tbl_enterprise.py
 
 ### Imported schema
 
-Each table is a node label; columns are node properties and foreign keys become directed relationships.
-
-![TPC-H schema exported from Neo4j](figures/tpch_schema.svg)
-
-Generated in Neo4j Browser on `tpch-sf-01` with `CALL db.schema.visualization();`. Composite keys: `PARTSUPP (ps_partkey, ps_suppkey)` and `LINEITEM (l_orderkey, l_linenumber)`.
+![TPC-H schema exported from Neo4j](../docs/tpch_schema.svg)
 
 ## 2. Run experiments
 

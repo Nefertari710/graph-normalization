@@ -15,6 +15,8 @@ python extend_experiment/providerAndService_experiment/dataset/download_data.py
 python extend_experiment/providerAndService_experiment/dataset/import_database.py
 ```
 
+Imported schema: each CSV row becomes a `ProviderServiceRecord` node; the initial graph has no relationships.
+
 ## 2. Run experiments and reports
 
 Redundancy and updates:

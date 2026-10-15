@@ -24,6 +24,8 @@ python extend_experiment/dbpedia_experiment/dataset/import_data.py
 
 After an interrupted import, rerun the import command with the same files.
 
+The input RDF determines class-URI node labels and predicate-URI properties and relationship types.
+
 ## 2. Discover functional dependencies
 
 Searches `X → Y` and `X → {Y1, ..., Yn}` among single-valued literals, requiring **20 eligible instances, 20% class coverage, and 3 repeated X groups**; missing and multivalued properties are excluded.

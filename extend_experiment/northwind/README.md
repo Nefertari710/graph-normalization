@@ -12,6 +12,10 @@ The eleven CSVs are included in [data/dataset/](data/dataset/). Import into a de
 python extend_experiment/northwind/data/import_data.py
 ```
 
+![Northwind imported graph model](../../docs/northwind_schema.svg)
+
+Imported graph schema.
+
 ## 2. Run the embedding experiment
 
 ```bash
