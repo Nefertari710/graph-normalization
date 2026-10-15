@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800" role="img" aria-labelledby="schema-title schema-description">
+<title id="schema-title">Offshore Leaks schema (selected relationships)</title>
+<desc id="schema-description">Five imported node labels and seven selected directed relationships, verified in the retained source CSV snapshot dated 2026-09-09. Additional relationship types and label combinations are omitted for clarity. Custom layout, not a Neo4j Browser export.</desc>
+<rect width="1000" height="800" fill="#ffffff"/>
+<g class="relationship" data-source="Officer" data-type="officer_of" data-target="Entity">
+<polyline points="507.94,232.25 303.17,389.24" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="292.06,397.75 298.91,383.68 307.43,394.79" fill="#64748b"/>
+<text x="400.00" y="308.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(-37.48,400.00,315.00)">officer_of</text>
+</g>
+<g class="relationship" data-source="Intermediary" data-type="intermediary_of" data-target="Entity">
+<polyline points="510.61,664.54 299.80,474.82" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="289.39,465.46 304.48,469.62 295.12,480.02" fill="#64748b"/>
+<text x="400.00" y="558.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(41.99,400.00,565.00)">intermediary_of</text>
+</g>
+<g class="relationship" data-source="Other" data-type="connected_to" data-target="Entity">
+<polyline points="497.00,430.00 317.00,430.00" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="303.00,430.00 317.00,423.00 317.00,437.00" fill="#64748b"/>
+<text x="400.00" y="423.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(0.00,400.00,430.00)">connected_to</text>
+</g>
+<g class="relationship" data-source="Officer" data-type="registered_address" data-target="Address">
+<polyline points="592.06,232.25 796.83,389.24" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="807.94,397.75 792.57,394.79 801.09,383.68" fill="#64748b"/>
+<text x="700.00" y="308.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(37.48,700.00,315.00)">registered_address</text>
+</g>
+<g class="relationship" data-source="Intermediary" data-type="registered_address" data-target="Address">
+<polyline points="589.39,664.54 800.20,474.82" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="810.61,465.46 804.88,480.02 795.52,469.62" fill="#64748b"/>
+<text x="700.00" y="558.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(-41.99,700.00,565.00)">registered_address</text>
+</g>
+<g class="relationship" data-source="Other" data-type="registered_address" data-target="Address">
+<polyline points="603.00,430.00 783.00,430.00" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="797.00,430.00 783.00,437.00 783.00,423.00" fill="#64748b"/>
+<text x="700.00" y="423.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(0.00,700.00,430.00)">registered_address</text>
+</g>
+<g class="relationship" data-source="Entity" data-type="registered_address" data-target="Address">
+<path d="M 241.63 377.67 C 170 -30 930 -30 860.57 363.84" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="858.37,377.67 853.66,362.74 867.48,364.94" fill="#64748b"/>
+<text x="550" y="64" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151">registered_address</text>
+</g>
+<g class="node" data-label="Entity">
+<circle cx="250" cy="430" r="50" fill="#7cb0ff"/>
+<text x="250" y="430.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Entity</text>
+</g>
+<g class="node" data-label="Address">
+<circle cx="850" cy="430" r="50" fill="#ffcfde"/>
+<text x="850" y="430.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Address</text>
+</g>
+<g class="node" data-label="Officer">
+<circle cx="550" cy="200" r="50" fill="#e7c2ed"/>
+<text x="550" y="200.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Officer</text>
+</g>
+<g class="node" data-label="Intermediary">
+<circle cx="550" cy="700" r="50" fill="#ffcaff"/>
+<text x="550" y="700.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Intermediary</text>
+</g>
+<g class="node" data-label="Other">
+<circle cx="550" cy="430" r="50" fill="#c59d00"/>
+<text x="550" y="430.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Other</text>
+</g>
+</svg>

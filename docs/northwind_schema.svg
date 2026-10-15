@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="800" viewBox="0 0 920 800" role="img" aria-labelledby="schema-title schema-description">
+<title id="schema-title">Northwind imported graph schema</title>
+<desc id="schema-description">Eleven node labels and ten directed relationship types, drawn from the import definitions and checked against the Neo4j label/type inventory. Custom layout.</desc>
+<rect width="920" height="800" fill="#ffffff"/>
+<g class="relationship" data-source="Order" data-type="PLACED_BY" data-target="Customer">
+<polyline points="236.58,429.61 134.89,358.42" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="123.42,350.39 138.90,352.69 130.87,364.16" fill="#64748b"/>
+<text x="180.00" y="383.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(34.99,180.00,390.00)">PLACED_BY</text>
+</g>
+<g class="relationship" data-source="OrderDetail" data-type="OF_ORDER" data-target="Order">
+<polyline points="468.58,507.15 345.00,476.25" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="331.42,472.85 346.70,469.46 343.30,483.04" fill="#64748b"/>
+<text x="400.00" y="483.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(14.04,400.00,490.00)">OF_ORDER</text>
+</g>
+<g class="relationship" data-source="OrderDetail" data-type="OF_PRODUCT" data-target="Product">
+<polyline points="572.15,510.52 674.08,491.99" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="687.85,489.48 675.33,498.87 672.83,485.10" fill="#64748b"/>
+<text x="630.00" y="493.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(-10.30,630.00,500.00)">OF_PRODUCT</text>
+</g>
+<g class="relationship" data-source="Product" data-type="IN_CATEGORY" data-target="Category">
+<polyline points="763.70,432.60 810.04,339.93" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="816.30,327.40 816.30,343.06 803.78,336.80" fill="#64748b"/>
+<text x="790.00" y="373.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(-63.43,790.00,380.00)">IN_CATEGORY</text>
+</g>
+<g class="relationship" data-source="Product" data-type="SUPPLIED_BY" data-target="Supplier">
+<polyline points="760.38,528.92 814.23,658.15" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="819.62,671.08 807.77,660.85 820.69,655.46" fill="#64748b"/>
+<text x="790.00" y="593.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(67.38,790.00,600.00)">SUPPLIED_BY</text>
+</g>
+<g class="relationship" data-source="Order" data-type="HANDLED_BY" data-target="Employee">
+<polyline points="270.52,407.85 251.99,305.92" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="249.48,292.15 258.87,304.67 245.10,307.17" fill="#64748b"/>
+<text x="260.00" y="343.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(79.70,260.00,350.00)">HANDLED_BY</text>
+</g>
+<g class="relationship" data-source="Order" data-type="SHIPPED_BY" data-target="Shipper">
+<polyline points="242.52,497.48 127.38,612.62" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="117.48,622.52 122.43,607.67 132.33,617.57" fill="#64748b"/>
+<text x="180.00" y="553.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(-45.00,180.00,560.00)">SHIPPED_BY</text>
+</g>
+<g class="relationship" data-source="EmployeeTerritory" data-type="HAS_TERRITORY" data-target="Employee">
+<polyline points="362.52,117.48 287.38,192.62" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="277.48,202.52 282.43,187.67 292.33,197.57" fill="#64748b"/>
+<text x="320.00" y="153.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(-45.00,320.00,160.00)">HAS_TERRITORY</text>
+</g>
+<g class="relationship" data-source="EmployeeTerritory" data-type="IN_TERRITORY" data-target="Territory">
+<polyline points="453.00,80.00 553.00,80.00" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="567.00,80.00 553.00,87.00 553.00,73.00" fill="#64748b"/>
+<text x="510.00" y="73.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(0.00,510.00,80.00)">IN_TERRITORY</text>
+</g>
+<g class="relationship" data-source="Territory" data-type="IN_REGION" data-target="Region">
+<polyline points="670.02,97.51 756.76,127.87" stroke="#64748b" stroke-width="2" fill="none"/>
+<polygon points="769.98,132.49 754.45,134.47 759.07,121.26" fill="#64748b"/>
+<text x="720.00" y="108.00" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#374151" transform="rotate(19.29,720.00,115.00)">IN_REGION</text>
+</g>
+<g class="node" data-label="Order">
+<circle cx="280" cy="460" r="50" fill="#ffb9e8"/>
+<text x="280" y="460.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Order</text>
+</g>
+<g class="node" data-label="Customer">
+<circle cx="80" cy="320" r="50" fill="#ffadec"/>
+<text x="80" y="320.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Customer</text>
+</g>
+<g class="node" data-label="Shipper">
+<circle cx="80" cy="660" r="50" fill="#ffcfde"/>
+<text x="80" y="660.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Shipper</text>
+</g>
+<g class="node" data-label="Employee">
+<circle cx="240" cy="240" r="50" fill="#e7c2ed"/>
+<text x="240" y="240.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Employee</text>
+</g>
+<g class="node" data-label="EmployeeTerritory">
+<circle cx="400" cy="80" r="50" fill="#7cb0ff"/>
+<text x="400" y="70.5" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Employee</text>
+<text x="400" y="89.5" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Territory</text>
+</g>
+<g class="node" data-label="Territory">
+<circle cx="620" cy="80" r="50" fill="#e1cbeb"/>
+<text x="620" y="80.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Territory</text>
+</g>
+<g class="node" data-label="Region">
+<circle cx="820" cy="150" r="50" fill="#ffcfde"/>
+<text x="820" y="150.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Region</text>
+</g>
+<g class="node" data-label="OrderDetail">
+<circle cx="520" cy="520" r="50" fill="#ffcaff"/>
+<text x="520" y="520.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">OrderDetail</text>
+</g>
+<g class="node" data-label="Product">
+<circle cx="740" cy="480" r="50" fill="#c59d00"/>
+<text x="740" y="480.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Product</text>
+</g>
+<g class="node" data-label="Category">
+<circle cx="840" cy="280" r="50" fill="#a5c4ff"/>
+<text x="840" y="280.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Category</text>
+</g>
+<g class="node" data-label="Supplier">
+<circle cx="840" cy="720" r="50" fill="#e7c2ed"/>
+<text x="840" y="720.0" text-anchor="middle" dominant-baseline="central" font-size="16" font-family="Arial, sans-serif" fill="#1a1b1d">Supplier</text>
+</g>
+</svg>
