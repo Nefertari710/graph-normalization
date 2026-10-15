@@ -60,7 +60,7 @@ tmp/
 /offshore_experiment/dataset/data/*.csv
 
 # Local Provider and Service dataset
-/extend_experiment/providerAndService_experiment/dataset/PHY*.csv
+/extend_experiment/providerAndService_experiment/dataset/data/PHY*.csv
 
 # Generated embedding experiment output
 /offshore_experiment/embedding/results/embedding_offshore.json
