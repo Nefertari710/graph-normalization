@@ -203,11 +203,6 @@
       "path": "northwind_fd_report.md",
       "sha256": "4948f51db177a686c159d004c8e0d91deaa5b40a94338e3ea4c93b7de2927b05",
       "bytes": 14458
-    },
-    {
-      "path": "northwind_fd_report_zh.md",
-      "sha256": "d34a2515b336da8bb6167c4c17dfad61450214429a12b6ee2bc802bf9f89fc9d",
-      "bytes": 12033
     }
   ]
 }
