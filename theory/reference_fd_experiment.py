@@ -28,7 +28,7 @@ import pandas as pd
 from normalize_schemas import NT, closure, closed_cover, decompose, signature
 
 HERE = Path(__file__).resolve().parent
-NW = HERE.parent / 'extend_experiment' / 'northwind' / 'northwind_dataset' / 'CSVs'
+NW = HERE.parent / 'extend_experiment' / 'northwind' / 'data' / 'dataset'
 OL = HERE.parent / 'offshore_experiment' / 'dataset' / 'data'
 REPORT = HERE / 'report' / 'reference_fd_experiment.md'
 
