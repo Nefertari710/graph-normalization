@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Stream the four DBpedia RDF files into Neo4j 5.26+ (including 2026.x).
 
-Resources, type labels, property keys and relationship types use complete URIs,
-following readDBpedia() in GraphNormalization-main/main.cpp.
+Resources, type labels, property keys and relationship types use complete URIs.
 Literal properties are lists of lexical strings; rdf_literals preserves each
 value's predicate, datatype and language. No numeric coercion, inference,
 filtering or external URI fetching is performed. A normal run creates the target
@@ -31,7 +30,7 @@ NEO4J_USER = "neo4j"
 NEO4J_DATABASE = "dbpedia1"
 
 
-DEFAULT_DATA_DIR = Path(__file__).resolve().parents[1] / "dataset"
+DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "data"
 RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
 RDFS_LABEL = "http://www.w3.org/2000/01/rdf-schema#label"
 FILES = {
@@ -266,7 +265,7 @@ def main(argv=None) -> int:
         print("\nCancelled. Committed batches remain; rerun with the same files to resume.", file=sys.stderr)
         return 130
     except ModuleNotFoundError as exc:
-        print(f"Missing dependency: {exc.name or str(exc)}. See import_database/README.md.", file=sys.stderr)
+        print(f"Missing dependency: {exc.name or str(exc)}. See extend_experiment/dbpedia_experiment/README.md.", file=sys.stderr)
         return 1
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
