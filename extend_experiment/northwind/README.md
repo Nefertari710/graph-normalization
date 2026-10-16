@@ -25,14 +25,4 @@ python extend_experiment/northwind/embedding/analysis/analysis.py
 
 Outputs: [embedding results](embedding/embedding_results_undirection.json) and [report](embedding/analysis/result.md). The default orientation is `UNDIRECTED`.
 
-## Saved FD results (optional)
-
-The original FD runner is not included. Generate reports and figures from the saved results:
-
-```bash
-python extend_experiment/northwind/analysis/analysis.py
-```
-
-Output: [analysis/output/](analysis/output/).
-
 For Community, add `--database neo4j --constraint-type unique` to the import command and `--database neo4j` to the embedding command.
