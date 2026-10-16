@@ -75,13 +75,7 @@ MATERIALIZATION_SCHEMA_VERSION = auto_join_mv.MATERIALIZATION_SCHEMA_VERSION
 TEMPLATE_DIRECTORY = (
     Path(__file__).resolve().parents[1] / "templates" / "templates_manual"
 )
-DEFAULT_OUTPUT_JSON = (
-    Path(__file__).resolve().parents[1]
-    / "results"
-    / "results_benchmark"
-    / DATABASE_NAME
-    / "run_benchmark_results.json"
-)
+DEFAULT_OUTPUT_JSON: Path | None = None
 
 
 PARAMETER_PATTERN = re.compile(r"\$([A-Za-z_][A-Za-z0-9_]*)")
@@ -535,11 +529,20 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help=(
             "path for the JSON report; defaults to "
             "tpch_database_experiment/query/results/results_benchmark/"
-            f"{DATABASE_NAME}/"
+            "<database>/"
             "run_benchmark_results.json"
         ),
     )
-    return parser.parse_args(argv)
+    args = parser.parse_args(argv)
+    if args.output_json is None:
+        args.output_json = (
+            Path(__file__).resolve().parents[1]
+            / "results"
+            / "results_benchmark"
+            / args.database
+            / "run_benchmark_results.json"
+        )
+    return args
 
 
 def _literal_template_query(path: Path, query_id: int) -> str:

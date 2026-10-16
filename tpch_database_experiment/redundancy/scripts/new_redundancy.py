@@ -32,12 +32,7 @@ DEFAULT_INDEX_TIMEOUT = 3000
 DEFAULT_RANDOM_SEED = 20260818
 # None runs all 256 configurations; for example, (2, 12, 96) runs only three.
 DEFAULT_MASKS: tuple[int, ...] | None = None
-DEFAULT_OUTPUT: Path | None = (
-    Path(__file__).resolve().parents[1]
-    / "results"
-    / DEFAULT_DATABASE
-    / "new_redundancy_results.json"
-)
+DEFAULT_OUTPUT: Path | None = None
 ARTIFACT_LABEL = "FOLD_ARTIFACT"
 NORMALIZED_LABEL = "NORMALIZED_ARTIFACT"
 EXPERIMENT_PROPERTIES = ("nr_run_id", "nr_config", "nr_recipe")
@@ -885,7 +880,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="seed for choosing A1 from existing domain values")
     parser.add_argument("--mask", action="append", type=int,
                         help="run only this 0..255 mask; may be repeated")
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT,
+                        help=("JSON output (default: "
+                              "tpch_database_experiment/redundancy/results/<database>/"
+                              "new_redundancy_results.json)"))
     parser.add_argument("--plan-only", action="store_true",
                         help="write/print the 256 schema plans without connecting to Neo4j")
     args = parser.parse_args(argv)
@@ -896,6 +894,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                      "must be positive")
     if args.mask and any(not 0 <= mask < 256 for mask in args.mask):
         parser.error("each --mask must be between 0 and 255")
+    if args.output is None:
+        args.output = (
+            Path(__file__).resolve().parents[1] / "results" / args.database
+            / "new_redundancy_results.json"
+        )
     return args
 def experiment(args: argparse.Namespace) -> dict[str, Any]:
     configured_masks = args.mask if args.mask is not None else DEFAULT_MASKS
