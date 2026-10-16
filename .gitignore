@@ -62,9 +62,6 @@ tmp/
 # Local Provider and Service dataset
 /extend_experiment/providerAndService_experiment/dataset/data/PHY*.csv
 
-# Generated embedding experiment output
-/offshore_experiment/embedding/results/embedding_offshore.json
-
 # Generated benchmark/runtime markers
 **/exceed_marks/
 

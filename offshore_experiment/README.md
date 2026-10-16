@@ -32,12 +32,19 @@ Output paths below are relative to `offshore_experiment/`.
 
 ## 2. Embedding similarity
 
-Compare embedding similarities for node pairs sharing an FD determinant before and after normalization. **GDS is required.**
+Compare embedding similarities for node pairs sharing an FD determinant before and after normalization.
+
+Regenerate the report and figure from the [included result JSON](embedding/results/embedding_offshore.json), without Neo4j or GDS. It contains 12 FD cases with 10 seeds each, summary statistics, and Address node-pair similarities.
+
+```bash
+python offshore_experiment/embedding/analysis/analysis.py
+python offshore_experiment/embedding/analysis/cos_similarity.py
+```
+
+To run new embedding experiments after importing the data, **GDS is required**. This replaces the saved JSON; fresh embeddings and timings can vary across runs and environments.
 
 ```bash
 python offshore_experiment/embedding/scripts/embedding_offshore.py
-python offshore_experiment/embedding/analysis/analysis.py
-python offshore_experiment/embedding/analysis/cos_similarity.py
 ```
 
 Outputs: `embedding/results/embedding_offshore.json`, the report [`embedding/analysis/result.md`](embedding/analysis/result.md), and the figure [`embedding/analysis/cosine_similarity_ecdf.png`](embedding/analysis/cosine_similarity_ecdf.png).
