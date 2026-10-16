@@ -31,6 +31,15 @@ METHODS = ("fast_rp", "hash_gnn")
 METHOD_NAMES = {"fast_rp": "FastRP", "hash_gnn": "HashGNN"}
 
 
+def display_path(path: Path) -> str:
+    """Show repository-relative paths, or only the name for external paths."""
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(Path(__file__).resolve().parents[4]).as_posix()
+    except ValueError:
+        return resolved.name
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Analyze both independent sweeps in embedding_results_undirection.json."
@@ -238,7 +247,7 @@ def main() -> None:
             plot_median_summary(rows, case_order, method, output_dir / f"summary_{method}{suffix}.png", title)
         print(f"Loaded {len(case_order)} cases and {len(rows)} {title} points.\n")
         print_summary(summary)
-        print(f"\nResults written to: {output_dir}\n")
+        print(f"\nResults written to: {display_path(output_dir)}\n")
 
 
 if __name__ == "__main__":

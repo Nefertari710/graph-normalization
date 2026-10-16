@@ -40,6 +40,15 @@ METHODS = (
 )
 
 
+def display_path(path: Path) -> str:
+    """Show repository-relative paths, or only the name for external paths."""
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(Path(__file__).resolve().parents[4]).as_posix()
+    except ValueError:
+        return resolved.name
+
+
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
@@ -207,7 +216,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     table = build_markdown_table(experiments, args.precision)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(table, encoding="utf-8")
-    print(f"Wrote: {args.output}")
+    print(f"Wrote: {display_path(args.output)}")
     return 0
 
 

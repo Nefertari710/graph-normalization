@@ -174,7 +174,7 @@ def main() -> None:
     output_path = args.output_dir / f"{result_name}.png"
     fig.savefig(output_path, dpi=OUTPUT_DPI, bbox_inches="tight")
     analysis.plt.close(fig)
-    print(f"Wrote: {output_path}")
+    print(f"Wrote: {analysis.display_path(output_path)}")
 
 
 if __name__ == "__main__":
