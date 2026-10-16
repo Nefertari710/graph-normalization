@@ -1,4 +1,7 @@
-"""Compare Natural and Undirected FastRP sweeps for ``order_customer``."""
+"""Compare Natural and Undirected FastRP sweeps for ``order_customer``.
+
+Read both default JSON inputs from the sibling results/ directory.
+"""
 
 import argparse
 from pathlib import Path
@@ -14,8 +17,8 @@ METHOD = "fast_rp"
 EMBEDDING_DIR = Path(__file__).resolve().parents[1]
 NATURAL_RESULT_FILE_NAME = "embedding_results_natrual.json"
 UNDIRECTED_RESULT_FILE_NAME = "embedding_results_undirection.json"
-DEFAULT_NATURAL_INPUT = EMBEDDING_DIR / NATURAL_RESULT_FILE_NAME
-DEFAULT_UNDIRECTED_INPUT = EMBEDDING_DIR / UNDIRECTED_RESULT_FILE_NAME
+DEFAULT_NATURAL_INPUT = EMBEDDING_DIR / "results" / NATURAL_RESULT_FILE_NAME
+DEFAULT_UNDIRECTED_INPUT = EMBEDDING_DIR / "results" / UNDIRECTED_RESULT_FILE_NAME
 DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parent / "case"
 OUTPUT_BASENAME = "embedding_case"
 FIGURE_SIZE = (14, 9)

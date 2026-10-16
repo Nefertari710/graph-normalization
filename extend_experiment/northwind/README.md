@@ -18,11 +18,13 @@ Imported graph schema.
 
 ## 2. Run the embedding experiment
 
+Within `embedding/`, [scripts/](embedding/scripts/) contains the experiment runner, [results/](embedding/results/) stores the JSON results, and [analysis/](embedding/analysis/) contains the analysis scripts and Markdown report.
+
 ```bash
-python extend_experiment/northwind/embedding/embedding_northwind.py
+python extend_experiment/northwind/embedding/scripts/embedding_northwind.py
 python extend_experiment/northwind/embedding/analysis/analysis.py
 ```
 
-Outputs: [embedding results](embedding/embedding_results_undirection.json) and [report](embedding/analysis/result.md). The default orientation is `UNDIRECTED`.
+Outputs: [embedding results](embedding/results/embedding_results_undirection.json) and [report](embedding/analysis/result.md). The default orientation is `UNDIRECTED`.
 
 For Community, add `--database neo4j --constraint-type unique` to the import command and `--database neo4j` to the embedding command.

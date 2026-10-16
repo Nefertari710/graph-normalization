@@ -41,8 +41,10 @@ OUTPUT_NAME_BY_ORIENTATION = {
     "NATURAL": "embedding_results_natrual.json",
     "UNDIRECTED": "embedding_results_undirection.json",
 }
-OUTPUT_FILE = Path(__file__).with_name(
-    OUTPUT_NAME_BY_ORIENTATION[RELATIONSHIP_ORIENTATION]
+EMBEDDING_DIR = Path(__file__).resolve().parents[1]
+REPO_ROOT = EMBEDDING_DIR.parents[2]
+OUTPUT_FILE = (
+    EMBEDDING_DIR / "results" / OUTPUT_NAME_BY_ORIENTATION[RELATIONSHIP_ORIENTATION]
 )
 
 NORMALIZED_GRAPH = "northwind_embedding_normalized"
@@ -1075,7 +1077,7 @@ def print_summary(result: dict[str, Any]) -> None:
         print_table(("kind", "parent key", "child 1 key", "child 2 key", "norm", "denorm", "norm-denorm", "abs-diff"), summary_rows)
         print("HashGNN tuple details")
         print_table(("kind", "child", "tuple"), tuple_rows)
-    print(f"\nSaved: {OUTPUT_FILE}")
+    print(f"\nSaved: {OUTPUT_FILE.relative_to(REPO_ROOT).as_posix()}")
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
@@ -1088,6 +1090,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         with driver.session(database=args.database) as session:
             try:
                 result = run_experiment(session, args)
+                OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
                 OUTPUT_FILE.write_text(
                     json.dumps(result, ensure_ascii=False, indent=2, default=str), encoding="utf-8"
                 )

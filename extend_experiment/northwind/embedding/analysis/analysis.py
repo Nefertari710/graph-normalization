@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Export the nine embedding cases as a Markdown median-summary table."""
+"""Export the nine embedding cases as a Markdown median-summary table.
+
+Read the default JSON input from the sibling results/ directory.
+"""
 
 from __future__ import annotations
 
@@ -13,7 +16,7 @@ from typing import Any, Sequence
 
 EMBEDDING_DIR = Path(__file__).resolve().parents[1]
 REPOSITORY_ROOT = Path(__file__).resolve().parents[0]
-DEFAULT_INPUT = EMBEDDING_DIR / "embedding_results_undirection.json"
+DEFAULT_INPUT = EMBEDDING_DIR / "results" / "embedding_results_undirection.json"
 DEFAULT_OUTPUT = REPOSITORY_ROOT / "result.md"
 
 CASE_ORDER = (

@@ -1,4 +1,7 @@
-"""Analyze independent property/structure and maximum-hop sweeps."""
+"""Analyze independent property/structure and maximum-hop sweeps.
+
+Read the default JSON input from the sibling results/ directory.
+"""
 
 import argparse
 import json
@@ -18,7 +21,11 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-DEFAULT_INPUT = Path(__file__).resolve().parents[1] / "embedding_results_undirection.json"
+DEFAULT_INPUT = (
+    Path(__file__).resolve().parents[1]
+    / "results"
+    / "embedding_results_undirection.json"
+)
 DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parent
 METHODS = ("fast_rp", "hash_gnn")
 METHOD_NAMES = {"fast_rp": "FastRP", "hash_gnn": "HashGNN"}
