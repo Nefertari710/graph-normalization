@@ -38,10 +38,4 @@ Install **GDS 2026.06.0** using the [Neo4j installation guide](https://neo4j.com
 
 ## Theory checks (optional)
 
-These run without Neo4j. The last command needs the Northwind and Offshore CSVs.
-
-```bash
-python theory/check_kgnf_running_example.py
-python theory/normalize_schemas.py
-python theory/reference_fd_experiment.py
-```
+For schema-normalization checks (RQ1), see the [theory README](theory/README.md). These run without Neo4j or GDS.

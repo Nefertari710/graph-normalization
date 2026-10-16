@@ -14,11 +14,7 @@ python extend_experiment/northwind/data/import_data.py
 
 ![Northwind imported graph model](../../docs/northwind_schema.svg)
 
-Imported graph schema.
-
 ## 2. Run the embedding experiment
-
-Within `embedding/`, [scripts/](embedding/scripts/) contains the experiment runner, [results/](embedding/results/) stores the JSON results, and [analysis/](embedding/analysis/) contains the analysis scripts and Markdown report.
 
 ```bash
 python extend_experiment/northwind/embedding/scripts/embedding_northwind.py

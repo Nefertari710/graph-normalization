@@ -2,25 +2,25 @@
 
 Compare normalized and denormalized graphs for query performance, redundancy, and update cost.
 
-Complete the shared [setup](../README.md#setup) first. Run all commands below from the **repository root**.
+Complete the shared [setup](../README.md#setup) and run all commands from the **repository root**.
+
+Saved SF 0.1 reports: [query performance](query/results/results_benchmark/tpch-sf-01/run_benchmark_results.md) and [redundancy and updates](redundancy/results/tpch-sf-01/new_redundancy_results.md).
 
 ## 1. Data and import
 
-The eight **SF 0.1** tables are included in [`data/tbl_sf_01/`](data/tbl_sf_01/). Use Neo4j Enterprise and a fresh, dedicated database; the importer creates `tpch-sf-01` by default.
+The eight **SF 0.1** tables are included in [`data/tbl_sf_01/`](data/tbl_sf_01/). Use Neo4j Enterprise and a fresh, dedicated database (`tpch-sf-01` by default).
 
 ```bash
 python tpch_database_experiment/data/import_data_from_tbl_enterprise.py
 ```
 
-### Imported schema
-
 ![TPC-H schema exported from Neo4j](../docs/tpch_schema.svg)
 
-After import, choose either or both SF 0.1 experiments below. Run them one at a time. Rerunning overwrites the corresponding output files.
+Run either or both SF 0.1 experiments sequentially. Rerunning overwrites their outputs.
 
 ## 2. Query performance (SF 0.1)
 
-Compare the original queries with 74 denormalized query templates. The experiment checks that results match and measures query time and materialization cost; the analysis generates comparison tables.
+Compare the original queries with 74 denormalized templates, checking equal results and measuring query time and materialization cost.
 
 ```bash
 python tpch_database_experiment/query/scripts/run_benchmark.py --output-json outputs/tpch/query.json
@@ -31,7 +31,7 @@ Outputs: `outputs/tpch/query.json` and `outputs/tpch/query.md`. The query runner
 
 ## 3. Redundancy and update cost (SF 0.1)
 
-Compare 256 combinations of the eight foreign-key edges. Measure the resulting data redundancy, update time, and cost of rebuilding the normalized graph; the analysis summarizes these tradeoffs.
+Compare redundancy, update time, and normalization cost across 256 combinations of eight foreign-key edges.
 
 ```bash
 python tpch_database_experiment/redundancy/scripts/new_redundancy.py --database tpch-sf-01 --output outputs/tpch/redundancy.json
@@ -44,13 +44,11 @@ Both analysis scripts read saved JSON and can be rerun without Neo4j.
 
 ## 4. Larger-scale use cases (SF 1, optional)
 
-Evaluate selected query and update scenarios on a larger graph. These experiments are separate from the SF 0.1 runs and require Neo4j Enterprise.
-
-Generate the eight tables with [TPC-H DBGEN](https://www.tpc.org/tpc_documents_current_versions/current_specifications5.asp), for example `./dbgen -s 1`, and place them in `tpch_database_experiment/data/tbl_sf_1/`.
+These experiments require Neo4j Enterprise and are separate from the SF 0.1 runs. Generate eight **SF 1** tables with [TPC-H DBGEN](https://www.tpc.org/tpc_documents_current_versions/current_specifications5.asp), for example `./dbgen -s 1`, and place them in `tpch_database_experiment/data/tbl_sf_1/`.
 
 ### Redundancy and updates
 
-Compare selected denormalization strategies at SF 1. This step **clears and rebuilds the target database**, defaulting to `tpch-sf-1-usecase` (or `NEO4J_DATABASE` if set).
+**Run this first:** it **clears and rebuilds the target database**, defaulting to `tpch-sf-1-usecase` (or `NEO4J_DATABASE` if set).
 
 ```bash
 python tpch_database_experiment/usecases/scripts/components/run_sf1_redundancy.py
@@ -61,7 +59,7 @@ Outputs under [`usecases/results/sf1/`](usecases/results/sf1/): `redundancy/new_
 
 ### Query performance
 
-On the SF 1 graph imported above, compare 20 query variants with their baselines. This step can be repeated without reimporting the data.
+Then compare 20 query variants with their baselines on the SF 1 graph above. This step can be repeated without reimporting.
 
 ```bash
 python tpch_database_experiment/usecases/scripts/components/run_sf1_queries.py

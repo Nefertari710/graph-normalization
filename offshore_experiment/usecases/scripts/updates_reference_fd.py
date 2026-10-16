@@ -2,7 +2,7 @@
 """Update cost of the reference-FD decompositions on the full Offshore graph (RQ2).
 
 Companion of updates_offshore.py for the FDs of Section 5.1 whose determinant is
-the reference registered_address (theory/reference_fd_experiment.py):
+the reference registered_address (theory/scripts/reference_fd_experiment.py):
 
     Officer:      {registered_address} -> {sourceID}
     Intermediary: {registered_address} -> {sourceID}   (also countries, country_codes, valid_until)

@@ -1,6 +1,6 @@
 # Reference FD Normalization Experiment Report
 
-Source: [reference_fd_experiment.py](../reference_fd_experiment.py).
+Source: [reference_fd_experiment.py](../scripts/reference_fd_experiment.py).
 
 Random orders per workload: 20.
 

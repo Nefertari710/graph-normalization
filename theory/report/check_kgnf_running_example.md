@@ -1,6 +1,6 @@
 # KGNF Check Results for the Running Example
 
-Script: [`check_kgnf_running_example.py`](../check_kgnf_running_example.py).
+Script: [`check_kgnf_running_example.py`](../scripts/check_kgnf_running_example.py).
 The script checks whether the fixed `OrderInfo` feature set and key can reach KGNF through admissible decompositions under Definition 4.4, as implemented in the script.
 
 | Dependency set | Result | States explored |
@@ -19,5 +19,5 @@ These results apply only to this running example, the two given dependency sets,
 To reproduce the results, run from the project root:
 
 ```bash
-python theory/check_kgnf_running_example.py
+python theory/scripts/check_kgnf_running_example.py
 ```
