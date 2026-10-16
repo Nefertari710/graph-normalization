@@ -25,7 +25,8 @@ import random, sys, time
 from itertools import combinations
 from pathlib import Path
 
-REPORT = Path(__file__).resolve().parent / "report" / "normalize_schemas.md"
+THEORY_DIR = Path(__file__).resolve().parents[1]
+REPORT = THEORY_DIR / "report" / "normalize_schemas.md"
 
 def closure(X, fds):
     C = set(X); changed = True
@@ -172,7 +173,7 @@ def offshore():
     return [NT(T, c.split(","), {"node_id"}, [({V}, set(W)) for V, W in fds[T]]) for T, c in cols.items()]
 
 # ---------------------------------------------------------------- DBpedia
-def dbpedia(path=(Path(__file__).resolve().parent.parent / "extend_experiment"
+def dbpedia(path=(THEORY_DIR.parent / "extend_experiment"
                   / "dbpedia_experiment" / "find_functional_dependency"
                   / "functional_dependencies_all.json")):
     """one node type per class with discovered FDs; features: the FD attributes and the URI as key"""

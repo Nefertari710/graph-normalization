@@ -27,7 +27,7 @@ from pathlib import Path
 import pandas as pd
 from normalize_schemas import NT, closure, closed_cover, decompose, signature
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 NW = HERE.parent / 'extend_experiment' / 'northwind' / 'data' / 'dataset'
 OL = HERE.parent / 'offshore_experiment' / 'dataset' / 'data'
 REPORT = HERE / 'report' / 'reference_fd_experiment.md'
@@ -178,7 +178,7 @@ def write_markdown(results, R):
 
     lines = [
         '# Reference FD Normalization Experiment Report', '',
-        'Source: [reference_fd_experiment.py](../reference_fd_experiment.py).', '',
+        'Source: [reference_fd_experiment.py](../scripts/reference_fd_experiment.py).', '',
         f'Random orders per workload: {R}.', '',
         'The FDs are predefined and checked on the retained complete records. Offshore records also require exactly one registered_address edge to a valid Address node.', '',
         '## Input Workloads', '',
