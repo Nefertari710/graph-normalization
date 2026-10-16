@@ -5,9 +5,9 @@ The input is a v6 JSON report. This program validates the report,
 recomputes its headline metrics, creates reusable CSV/JSON summaries, draws
 publication-ready figures, and writes an English Markdown report.
 
-Default usage (inside the ``graph_database_denormalization`` Conda env)::
+Default usage from the repository root (after activating the Python environment)::
 
-    python case_study/analysis/analysis.py
+    python extend_experiment/northwind/analysis/analysis.py
 
 Use ``--help`` to select another input, output directory, or focus case.
 """
